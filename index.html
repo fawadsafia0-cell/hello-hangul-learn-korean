@@ -1401,8 +1401,7 @@
            Follow the same pattern as Seon Saeng: keep this key out of
            git via a separate config.js + .gitignore in a real deploy.
            ========================================================= */
-        const CONFIG = { AI_API_KEY: window.CONFIG.AI_API_KEY }; // optional: wire up fetch() to your provider here
-       
+      const CONFIG = window.CONFIG || { AI_API_KEY: "" };
 
         /* =========================================================
            DATA
