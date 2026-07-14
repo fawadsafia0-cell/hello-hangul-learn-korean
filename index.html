@@ -1,0 +1,2833 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Hangul · Learn Korean</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FBF7FB;
+            --card: #FFFFFF;
+            --primary: #B7A4E0;
+            --primary-dark: #9A82CC;
+            --pink: #FFC9DE;
+            --mint: #A8E6CF;
+            --peach: #FFD9A8;
+            --text: #4A3F55;
+            --text-soft: #8A7E97;
+            --heart: #FF7F9C;
+            --line: #EDE5F5;
+            --shadow: 0 8px 24px rgba(154, 130, 204, 0.15);
+            --radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background:
+                radial-gradient(circle at 10% 0%, #F3E9FC 0%, transparent 45%),
+                radial-gradient(circle at 90% 10%, #FFF1E8 0%, transparent 40%),
+                var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        h1,
+        h2,
+        h3,
+        .display {
+            font-family: 'Baloo 2', cursive;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+        }
+
+        .app {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 78px;
+            position: relative;
+        }
+
+        /* ---- Top bar ---- */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 18px 8px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .brand .mascot {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+        }
+
+        .brand span {
+            font-family: 'Baloo 2';
+            font-weight: 800;
+            font-size: 16.5px;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .stats-pill {
+            display: flex;
+            gap: 8px;
+        }
+
+        .pill {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--card);
+            border-radius: 999px;
+            padding: 6px 10px;
+            box-shadow: var(--shadow);
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        .pill.streak {
+            color: #FF9F43;
+        }
+
+        .pill.heart {
+            color: var(--heart);
+        }
+
+        .pill.xp {
+            color: #7C5CD1;
+        }
+
+        /* ---- Screens ---- */
+        .screen {
+            padding: 12px 18px 20px;
+            display: none;
+            animation: fade .25s ease;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---- Home ---- */
+        .hero-card {
+            background: linear-gradient(135deg, var(--primary) 0%, #CDBBEF 100%);
+            border-radius: 24px;
+            padding: 22px;
+            color: white;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card h1 {
+            margin: 0 0 4px;
+            font-size: 22px;
+        }
+
+        .hero-card p {
+            margin: 0;
+            opacity: .9;
+            font-size: 14px;
+        }
+
+        .hero-blob {
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            width: 110px;
+            height: 110px;
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tags {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-tag {
+            background: rgba(255, 255, 255, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .section-title {
+            font-family: 'Baloo 2';
+            font-weight: 700;
+            font-size: 17px;
+            margin: 22px 0 10px;
+            color: var(--text);
+        }
+
+        .tier-row {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            margin-top: 4px;
+        }
+
+        .tier-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tier-chip {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            background: var(--card);
+            border: 2px solid var(--line);
+            border-radius: 16px;
+            padding: 10px 14px;
+            min-width: 84px;
+            box-shadow: var(--shadow);
+        }
+
+        .tier-chip .t-emoji {
+            font-size: 20px;
+        }
+
+        .tier-chip b {
+            font-size: 12.5px;
+        }
+
+        .tier-chip small {
+            font-size: 10.5px;
+            color: var(--text-soft);
+            font-weight: 700;
+        }
+
+        .tier-chip.active {
+            border-color: var(--primary);
+            background: #F3ECFB;
+        }
+
+        .tier-chip.tlocked {
+            opacity: .5;
+        }
+
+        .unit-path {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .unit-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--card);
+            border-radius: 18px;
+            padding: 14px;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            transition: .15s;
+        }
+
+        .unit-card:active {
+            transform: scale(.98);
+        }
+
+        .unit-card.locked {
+            opacity: .55;
+        }
+
+        .unit-card.done-card {
+            border-color: var(--mint);
+        }
+
+        .unit-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .unit-num .check {
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            background: var(--mint);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #215C42;
+            border: 2px solid var(--card);
+        }
+
+        .unit-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .unit-info {
+            flex: 1;
+        }
+
+        .unit-info b {
+            font-size: 15px;
+        }
+
+        .unit-info small {
+            display: block;
+            color: var(--text-soft);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--line);
+            border-radius: 6px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--mint);
+            border-radius: 6px;
+        }
+
+        /* ---- Nav ---- */
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            background: var(--card);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 6px calc(10px + env(safe-area-inset-bottom));
+            box-shadow: 0 -4px 18px rgba(154, 130, 204, 0.12);
+            z-index: 10;
+        }
+
+        .navbtn {
+            background: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            color: var(--text-soft);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 12px;
+        }
+
+        .navbtn.active {
+            color: var(--primary-dark);
+            background: #F3ECFB;
+        }
+
+        .navbtn .ic {
+            font-size: 20px;
+        }
+
+        /* ---- Lesson ---- */
+        .lesson-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .exit-btn {
+            background: none;
+            font-size: 20px;
+            color: var(--text-soft);
+        }
+
+        .lesson-progress {
+            flex: 1;
+            height: 12px;
+            background: var(--line);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .lesson-progress-fill {
+            height: 100%;
+            background: var(--mint);
+            border-radius: 8px;
+            transition: width .3s;
+        }
+
+        .q-heart {
+            color: var(--heart);
+            font-weight: 800;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .exercise-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 22px 18px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .ex-prompt {
+            font-size: 13px;
+            color: var(--text-soft);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            margin-bottom: 10px;
+        }
+
+        .ex-main {
+            font-family: 'Baloo 2';
+            font-size: 34px;
+            margin: 6px 0 4px;
+            color: var(--text);
+        }
+
+        .ex-sub {
+            color: var(--text-soft);
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .choice {
+            background: #FAF7FE;
+            border: 2px solid var(--line);
+            border-radius: 14px;
+            padding: 13px;
+            font-weight: 700;
+            font-size: 15px;
+            text-align: left;
+            transition: .12s;
+        }
+
+        .choice:hover {
+            border-color: var(--primary);
+        }
+
+        .choice.correct {
+            background: #E4F8EE;
+            border-color: var(--mint);
+            color: #2E9B6A;
+        }
+
+        .choice.wrong {
+            background: #FFEAF0;
+            border-color: var(--heart);
+            color: #D64566;
+        }
+
+        .match-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .match-tile {
+            background: #FAF7FE;
+            border: 2px solid var(--line);
+            border-radius: 12px;
+            padding: 14px 8px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .match-tile.selected {
+            border-color: var(--primary);
+            background: #F0E9FB;
+        }
+
+        .match-tile.solved {
+            background: #E4F8EE;
+            border-color: var(--mint);
+            opacity: .6;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 14px;
+            border: 2px solid var(--line);
+            font-size: 16px;
+            font-family: inherit;
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* ---- Teach card ---- */
+        .teach-card {
+            padding-top: 26px;
+        }
+
+        .listen-btn {
+            background: #F3ECFB;
+            color: var(--primary-dark);
+            border-radius: 999px;
+            padding: 9px 16px;
+            font-weight: 800;
+            font-size: 13px;
+            margin: 10px auto 0;
+            display: inline-block;
+        }
+
+        .teach-meaning {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text);
+            margin-top: 14px;
+            background: #FAF7FE;
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        /* ---- Tile builder ---- */
+        .tile-answer {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 18px 0 4px;
+            border-bottom: 2px dashed var(--line);
+            padding-bottom: 14px;
+            min-height: 44px;
+        }
+
+        .tile-seg {
+            display: flex;
+            gap: 6px;
+        }
+
+        .tile-bank {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .tile-chip {
+            font-family: 'Baloo 2', cursive;
+            font-size: 19px;
+            font-weight: 700;
+            border-radius: 10px;
+            min-width: 40px;
+            height: 44px;
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tile-chip.empty {
+            background: #FAF7FE;
+            border: 2px solid var(--line);
+            color: transparent;
+        }
+
+        .tile-chip.filled {
+            background: #F0E9FB;
+            border: 2px solid var(--primary);
+            color: var(--text);
+        }
+
+        .tile-chip.bank {
+            background: var(--card);
+            border: 2px solid var(--line);
+            color: var(--text);
+            box-shadow: var(--shadow);
+        }
+
+        .tile-chip.bank.used {
+            opacity: .25;
+            pointer-events: none;
+        }
+
+        .mic-btn {
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            background: var(--pink);
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 18px auto 6px;
+            box-shadow: var(--shadow);
+        }
+
+        .mic-btn.listening {
+            background: var(--heart);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 127, 156, .5);
+            }
+
+            70% {
+                box-shadow: 0 0 0 14px rgba(255, 127, 156, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 127, 156, 0);
+            }
+        }
+
+        .heard-text {
+            min-height: 20px;
+            color: var(--text-soft);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .primary-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 15px;
+            margin-top: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .primary-btn:disabled {
+            background: var(--line);
+            color: var(--text-soft);
+            box-shadow: none;
+        }
+
+        .feedback-bar {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            padding: 18px;
+            z-index: 20;
+        }
+
+        .feedback-bar.correct {
+            background: #E4F8EE;
+        }
+
+        .feedback-bar.wrong {
+            background: #FFEAF0;
+        }
+
+        .feedback-bar b {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+
+        .feedback-bar.correct b {
+            color: #2E9B6A;
+        }
+
+        .feedback-bar.wrong b {
+            color: #D64566;
+        }
+
+        .feedback-bar .fb-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 14px;
+            font-weight: 800;
+            color: white;
+            margin-top: 8px;
+        }
+
+        .feedback-bar.correct .fb-btn {
+            background: #4CBB88;
+        }
+
+        .feedback-bar.wrong .fb-btn {
+            background: #E4657F;
+        }
+
+        /* ---- Complete / gameover ---- */
+        .result-screen {
+            text-align: center;
+            padding: 40px 18px;
+        }
+
+        .result-emoji {
+            font-size: 64px;
+        }
+
+        .result-screen h2 {
+            font-size: 24px;
+            margin: 8px 0 4px;
+        }
+
+        .result-stats {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin: 20px 0;
+        }
+
+        .rstat {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 14px 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .rstat b {
+            display: block;
+            font-size: 20px;
+            color: var(--primary-dark);
+        }
+
+        .rstat span {
+            font-size: 11px;
+            color: var(--text-soft);
+            font-weight: 700;
+        }
+
+        /* ---- Chat ---- */
+        .chat-wrap {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 160px);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 6px 2px 12px;
+        }
+
+        .msg {
+            max-width: 80%;
+            padding: 11px 14px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .msg.bot {
+            background: var(--card);
+            align-self: flex-start;
+            box-shadow: var(--shadow);
+            border-bottom-left-radius: 4px;
+        }
+
+        .msg.user {
+            background: var(--primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-input-row {
+            display: flex;
+            gap: 8px;
+            padding: 10px 2px;
+        }
+
+        .chat-input-row input {
+            flex: 1;
+            border: 2px solid var(--line);
+            border-radius: 14px;
+            padding: 12px 14px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .chat-input-row input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .chat-input-row button {
+            background: var(--primary);
+            color: white;
+            width: 46px;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        .chat-hint {
+            font-size: 12px;
+            color: var(--text-soft);
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        /* ---- Kdrama ---- */
+        .scene-card {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 14px;
+        }
+
+        .scene-card h3 {
+            margin: 0 0 2px;
+            font-size: 15px;
+        }
+
+        .scene-card small {
+            color: var(--text-soft);
+        }
+
+        .line {
+            margin-top: 12px;
+            padding: 10px 12px;
+            background: #FAF7FE;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .line.open {
+            border-color: var(--primary);
+        }
+
+        .line .kr {
+            font-family: 'Baloo 2';
+            font-size: 16px;
+        }
+
+        .line .rom {
+            color: var(--text-soft);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .line .brk {
+            display: none;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed var(--line);
+            font-size: 13px;
+        }
+
+        .line.open .brk {
+            display: block;
+        }
+
+        /* ---- Pro ---- */
+        .pro-hero {
+            background: linear-gradient(135deg, #2D2340, #4A3768);
+            border-radius: 22px;
+            padding: 24px;
+            color: white;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .pro-hero h2 {
+            margin: 6px 0 4px;
+        }
+
+        .pro-feature {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: var(--card);
+            border-radius: 16px;
+            padding: 14px;
+            box-shadow: var(--shadow);
+            margin-top: 12px;
+        }
+
+        .pro-feature .ic {
+            font-size: 22px;
+        }
+
+        .pro-feature b {
+            font-size: 14px;
+        }
+
+        .pro-feature p {
+            margin: 2px 0 0;
+            font-size: 12.5px;
+            color: var(--text-soft);
+        }
+
+        .pro-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #FFC9DE, #B7A4E0);
+            color: #3A2D50;
+            padding: 16px;
+            border-radius: 16px;
+            font-weight: 800;
+            margin-top: 18px;
+            font-size: 15px;
+        }
+
+        /* ---- Profile ---- */
+        .profile-card {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 18px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .level-ring {
+            width: 100px;
+            height: 100px;
+        }
+
+        .xp-next {
+            font-size: 11.5px;
+            color: var(--text-soft);
+            font-weight: 700;
+            margin-top: 6px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .stat-box {
+            background: #FAF7FE;
+            border-radius: 14px;
+            padding: 12px 6px;
+        }
+
+        .stat-box b {
+            display: block;
+            font-size: 18px;
+            color: var(--primary-dark);
+        }
+
+        .stat-box span {
+            font-size: 11px;
+            color: var(--text-soft);
+        }
+
+        .week-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+        }
+
+        .day {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--text-soft);
+        }
+
+        .day.done {
+            background: var(--mint);
+            color: #2E9B6A;
+        }
+
+        /* ---- Skill breakdown ---- */
+        .skill-row {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .skill-item .skill-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .skill-item .skill-top span:last-child {
+            color: var(--text-soft);
+            font-weight: 700;
+        }
+
+        .skill-bar-bg {
+            height: 9px;
+            background: var(--line);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            border-radius: 6px;
+        }
+
+        /* ---- Achievements ---- */
+        .badge-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .badge {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 12px 6px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            opacity: .35;
+        }
+
+        .badge.unlocked {
+            opacity: 1;
+        }
+
+        .badge .b-ic {
+            font-size: 22px;
+        }
+
+        .badge .b-name {
+            font-size: 9.5px;
+            font-weight: 800;
+            color: var(--text-soft);
+            margin-top: 4px;
+            line-height: 1.2;
+            display: block;
+        }
+
+        .badge.unlocked .b-name {
+            color: var(--text);
+        }
+
+        /* ---- Toggle switch ---- */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 26px;
+            flex-shrink: 0;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background: var(--line);
+            border-radius: 999px;
+            transition: .2s;
+        }
+
+        .slider:before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 3px;
+            top: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: .2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        input:checked+.slider {
+            background: var(--primary);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(18px);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app" id="app">
+
+        <div class="topbar">
+            <div class="brand">
+                <svg class="mascot" viewBox="0 0 40 40">
+                    <circle cx="20" cy="20" r="20" fill="url(#logoGrad)" />
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
+                            <stop offset="0" stop-color="#FFC9DE" />
+                            <stop offset="1" stop-color="#B7A4E0" />
+                        </linearGradient>
+                    </defs>
+                    <text x="20" y="27" font-family="'Baloo 2',cursive" font-size="19" font-weight="800" fill="#FFFFFF"
+                        text-anchor="middle">한</text>
+                </svg>
+                <span>Hello Hangul</span>
+            </div>
+            <div class="stats-pill">
+                <div class="pill streak">🔥<span id="streakVal">0</span></div>
+                <div class="pill heart">❤️<span id="heartVal">5</span></div>
+                <div class="pill xp">⭐<span id="xpVal">0</span></div>
+            </div>
+        </div>
+
+        <!-- HOME -->
+        <div class="screen active" id="screen-home">
+            <div class="hero-card">
+                <div class="hero-blob"></div>
+                <div class="hero-content" style="padding-right:0;">
+                    <h1 id="homeGreeting">안녕하세요 👋</h1>
+                    <p>Pick up where you left off and keep your streak alive.</p>
+                </div>
+                <div class="hero-tags" id="heroTags"></div>
+            </div>
+            <div class="section-title">Choose your level</div>
+            <div class="tier-row" id="tierRow"></div>
+            <div class="section-title">Your path</div>
+            <div class="unit-path" id="unitPath"></div>
+        </div>
+
+        <!-- LESSON -->
+        <div class="screen" id="screen-lesson">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="exitLesson()">✕</button>
+                <div class="lesson-progress">
+                    <div class="lesson-progress-fill" id="lessonProgressFill" style="width:0%"></div>
+                </div>
+                <div class="q-heart">❤️ <span id="lessonHearts">5</span></div>
+            </div>
+            <div id="exerciseArea"></div>
+        </div>
+
+        <!-- LESSON COMPLETE -->
+        <div class="screen" id="screen-complete">
+            <div class="result-screen">
+                <div class="result-emoji">🎉</div>
+                <h2>Lesson complete!</h2>
+                <p style="color:var(--text-soft)">Great job — your Korean is leveling up.</p>
+                <div class="result-stats">
+                    <div class="rstat"><b id="earnedXp">+0</b><span>XP EARNED</span></div>
+                    <div class="rstat"><b id="finalStreak">0</b><span>DAY STREAK</span></div>
+                </div>
+                <button class="primary-btn" style="background:linear-gradient(135deg,#FFC9DE,#B7A4E0);"
+                    onclick="startQuiz()">📝 Take a quiz on this lesson</button>
+                <button class="primary-btn" onclick="askDoubtFromComplete()">💬 I have a question about this
+                    lesson</button>
+                <button class="primary-btn" style="background:var(--mint);color:#215C42;margin-top:10px;"
+                    onclick="goHome()">Continue</button>
+            </div>
+        </div>
+
+        <!-- QUIZ -->
+        <div class="screen" id="screen-quiz">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div class="lesson-progress">
+                    <div class="lesson-progress-fill" id="quizProgressFill"
+                        style="width:0%;background:linear-gradient(90deg,#FFC9DE,#B7A4E0);"></div>
+                </div>
+                <div class="q-heart" style="color:var(--primary-dark);">📝 <span id="quizScoreLabel">0/0</span></div>
+            </div>
+            <div id="quizArea"></div>
+        </div>
+
+        <!-- QUIZ RESULT -->
+        <div class="screen" id="screen-quiz-result">
+            <div class="result-screen">
+                <div class="result-emoji" id="quizResultEmoji">📝</div>
+                <h2 id="quizResultTitle">Quiz complete!</h2>
+                <p style="color:var(--text-soft)" id="quizResultSub">Here's how you did.</p>
+                <div class="result-stats">
+                    <div class="rstat"><b id="quizScoreFinal">0/0</b><span>SCORE</span></div>
+                    <div class="rstat"><b id="quizBonusXp">+0</b><span>BONUS XP</span></div>
+                </div>
+                <button class="primary-btn" style="background:var(--mint);color:#215C42;"
+                    onclick="goHome()">Continue</button>
+            </div>
+        </div>
+
+        <!-- GAME OVER -->
+        <div class="screen" id="screen-gameover">
+            <div class="result-screen">
+                <div class="result-emoji">💔</div>
+                <h2>Out of hearts</h2>
+                <p style="color:var(--text-soft)">Refill your hearts to keep practicing, or go Pro for unlimited hearts.
+                </p>
+                <button class="primary-btn" onclick="refillHearts()">Wait for refill (watch review) ▶</button>
+                <button class="primary-btn"
+                    style="background:linear-gradient(135deg,#FFC9DE,#B7A4E0);color:#3A2D50;margin-top:10px;"
+                    onclick="showScreen('pro')">Go Pro for unlimited hearts</button>
+                <button class="primary-btn" style="background:var(--line);color:var(--text-soft);margin-top:10px;"
+                    onclick="goHome()">Back home</button>
+            </div>
+        </div>
+
+        <!-- KDRAMA -->
+        <div class="screen" id="screen-kdrama">
+            <div class="section-title" style="margin-top:6px;">🎬 Learn from K-Dramas</div>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Real phrases from classic drama-style
+                scenes. Tap a line to break it down.</p>
+            <div id="kdramaList"></div>
+        </div>
+
+        <!-- CHAT -->
+        <div class="screen" id="screen-chat">
+            <div class="section-title" style="margin-top:6px;">💬 Ask your tutor</div>
+            <div class="chat-wrap">
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input-row">
+                    <input id="chatInput" type="text" placeholder="Ask about grammar, vocab, anything..."
+                        onkeydown="if(event.key==='Enter')sendChat()">
+                    <button onclick="sendChat()">➤</button>
+                </div>
+                <div class="chat-hint">Tutor runs on simple built-in logic. Connect your own AI key in the code (see
+                    CONFIG) for full smart replies.</div>
+            </div>
+        </div>
+
+        <!-- PRO -->
+        <div class="screen" id="screen-pro">
+            <div class="pro-hero">
+                <div style="font-size:36px;">👑</div>
+                <h2>Hangul Pro</h2>
+                <p style="opacity:.85;font-size:13px;">Unlock the full path and learn without limits.</p>
+            </div>
+            <div class="pro-feature">
+                <div class="ic">❤️</div>
+                <div><b>Unlimited hearts</b>
+                    <p>Never stop practicing mid-lesson again.</p>
+                </div>
+            </div>
+            <div class="pro-feature">
+                <div class="ic">🔓</div>
+                <div><b>All units unlocked</b>
+                    <p>Skip the queue — jump into any unit or K-drama scene.</p>
+                </div>
+            </div>
+            <div class="pro-feature">
+                <div class="ic">🗣️</div>
+                <div><b>Advanced speaking drills</b>
+                    <p>Sentence-level pronunciation practice with instant scoring.</p>
+                </div>
+            </div>
+            <div class="pro-feature">
+                <div class="ic">📈</div>
+                <div><b>Deep progress stats</b>
+                    <p>Track accuracy per skill: listening, writing, speaking, matching.</p>
+                </div>
+            </div>
+            <button class="pro-btn" onclick="mockUpgrade()">Unlock Hangul Pro</button>
+            <p style="text-align:center;font-size:11px;color:var(--text-soft);margin-top:10px;">This is a UI preview —
+                no real payment is processed.</p>
+        </div>
+
+        <!-- PROFILE -->
+        <div class="screen" id="screen-profile">
+            <div class="profile-card">
+                <svg class="level-ring" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#F0E9FB" stroke-width="10" />
+                    <circle id="levelRingFill" cx="50" cy="50" r="42" fill="none" stroke="url(#ringGrad)"
+                        stroke-width="10" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264"
+                        transform="rotate(-90 50 50)" />
+                    <defs>
+                        <linearGradient id="ringGrad" x1="0" y1="0" x2="100" y2="100">
+                            <stop offset="0" stop-color="#FFC9DE" />
+                            <stop offset="1" stop-color="#B7A4E0" />
+                        </linearGradient>
+                    </defs>
+                    <text x="50" y="45" text-anchor="middle" font-family="'Baloo 2',cursive" font-size="26"
+                        font-weight="800" fill="#4A3F55" id="levelNumText">1</text>
+                    <text x="50" y="63" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="9"
+                        font-weight="800" fill="#8A7E97">LEVEL</text>
+                </svg>
+                <h2 style="margin:10px 0 0;">Learner</h2>
+                <p style="color:var(--text-soft);font-size:13px;margin-top:2px;" id="profileSub">Just getting started
+                </p>
+                <div class="xp-next" id="xpNext">0 / 100 XP to next level</div>
+
+                <div class="stat-grid">
+                    <div class="stat-box"><b id="pXp">0</b><span>TOTAL XP</span></div>
+                    <div class="stat-box"><b id="pStreak">0</b><span>STREAK</span></div>
+                    <div class="stat-box"><b id="pBest">0</b><span>BEST STREAK</span></div>
+                </div>
+                <div class="stat-grid" style="margin-top:8px;">
+                    <div class="stat-box"><b id="pLessons">0</b><span>LESSONS</span></div>
+                    <div class="stat-box"><b id="pWords">0</b><span>WORDS MET</span></div>
+                    <div class="stat-box"><b id="pAccuracy">0%</b><span>ACCURACY</span></div>
+                </div>
+
+                <div class="section-title" style="text-align:left;">This week</div>
+                <div class="week-row" id="weekRow"></div>
+            </div>
+
+            <div class="section-title">Skill breakdown</div>
+            <div class="profile-card" style="text-align:left;">
+                <div class="skill-row" id="skillRows"></div>
+            </div>
+
+            <div class="section-title">Achievements</div>
+            <div class="badge-grid" id="badgeGrid"></div>
+
+            <div class="section-title">Settings</div>
+            <div class="unit-card" style="cursor:default;">
+                <div class="unit-icon" style="background:#F0E9FB;">🔔</div>
+                <div class="unit-info"><b>Daily reminder</b><small>Nudge me to practice every day</small></div>
+                <label class="switch"><input type="checkbox" id="toggleReminder"
+                        onchange="toggleSetting('reminder', this.checked)"><span class="slider"></span></label>
+            </div>
+            <div class="unit-card" style="cursor:default;margin-top:10px;">
+                <div class="unit-icon" style="background:#FFF3DE;">🔊</div>
+                <div class="unit-info"><b>Sound effects</b><small>Play sounds for correct and wrong answers</small>
+                </div>
+                <label class="switch"><input type="checkbox" id="toggleSound"
+                        onchange="toggleSetting('sound', this.checked)"><span class="slider"></span></label>
+            </div>
+            <div class="unit-card" onclick="resetProgress()" style="margin-top:10px;">
+                <div class="unit-icon" style="background:#FFEAF0;">🗑️</div>
+                <div class="unit-info"><b>Reset all progress</b><small>Start fresh from Lesson 1</small></div>
+            </div>
+        </div>
+
+        <div class="navbar">
+            <button class="navbtn active" data-tab="home" onclick="showScreen('home')"><span
+                    class="ic">🏠</span>Home</button>
+            <button class="navbtn" data-tab="kdrama" onclick="showScreen('kdrama')"><span
+                    class="ic">🎬</span>K-Drama</button>
+            <button class="navbtn" data-tab="chat" onclick="showScreen('chat')"><span class="ic">💬</span>Tutor</button>
+            <button class="navbtn" data-tab="pro" onclick="showScreen('pro')"><span class="ic">👑</span>Pro</button>
+            <button class="navbtn" data-tab="profile" onclick="showScreen('profile')"><span
+                    class="ic">👤</span>Profile</button>
+        </div>
+    </div>
+
+    <script>
+        /* =========================================================
+           CONFIG — plug in your own AI key to power the tutor chat.
+           Follow the same pattern as Seon Saeng: keep this key out of
+           git via a separate config.js + .gitignore in a real deploy.
+           ========================================================= */
+        const CONFIG = { AI_API_KEY: window.CONFIG.AI_API_KEY }; // optional: wire up fetch() to your provider here
+       
+
+        /* =========================================================
+           DATA
+           ========================================================= */
+        const TIERS = [
+            { key: "beginner", name: "Beginner", emoji: "🌱", color: "#A8E6CF", dark: "#2E9B6A" },
+            { key: "intermediate", name: "Intermediate", emoji: "🌤️", color: "#FFD9A8", dark: "#C97A1E" },
+            { key: "advanced", name: "Advanced", emoji: "🔥", color: "#FFC9DE", dark: "#D64566" },
+            { key: "fluent", name: "Fluent", emoji: "👑", color: "#B7A4E0", dark: "#6A4FB0" },
+        ];
+
+        const LEVELS = [
+            /* ---------------- BEGINNER ---------------- */
+            {
+                tier: "beginner", title: "Hangul Basics", icon: "🈁", words: [
+                    { kr: "안녕하세요", rom: "annyeonghaseyo", en: "hello" }, { kr: "감사합니다", rom: "gamsahamnida", en: "thank you" },
+                    { kr: "네", rom: "ne", en: "yes" }, { kr: "아니요", rom: "aniyo", en: "no" },
+                    { kr: "이름", rom: "ireum", en: "name" }, { kr: "친구", rom: "chingu", en: "friend" }]
+            },
+            {
+                tier: "beginner", title: "Greetings & Manners", icon: "🙏", words: [
+                    { kr: "안녕히 가세요", rom: "annyeonghi gaseyo", en: "goodbye (to someone leaving)" }, { kr: "안녕히 계세요", rom: "annyeonghi gyeseyo", en: "goodbye (to someone staying)" },
+                    { kr: "죄송합니다", rom: "joesonghamnida", en: "I'm sorry" }, { kr: "실례합니다", rom: "sillyehamnida", en: "excuse me" },
+                    { kr: "만나서 반가워요", rom: "mannaseo bangawoyo", en: "nice to meet you" }, { kr: "괜찮아요", rom: "gwaenchanayo", en: "it's okay" }]
+            },
+            {
+                tier: "beginner", title: "Numbers 1-6", icon: "🔢", words: [
+                    { kr: "하나", rom: "hana", en: "one" }, { kr: "둘", rom: "dul", en: "two" },
+                    { kr: "셋", rom: "set", en: "three" }, { kr: "넷", rom: "net", en: "four" },
+                    { kr: "다섯", rom: "daseot", en: "five" }, { kr: "여섯", rom: "yeoseot", en: "six" }]
+            },
+            {
+                tier: "beginner", title: "Days & Time", icon: "🕒", words: [
+                    { kr: "오늘", rom: "oneul", en: "today" }, { kr: "내일", rom: "naeil", en: "tomorrow" },
+                    { kr: "어제", rom: "eoje", en: "yesterday" }, { kr: "지금", rom: "jigeum", en: "now" },
+                    { kr: "시간", rom: "sigan", en: "time" }, { kr: "오전", rom: "ojeon", en: "morning / AM" }]
+            },
+            {
+                tier: "beginner", title: "Family", icon: "👪", words: [
+                    { kr: "가족", rom: "gajok", en: "family" }, { kr: "엄마", rom: "eomma", en: "mom" },
+                    { kr: "아빠", rom: "appa", en: "dad" }, { kr: "형", rom: "hyeong", en: "older brother (male speaker)" },
+                    { kr: "누나", rom: "nuna", en: "older sister (male speaker)" }, { kr: "동생", rom: "dongsaeng", en: "younger sibling" }]
+            },
+            {
+                tier: "beginner", title: "Food & Drink", icon: "🍚", words: [
+                    { kr: "밥", rom: "bap", en: "rice / meal" }, { kr: "물", rom: "mul", en: "water" },
+                    { kr: "커피", rom: "keopi", en: "coffee" }, { kr: "김치", rom: "gimchi", en: "kimchi" },
+                    { kr: "라면", rom: "ramyeon", en: "instant noodles" }, { kr: "맛있어요", rom: "masisseoyo", en: "it's delicious" }]
+            },
+            {
+                tier: "beginner", title: "Colors", icon: "🎨", words: [
+                    { kr: "빨간색", rom: "ppalgansaek", en: "red" }, { kr: "파란색", rom: "paransaek", en: "blue" },
+                    { kr: "노란색", rom: "noransaek", en: "yellow" }, { kr: "초록색", rom: "choroksaek", en: "green" },
+                    { kr: "검은색", rom: "geomeunsaek", en: "black" }, { kr: "하얀색", rom: "hayansaek", en: "white" }]
+            },
+            {
+                tier: "beginner", title: "Body Parts", icon: "🧍", words: [
+                    { kr: "머리", rom: "meori", en: "head" }, { kr: "손", rom: "son", en: "hand" },
+                    { kr: "눈", rom: "nun", en: "eye" }, { kr: "코", rom: "ko", en: "nose" },
+                    { kr: "입", rom: "ip", en: "mouth" }, { kr: "다리", rom: "dari", en: "leg" }]
+            },
+            {
+                tier: "beginner", title: "Animals", icon: "🐾", words: [
+                    { kr: "강아지", rom: "gangaji", en: "puppy / dog" }, { kr: "고양이", rom: "goyangi", en: "cat" },
+                    { kr: "새", rom: "sae", en: "bird" }, { kr: "물고기", rom: "mulgogi", en: "fish" },
+                    { kr: "곰", rom: "gom", en: "bear" }, { kr: "토끼", rom: "tokki", en: "rabbit" }]
+            },
+            {
+                tier: "beginner", title: "Clothing", icon: "👕", words: [
+                    { kr: "옷", rom: "ot", en: "clothes" }, { kr: "신발", rom: "sinbal", en: "shoes" },
+                    { kr: "모자", rom: "moja", en: "hat" }, { kr: "바지", rom: "baji", en: "pants" },
+                    { kr: "치마", rom: "chima", en: "skirt" }, { kr: "가방", rom: "gabang", en: "bag" }]
+            },
+            {
+                tier: "beginner", title: "Weather", icon: "⛅", words: [
+                    { kr: "날씨", rom: "nalssi", en: "weather" }, { kr: "비", rom: "bi", en: "rain" },
+                    { kr: "눈", rom: "nun", en: "snow" }, { kr: "바람", rom: "baram", en: "wind" },
+                    { kr: "더워요", rom: "deowoyo", en: "it's hot" }, { kr: "추워요", rom: "chuwoyo", en: "it's cold" }]
+            },
+            {
+                tier: "beginner", title: "House & Rooms", icon: "🏠", words: [
+                    { kr: "집", rom: "jip", en: "house" }, { kr: "방", rom: "bang", en: "room" },
+                    { kr: "침대", rom: "chimdae", en: "bed" }, { kr: "화장실", rom: "hwajangsil", en: "bathroom" },
+                    { kr: "부엌", rom: "bueok", en: "kitchen" }, { kr: "문", rom: "mun", en: "door" }]
+            },
+            {
+                tier: "beginner", title: "School & Objects", icon: "🎒", words: [
+                    { kr: "학교", rom: "hakgyo", en: "school" }, { kr: "책", rom: "chaek", en: "book" },
+                    { kr: "연필", rom: "yeonpil", en: "pencil" }, { kr: "가방", rom: "gabang", en: "school bag" },
+                    { kr: "선생님", rom: "seonsaengnim", en: "teacher" }, { kr: "학생", rom: "haksaeng", en: "student" }]
+            },
+
+            /* ---------------- INTERMEDIATE ---------------- */
+            {
+                tier: "intermediate", title: "Feelings & Emotions", icon: "💗", words: [
+                    { kr: "행복해요", rom: "haengbokhaeyo", en: "I'm happy" }, { kr: "슬퍼요", rom: "seulpeoyo", en: "I'm sad" },
+                    { kr: "화났어요", rom: "hwanasseoyo", en: "I'm angry" }, { kr: "피곤해요", rom: "pigonhaeyo", en: "I'm tired" },
+                    { kr: "무서워요", rom: "museowoyo", en: "I'm scared" }, { kr: "신나요", rom: "sinnayo", en: "I'm excited" }]
+            },
+            {
+                tier: "intermediate", title: "Directions & Places", icon: "🧭", words: [
+                    { kr: "왼쪽", rom: "oenjjok", en: "left" }, { kr: "오른쪽", rom: "oreunjjok", en: "right" },
+                    { kr: "앞", rom: "ap", en: "front" }, { kr: "뒤", rom: "dwi", en: "behind" },
+                    { kr: "근처", rom: "geuncheo", en: "nearby" }, { kr: "똑바로", rom: "ttokbaro", en: "straight ahead" }]
+            },
+            {
+                tier: "intermediate", title: "Shopping", icon: "🛍️", words: [
+                    { kr: "얼마예요", rom: "eolmayeyo", en: "how much is it" }, { kr: "비싸요", rom: "bissayo", en: "it's expensive" },
+                    { kr: "싸요", rom: "ssayo", en: "it's cheap" }, { kr: "계산하다", rom: "gyesanhada", en: "to pay" },
+                    { kr: "할인", rom: "harin", en: "discount" }, { kr: "영수증", rom: "yeongsujeung", en: "receipt" }]
+            },
+            {
+                tier: "intermediate", title: "Transportation", icon: "🚌", words: [
+                    { kr: "버스", rom: "beoseu", en: "bus" }, { kr: "지하철", rom: "jihacheol", en: "subway" },
+                    { kr: "택시", rom: "taeksi", en: "taxi" }, { kr: "기차", rom: "gicha", en: "train" },
+                    { kr: "정류장", rom: "jeongnyujang", en: "bus stop" }, { kr: "표", rom: "pyo", en: "ticket" }]
+            },
+            {
+                tier: "intermediate", title: "Hobbies", icon: "🎸", words: [
+                    { kr: "취미", rom: "chwimi", en: "hobby" }, { kr: "운동", rom: "undong", en: "exercise" },
+                    { kr: "독서", rom: "dokseo", en: "reading" }, { kr: "여행", rom: "yeohaeng", en: "travel" },
+                    { kr: "그림", rom: "geurim", en: "drawing / painting" }, { kr: "음악", rom: "eumak", en: "music" }]
+            },
+            {
+                tier: "intermediate", title: "Work & Jobs", icon: "💼", words: [
+                    { kr: "회사", rom: "hoesa", en: "company" }, { kr: "직업", rom: "jigeop", en: "job / occupation" },
+                    { kr: "회의", rom: "hoeui", en: "meeting" }, { kr: "월급", rom: "wolgeup", en: "salary" },
+                    { kr: "출근하다", rom: "chulgeunhada", en: "to go to work" }, { kr: "퇴근하다", rom: "toegeunhada", en: "to leave work" }]
+            },
+            {
+                tier: "intermediate", title: "Health & Body", icon: "🩺", words: [
+                    { kr: "아파요", rom: "apayo", en: "it hurts" }, { kr: "병원", rom: "byeongwon", en: "hospital" },
+                    { kr: "약", rom: "yak", en: "medicine" }, { kr: "감기", rom: "gamgi", en: "a cold (illness)" },
+                    { kr: "열", rom: "yeol", en: "fever" }, { kr: "건강", rom: "geongang", en: "health" }]
+            },
+            {
+                tier: "intermediate", title: "Technology", icon: "📱", words: [
+                    { kr: "휴대폰", rom: "hyudaepon", en: "cell phone" }, { kr: "컴퓨터", rom: "keompyuteo", en: "computer" },
+                    { kr: "인터넷", rom: "inteonet", en: "internet" }, { kr: "충전하다", rom: "chungjeonhada", en: "to charge" },
+                    { kr: "앱", rom: "aep", en: "app" }, { kr: "와이파이", rom: "waipai", en: "wifi" }]
+            },
+            {
+                tier: "intermediate", title: "Sports", icon: "⚽", words: [
+                    { kr: "축구", rom: "chukgu", en: "soccer" }, { kr: "야구", rom: "yagu", en: "baseball" },
+                    { kr: "농구", rom: "nonggu", en: "basketball" }, { kr: "수영", rom: "suyeong", en: "swimming" },
+                    { kr: "경기", rom: "gyeonggi", en: "game / match" }, { kr: "이기다", rom: "igida", en: "to win" }]
+            },
+            {
+                tier: "intermediate", title: "Nature", icon: "🌳", words: [
+                    { kr: "산", rom: "san", en: "mountain" }, { kr: "바다", rom: "bada", en: "sea" },
+                    { kr: "강", rom: "gang", en: "river" }, { kr: "하늘", rom: "haneul", en: "sky" },
+                    { kr: "나무", rom: "namu", en: "tree" }, { kr: "꽃", rom: "kkot", en: "flower" }]
+            },
+            {
+                tier: "intermediate", title: "Sino Numbers & Time", icon: "🔟", words: [
+                    { kr: "일", rom: "il", en: "one (sino-Korean)" }, { kr: "이", rom: "i", en: "two (sino-Korean)" },
+                    { kr: "삼", rom: "sam", en: "three (sino-Korean)" }, { kr: "분", rom: "bun", en: "minute" },
+                    { kr: "시", rom: "si", en: "o'clock / hour" }, { kr: "년", rom: "nyeon", en: "year" }]
+            },
+            {
+                tier: "intermediate", title: "Making Plans", icon: "📅", words: [
+                    { kr: "약속", rom: "yaksok", en: "appointment / promise" }, { kr: "만나다", rom: "mannada", en: "to meet" },
+                    { kr: "시간 있어요", rom: "sigan isseoyo", en: "do you have time" }, { kr: "다음에", rom: "daeume", en: "next time" },
+                    { kr: "초대하다", rom: "chodaehada", en: "to invite" }, { kr: "취소하다", rom: "chwisohada", en: "to cancel" }]
+            },
+            {
+                tier: "intermediate", title: "Restaurant & Ordering", icon: "🍽️", words: [
+                    { kr: "메뉴", rom: "menyu", en: "menu" }, { kr: "주문하다", rom: "jumunhada", en: "to order" },
+                    { kr: "맛집", rom: "matjip", en: "good restaurant" }, { kr: "반찬", rom: "banchan", en: "side dish" },
+                    { kr: "포장하다", rom: "pojanghada", en: "to take out / wrap up" }, { kr: "계산서", rom: "gyesanseo", en: "the bill" }]
+            },
+
+            /* ---------------- ADVANCED ---------------- */
+            {
+                tier: "advanced", title: "Connectors & Grammar", icon: "🔗", words: [
+                    { kr: "그래서", rom: "geuraeseo", en: "so / therefore" }, { kr: "하지만", rom: "hajiman", en: "but / however" },
+                    { kr: "그런데", rom: "geureonde", en: "by the way / but" }, { kr: "왜냐하면", rom: "waenyahamyeon", en: "because" },
+                    { kr: "그러니까", rom: "geureonikka", en: "so / that's why" }, { kr: "만약", rom: "manyak", en: "if" }]
+            },
+            {
+                tier: "advanced", title: "Business Korean", icon: "🏢", words: [
+                    { kr: "계약", rom: "gyeyak", en: "contract" }, { kr: "협상", rom: "hyeopsang", en: "negotiation" },
+                    { kr: "거래처", rom: "georaecheo", en: "business partner / client" }, { kr: "매출", rom: "maechul", en: "sales revenue" },
+                    { kr: "보고서", rom: "bogoseo", en: "report" }, { kr: "마감", rom: "magam", en: "deadline" }]
+            },
+            {
+                tier: "advanced", title: "News & Media", icon: "📰", words: [
+                    { kr: "뉴스", rom: "nyuseu", en: "news" }, { kr: "기사", rom: "gisa", en: "article" },
+                    { kr: "사건", rom: "sageon", en: "incident / case" }, { kr: "정책", rom: "jeongchaek", en: "policy" },
+                    { kr: "여론", rom: "yeoron", en: "public opinion" }, { kr: "발표하다", rom: "balpyohada", en: "to announce" }]
+            },
+            {
+                tier: "advanced", title: "Nuanced Emotions", icon: "🌫️", words: [
+                    { kr: "서운해요", rom: "seounhaeyo", en: "I feel hurt / a bit let down" }, { kr: "답답해요", rom: "dapdaphaeyo", en: "I feel frustrated / stifled" },
+                    { kr: "뿌듯해요", rom: "ppudeuthaeyo", en: "I feel proud / fulfilled" }, { kr: "억울해요", rom: "eogurhaeyo", en: "I feel wronged / it's unfair" },
+                    { kr: "부럽다", rom: "bureopda", en: "to be envious" }, { kr: "그립다", rom: "geuripda", en: "to miss / long for" }]
+            },
+            {
+                tier: "advanced", title: "Idioms: Body Expressions", icon: "🫴", words: [
+                    { kr: "눈치가 빠르다", rom: "nunchiga ppareuda", en: "to be quick-witted / perceptive" }, { kr: "발이 넓다", rom: "bari neolda", en: "to have wide connections" },
+                    { kr: "손이 크다", rom: "soni keuda", en: "to be generous (lit. big-handed)" }, { kr: "귀가 얇다", rom: "gwiga yalda", en: "to be easily persuaded" },
+                    { kr: "입이 무겁다", rom: "ibi mugeopda", en: "to be tight-lipped / discreet" }, { kr: "코가 높다", rom: "koga nopda", en: "to be arrogant" }]
+            },
+            {
+                tier: "advanced", title: "Idioms: Everyday Life", icon: "🥣", words: [
+                    { kr: "김칫국 마시다", rom: "gimchitguk masida", en: "to count chickens before they hatch" }, { kr: "미역국 먹다", rom: "miyeokguk meokda", en: "to fail an exam" },
+                    { kr: "바가지 쓰다", rom: "bagaji sseuda", en: "to get ripped off" }, { kr: "발 벗고 나서다", rom: "bal beotgo naseoda", en: "to actively jump in and help" },
+                    { kr: "그림의 떡", rom: "geurimui tteok", en: "pie in the sky (lit. a picture of rice cake)" }, { kr: "배가 아프다", rom: "baega apeuda", en: "to be jealous (lit. stomach hurts)" }]
+            },
+            {
+                tier: "advanced", title: "Travel Advanced", icon: "🛂", words: [
+                    { kr: "여권", rom: "yeogwon", en: "passport" }, { kr: "입국 심사", rom: "ipguk simsa", en: "immigration check" },
+                    { kr: "환전하다", rom: "hwanjeonhada", en: "to exchange currency" }, { kr: "숙소", rom: "sukso", en: "accommodation" },
+                    { kr: "관광지", rom: "gwangwangji", en: "tourist spot" }, { kr: "예약하다", rom: "yeyakhada", en: "to reserve / book" }]
+            },
+            {
+                tier: "advanced", title: "Relationships", icon: "💌", words: [
+                    { kr: "썸", rom: "sseom", en: "situationship / dating limbo" }, { kr: "사귀다", rom: "sagwida", en: "to date" },
+                    { kr: "헤어지다", rom: "heeojida", en: "to break up" }, { kr: "짝사랑", rom: "jjaksarang", en: "one-sided love" },
+                    { kr: "소개팅", rom: "sogaeting", en: "a blind date" }, { kr: "배려하다", rom: "baeryeohada", en: "to be considerate" }]
+            },
+            {
+                tier: "advanced", title: "Debate & Opinions", icon: "🗣️", words: [
+                    { kr: "찬성하다", rom: "chanseonghada", en: "to agree / support" }, { kr: "반대하다", rom: "bandaehada", en: "to oppose" },
+                    { kr: "주장하다", rom: "jujanghada", en: "to argue / claim" }, { kr: "근거", rom: "geungeo", en: "evidence / basis" },
+                    { kr: "관점", rom: "gwanjeom", en: "perspective" }, { kr: "타협하다", rom: "tahyeophada", en: "to compromise" }]
+            },
+            {
+                tier: "advanced", title: "Formal Speech Levels", icon: "🎩", words: [
+                    { kr: "존댓말", rom: "jondaenmal", en: "honorific speech" }, { kr: "반말", rom: "banmal", en: "casual speech" },
+                    { kr: "높임말", rom: "nopimmal", en: "honorific words" }, { kr: "격식", rom: "gyeoksik", en: "formality" },
+                    { kr: "어른", rom: "eoreun", en: "adult / elder" }, { kr: "예의", rom: "yeui", en: "manners / etiquette" }]
+            },
+            {
+                tier: "advanced", title: "Slang & Internet Terms", icon: "📲", words: [
+                    { kr: "대박", rom: "daebak", en: "awesome / jackpot" }, { kr: "헐", rom: "heol", en: "OMG / whoa" },
+                    { kr: "꿀잼", rom: "kkuljaem", en: "super fun" }, { kr: "노잼", rom: "nojaem", en: "not fun / boring" },
+                    { kr: "인싸", rom: "inssa", en: "insider / popular person" }, { kr: "아싸", rom: "assa", en: "outsider / loner" }]
+            },
+            {
+                tier: "advanced", title: "Culture & History", icon: "🏯", words: [
+                    { kr: "한복", rom: "hanbok", en: "traditional Korean clothing" }, { kr: "태극기", rom: "taegeukgi", en: "the Korean flag" },
+                    { kr: "설날", rom: "seollal", en: "Lunar New Year" }, { kr: "추석", rom: "chuseok", en: "Korean Thanksgiving" },
+                    { kr: "왕조", rom: "wangjo", en: "dynasty" }, { kr: "전통", rom: "jeontong", en: "tradition" }]
+            },
+            {
+                tier: "advanced", title: "Advanced Verbs", icon: "💪", words: [
+                    { kr: "극복하다", rom: "geukbokhada", en: "to overcome" }, { kr: "성취하다", rom: "seongchwihada", en: "to achieve" },
+                    { kr: "포기하다", rom: "pogihada", en: "to give up" }, { kr: "도전하다", rom: "dojeonhada", en: "to challenge / attempt" },
+                    { kr: "발전하다", rom: "baljeonhada", en: "to develop / progress" }, { kr: "실현하다", rom: "silhyeonhada", en: "to realize / actualize" }]
+            },
+
+            /* ---------------- FLUENT ---------------- */
+            {
+                tier: "fluent", title: "Four-Letter Idioms", icon: "🈴", words: [
+                    { kr: "자업자득", rom: "jaeopjadeuk", en: "you reap what you sow" }, { kr: "새옹지마", rom: "saeongjima", en: "a blessing in disguise" },
+                    { kr: "유비무환", rom: "yubimuhwan", en: "preparedness averts disaster" }, { kr: "일석이조", rom: "ilseogijo", en: "killing two birds with one stone" },
+                    { kr: "고진감래", rom: "gojingamnae", en: "after hardship comes happiness" }, { kr: "온고지신", rom: "ongojisin", en: "learn the old to know the new" }]
+            },
+            {
+                tier: "fluent", title: "Literary Expressions", icon: "🖋️", words: [
+                    { kr: "애틋하다", rom: "aeteuthada", en: "to be tender / wistful" }, { kr: "아련하다", rom: "aryeonhada", en: "to be hazy / faintly nostalgic" },
+                    { kr: "절절하다", rom: "jeoljeolhada", en: "to be heart-wrenching" }, { kr: "애잔하다", rom: "aejanhada", en: "to be poignant" },
+                    { kr: "문득", rom: "mundeuk", en: "suddenly / out of nowhere" }, { kr: "아득하다", rom: "adeukhada", en: "to be distant / far off" }]
+            },
+            {
+                tier: "fluent", title: "Idioms: Wisdom", icon: "🪞", words: [
+                    { kr: "등잔 밑이 어둡다", rom: "deungjan michi eodupda", en: "the answer is right under your nose" }, { kr: "우물 안 개구리", rom: "umul an gaeguri", en: "a frog in a well (narrow-minded)" },
+                    { kr: "하늘의 별 따기", rom: "haneurui byeol ttagi", en: "extremely difficult (lit. plucking a star)" }, { kr: "식은 죽 먹기", rom: "sigeun juk meokgi", en: "a piece of cake" },
+                    { kr: "소 잃고 외양간 고친다", rom: "so ilko oeyanggan gochinda", en: "shutting the barn door after the horse bolts" }, { kr: "갈수록 태산", rom: "galsurok taesan", en: "out of the frying pan, into the fire" }]
+            },
+            {
+                tier: "fluent", title: "Political & Social Terms", icon: "🏛️", words: [
+                    { kr: "민주주의", rom: "minjujuui", en: "democracy" }, { kr: "여론조사", rom: "yeoronjosa", en: "public opinion poll" },
+                    { kr: "시민단체", rom: "simindanche", en: "civic group" }, { kr: "저출산", rom: "jeochulsan", en: "low birth rate" },
+                    { kr: "고령화", rom: "goryeonghwa", en: "aging population" }, { kr: "양극화", rom: "yanggeukhwa", en: "polarization" }]
+            },
+            {
+                tier: "fluent", title: "Psychology & Nuance", icon: "🧠", words: [
+                    { kr: "자존감", rom: "jajongam", en: "self-esteem" }, { kr: "열등감", rom: "yeoldeunggam", en: "inferiority complex" },
+                    { kr: "무기력하다", rom: "mugiryeokhada", en: "to feel powerless / lethargic" }, { kr: "공감하다", rom: "gonggamhada", en: "to empathize" },
+                    { kr: "위로하다", rom: "wirohada", en: "to comfort / console" }, { kr: "치유하다", rom: "chiyuhada", en: "to heal" }]
+            },
+            {
+                tier: "fluent", title: "Business Negotiation", icon: "🤝", words: [
+                    { kr: "협의하다", rom: "hyeoiuihada", en: "to consult / discuss" }, { kr: "조율하다", rom: "joyulhada", en: "to coordinate / adjust" },
+                    { kr: "절충안", rom: "jeolchungan", en: "a compromise plan" }, { kr: "이해관계", rom: "ihaegwangye", en: "vested interest" },
+                    { kr: "손익", rom: "soniik", en: "profit and loss" }, { kr: "결렬되다", rom: "gyeollyeoldoeda", en: "to break down (negotiations)" }]
+            },
+            {
+                tier: "fluent", title: "Academic Korean", icon: "🎓", words: [
+                    { kr: "논문", rom: "nonmun", en: "thesis / paper" }, { kr: "연구하다", rom: "yeonguhada", en: "to research" },
+                    { kr: "가설", rom: "gaseol", en: "hypothesis" }, { kr: "분석하다", rom: "bunseokhada", en: "to analyze" },
+                    { kr: "결론", rom: "gyeollon", en: "conclusion" }, { kr: "참고문헌", rom: "chamgomunheon", en: "bibliography / references" }]
+            },
+            {
+                tier: "fluent", title: "Poetic & Formal Writing", icon: "🕊️", words: [
+                    { kr: "고요하다", rom: "goyohada", en: "to be tranquil" }, { kr: "유유히", rom: "yuyuhi", en: "leisurely / serenely" },
+                    { kr: "서슴없이", rom: "seosseumeopsi", en: "without hesitation" }, { kr: "묵묵히", rom: "mungmukhi", en: "silently / steadfastly" },
+                    { kr: "한결같다", rom: "hangyeolgatda", en: "to be consistent / unchanging" }, { kr: "아낌없이", rom: "akkimeopsi", en: "unstintingly / generously" }]
+            },
+            {
+                tier: "fluent", title: "Regional Flavor", icon: "🗾", words: [
+                    { kr: "아이고", rom: "aigo", en: "oh my / oof (interjection)" }, { kr: "거시기", rom: "geosigi", en: "thingamajig / whatchamacallit" },
+                    { kr: "뭐꼬", rom: "mwokko", en: "what is it (Gyeongsang dialect)" }, { kr: "억수로", rom: "eoksuro", en: "a lot (Gyeongsang dialect)" },
+                    { kr: "겁나", rom: "geomna", en: "really / very (Jeolla dialect)" }, { kr: "오지다", rom: "ojida", en: "to be awesome (dialect-origin slang)" }]
+            },
+            {
+                tier: "fluent", title: "Complex Connectors", icon: "🧩", words: [
+                    { kr: "-는 바람에", rom: "-neun barame", en: "because of (a negative reason)" }, { kr: "-기는커녕", rom: "-gineunkeonyeong", en: "far from / let alone" },
+                    { kr: "-을지언정", rom: "-euljieonjeong", en: "even if / though" }, { kr: "-다시피", rom: "-dasipi", en: "as you can see / practically" },
+                    { kr: "-는 한", rom: "-neun han", en: "as long as" }, { kr: "-을망정", rom: "-eulmangjeong", en: "even though (concessive)" }]
+            },
+            {
+                tier: "fluent", title: "Proverbs", icon: "📜", words: [
+                    { kr: "가는 말이 고와야 오는 말이 곱다", rom: "ganeun mari gowaya oneun mari gopda", en: "kind words bring kind words" }, { kr: "백지장도 맞들면 낫다", rom: "baekjijangdo matdeulmyeon natda", en: "many hands make light work" },
+                    { kr: "콩 심은 데 콩 나고 팥 심은 데 팥 난다", rom: "kong simeun de kong nago pat simeun de pat nanda", en: "you reap exactly what you sow" }, { kr: "원숭이도 나무에서 떨어진다", rom: "wonsungido namueseo tteoreojinda", en: "even experts make mistakes" },
+                    { kr: "티끌 모아 태산", rom: "tikkeul moa taesan", en: "many a little makes a mickle" }, { kr: "말 한마디에 천냥 빚도 갚는다", rom: "mal hanmadie cheonnyang bitdo gapneunda", en: "a kind word can settle a huge debt" }]
+            },
+            {
+                tier: "fluent", title: "Professional Terms", icon: "⚖️", words: [
+                    { kr: "진단", rom: "jindan", en: "diagnosis" }, { kr: "처방", rom: "cheobang", en: "prescription" },
+                    { kr: "소송", rom: "sosong", en: "lawsuit" }, { kr: "변호사", rom: "byeonhosa", en: "lawyer" },
+                    { kr: "계약서", rom: "gyeyakseo", en: "contract document" }, { kr: "판결", rom: "pangyeol", en: "verdict / ruling" }]
+            },
+            {
+                tier: "fluent", title: "Mastery Review", icon: "🏆", words: [
+                    { kr: "통찰력", rom: "tongchallyeok", en: "insight" }, { kr: "융통성", rom: "yungtongseong", en: "flexibility" },
+                    { kr: "신중하다", rom: "sinjunghada", en: "to be prudent" }, { kr: "겸손하다", rom: "gyeomsonhada", en: "to be humble" },
+                    { kr: "완벽하다", rom: "wanbyeokhada", en: "to be perfect" }, { kr: "숙련되다", rom: "sungnyeondoeda", en: "to be proficient / skilled" }]
+            },
+        ];
+        LEVELS.forEach((l, i) => { l.id = i + 1; });
+
+
+        const KDRAMA_SCENES = [
+            {
+                title: "Coffee shop confession", sub: "Rooftop drama vibes",
+                lines: [
+                    { kr: "오빠, 나 좋아해요?", rom: "oppa, na joahaeyo?", en: "Oppa, do you like me?", note: "직접 묻는 표현 — direct, cute way of asking someone's feelings. '좋아하다' = to like." },
+                    { kr: "당연하지.", rom: "dangyeonhaji.", en: "Of course.", note: "'당연하다' = obviously/of course. Very common casual reply in dramas." },
+                    { kr: "진짜요?", rom: "jinjjayo?", en: "Really?", note: "'진짜' = really/for real. Add 요 to keep it polite-casual." },
+                ]
+            },
+            {
+                title: "Family dinner argument", sub: "Every K-drama has one",
+                lines: [
+                    { kr: "왜 그랬어?", rom: "wae geuraesseo?", en: "Why did you do that?", note: "Past tense casual question — classic confrontation line." },
+                    { kr: "내가 알아서 할게.", rom: "naega arasseo halge.", en: "I'll handle it myself.", note: "'알아서 하다' = to take care of on one's own; independence line." },
+                    { kr: "됐어, 그만해.", rom: "dwaesseo, geumanhae.", en: "Enough, stop it.", note: "'됐어' shuts down a conversation; '그만하다' = to stop doing something." },
+                ]
+            },
+            {
+                title: "Second-lead goodbye", sub: "Bring tissues",
+                lines: [
+                    { kr: "행복해야 돼.", rom: "haengbokhaeya dwae.", en: "You have to be happy.", note: "'-아야 되다' = must/have to. Classic bittersweet farewell grammar." },
+                    { kr: "나 없이도 잘 지내.", rom: "na eopsido jal jinae.", en: "Take care even without me.", note: "'없이' = without; '잘 지내다' = to do well / get along." },
+                ]
+            },
+            {
+                title: "Rain reunion", sub: "No umbrella in sight",
+                lines: [
+                    { kr: "왜 이제 왔어?", rom: "wae ije wasseo?", en: "Why did you come only now?", note: "'이제' = now/at this point — casual past-tense question of frustrated relief." },
+                    { kr: "미안, 늦었지.", rom: "mian, neujeotji.", en: "Sorry, I'm late, right.", note: "'-지' softens a statement into a shared assumption." },
+                ]
+            },
+            {
+                title: "Piggyback ride", sub: "After a long night",
+                lines: [
+                    { kr: "업어 줄게.", rom: "eobeo julge.", en: "I'll give you a piggyback.", note: "'-아/어 주다' = to do something for someone; '-ㄹ게' = casual promise." },
+                    { kr: "괜찮아, 걸을 수 있어.", rom: "gwaenchana, georeul su isseo.", en: "It's fine, I can walk.", note: "'-을 수 있다' = to be able to." },
+                ]
+            },
+            {
+                title: "Wrist grab pull", sub: "Classic drama drag",
+                lines: [
+                    { kr: "따라와.", rom: "ttarawa.", en: "Come with me.", note: "Imperative of '따라오다' — blunt and commanding." },
+                    { kr: "손 놔!", rom: "son nwa!", en: "Let go of my hand!", note: "'놓다' imperative — urgent commands often drop 요." },
+                ]
+            },
+            {
+                title: "Doorstep confrontation", sub: "Late-night visit",
+                lines: [
+                    { kr: "얘기 좀 해.", rom: "yaegi jom hae.", en: "Let's talk for a bit.", note: "'좀' softens a request even in a demanding tone." },
+                    { kr: "할 말 없어.", rom: "hal mal eopseo.", en: "I have nothing to say.", note: "'-을 말' = words to say; common blunt shutdown line." },
+                ]
+            },
+            {
+                title: "Hospital vigil", sub: "Waiting by the bedside",
+                lines: [
+                    { kr: "깨어나 줘서 고마워.", rom: "kkaeeona jwoseo gomawo.", en: "Thank you for waking up.", note: "'-아/어 줘서' = thanks for doing something." },
+                    { kr: "옆에 있어 줄게.", rom: "yeope isseo julge.", en: "I'll stay by your side.", note: "'옆에 있다' = to be beside someone." },
+                ]
+            },
+            {
+                title: "Wedding interruption", sub: "Stop the ceremony",
+                lines: [
+                    { kr: "저 사람이랑 결혼하지 마세요!", rom: "jeo saramirang gyeolhonhaji maseyo!", en: "Don't marry that person!", note: "'-지 마세요' = polite negative command." },
+                    { kr: "왜 이제 나타난 거야?", rom: "wae ije natanan geoya?", en: "Why are you showing up only now?", note: "'나타나다' = to appear; '-ㄴ 거야' explains a fact casually." },
+                ]
+            },
+            {
+                title: "Amnesia reveal", sub: "The memory is gone",
+                lines: [
+                    { kr: "기억이 안 나요.", rom: "gieogi an nayo.", en: "I don't remember.", note: "'기억이 나다' = to remember (lit. memory comes)." },
+                    { kr: "예전의 나로 돌아갈 수 없어요.", rom: "yejeonui naro dorawal su eopseoyo.", en: "I can't go back to who I was before.", note: "'돌아가다' = to return/go back." },
+                ]
+            },
+            {
+                title: "Enemies-to-lovers banter", sub: "Bickering with feelings",
+                lines: [
+                    { kr: "너 진짜 재수 없어.", rom: "neo jinjja jaesu eopseo.", en: "You're seriously so annoying.", note: "'재수 없다' = to be unlucky/annoying, a common banter insult." },
+                    { kr: "그래도 내가 좋으면서.", rom: "geuraedo naega joeumyeonseo.", en: "But you like me anyway.", note: "'-으면서' = while/even though, used teasingly here." },
+                ]
+            },
+            {
+                title: "CEO office standoff", sub: "Business meets personal",
+                lines: [
+                    { kr: "이 계약은 없던 일로 하죠.", rom: "i gyeyageun eopdeon illo hajyo.", en: "Let's treat this contract as if it never happened.", note: "'없던 일로 하다' = to call something off entirely." },
+                    { kr: "후회하실 겁니다.", rom: "huhoehasil geomnida.", en: "You will regret this.", note: "'-실 겁니다' = polite future/probability form." },
+                ]
+            },
+            {
+                title: "School bully comeuppance", sub: "The tables turn",
+                lines: [
+                    { kr: "다시는 건들지 마.", rom: "dasineun geondeulji ma.", en: "Don't ever touch me again.", note: "'다시는' = never again; '건들다' = to mess with someone." },
+                    { kr: "너 이제 큰일 났다.", rom: "neo ije keunil natda.", en: "You're in big trouble now.", note: "'큰일 나다' = for something serious to happen." },
+                ]
+            },
+            {
+                title: "Time-skip reunion", sub: "Ten years later",
+                lines: [
+                    { kr: "십 년 만이네.", rom: "sip nyeon manine.", en: "It's been ten years.", note: "'-만이다' = it's been [time] since." },
+                    { kr: "하나도 안 변했다.", rom: "hanado an byeonhaetda.", en: "You haven't changed at all.", note: "'하나도 안' = not at all." },
+                ]
+            },
+            {
+                title: "Fake dating contract", sub: "Pretend for the cameras",
+                lines: [
+                    { kr: "우리 사귀는 척 하자.", rom: "uri sagwineun cheok haja.", en: "Let's pretend to date.", note: "'-는 척 하다' = to pretend to do something." },
+                    { kr: "이건 그냥 계약이야.", rom: "igeon geunyang gyeyagiya.", en: "This is just a contract.", note: "'그냥' = just/simply, downplaying emotion." },
+                ]
+            },
+            {
+                title: "Umbrella share", sub: "Sudden downpour",
+                lines: [
+                    { kr: "우산 같이 써요.", rom: "usan gachi sseoyo.", en: "Let's share the umbrella.", note: "'같이 쓰다' = to use together." },
+                    { kr: "다 젖었잖아요.", rom: "da jeojeotjanayo.", en: "You're all wet.", note: "'-잖아요' = pointing out something obvious." },
+                ]
+            },
+            {
+                title: "Back hug", sub: "An unspoken apology",
+                lines: [
+                    { kr: "가지 마.", rom: "gaji ma.", en: "Don't go.", note: "'-지 마' = casual negative command." },
+                    { kr: "조금만 이렇게 있자.", rom: "jogeumman ireoke itja.", en: "Let's just stay like this for a bit.", note: "'-자' = casual 'let's.'" },
+                ]
+            },
+            {
+                title: "Jealousy scene", sub: "Green-eyed monster",
+                lines: [
+                    { kr: "질투하는 거야?", rom: "jiltuhaneun geoya?", en: "Are you jealous?", note: "'질투하다' = to be jealous." },
+                    { kr: "아니라고 하면 거짓말이지.", rom: "anirago hamyeon geojinmariji.", en: "If I said no, that'd be a lie.", note: "'-라고 하면' = if I were to say." },
+                ]
+            },
+            {
+                title: "Parent disapproval", sub: "Not who they wanted",
+                lines: [
+                    { kr: "그 사람 안 돼.", rom: "geu saram an dwae.", en: "That person is not okay.", note: "'안 되다' = to not be allowed/acceptable." },
+                    { kr: "제 인생이에요, 아버지.", rom: "je insaengieyo, abeoji.", en: "It's my life, father.", note: "'인생' = life; formal address to father." },
+                ]
+            },
+            {
+                title: "Best friend confession", sub: "Crossing the line",
+                lines: [
+                    { kr: "사실 나 오래 전부터 좋아했어.", rom: "sasil na orae jeonbuteo joahaesseo.", en: "Actually, I've liked you for a long time.", note: "'오래 전부터' = since a long time ago." },
+                    { kr: "우리 친구잖아.", rom: "uri chingujanha.", en: "We're friends, though.", note: "'-잖아' = reminding of a known fact." },
+                ]
+            },
+            {
+                title: "Villain monologue", sub: "The mask comes off",
+                lines: [
+                    { kr: "다 너 때문이야.", rom: "da neo ttaemuniya.", en: "It's all because of you.", note: "'때문에' = because of." },
+                    { kr: "나를 막을 수 있을 것 같아?", rom: "nareul makeul su isseul geot gata?", en: "Do you think you can stop me?", note: "'-을 수 있을 것 같다' = to seem like one can do something." },
+                ]
+            },
+            {
+                title: "Detective interrogation", sub: "Under the single lamp",
+                lines: [
+                    { kr: "그날 밤 어디 있었어요?", rom: "geunal bam eodi isseosseoyo?", en: "Where were you that night?", note: "'그날 밤' = that night." },
+                    { kr: "증거 있어요?", rom: "jeunggeo isseoyo?", en: "Do you have evidence?", note: "'증거' = evidence." },
+                ]
+            },
+            {
+                title: "Historical palace intrigue", sub: "Sageuk drama vibes",
+                lines: [
+                    { kr: "전하, 통촉하여 주시옵소서.", rom: "jeonha, tongchokhayeo jusiopsoseo.", en: "Your Majesty, please reconsider.", note: "Archaic honorific speech used in historical dramas." },
+                    { kr: "네 목숨이 위태롭다.", rom: "ne moksumi witaeropda.", en: "Your life is in danger.", note: "'목숨' = life; '위태롭다' = to be perilous." },
+                ]
+            },
+            {
+                title: "Idol trainee rivalry", sub: "Fighting for the center spot",
+                lines: [
+                    { kr: "센터는 나야.", rom: "senteoneun naya.", en: "I'm the center.", note: "Blunt declarative used to assert rank/status." },
+                    { kr: "실력으로 증명해.", rom: "sillyeogeuro jeungmyeonghae.", en: "Prove it with skill.", note: "'-으로 증명하다' = to prove with/by." },
+                ]
+            },
+            {
+                title: "Chaebol family dinner", sub: "The patriarch objects",
+                lines: [
+                    { kr: "이 결혼 반대일세.", rom: "i gyeolhon bandaeilse.", en: "I oppose this marriage.", note: "'-ㄹ세' = old-fashioned assertive ending, common for stern elders." },
+                    { kr: "아버지 뜻대로 살지 않을 거예요.", rom: "abeoji tteutdaero salji aneul geoyeyo.", en: "I won't live by father's wishes.", note: "'-대로' = according to/as." },
+                ]
+            },
+            {
+                title: "Hospital diagnosis", sub: "The doctor's office",
+                lines: [
+                    { kr: "얼마나 남았습니까?", rom: "eolmana namatseumnikka?", en: "How much time is left?", note: "'남다' = to remain; grim, formal question." },
+                    { kr: "최선을 다하겠습니다.", rom: "choeseoneul dahagesseumnida.", en: "I'll do my best.", note: "'최선을 다하다' = to do one's utmost." },
+                ]
+            },
+            {
+                title: "Airport farewell", sub: "Final boarding call",
+                lines: [
+                    { kr: "꼭 다시 만나요.", rom: "kkok dasi mannayo.", en: "Let's definitely meet again.", note: "'꼭' = definitely/for sure." },
+                    { kr: "잘 지내고 있을게요.", rom: "jal jinaego isseulgeyo.", en: "I'll be doing well.", note: "'잘 지내다' = to get along well." },
+                ]
+            },
+            {
+                title: "New Year's countdown kiss", sub: "Right at midnight",
+                lines: [
+                    { kr: "새해 복 많이 받으세요.", rom: "saehae bok mani badeuseyo.", en: "Happy New Year.", note: "Standard New Year greeting (lit. receive much luck)." },
+                    { kr: "올해는 같이 보내자.", rom: "olhaeneun gachi bonaeja.", en: "Let's spend this year together.", note: "'보내다' = to spend (time)." },
+                ]
+            },
+            {
+                title: "Class reunion awkwardness", sub: "Old faces, new feelings",
+                lines: [
+                    { kr: "오랜만이다, 그치?", rom: "oraenmanida, geuchi?", en: "It's been a while, right?", note: "'오랜만이다' = it's been a while; '-지' shortens to '치' casually." },
+                    { kr: "너 하나도 안 변했네.", rom: "neo hanado an byeonnaenne.", en: "You haven't changed a bit.", note: "'-네' = exclamatory realization ending." },
+                ]
+            },
+            {
+                title: "Ex shows up at wedding", sub: "An uninvited guest",
+                lines: [
+                    { kr: "축하하러 왔어.", rom: "chukhaharo wasseo.", en: "I came to congratulate you.", note: "'-러 오다' = to come in order to do something." },
+                    { kr: "진심이야?", rom: "jinsimiya?", en: "Are you serious?", note: "'진심' = sincerity/true feelings." },
+                ]
+            },
+            {
+                title: "Rival company merger", sub: "Cutthroat boardroom",
+                lines: [
+                    { kr: "합병은 없던 걸로 합시다.", rom: "habbyeongeun eopdeon geollo hapsida.", en: "Let's call off the merger.", note: "Colloquial version of calling something off." },
+                    { kr: "우리 회사를 얕보지 마세요.", rom: "uri hoesareul yatbochi maseyo.", en: "Don't underestimate our company.", note: "'얕보다' = to look down on." },
+                ]
+            },
+            {
+                title: "Ghost reveal", sub: "A supernatural twist",
+                lines: [
+                    { kr: "저 사실 죽었어요.", rom: "jeo sasil jugeosseoyo.", en: "I'm actually dead.", note: "'사실' = actually/in fact." },
+                    { kr: "제가 보이세요?", rom: "jega boiseyo?", en: "Can you see me?", note: "'보이다' = to be visible." },
+                ]
+            },
+            {
+                title: "Memory-loss confession", sub: "Love without recognition",
+                lines: [
+                    { kr: "당신을 잊고 싶지 않아요.", rom: "dangsineul itgo sipji anhayo.", en: "I don't want to forget you.", note: "'-고 싶지 않다' = to not want to do." },
+                    { kr: "기억 못 해도 사랑은 남아요.", rom: "gieok mothaedo sarangeun namayo.", en: "Even if I can't remember, the love remains.", note: "'-아도' = even if." },
+                ]
+            },
+            {
+                title: "Sacrifice for family", sub: "Shouldering it alone",
+                lines: [
+                    { kr: "가족을 위해서라면 뭐든지 할 거예요.", rom: "gajogeul wihaeseoramyeon mwodeunji hal geoyeyo.", en: "I'll do anything for my family.", note: "'-을 위해서' = for the sake of." },
+                    { kr: "저 혼자 감당할게요.", rom: "jeo honja gamdanghalgeyo.", en: "I'll bear it alone.", note: "'감당하다' = to handle/bear." },
+                ]
+            },
+            {
+                title: "Underdog courtroom win", sub: "Justice prevails",
+                lines: [
+                    { kr: "이의 있습니다!", rom: "iui itseumnida!", en: "Objection!", note: "Standard courtroom-drama phrase." },
+                    { kr: "진실은 밝혀질 겁니다.", rom: "jinsireun balkhyeojil geomnida.", en: "The truth will come to light.", note: "'밝혀지다' = to be revealed." },
+                ]
+            },
+            {
+                title: "Secret identity reveal", sub: "The plot twist",
+                lines: [
+                    { kr: "사실 저는 재벌 3세예요.", rom: "sasil jeoneun jaebeol samsyeyeyo.", en: "Actually, I'm a third-generation chaebol heir.", note: "Classic drama plot-twist line." },
+                    { kr: "왜 이제야 말해요?", rom: "wae ijeya malhaeyo?", en: "Why are you telling me only now?", note: "'이제야' = only now." },
+                ]
+            },
+            {
+                title: "Childhood friends reunite", sub: "The kid next door",
+                lines: [
+                    { kr: "너 기억 안 나? 나 옆집 살던 애.", rom: "neo gieok an na? na yeopjip saldeon ae.", en: "Don't you remember? I'm the kid who lived next door.", note: "'-던' = retrospective modifier for a past ongoing state." },
+                    { kr: "말도 안 돼, 진짜 너야?", rom: "maldo an dwae, jinjja neoya?", en: "No way, is it really you?", note: "'말도 안 되다' = to be unbelievable." },
+                ]
+            },
+            {
+                title: "Love triangle showdown", sub: "Choosing between two",
+                lines: [
+                    { kr: "누굴 선택할 거야?", rom: "nugul seontaekhal geoya?", en: "Who will you choose?", note: "'선택하다' = to choose." },
+                    { kr: "둘 다 놓칠 수 없어.", rom: "dul da nochil su eopseo.", en: "I can't lose either of them.", note: "'놓치다' = to lose/let slip." },
+                ]
+            },
+            {
+                title: "Boss-employee tension", sub: "Keeping it professional",
+                lines: [
+                    { kr: "이건 업무예요, 사적인 감정 아니고요.", rom: "igeon eommuyeyo, sajeogin gamjeong anigoyo.", en: "This is work, not personal feelings.", note: "'업무' = work duties; '사적인' = personal/private." },
+                    { kr: "그렇게 선 긋지 마세요.", rom: "geureoke seon geutji maseyo.", en: "Don't draw the line like that.", note: "'선을 긋다' = to draw a boundary." },
+                ]
+            },
+            {
+                title: "Restaurant first date", sub: "Nervous small talk",
+                lines: [
+                    { kr: "여기 자주 오세요?", rom: "yeogi jaju oseyo?", en: "Do you come here often?", note: "'자주' = often." },
+                    { kr: "오늘 너무 즐거웠어요.", rom: "oneul neomu jeulgeowosseoyo.", en: "I had so much fun today.", note: "'즐겁다' = to be enjoyable/fun." },
+                ]
+            },
+            {
+                title: "Convenience store late-night talk", sub: "The famous invitation",
+                lines: [
+                    { kr: "라면 먹고 갈래?", rom: "ramyeon meokgo gallae?", en: "Want to eat ramyeon before you go?", note: "Famous double-meaning drama line — can also imply 'come inside.'" },
+                    { kr: "이 시간에 왜 안 자?", rom: "i sigane wae an ja?", en: "Why aren't you asleep at this hour?", note: "'이 시간에' = at this hour." },
+                ]
+            },
+            {
+                title: "Han River bench talk", sub: "Late-night thoughts",
+                lines: [
+                    { kr: "가끔 여기 와서 생각을 정리해요.", rom: "gakkeum yeogi waseo saenggageul jeongnihaeyo.", en: "I come here sometimes to sort out my thoughts.", note: "'생각을 정리하다' = to organize one's thoughts." },
+                    { kr: "혼자 있고 싶을 때 있잖아요.", rom: "honja itgo sipeul ttae itjanayo.", en: "There are times you want to be alone, right?", note: "'-고 싶을 때' = times when one wants to." },
+                ]
+            },
+            {
+                title: "Motorcycle rescue", sub: "Hold on tight",
+                lines: [
+                    { kr: "꽉 잡아!", rom: "kkwak jaba!", en: "Hold on tight!", note: "Imperative, common in action scenes." },
+                    { kr: "무서우면 눈 감아도 돼.", rom: "museoumyeon nun gamado dwae.", en: "If you're scared, you can close your eyes.", note: "'-아도 되다' = it's okay to." },
+                ]
+            },
+            {
+                title: "Text message miscommunication", sub: "Left on read",
+                lines: [
+                    { kr: "읽씹 하지 마.", rom: "ikssip haji ma.", en: "Don't leave me on read.", note: "'읽씹' = slang for reading a message without replying." },
+                    { kr: "오해야, 설명할게.", rom: "ohaeya, seolmyeonghalge.", en: "It's a misunderstanding, let me explain.", note: "'오해' = misunderstanding." },
+                ]
+            },
+            {
+                title: "Group chat drama", sub: "Everyone is watching",
+                lines: [
+                    { kr: "단체방에서 이럴 거야?", rom: "danchebangeseo ireol geoya?", en: "Are you really going to do this in the group chat?", note: "'단체방' = group chat room." },
+                    { kr: "다들 오해하고 있어.", rom: "dadeul ohaehago isseo.", en: "Everyone's misunderstanding.", note: "'다들' = everyone, colloquial." },
+                ]
+            },
+            {
+                title: "Family restaurant business", sub: "A lifetime of hard work",
+                lines: [
+                    { kr: "이 가게는 우리 아버지가 평생 일군 곳이에요.", rom: "i gageneun uri abeojiga pyeongsaeng ilgun gosieyo.", en: "This restaurant is a place my father built his whole life.", note: "'평생' = one's whole life; '일구다' = to cultivate/build up." },
+                    { kr: "장사가 예전 같지 않아요.", rom: "jangsaga yejeon gatji anhayo.", en: "Business isn't like it used to be.", note: "'장사' = business/trade." },
+                ]
+            },
+            {
+                title: "Idol comeback stage nerves", sub: "Backstage jitters",
+                lines: [
+                    { kr: "떨지 마, 잘할 수 있어.", rom: "tteolji ma, jalhal su isseo.", en: "Don't be nervous, you can do it.", note: "'떨다' = to tremble/be nervous." },
+                    { kr: "무대에 서면 다 잊혀져요.", rom: "mudaee seomyeon da ijhyeojyeoyo.", en: "Once I stand on stage, I forget everything.", note: "'잊혀지다' = to be forgotten, passive form." },
+                ]
+            },
+            {
+                title: "Webtoon author deadline", sub: "Racing the clock",
+                lines: [
+                    { kr: "마감이 코앞이에요.", rom: "magami koapieyo.", en: "The deadline is right around the corner.", note: "'코앞' = right in front of one's nose, i.e. very near." },
+                    { kr: "밤새워서라도 끝낼게요.", rom: "bamsaewoseorado kkeutnaelgeyo.", en: "I'll finish it even if I have to stay up all night.", note: "'밤새우다' = to stay up all night." },
+                ]
+            },
+            {
+                title: "Landlord-tenant bicker", sub: "Rent day again",
+                lines: [
+                    { kr: "월세 밀리면 안 돼요.", rom: "wolse millimyeon an dwaeyo.", en: "You can't fall behind on rent.", note: "'월세가 밀리다' = for rent to be overdue." },
+                    { kr: "이번 달만 좀 봐주세요.", rom: "ibeon dalman jom bwajuseyo.", en: "Please give me a break just this month.", note: "'봐주다' = to let something slide." },
+                ]
+            },
+            {
+                title: "Taxi driver wisdom", sub: "Backseat philosophy",
+                lines: [
+                    { kr: "손님, 인생이 다 그런 거예요.", rom: "sonnim, insaengi da geureon geoyeyo.", en: "That's just how life is.", note: "Taxi-driver-philosopher trope; '-ㄴ 거예요' states a general truth." },
+                    { kr: "너무 서두르지 마세요.", rom: "neomu seodureuji maseyo.", en: "Don't rush too much.", note: "'서두르다' = to hurry/rush." },
+                ]
+            },
+            {
+                title: "Finale voiceover reflection", sub: "The story wraps up",
+                lines: [
+                    { kr: "그렇게 우리의 이야기는 계속됩니다.", rom: "geureoke uriui iyagineun gyesokdoemnida.", en: "And so, our story continues.", note: "'계속되다' = to continue; classic closing-narration line." },
+                    { kr: "돌이켜보면, 다 의미가 있었어요.", rom: "dorikyeobomyeon, da uimiga isseosseoyo.", en: "Looking back, it all had meaning.", note: "'돌이켜보다' = to look back/reflect." },
+                ]
+            },
+            {
+                title: "First snow promise", sub: "An iconic romantic motif",
+                lines: [
+                    { kr: "첫눈 오면 다시 만나요.", rom: "cheonnun omyeon dasi mannayo.", en: "Let's meet again when the first snow falls.", note: "'첫눈' = first snow, an iconic romantic-drama motif." },
+                    { kr: "약속 꼭 지킬게요.", rom: "yaksok kkok jikilgeyo.", en: "I'll definitely keep my promise.", note: "'약속을 지키다' = to keep a promise." },
+                ]
+            },
+        ];
+
+        const CHAT_TOPICS = [
+            { k: ["안녕", "hello", "hi"], a: "안녕하세요 means 'hello' — the 하세요 part is a polite verb ending you'll see a LOT. Use it with anyone older or unfamiliar." },
+            { k: ["요", "polite"], a: "Adding 요 to the end of a sentence makes it polite-casual — safe for most everyday situations, like talking to a shop owner or a new coworker." },
+            { k: ["hangul", "한글", "alphabet"], a: "Hangul has 14 basic consonants and 10 basic vowels. They stack into syllable blocks — e.g. ㅎ+ㅏ+ㄴ = 한. Once you learn the shapes, reading gets fast quickly." },
+            { k: ["heart", "hearts", "lose"], a: "You lose a heart for each wrong answer in a lesson. Run out and the lesson ends — but hearts refill over time, or go Pro for unlimited." },
+            { k: ["streak", "fire"], a: "Your streak counts consecutive days you complete at least one lesson. Miss a day and it resets — so try to do a quick lesson daily!" },
+            { k: ["xp", "level", "points"], a: "XP is earned by finishing lessons and exercises. It doesn't unlock anything by itself yet, but it's your best way to track how much you've practiced." },
+            { k: ["pro", "premium", "upgrade"], a: "Hangul Pro unlocks unlimited hearts, every unit instantly, advanced speaking drills, and deeper stats. Check the Pro tab any time." },
+            { k: ["speak", "pronounce", "mic"], a: "For speaking exercises, tap the mic and say the word naturally — the app compares what it hears to the target word. If your browser blocks the mic, check site permissions." },
+        ];
+
+        /* =========================================================
+           STATE
+           ========================================================= */
+        let state = JSON.parse(localStorage.getItem('dasom_state') || 'null') || {
+            xp: 0, streak: 0, longestStreak: 0, lastActiveDate: null, hearts: 5, maxHearts: 5,
+            completedUnits: [], pro: false, weekLog: {}, joinDate: todayKeyInit(),
+            totalAnswers: 0, correctAnswers: 0,
+            skillStats: { meaning: { correct: 0, total: 0 }, match: { correct: 0, total: 0 }, write: { correct: 0, total: 0 }, speak: { correct: 0, total: 0 } },
+            settings: { reminder: false, sound: false }
+        };
+        function todayKeyInit() { return new Date().toISOString().slice(0, 10); }
+        function saveState() { localStorage.setItem('dasom_state', JSON.stringify(state)); }
+        (function normalizeState() {
+            if (state.longestStreak === undefined) state.longestStreak = state.streak || 0;
+            if (state.joinDate === undefined) state.joinDate = todayKeyInit();
+            if (state.totalAnswers === undefined) state.totalAnswers = 0;
+            if (state.correctAnswers === undefined) state.correctAnswers = 0;
+            if (!state.skillStats) state.skillStats = { meaning: { correct: 0, total: 0 }, match: { correct: 0, total: 0 }, write: { correct: 0, total: 0 }, speak: { correct: 0, total: 0 } };
+            if (!state.settings) state.settings = { reminder: false, sound: false };
+            saveState();
+        })();
+
+        function todayKey() { return new Date().toISOString().slice(0, 10); }
+
+        function touchStreak() {
+            const today = todayKey();
+            if (state.lastActiveDate === today) return;
+            const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+            if (state.lastActiveDate === yesterday) { state.streak += 1; }
+            else if (state.lastActiveDate !== today) { state.streak = 1; }
+            state.lastActiveDate = today;
+            state.weekLog[today] = true;
+            if (state.streak > state.longestStreak) state.longestStreak = state.streak;
+            saveState();
+        }
+
+        /* =========================================================
+           RENDER: TOP STATS
+           ========================================================= */
+        function renderStats() {
+            document.getElementById('streakVal').textContent = state.streak;
+            document.getElementById('heartVal').textContent = state.pro ? '∞' : state.hearts;
+            document.getElementById('xpVal').textContent = state.xp;
+        }
+
+        /* =========================================================
+           HOME / TIERS / LESSON PATH
+           ========================================================= */
+        let selectedTier = state.pro ? null : null; // set on init below
+
+        function lessonsForTier(tierKey) { return LEVELS.filter(l => l.tier === tierKey); }
+
+        function isTierUnlocked(tierIndex) {
+            if (state.pro || tierIndex === 0) return true;
+            const prevTier = TIERS[tierIndex - 1];
+            const prevLessons = lessonsForTier(prevTier.key);
+            return prevLessons.every(l => state.completedUnits.includes(l.id));
+        }
+
+        function tierProgress(tierKey) {
+            const lessons = lessonsForTier(tierKey);
+            const done = lessons.filter(l => state.completedUnits.includes(l.id)).length;
+            return { done, total: lessons.length };
+        }
+
+        function firstAvailableTierKey() {
+            for (let i = 0; i < TIERS.length; i++) {
+                const p = tierProgress(TIERS[i].key);
+                if (p.done < p.total || i === TIERS.length - 1) return TIERS[i].key;
+            }
+            return TIERS[0].key;
+        }
+
+        function renderTierRow() {
+            const wrap = document.getElementById('tierRow');
+            wrap.innerHTML = '';
+            TIERS.forEach((t, idx) => {
+                const unlocked = isTierUnlocked(idx);
+                const prog = tierProgress(t.key);
+                const chip = document.createElement('button');
+                chip.className = 'tier-chip' + (t.key === selectedTier ? ' active' : '') + (unlocked ? '' : ' tlocked');
+                chip.innerHTML = `<span class="t-emoji">${unlocked ? t.emoji : '🔒'}</span><b>${t.name}</b><small>${prog.done}/${prog.total}</small>`;
+                chip.onclick = () => {
+                    if (!unlocked) { alert('Complete ' + TIERS[idx - 1].name + ' to unlock ' + t.name + ' — or go Pro to unlock everything.'); return; }
+                    selectedTier = t.key;
+                    renderTierRow();
+                    renderUnits();
+                };
+                wrap.appendChild(chip);
+            });
+        }
+
+        function renderUnits() {
+            const wrap = document.getElementById('unitPath');
+            wrap.innerHTML = '';
+            const tierIdx = TIERS.findIndex(t => t.key === selectedTier);
+            const tier = TIERS[tierIdx];
+            const lessons = lessonsForTier(selectedTier);
+            lessons.forEach((l, idx) => {
+                const done = state.completedUnits.includes(l.id);
+                const locked = !state.pro && idx > 0 && !state.completedUnits.includes(lessons[idx - 1].id);
+                const card = document.createElement('div');
+                card.className = 'unit-card' + (locked ? ' locked' : '') + (done ? ' done-card' : '');
+                card.innerHTML = `
+      <div class="unit-num" style="background:${tier.color}22;">${locked ? '🔒' : l.icon}${done ? '<span class="check">✓</span>' : ''}</div>
+      <div class="unit-info">
+        <b>Lesson ${idx + 1}: ${l.title}</b>
+        <small>${l.words.length} words · ${done ? 'Completed' : 'Not started'}</small>
+        <div class="progress-bar"><div class="progress-fill" style="width:${done ? 100 : 0}%;background:${tier.color}"></div></div>
+      </div>`;
+                if (!locked) card.onclick = () => startLesson(l);
+                wrap.appendChild(card);
+            });
+            const hour = new Date().getHours();
+            document.getElementById('homeGreeting').textContent =
+                (hour < 12 ? '좋은 아침이에요 🌤️' : hour < 18 ? '안녕하세요 👋' : '좋은 저녁이에요 🌙');
+        }
+
+        function renderHome() {
+            if (!selectedTier) selectedTier = firstAvailableTierKey();
+            renderTierRow();
+            renderUnits();
+            const tier = TIERS.find(t => t.key === selectedTier);
+            const prog = tierProgress(selectedTier);
+            const tagsWrap = document.getElementById('heroTags');
+            tagsWrap.innerHTML = `
+    <div class="hero-tag">${tier.emoji} ${tier.name} · ${prog.done}/${prog.total}</div>
+    <div class="hero-tag">🔥 ${state.streak}-day streak</div>
+    <div class="hero-tag">⭐ ${state.xp} XP</div>`;
+        }
+
+        /* =========================================================
+           NAVIGATION
+           ========================================================= */
+        function showScreen(name) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen-' + name).classList.add('active');
+            document.querySelectorAll('.navbtn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+            if (name === 'kdrama') renderKdrama();
+            if (name === 'chat' && document.getElementById('chatMessages').children.length === 0) botSay("안녕하세요! I'm Han, your Hello Hangul tutor 👋 Ask me about any word, grammar point, or how streaks/hearts/XP work.");
+            if (name === 'profile') renderProfile();
+        }
+        function goHome() { showScreen('home'); renderHome(); renderStats(); }
+
+        /* =========================================================
+           LESSON ENGINE
+           ========================================================= */
+        let lessonState = null;
+        let lastCompletedLesson = null;
+
+        function buildExercises(unit) {
+            const words = unit.words;
+            const ex = [];
+            words.forEach(w => {
+                ex.push({ type: 'meaning', word: w, options: buildOptions(words, w, 'en') });
+            });
+            ex.push({ type: 'match', pairs: shuffle(words).slice(0, 4) });
+            words.slice(0, 4).forEach(w => { ex.push({ type: 'write', word: w }); });
+            words.slice(4, 7).forEach(w => { ex.push({ type: 'speak', word: w }); });
+            return shuffle(ex).slice(0, 10);
+        }
+        function buildOptions(words, correct, field) {
+            let pool = words.filter(w => w !== correct);
+            pool = shuffle(pool).slice(0, 3);
+            let opts = shuffle([correct, ...pool]);
+            return opts.map(o => o[field]);
+        }
+        function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+        function startLesson(unit) {
+            lessonState = { unit, exercises: buildExercises(unit), index: 0, correctCount: 0, phase: 'teach', teachIndex: 0 };
+            document.getElementById('lessonHearts').textContent = state.pro ? '∞' : state.hearts;
+            showScreen('lesson');
+            renderTeachStep();
+        }
+        function exitLesson() { goHome(); }
+
+        function speakKorean(text) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const utter = new SpeechSynthesisUtterance(text.replace(/^-/, ''));
+            utter.lang = 'ko-KR';
+            utter.rate = 0.9;
+            window.speechSynthesis.speak(utter);
+        }
+
+        function updateLessonProgress() {
+            const teachTotal = lessonState.unit.words.length;
+            const practiceTotal = lessonState.exercises.length;
+            const total = teachTotal + practiceTotal;
+            const done = lessonState.phase === 'teach' ? lessonState.teachIndex : (teachTotal + lessonState.index);
+            const pct = Math.round((done / total) * 100);
+            document.getElementById('lessonProgressFill').style.width = pct + '%';
+            document.getElementById('lessonHearts').textContent = state.pro ? '∞' : state.hearts;
+        }
+
+        function renderTeachStep() {
+            updateLessonProgress();
+            const area = document.getElementById('exerciseArea');
+            const words = lessonState.unit.words;
+            const w = words[lessonState.teachIndex];
+            if (!w) { lessonState.phase = 'practice'; renderExercise(); return; }
+            area.innerHTML = `<div class="exercise-card teach-card">
+    <div class="ex-prompt">New word ${lessonState.teachIndex + 1} of ${words.length}</div>
+    <div class="ex-main">${w.kr}</div>
+    <div class="ex-sub">${w.rom}</div>
+    <button class="listen-btn" onclick="speakKorean('${w.kr.replace(/'/g, "\\'")}')">🔊 Listen</button>
+    <div class="teach-meaning">${w.en}</div>
+    <button class="primary-btn" onclick="nextTeachStep()">${lessonState.teachIndex === words.length - 1 ? "Let's practice →" : 'Got it →'}</button>
+  </div>`;
+        }
+        function nextTeachStep() {
+            lessonState.teachIndex++;
+            renderTeachStep();
+        }
+
+        function renderExercise() {
+            updateLessonProgress();
+            const area = document.getElementById('exerciseArea');
+            const step = lessonState.exercises[lessonState.index];
+            if (!step) { finishLesson(); return; }
+            let html = '<div class="exercise-card">';
+            if (step.type === 'meaning') {
+                html += `<div class="ex-prompt">What does this mean?</div>
+      <div class="ex-main">${step.word.kr}</div>
+      <div class="ex-sub">${step.word.rom}</div>
+      <div class="choices" id="choiceWrap"></div>`;
+            } else if (step.type === 'write') {
+                html += `<div class="ex-prompt">Build the Korean for</div>
+      <div class="ex-main" style="font-size:24px;">"${step.word.en}"</div>
+      <div class="ex-sub">
+        <button class="listen-btn" style="margin:6px auto 0;" onclick="speakKorean('${step.word.kr.replace(/'/g, "\\'")}')">🔊 Hear it</button>
+      </div>
+      <div class="tile-answer" id="tileAnswer"></div>
+      <div class="tile-bank" id="tileBank"></div>
+      <button class="primary-btn" id="tileSubmit" onclick="checkTiles()" disabled>Check</button>`;
+            } else if (step.type === 'speak') {
+                html += `<div class="ex-prompt">Say this word out loud</div>
+      <div class="ex-main">${step.word.kr}</div>
+      <div class="ex-sub">${step.word.rom} · "${step.word.en}"</div>
+      <button class="mic-btn" id="micBtn" onclick="startSpeaking()">🎤</button>
+      <div class="heard-text" id="heardText">Tap the mic and speak</div>
+      <button class="primary-btn" id="skipSpeak" onclick="handleAnswer(true)" style="background:var(--line);color:var(--text-soft);">Skip (no mic available)</button>`;
+            } else if (step.type === 'match') {
+                html += `<div class="ex-prompt">Match the pairs</div>
+      <div class="match-grid" id="matchGrid"></div>`;
+            }
+            html += '</div>';
+            area.innerHTML = html;
+
+            if (step.type === 'meaning') renderMeaningChoices(step);
+            if (step.type === 'match') renderMatch(step);
+            if (step.type === 'write') renderTiles(step);
+        }
+
+        function renderMeaningChoices(step) {
+            const wrap = document.getElementById('choiceWrap');
+            step.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'choice';
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    const correct = opt === step.word.en;
+                    [...wrap.children].forEach(c => c.disabled = true);
+                    btn.classList.add(correct ? 'correct' : 'wrong');
+                    if (!correct) {
+                        [...wrap.children].find(c => c.textContent === step.word.en).classList.add('correct');
+                    }
+                    handleAnswer(correct);
+                };
+                wrap.appendChild(btn);
+            });
+        }
+
+        let tileState = null;
+        function renderTiles(step) {
+            const targetSegments = step.word.kr.split(' ');
+            const targetChars = step.word.kr.replace(/ /g, '').split('');
+            const otherChars = [];
+            lessonState.unit.words.forEach(w => {
+                if (w === step.word) return;
+                w.kr.replace(/ /g, '').split('').forEach(c => { if (!targetChars.includes(c) && !otherChars.includes(c)) otherChars.push(c); });
+            });
+            const distractorCount = Math.min(4, otherChars.length);
+            const distractors = shuffle(otherChars).slice(0, distractorCount);
+            const bankChars = shuffle([...targetChars, ...distractors]);
+            tileState = { targetSegments, targetChars, bankChars, picked: [] };
+            renderTileUI();
+        }
+        function renderTileUI() {
+            const answerWrap = document.getElementById('tileAnswer');
+            const bankWrap = document.getElementById('tileBank');
+            answerWrap.innerHTML = '';
+            bankWrap.innerHTML = '';
+
+            // Build answer strip with spaces re-inserted per original word segments
+            let cursor = 0;
+            tileState.targetSegments.forEach((seg, si) => {
+                const segWrap = document.createElement('span');
+                segWrap.className = 'tile-seg';
+                for (let i = 0; i < seg.length; i++) {
+                    const filled = cursor < tileState.picked.length;
+                    const chip = document.createElement('button');
+                    chip.className = 'tile-chip' + (filled ? ' filled' : ' empty');
+                    chip.textContent = filled ? tileState.picked[cursor] : '';
+                    if (filled) {
+                        const pos = cursor;
+                        chip.onclick = () => { removeTileAt(pos); };
+                    }
+                    segWrap.appendChild(chip);
+                    cursor++;
+                }
+                answerWrap.appendChild(segWrap);
+            });
+
+            // Bank of tappable tiles
+            tileState.bankChars.forEach((ch, idx) => {
+                const used = tileState.usedIdx && tileState.usedIdx.includes(idx);
+                const tile = document.createElement('button');
+                tile.className = 'tile-chip bank' + (used ? ' used' : '');
+                tile.textContent = ch;
+                tile.disabled = !!used;
+                tile.onclick = () => pickTile(idx, ch);
+                bankWrap.appendChild(tile);
+            });
+
+            document.getElementById('tileSubmit').disabled = tileState.picked.length !== tileState.targetChars.length;
+        }
+        function pickTile(idx, ch) {
+            if (tileState.picked.length >= tileState.targetChars.length) return;
+            if (!tileState.usedIdx) tileState.usedIdx = [];
+            tileState.usedIdx.push(idx);
+            tileState.picked.push(ch);
+            renderTileUI();
+        }
+        function removeTileAt(pos) {
+            // remove the tile at answer position `pos` and free its bank slot
+            const removedChar = tileState.picked[pos];
+            // find the last-used bank index matching this char to free
+            for (let i = tileState.usedIdx.length - 1; i >= 0; i--) {
+                if (tileState.bankChars[tileState.usedIdx[i]] === removedChar) {
+                    tileState.usedIdx.splice(i, 1);
+                    break;
+                }
+            }
+            tileState.picked.splice(pos, 1);
+            renderTileUI();
+        }
+        function checkTiles() {
+            const built = tileState.picked.join('');
+            const correct = built === tileState.targetChars.join('');
+            document.getElementById('tileSubmit').disabled = true;
+            if (!correct) {
+                document.getElementById('tileAnswer').style.borderColor = '#FF7F9C';
+            }
+            handleAnswer(correct);
+        }
+
+        let recognizing = false;
+        function startSpeaking() {
+            const step = lessonState.exercises[lessonState.index];
+            const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SR) {
+                document.getElementById('heardText').textContent = "Mic not supported in this browser — use Skip.";
+                return;
+            }
+            const micBtn = document.getElementById('micBtn');
+            const recog = new SR();
+            recog.lang = 'ko-KR';
+            recog.onstart = () => { micBtn.classList.add('listening'); document.getElementById('heardText').textContent = 'Listening...'; };
+            recog.onresult = (e) => {
+                const heard = e.results[0][0].transcript;
+                document.getElementById('heardText').textContent = 'Heard: "' + heard + '"';
+                const correct = heard.replace(/\s/g, '') === step.word.kr.replace(/\s/g, '');
+                setTimeout(() => handleAnswer(correct), 500);
+            };
+            recog.onerror = () => { micBtn.classList.remove('listening'); document.getElementById('heardText').textContent = 'Could not hear — try again or Skip.'; };
+            recog.onend = () => { micBtn.classList.remove('listening'); };
+            recog.start();
+        }
+
+        function renderMatch(step) {
+            const grid = document.getElementById('matchGrid');
+            const left = step.pairs.map(p => ({ key: p.kr, id: p.kr, side: 'kr' }));
+            const right = step.pairs.map(p => ({ key: p.en, id: p.kr, side: 'en' }));
+            const tiles = shuffle([...left, ...right]);
+            let selected = null;
+            let solvedCount = 0;
+            tiles.forEach(t => {
+                const el = document.createElement('button');
+                el.className = 'match-tile';
+                el.textContent = t.key;
+                el.onclick = () => {
+                    if (el.classList.contains('solved')) return;
+                    if (!selected) { selected = { el, t }; el.classList.add('selected'); return; }
+                    if (selected.el === el) return;
+                    if (selected.t.id === t.id && selected.t.side !== t.side) {
+                        selected.el.classList.remove('selected'); selected.el.classList.add('solved');
+                        el.classList.add('solved');
+                        solvedCount++;
+                        selected = null;
+                        if (solvedCount === step.pairs.length) { setTimeout(() => handleAnswer(true), 400); }
+                    } else {
+                        el.classList.add('wrong');
+                        setTimeout(() => { el.classList.remove('wrong'); selected.el.classList.remove('selected'); selected = null; }, 400);
+                    }
+                };
+                grid.appendChild(el);
+            });
+        }
+
+        function handleAnswer(correct) {
+            const step = lessonState.exercises[lessonState.index];
+            const skillKey = step.type === 'meaning' ? 'meaning' : step.type === 'match' ? 'match' : step.type === 'write' ? 'write' : 'speak';
+            state.skillStats[skillKey].total++;
+            state.totalAnswers++;
+            if (correct) {
+                lessonState.correctCount++;
+                state.skillStats[skillKey].correct++;
+                state.correctAnswers++;
+            }
+            else if (!state.pro) {
+                state.hearts = Math.max(0, state.hearts - 1);
+            }
+            saveState(); renderStats();
+            showFeedback(correct);
+        }
+
+        function showFeedback(correct) {
+            const bar = document.createElement('div');
+            bar.className = 'feedback-bar ' + (correct ? 'correct' : 'wrong');
+            bar.innerHTML = `<b>${correct ? '잘했어요! Correct!' : 'Not quite'}</b>
+    <span>${correct ? 'Nice work, keep going.' : "Don't worry — you'll get it next time."}</span>
+    <button class="fb-btn" onclick="nextExercise(this)">Continue</button>`;
+            document.body.appendChild(bar);
+        }
+        function nextExercise(btn) {
+            btn.closest('.feedback-bar').remove();
+            if (!state.pro && state.hearts <= 0) { showScreen('gameover'); return; }
+            lessonState.index++;
+            renderExercise();
+        }
+
+        function finishLesson() {
+            const earned = lessonState.correctCount * 10;
+            state.xp += earned;
+            touchStreak();
+            if (!state.completedUnits.includes(lessonState.unit.id)) state.completedUnits.push(lessonState.unit.id);
+            lastCompletedLesson = lessonState.unit;
+            saveState();
+            document.getElementById('earnedXp').textContent = '+' + earned;
+            document.getElementById('finalStreak').textContent = state.streak;
+            showScreen('complete');
+            renderStats();
+        }
+        /* =========================================================
+           QUIZ ENGINE (post-lesson recap, no hearts at stake)
+           ========================================================= */
+        let quizState = null;
+
+        function buildQuizQuestions(words) {
+            const qs = [];
+            words.forEach(w => {
+                qs.push({ direction: 'kr2en', word: w, options: buildOptions(words, w, 'en') });
+            });
+            words.forEach(w => {
+                qs.push({ direction: 'en2kr', word: w, options: buildOptions(words, w, 'kr') });
+            });
+            return shuffle(qs).slice(0, Math.min(words.length, 8));
+        }
+
+        function startQuiz() {
+            const lesson = lastCompletedLesson;
+            if (!lesson) { goHome(); return; }
+            quizState = { lesson, questions: buildQuizQuestions(lesson.words), index: 0, score: 0 };
+            document.getElementById('quizScoreLabel').textContent = '0/' + quizState.questions.length;
+            showScreen('quiz');
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            const pct = Math.round((quizState.index / quizState.questions.length) * 100);
+            document.getElementById('quizProgressFill').style.width = pct + '%';
+            document.getElementById('quizScoreLabel').textContent = quizState.score + '/' + quizState.questions.length;
+            const q = quizState.questions[quizState.index];
+            const area = document.getElementById('quizArea');
+            if (!q) { finishQuiz(); return; }
+            const isKr2En = q.direction === 'kr2en';
+            area.innerHTML = `<div class="exercise-card">
+    <div class="ex-prompt">${isKr2En ? 'What does this mean?' : 'Which word means this?'}</div>
+    <div class="ex-main" style="${isKr2En ? '' : 'font-size:22px;'}">${isKr2En ? q.word.kr : q.word.en}</div>
+    <div class="ex-sub">${isKr2En ? q.word.rom : ''}</div>
+    <div class="choices" id="quizChoiceWrap"></div>
+  </div>`;
+            const wrap = document.getElementById('quizChoiceWrap');
+            q.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'choice';
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    const correctVal = isKr2En ? q.word.en : q.word.kr;
+                    const correct = opt === correctVal;
+                    [...wrap.children].forEach(c => c.disabled = true);
+                    btn.classList.add(correct ? 'correct' : 'wrong');
+                    if (!correct) {
+                        [...wrap.children].find(c => c.textContent === correctVal).classList.add('correct');
+                    }
+                    if (correct) quizState.score++;
+                    setTimeout(() => { quizState.index++; renderQuizQuestion(); }, 700);
+                };
+                wrap.appendChild(btn);
+            });
+        }
+
+        function finishQuiz() {
+            const total = quizState.questions.length;
+            const score = quizState.score;
+            const bonus = score * 5;
+            state.xp += bonus;
+            saveState(); renderStats();
+            const pct = total ? Math.round(score / total * 100) : 0;
+            document.getElementById('quizResultEmoji').textContent = pct >= 80 ? '🌟' : pct >= 50 ? '👍' : '💪';
+            document.getElementById('quizResultTitle').textContent = pct >= 80 ? 'Excellent recap!' : pct >= 50 ? 'Nice recap!' : 'Good effort!';
+            document.getElementById('quizResultSub').textContent = `You scored ${pct}% on "${quizState.lesson.title}".`;
+            document.getElementById('quizScoreFinal').textContent = score + '/' + total;
+            document.getElementById('quizBonusXp').textContent = '+' + bonus;
+            showScreen('quiz-result');
+        }
+
+        function refillHearts() {
+            state.hearts = state.maxHearts;
+            saveState(); renderStats();
+            showScreen('lesson');
+            renderExercise();
+        }
+        function mockUpgrade() {
+            state.pro = true; state.hearts = state.maxHearts;
+            saveState(); renderStats(); renderHome();
+            alert('Hangul Pro unlocked (preview) — unlimited hearts and all units are now open.');
+        }
+
+        /* =========================================================
+           K-DRAMA
+           ========================================================= */
+        function renderKdrama() {
+            const wrap = document.getElementById('kdramaList');
+            if (wrap.dataset.built) return;
+            wrap.dataset.built = '1';
+            KDRAMA_SCENES.forEach(scene => {
+                const card = document.createElement('div');
+                card.className = 'scene-card';
+                card.innerHTML = `<h3>${scene.title}</h3><small>${scene.sub}</small>`;
+                scene.lines.forEach(l => {
+                    const lineEl = document.createElement('div');
+                    lineEl.className = 'line';
+                    lineEl.innerHTML = `<div class="kr">${l.kr}</div><div class="rom">${l.rom} · "${l.en}"</div>
+        <div class="brk">${l.note}</div>`;
+                    lineEl.onclick = () => lineEl.classList.toggle('open');
+                    card.appendChild(lineEl);
+                });
+                wrap.appendChild(card);
+            });
+        }
+
+        /* =========================================================
+           CHAT TUTOR (rule-based; swap in CONFIG.AI_API_KEY + fetch for real AI)
+           ========================================================= */
+        function botSay(text) {
+            const wrap = document.getElementById('chatMessages');
+            const m = document.createElement('div');
+            m.className = 'msg bot';
+            m.textContent = text;
+            wrap.appendChild(m);
+            wrap.scrollTop = wrap.scrollHeight;
+        }
+        function userSay(text) {
+            const wrap = document.getElementById('chatMessages');
+            const m = document.createElement('div');
+            m.className = 'msg user';
+            m.textContent = text;
+            wrap.appendChild(m);
+            wrap.scrollTop = wrap.scrollHeight;
+        }
+        function sendChat() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+            userSay(text);
+            input.value = '';
+            setTimeout(() => {
+                const lower = text.toLowerCase();
+                const hit = CHAT_TOPICS.find(t => t.k.some(k => lower.includes(k)));
+                botSay(hit ? hit.a : "Good question! Try asking me about a specific word (like 감사합니다), a grammar ending (like -요), or how streaks, hearts, and XP work — I'm best with Korean-learning basics right now.");
+            }, 350);
+        }
+        function askDoubtFromComplete() {
+            showScreen('chat');
+            if (document.getElementById('chatMessages').children.length === 0) {
+                botSay("안녕하세요! I'm Han, your Hello Hangul tutor 👋 Ask me about any word, grammar point, or how streaks/hearts/XP work.");
+            }
+            botSay("Just finished a lesson — what would you like explained?");
+        }
+
+        /* =========================================================
+           PROFILE
+           ========================================================= */
+        const ACHIEVEMENTS = [
+            { ic: "🌱", name: "First Lesson", cond: s => s.completedUnits.length >= 1 },
+            { ic: "📚", name: "5 Lessons", cond: s => s.completedUnits.length >= 5 },
+            { ic: "📖", name: "15 Lessons", cond: s => s.completedUnits.length >= 15 },
+            { ic: "🎯", name: "30 Lessons", cond: s => s.completedUnits.length >= 30 },
+            { ic: "🏆", name: "All 52 Done", cond: s => s.completedUnits.length >= 52 },
+            { ic: "🌱", name: "Beginner Grad", cond: s => lessonsForTier('beginner').every(l => s.completedUnits.includes(l.id)) },
+            { ic: "🌤️", name: "Intermediate Grad", cond: s => lessonsForTier('intermediate').every(l => s.completedUnits.includes(l.id)) },
+            { ic: "🔥", name: "Advanced Grad", cond: s => lessonsForTier('advanced').every(l => s.completedUnits.includes(l.id)) },
+            { ic: "👑", name: "Fluent Master", cond: s => lessonsForTier('fluent').every(l => s.completedUnits.includes(l.id)) },
+            { ic: "3️⃣", name: "3 Day Streak", cond: s => s.longestStreak >= 3 },
+            { ic: "7️⃣", name: "7 Day Streak", cond: s => s.longestStreak >= 7 },
+            { ic: "🗓️", name: "30 Day Streak", cond: s => s.longestStreak >= 30 },
+            { ic: "💯", name: "100 XP", cond: s => s.xp >= 100 },
+            { ic: "⭐", name: "500 XP", cond: s => s.xp >= 500 },
+            { ic: "🌟", name: "1000 XP", cond: s => s.xp >= 1000 },
+            { ic: "🎓", name: "Sharp Shooter", cond: s => s.totalAnswers >= 20 && s.correctAnswers === s.totalAnswers },
+        ];
+
+        function renderProfile() {
+            const level = Math.floor(state.xp / 100) + 1;
+            const progressInLevel = state.xp % 100;
+            document.getElementById('levelNumText').textContent = level;
+            const ring = document.getElementById('levelRingFill');
+            const circumference = 264;
+            ring.style.strokeDashoffset = circumference - (circumference * progressInLevel / 100);
+            document.getElementById('xpNext').textContent = `${progressInLevel} / 100 XP to level ${level + 1}`;
+
+            document.getElementById('pXp').textContent = state.xp;
+            document.getElementById('pStreak').textContent = state.streak;
+            document.getElementById('pBest').textContent = state.longestStreak;
+            document.getElementById('pLessons').textContent = state.completedUnits.length + '/52';
+            const wordsMet = LEVELS.filter(l => state.completedUnits.includes(l.id)).reduce((a, l) => a + l.words.length, 0);
+            document.getElementById('pWords').textContent = wordsMet;
+            const acc = state.totalAnswers ? Math.round(state.correctAnswers / state.totalAnswers * 100) : 0;
+            document.getElementById('pAccuracy').textContent = acc + '%';
+            document.getElementById('profileSub').textContent = state.pro ? 'Hangul Pro member 👑' : (state.xp > 0 ? 'Making great progress' : 'Just getting started');
+
+            const week = document.getElementById('weekRow');
+            week.innerHTML = '';
+            const labels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+            for (let i = 6; i >= 0; i--) {
+                const d = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
+                const done = !!state.weekLog[d];
+                const el = document.createElement('div');
+                el.className = 'day' + (done ? ' done' : '');
+                el.textContent = done ? '✓' : labels[new Date(d).getDay()];
+                week.appendChild(el);
+            }
+
+            const skillLabels = { meaning: ['Meaning', '#B7A4E0'], match: ['Matching', '#A8E6CF'], write: ['Writing', '#FFD9A8'], speak: ['Speaking', '#FFC9DE'] };
+            const skillWrap = document.getElementById('skillRows');
+            skillWrap.innerHTML = '';
+            Object.keys(skillLabels).forEach(k => {
+                const st = state.skillStats[k];
+                const pct = st.total ? Math.round(st.correct / st.total * 100) : 0;
+                const [label, color] = skillLabels[k];
+                const row = document.createElement('div');
+                row.className = 'skill-item';
+                row.innerHTML = `<div class="skill-top"><span>${label}</span><span>${st.total ? pct + '%' : 'No data yet'}</span></div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:${pct}%;background:${color}"></div></div>`;
+                skillWrap.appendChild(row);
+            });
+
+            const badgeWrap = document.getElementById('badgeGrid');
+            badgeWrap.innerHTML = '';
+            ACHIEVEMENTS.forEach(a => {
+                const unlocked = a.cond(state);
+                const el = document.createElement('div');
+                el.className = 'badge' + (unlocked ? ' unlocked' : '');
+                el.innerHTML = `<div class="b-ic">${unlocked ? a.ic : '🔒'}</div><span class="b-name">${a.name}</span>`;
+                badgeWrap.appendChild(el);
+            });
+
+            document.getElementById('toggleReminder').checked = !!state.settings.reminder;
+            document.getElementById('toggleSound').checked = !!state.settings.sound;
+        }
+        function toggleSetting(key, val) {
+            state.settings[key] = val;
+            saveState();
+        }
+        function resetProgress() {
+            if (!confirm('Reset all progress? This cannot be undone.')) return;
+            localStorage.removeItem('dasom_state');
+            state = {
+                xp: 0, streak: 0, longestStreak: 0, lastActiveDate: null, hearts: 5, maxHearts: 5,
+                completedUnits: [], pro: false, weekLog: {}, joinDate: todayKeyInit(),
+                totalAnswers: 0, correctAnswers: 0,
+                skillStats: { meaning: { correct: 0, total: 0 }, match: { correct: 0, total: 0 }, write: { correct: 0, total: 0 }, speak: { correct: 0, total: 0 } },
+                settings: { reminder: false, sound: false }
+            };
+            selectedTier = null;
+            saveState();
+            document.getElementById('unitPath').innerHTML = '';
+            goHome();
+        }
+
+        /* =========================================================
+           INIT
+           ========================================================= */
+        renderStats();
+        renderHome();
+    
+    </script>
+</body>
+
+</html>
