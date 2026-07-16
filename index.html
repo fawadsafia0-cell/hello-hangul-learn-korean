@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello Hangul · Learn Korean</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#B7A4E0">
+    <link rel="icon" href="icons/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Hello Hangul">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap"
@@ -1275,8 +1282,8 @@
                         onkeydown="if(event.key==='Enter')sendChat()">
                     <button onclick="sendChat()">➤</button>
                 </div>
-                <div class="chat-hint">Tutor runs on simple built-in logic. Connect your own AI key in the code (see
-                    CONFIG) for full smart replies.</div>
+                <div class="chat-hint">Add your API key to config.js to unlock full AI replies — otherwise Han uses
+                    built-in answers.</div>
             </div>
         </div>
 
@@ -1395,13 +1402,14 @@
         </div>
     </div>
 
+    <script src="config.js"></script>
     <script>
         /* =========================================================
-           CONFIG — plug in your own AI key to power the tutor chat.
-           Follow the same pattern as Seon Saeng: keep this key out of
-           git via a separate config.js + .gitignore in a real deploy.
+           CONFIG — the real API key lives in config.js (kept out of
+           git via .gitignore). This is just a safe fallback so the
+           app still runs if config.js is missing.
            ========================================================= */
-      const CONFIG = window.CONFIG || { AI_API_KEY: "" };
+        const CONFIG = window.CONFIG || { AI_API_KEY: "" };
 
         /* =========================================================
            DATA
@@ -2700,17 +2708,56 @@
             wrap.appendChild(m);
             wrap.scrollTop = wrap.scrollHeight;
         }
-        function sendChat() {
+        async function sendChat() {
             const input = document.getElementById('chatInput');
             const text = input.value.trim();
             if (!text) return;
             userSay(text);
             input.value = '';
-            setTimeout(() => {
-                const lower = text.toLowerCase();
-                const hit = CHAT_TOPICS.find(t => t.k.some(k => lower.includes(k)));
-                botSay(hit ? hit.a : "Good question! Try asking me about a specific word (like 감사합니다), a grammar ending (like -요), or how streaks, hearts, and XP work — I'm best with Korean-learning basics right now.");
-            }, 350);
+
+            if (!CONFIG.AI_API_KEY) {
+                setTimeout(() => botSay(ruleBasedReply(text)), 350);
+                return;
+            }
+
+            const typingEl = botSayTyping();
+            try {
+                const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + CONFIG.AI_API_KEY
+                    },
+                    body: JSON.stringify({
+                        model: "llama-3.3-70b-versatile",
+                        messages: [
+                            { role: "system", content: "You are Han, a warm, encouraging Korean-language tutor inside a learning app called Hello Hangul. Keep answers short (2-4 sentences), beginner-friendly, and focused on Korean vocabulary, grammar, or pronunciation." },
+                            { role: "user", content: text }
+                        ]
+                    })
+                });
+                if (!res.ok) throw new Error('API error ' + res.status);
+                const data = await res.json();
+                typingEl.remove();
+                botSay(data.choices[0].message.content.trim());
+            } catch (err) {
+                typingEl.remove();
+                botSay(ruleBasedReply(text) + "\n\n(Couldn't reach the AI tutor right now, so here's a built-in answer instead.)");
+            }
+        }
+        function ruleBasedReply(text) {
+            const lower = text.toLowerCase();
+            const hit = CHAT_TOPICS.find(t => t.k.some(k => lower.includes(k)));
+            return hit ? hit.a : "Good question! Try asking me about a specific word (like 감사합니다), a grammar ending (like -요), or how streaks, hearts, and XP work — I'm best with Korean-learning basics right now.";
+        }
+        function botSayTyping() {
+            const wrap = document.getElementById('chatMessages');
+            const m = document.createElement('div');
+            m.className = 'msg bot';
+            m.textContent = '...';
+            wrap.appendChild(m);
+            wrap.scrollTop = wrap.scrollHeight;
+            return m;
         }
         function askDoubtFromComplete() {
             showScreen('chat');
@@ -2825,7 +2872,12 @@
            ========================================================= */
         renderStats();
         renderHome();
-    
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js').catch(() => { });
+            });
+        }
     </script>
 </body>
 
