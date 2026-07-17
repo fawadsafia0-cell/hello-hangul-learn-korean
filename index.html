@@ -510,6 +510,35 @@
             margin-top: 14px;
         }
 
+        .match-grid-fixed {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .match-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .match-col-labels {
+            display: flex;
+            gap: 12px;
+            margin-top: 14px;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: var(--text-soft);
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .match-col-labels span {
+            flex: 1;
+            text-align: center;
+        }
+
         .match-tile {
             background: #FAF7FE;
             border: 2px solid var(--line);
@@ -864,6 +893,30 @@
             margin-bottom: 14px;
         }
 
+        .kdrama-note {
+            display: none;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px dashed var(--line);
+            text-align: left;
+        }
+
+        .kdrama-note.show {
+            display: block;
+        }
+
+        .kdrama-note b {
+            color: var(--primary-dark);
+            font-size: 14px;
+        }
+
+        .kdrama-note p {
+            font-size: 13.5px;
+            color: var(--text-soft);
+            margin: 6px 0 0;
+            line-height: 1.5;
+        }
+
         .scene-card h3 {
             margin: 0 0 2px;
             font-size: 15px;
@@ -946,6 +999,86 @@
             margin: 2px 0 0;
             font-size: 12.5px;
             color: var(--text-soft);
+        }
+
+        .plan-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .plan-card {
+            display: block;
+            position: relative;
+            background: var(--card);
+            border: 2px solid var(--line);
+            border-radius: 16px;
+            padding: 14px 16px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .plan-card input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .plan-card.selected {
+            border-color: var(--primary);
+            background: #F8F3FE;
+        }
+
+        .plan-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .plan-name {
+            font-weight: 800;
+            font-size: 14.5px;
+        }
+
+        .plan-badge {
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: var(--line);
+            color: var(--text-soft);
+            text-transform: uppercase;
+            letter-spacing: .4px;
+        }
+
+        .plan-badge.popular {
+            background: #F0E9FB;
+            color: var(--primary-dark);
+        }
+
+        .plan-badge.save {
+            background: #E4F8EE;
+            color: #2E9B6A;
+        }
+
+        .plan-price {
+            font-family: 'Baloo 2', cursive;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text);
+            margin-top: 6px;
+        }
+
+        .plan-price span {
+            font-family: 'Nunito';
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-soft);
+        }
+
+        .plan-sub {
+            font-size: 12px;
+            color: var(--text-soft);
+            margin-top: 2px;
         }
 
         .pro-btn {
@@ -1266,10 +1399,38 @@
 
         <!-- KDRAMA -->
         <div class="screen" id="screen-kdrama">
-            <div class="section-title" style="margin-top:6px;">🎬 Learn from K-Dramas</div>
-            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Real phrases from classic drama-style
-                scenes. Tap a line to break it down.</p>
+            <div class="section-title" style="margin-top:6px;">🎬 K-Drama Challenge</div>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Guess the meaning of real drama lines to
+                earn XP. Tap a scene to play!</p>
             <div id="kdramaList"></div>
+        </div>
+
+        <!-- KDRAMA GAME -->
+        <div class="screen" id="screen-kdrama-game">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="exitKdramaGame()">✕</button>
+                <div class="lesson-progress">
+                    <div class="lesson-progress-fill" id="kdramaProgressFill"
+                        style="width:0%;background:linear-gradient(90deg,#FFC9DE,#B7A4E0);"></div>
+                </div>
+                <div class="q-heart" style="color:var(--primary-dark);">🎬 <span id="kdramaSceneLabel"></span></div>
+            </div>
+            <div id="kdramaGameArea"></div>
+        </div>
+
+        <!-- KDRAMA COMPLETE -->
+        <div class="screen" id="screen-kdrama-complete">
+            <div class="result-screen">
+                <div class="result-emoji">🎬</div>
+                <h2>Scene complete!</h2>
+                <p style="color:var(--text-soft)" id="kdramaResultSceneTitle"></p>
+                <div class="result-stats">
+                    <div class="rstat"><b id="kdramaResultScore">0/0</b><span>CORRECT</span></div>
+                    <div class="rstat"><b id="kdramaResultXp">+0</b><span>XP EARNED</span></div>
+                </div>
+                <button class="primary-btn" style="background:var(--mint);color:#215C42;"
+                    onclick="showScreen('kdrama')">Back to scenes</button>
+            </div>
         </div>
 
         <!-- CHAT -->
@@ -1282,8 +1443,8 @@
                         onkeydown="if(event.key==='Enter')sendChat()">
                     <button onclick="sendChat()">➤</button>
                 </div>
-                <div class="chat-hint">Add your API key to config.js to unlock full AI replies — otherwise Han uses
-                    built-in answers.</div>
+                <div class="chat-hint" id="chatHint">Add your API key to config.js to unlock full AI replies — otherwise
+                    Han uses built-in answers.</div>
             </div>
         </div>
 
@@ -1302,8 +1463,8 @@
             </div>
             <div class="pro-feature">
                 <div class="ic">🔓</div>
-                <div><b>All units unlocked</b>
-                    <p>Skip the queue — jump into any unit or K-drama scene.</p>
+                <div><b>All 52 lessons unlocked</b>
+                    <p>Skip the queue — jump into any level instantly, no tier locks.</p>
                 </div>
             </div>
             <div class="pro-feature">
@@ -1315,9 +1476,59 @@
             <div class="pro-feature">
                 <div class="ic">📈</div>
                 <div><b>Deep progress stats</b>
-                    <p>Track accuracy per skill: listening, writing, speaking, matching.</p>
+                    <p>Track accuracy per skill: meaning, matching, writing, speaking.</p>
                 </div>
             </div>
+            <div class="pro-feature">
+                <div class="ic">🤖</div>
+                <div><b>Unlimited tutor chat</b>
+                    <p>Free plan is capped at 5 questions a day — Pro removes the limit.</p>
+                </div>
+            </div>
+            <div class="pro-feature">
+                <div class="ic">🎬</div>
+                <div><b>Full K-Drama vault</b>
+                    <p>Play every scene with no lock, plus early access to new scenes.</p>
+                </div>
+            </div>
+            <div class="pro-feature">
+                <div class="ic">🔥</div>
+                <div><b>Streak freeze</b>
+                    <p>Protect your streak once a week, even if you miss a day.</p>
+                </div>
+            </div>
+            <div class="pro-feature">
+                <div class="ic">🚫</div>
+                <div><b>Zero ads, ever</b>
+                    <p>A clean, distraction-free learning experience.</p>
+                </div>
+            </div>
+
+            <div class="section-title">Choose your plan</div>
+            <div class="plan-grid" id="planGrid">
+                <label class="plan-card" data-plan="weekly">
+                    <input type="radio" name="proPlan" value="weekly">
+                    <div class="plan-top"><span class="plan-name">Weekly</span><span class="plan-badge">Flexible</span>
+                    </div>
+                    <div class="plan-price">$10<span>/week</span></div>
+                    <div class="plan-sub">Great for a short trip or trial run</div>
+                </label>
+                <label class="plan-card selected" data-plan="monthly">
+                    <input type="radio" name="proPlan" value="monthly" checked>
+                    <div class="plan-top"><span class="plan-name">Monthly</span><span class="plan-badge popular">Most
+                            Popular</span></div>
+                    <div class="plan-price">$20<span>/month</span></div>
+                    <div class="plan-sub">Full flexibility, cancel any time</div>
+                </label>
+                <label class="plan-card" data-plan="yearly">
+                    <input type="radio" name="proPlan" value="yearly">
+                    <div class="plan-top"><span class="plan-name">Yearly</span><span class="plan-badge save">Save
+                            17%</span></div>
+                    <div class="plan-price">$200<span>/year</span></div>
+                    <div class="plan-sub">Just $16.67/month — 2 months free</div>
+                </label>
+            </div>
+
             <button class="pro-btn" onclick="mockUpgrade()">Unlock Hangul Pro</button>
             <p style="text-align:center;font-size:11px;color:var(--text-soft);margin-top:10px;">This is a UI preview —
                 no real payment is processed.</p>
@@ -2115,15 +2326,37 @@
         ];
 
         const CHAT_TOPICS = [
-            { k: ["안녕", "hello", "hi"], a: "안녕하세요 means 'hello' — the 하세요 part is a polite verb ending you'll see a LOT. Use it with anyone older or unfamiliar." },
-            { k: ["요", "polite"], a: "Adding 요 to the end of a sentence makes it polite-casual — safe for most everyday situations, like talking to a shop owner or a new coworker." },
-            { k: ["hangul", "한글", "alphabet"], a: "Hangul has 14 basic consonants and 10 basic vowels. They stack into syllable blocks — e.g. ㅎ+ㅏ+ㄴ = 한. Once you learn the shapes, reading gets fast quickly." },
-            { k: ["heart", "hearts", "lose"], a: "You lose a heart for each wrong answer in a lesson. Run out and the lesson ends — but hearts refill over time, or go Pro for unlimited." },
-            { k: ["streak", "fire"], a: "Your streak counts consecutive days you complete at least one lesson. Miss a day and it resets — so try to do a quick lesson daily!" },
-            { k: ["xp", "level", "points"], a: "XP is earned by finishing lessons and exercises. It doesn't unlock anything by itself yet, but it's your best way to track how much you've practiced." },
-            { k: ["pro", "premium", "upgrade"], a: "Hangul Pro unlocks unlimited hearts, every unit instantly, advanced speaking drills, and deeper stats. Check the Pro tab any time." },
-            { k: ["speak", "pronounce", "mic"], a: "For speaking exercises, tap the mic and say the word naturally — the app compares what it hears to the target word. If your browser blocks the mic, check site permissions." },
+            { k: ["안녕하세요", "안녕", "hello", "hi ", "hi,", "hey"], a: "안녕하세요! (annyeonghaseyo) means 'hello' — the 하세요 part is a polite verb ending you'll see A LOT. With close friends, you can just say 안녕 (annyeong) instead. 반가워요! (I'm glad to meet you!)" },
+            { k: ["bye", "goodbye", "안녕히"], a: "There are two ways to say goodbye in Korean depending on who's leaving! 안녕히 가세요 (annyeonghi gaseyo) — say this to someone who is leaving. 안녕히 계세요 (annyeonghi gyeseyo) — say this if YOU are the one leaving and they're staying. 다음에 봐요! (See you next time!)" },
+            { k: ["good morning", "좋은 아침"], a: "좋은 아침이에요 (joeun achimieyo) means 'good morning'! A simpler everyday version is just 안녕하세요 (annyeonghaseyo), which works at any time of day." },
+            { k: ["good night", "잘 자"], a: "잘 자요 (jal jayo) means 'good night' (casual-polite). To a close friend you could say just 잘 자 (jal ja). 좋은 꿈 꾸세요! (Sweet dreams!)" },
+            { k: ["thank", "고마", "감사"], a: "감사합니다 (gamsahamnida) is the more formal 'thank you,' while 고마워요 (gomawoyo) is a softer, everyday version. Both are totally safe to use with most people!" },
+            { k: ["sorry", "미안", "죄송"], a: "죄송합니다 (joesonghamnida) is the formal way to apologize, and 미안해요 (mianhaeyo) is a friendlier, everyday version. 괜찮아요 (gwaenchanayo) means 'it's okay,' in case someone says it to you!" },
+            { k: ["how are you", "잘 지내"], a: "잘 지내요? (jal jinaeyo?) means 'how are you / are you doing well?' A common reply is 네, 잘 지내요 (ne, jal jinaeyo) — 'yes, I'm doing well.'" },
+            { k: ["your name", "이름이 뭐"], a: "You could ask 이름이 뭐예요? (ireumi mwoyeyo?) — 'what is your name?' And to answer: 제 이름은 ___이에요/예요 (je ireumeun ___ ieyo/yeyo) — 'my name is ___.'" },
+            { k: ["사랑", "love"], a: "사랑해요 (saranghaeyo) means 'I love you' — a warm, common phrase between close friends, family, or partners. 정말 좋아해요 (jeongmal joahaeyo) is a slightly less intense 'I really like you/it.'" },
+            { k: ["요", "polite ending", "polite"], a: "Adding 요 (yo) to the end of a sentence makes it polite-casual — safe for most everyday situations, like talking to a shop owner or a new coworker. Drop the 요 and you get casual 반말 (banmal), used with close friends." },
+            { k: ["hangul", "한글", "alphabet"], a: "Hangul has 14 basic consonants and 10 basic vowels. They stack into syllable blocks — e.g. ㅎ+ㅏ+ㄴ = 한. Once you learn the shapes, reading gets fast quickly, even if the meaning takes longer!" },
+            { k: ["heart", "hearts", "lose"], a: "You lose a heart for each wrong answer in a lesson. Run out and the lesson ends — but hearts refill over time, or go Pro for unlimited hearts." },
+            { k: ["streak", "fire", "연속"], a: "Your streak counts consecutive days you complete at least one lesson. Miss a day and it resets — so try to do a quick lesson daily! 화이팅! (hwaiting — you can do it!)" },
+            { k: ["xp", "level", "points", "레벨"], a: "XP is earned by finishing lessons, quizzes, and K-Drama scenes. It builds your Level on your Profile page — the more you practice, the higher you climb!" },
+            { k: ["pro", "premium", "upgrade", "subscription", "price", "cost"], a: "Hangul Pro unlocks unlimited hearts, every unit instantly, advanced speaking drills, deeper stats, and unlimited tutor chats. Check the Pro tab for pricing and plans!" },
+            { k: ["speak", "pronounce", "mic", "pronunciation"], a: "For speaking exercises, tap the mic and say the word naturally — the app compares what it hears to the target word. If your browser blocks the mic, check your site permissions." },
+            { k: ["difficult", "hard", "struggling", "stuck", "confus"], a: "괜찮아요! (gwaenchanayo — it's okay!) Everyone finds Korean tricky at first. Try replaying the K-Drama scenes or retaking a quiz — repetition is what makes it click. 천천히 하세요 (cheoncheonhi haseyo — take it slowly)." },
+            { k: ["speak korean", "in korean", "korean only", "can you speak"], a: "네, 조금 할 수 있어요! (ne, jogeum hal su isseoyo — yes, I can speak a little!) Ask me about any word from your lessons and I'll answer with the Korean, romanization, AND the English meaning." },
         ];
+
+        const ALL_VOCAB = LEVELS.flatMap(l => l.words);
+        function findWordMatch(text) {
+            const koreanMatch = ALL_VOCAB.find(w => text.includes(w.kr));
+            if (koreanMatch) return koreanMatch;
+            const lower = text.toLowerCase();
+            return ALL_VOCAB.find(w => {
+                const enLower = w.en.toLowerCase();
+                if (enLower.includes(lower) && lower.length > 2) return true;
+                return lower.split(/\s+/).some(word => word.length > 2 && enLower.includes(word));
+            }) || null;
+        }
 
         /* =========================================================
            STATE
@@ -2133,7 +2366,8 @@
             completedUnits: [], pro: false, weekLog: {}, joinDate: todayKeyInit(),
             totalAnswers: 0, correctAnswers: 0,
             skillStats: { meaning: { correct: 0, total: 0 }, match: { correct: 0, total: 0 }, write: { correct: 0, total: 0 }, speak: { correct: 0, total: 0 } },
-            settings: { reminder: false, sound: false }
+            settings: { reminder: false, sound: false },
+            completedScenes: [], tutorAskDate: null, tutorAskCount: 0
         };
         function todayKeyInit() { return new Date().toISOString().slice(0, 10); }
         function saveState() { localStorage.setItem('dasom_state', JSON.stringify(state)); }
@@ -2144,6 +2378,9 @@
             if (state.correctAnswers === undefined) state.correctAnswers = 0;
             if (!state.skillStats) state.skillStats = { meaning: { correct: 0, total: 0 }, match: { correct: 0, total: 0 }, write: { correct: 0, total: 0 }, speak: { correct: 0, total: 0 } };
             if (!state.settings) state.settings = { reminder: false, sound: false };
+            if (!state.completedScenes) state.completedScenes = [];
+            if (state.tutorAskDate === undefined) state.tutorAskDate = null;
+            if (state.tutorAskCount === undefined) state.tutorAskCount = 0;
             saveState();
         })();
 
@@ -2263,9 +2500,22 @@
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById('screen-' + name).classList.add('active');
             document.querySelectorAll('.navbtn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
-            if (name === 'kdrama') renderKdrama();
-            if (name === 'chat' && document.getElementById('chatMessages').children.length === 0) botSay("안녕하세요! I'm Han, your Hello Hangul tutor 👋 Ask me about any word, grammar point, or how streaks/hearts/XP work.");
+            if (name === 'kdrama') renderKdramaList();
+            if (name === 'chat') {
+                if (document.getElementById('chatMessages').children.length === 0) botSay("안녕하세요! I'm Han, your Hello Hangul tutor 👋 Ask me about any word, grammar point, or how streaks/hearts/XP work — in Korean or English!");
+                updateChatHint();
+            }
             if (name === 'profile') renderProfile();
+        }
+        function updateChatHint() {
+            const hint = document.getElementById('chatHint');
+            if (!hint) return;
+            if (state.pro) {
+                hint.textContent = "Hangul Pro: unlimited tutor questions. Add your API key to config.js to unlock full AI replies.";
+            } else {
+                const used = state.tutorAskDate === todayKey() ? state.tutorAskCount : 0;
+                hint.textContent = `${Math.max(0, 5 - used)} free questions left today — go Pro for unlimited. Add your API key to config.js to unlock full AI replies.`;
+            }
         }
         function goHome() { showScreen('home'); renderHome(); renderStats(); }
 
@@ -2370,6 +2620,7 @@
       <button class="primary-btn" id="skipSpeak" onclick="handleAnswer(true)" style="background:var(--line);color:var(--text-soft);">Skip (no mic available)</button>`;
             } else if (step.type === 'match') {
                 html += `<div class="ex-prompt">Match the pairs</div>
+      <div class="match-col-labels"><span>English</span><span>한국어</span></div>
       <div class="match-grid" id="matchGrid"></div>`;
             }
             html += '</div>';
@@ -2508,12 +2759,15 @@
 
         function renderMatch(step) {
             const grid = document.getElementById('matchGrid');
-            const left = step.pairs.map(p => ({ key: p.kr, id: p.kr, side: 'kr' }));
-            const right = step.pairs.map(p => ({ key: p.en, id: p.kr, side: 'en' }));
-            const tiles = shuffle([...left, ...right]);
+            grid.innerHTML = '';
+            grid.className = 'match-grid-fixed';
+            const leftCol = document.createElement('div'); leftCol.className = 'match-col';
+            const rightCol = document.createElement('div'); rightCol.className = 'match-col';
+            const leftItems = shuffle(step.pairs.map(p => ({ key: p.en, id: p.kr, side: 'en' })));
+            const rightItems = shuffle(step.pairs.map(p => ({ key: p.kr, id: p.kr, side: 'kr' })));
             let selected = null;
             let solvedCount = 0;
-            tiles.forEach(t => {
+            function makeTile(t, col) {
                 const el = document.createElement('button');
                 el.className = 'match-tile';
                 el.textContent = t.key;
@@ -2532,8 +2786,12 @@
                         setTimeout(() => { el.classList.remove('wrong'); selected.el.classList.remove('selected'); selected = null; }, 400);
                     }
                 };
-                grid.appendChild(el);
-            });
+                col.appendChild(el);
+            }
+            leftItems.forEach(t => makeTile(t, leftCol));
+            rightItems.forEach(t => makeTile(t, rightCol));
+            grid.appendChild(leftCol);
+            grid.appendChild(rightCol);
         }
 
         function handleAnswer(correct) {
@@ -2660,33 +2918,113 @@
             showScreen('lesson');
             renderExercise();
         }
+        function setupPlanSelector() {
+            document.querySelectorAll('input[name="proPlan"]').forEach(input => {
+                input.addEventListener('change', () => {
+                    document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+                    input.closest('.plan-card').classList.add('selected');
+                });
+            });
+        }
         function mockUpgrade() {
+            const selected = document.querySelector('input[name="proPlan"]:checked');
+            const planLabels = { weekly: 'Weekly ($10/week)', monthly: 'Monthly ($20/month)', yearly: 'Yearly ($200/year)' };
+            const planText = selected ? planLabels[selected.value] : 'Monthly ($20/month)';
             state.pro = true; state.hearts = state.maxHearts;
             saveState(); renderStats(); renderHome();
-            alert('Hangul Pro unlocked (preview) — unlimited hearts and all units are now open.');
+            alert('Hangul Pro unlocked (preview) — ' + planText + ' plan. Unlimited hearts, all lessons, and unlimited tutor chat are now open.');
         }
 
         /* =========================================================
            K-DRAMA
            ========================================================= */
-        function renderKdrama() {
+        const ALL_KDRAMA_LINES = KDRAMA_SCENES.flatMap(s => s.lines);
+        let kdramaState = null;
+
+        function renderKdramaList() {
             const wrap = document.getElementById('kdramaList');
-            if (wrap.dataset.built) return;
-            wrap.dataset.built = '1';
-            KDRAMA_SCENES.forEach(scene => {
+            wrap.innerHTML = '';
+            KDRAMA_SCENES.forEach((scene, idx) => {
+                const done = state.completedScenes.includes(idx);
                 const card = document.createElement('div');
-                card.className = 'scene-card';
-                card.innerHTML = `<h3>${scene.title}</h3><small>${scene.sub}</small>`;
-                scene.lines.forEach(l => {
-                    const lineEl = document.createElement('div');
-                    lineEl.className = 'line';
-                    lineEl.innerHTML = `<div class="kr">${l.kr}</div><div class="rom">${l.rom} · "${l.en}"</div>
-        <div class="brk">${l.note}</div>`;
-                    lineEl.onclick = () => lineEl.classList.toggle('open');
-                    card.appendChild(lineEl);
-                });
+                card.className = 'unit-card' + (done ? ' done-card' : '');
+                card.innerHTML = `
+      <div class="unit-num" style="background:#FFC9DE33;">🎬${done ? '<span class="check">✓</span>' : ''}</div>
+      <div class="unit-info">
+        <b>${scene.title}</b>
+        <small>${scene.sub} · ${scene.lines.length} lines · ${done ? 'Completed' : 'Not played'}</small>
+        <div class="progress-bar"><div class="progress-fill" style="width:${done ? 100 : 0}%;background:#FFC9DE"></div></div>
+      </div>`;
+                card.onclick = () => startKdramaGame(idx);
                 wrap.appendChild(card);
             });
+        }
+
+        function startKdramaGame(idx) {
+            kdramaState = { scene: KDRAMA_SCENES[idx], sceneIndex: idx, lineIndex: 0, correctCount: 0 };
+            document.getElementById('kdramaSceneLabel').textContent = kdramaState.scene.title;
+            showScreen('kdrama-game');
+            renderKdramaQuestion();
+        }
+        function exitKdramaGame() { showScreen('kdrama'); }
+
+        function buildKdramaOptions(correctLine) {
+            let pool = ALL_KDRAMA_LINES.filter(l => l.en !== correctLine.en);
+            pool = shuffle(pool).slice(0, 3).map(l => l.en);
+            return shuffle([correctLine.en, ...pool]);
+        }
+
+        function renderKdramaQuestion() {
+            const scene = kdramaState.scene;
+            const total = scene.lines.length;
+            const pct = Math.round((kdramaState.lineIndex / total) * 100);
+            document.getElementById('kdramaProgressFill').style.width = pct + '%';
+            const line = scene.lines[kdramaState.lineIndex];
+            const area = document.getElementById('kdramaGameArea');
+            if (!line) { finishKdramaGame(); return; }
+            area.innerHTML = `<div class="exercise-card">
+    <div class="ex-prompt">What does this line mean?</div>
+    <div class="ex-main" style="font-size:22px;">${line.kr}</div>
+    <div class="ex-sub">${line.rom}</div>
+    <div class="choices" id="kdramaChoiceWrap"></div>
+    <div class="kdrama-note" id="kdramaNoteBox"></div>
+  </div>`;
+            const wrap = document.getElementById('kdramaChoiceWrap');
+            buildKdramaOptions(line).forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'choice';
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    const correct = opt === line.en;
+                    [...wrap.children].forEach(c => c.disabled = true);
+                    btn.classList.add(correct ? 'correct' : 'wrong');
+                    if (!correct) {
+                        [...wrap.children].find(c => c.textContent === line.en).classList.add('correct');
+                    }
+                    if (correct) kdramaState.correctCount++;
+                    const noteBox = document.getElementById('kdramaNoteBox');
+                    noteBox.classList.add('show');
+                    noteBox.innerHTML = `<b>${correct ? '정답이에요! Correct! 🎉' : 'Good try!'}</b><p>${line.note}</p>
+        <button class="primary-btn" onclick="nextKdramaLine()">Continue</button>`;
+                };
+                wrap.appendChild(btn);
+            });
+        }
+        function nextKdramaLine() {
+            kdramaState.lineIndex++;
+            renderKdramaQuestion();
+        }
+        function finishKdramaGame() {
+            const total = kdramaState.scene.lines.length;
+            const earned = kdramaState.correctCount * 5;
+            state.xp += earned;
+            if (!state.completedScenes.includes(kdramaState.sceneIndex)) state.completedScenes.push(kdramaState.sceneIndex);
+            saveState(); renderStats();
+            document.getElementById('kdramaResultSceneTitle').textContent = `"${kdramaState.scene.title}"`;
+            document.getElementById('kdramaResultScore').textContent = kdramaState.correctCount + '/' + total;
+            document.getElementById('kdramaResultXp').textContent = '+' + earned;
+            showScreen('kdrama-complete');
+            renderKdramaList();
         }
 
         /* =========================================================
@@ -2708,10 +3046,31 @@
             wrap.appendChild(m);
             wrap.scrollTop = wrap.scrollHeight;
         }
+        function canAskTutorToday() {
+            const today = todayKey();
+            if (state.tutorAskDate !== today) return true;
+            return state.tutorAskCount < 5;
+        }
+        function recordTutorAsk() {
+            const today = todayKey();
+            if (state.tutorAskDate !== today) { state.tutorAskDate = today; state.tutorAskCount = 0; }
+            state.tutorAskCount++;
+            saveState();
+        }
         async function sendChat() {
             const input = document.getElementById('chatInput');
             const text = input.value.trim();
             if (!text) return;
+
+            if (!state.pro && !canAskTutorToday()) {
+                userSay(text);
+                input.value = '';
+                setTimeout(() => botSay("You've used today's 5 free tutor questions! They reset tomorrow — or go Pro for unlimited questions any time. 🤖💬"), 300);
+                return;
+            }
+            recordTutorAsk();
+            updateChatHint();
+
             userSay(text);
             input.value = '';
 
@@ -2731,7 +3090,7 @@
                     body: JSON.stringify({
                         model: "llama-3.3-70b-versatile",
                         messages: [
-                            { role: "system", content: "You are Han, a warm, encouraging Korean-language tutor inside a learning app called Hello Hangul. Keep answers short (2-4 sentences), beginner-friendly, and focused on Korean vocabulary, grammar, or pronunciation." },
+                            { role: "system", content: "You are Han, a warm, encouraging Korean-language tutor inside a learning app called Hello Hangul. You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Korean and English together — give the Korean phrase, its romanization, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Korean word, phrase, grammar point, or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly." },
                             { role: "user", content: text }
                         ]
                     })
@@ -2748,7 +3107,14 @@
         function ruleBasedReply(text) {
             const lower = text.toLowerCase();
             const hit = CHAT_TOPICS.find(t => t.k.some(k => lower.includes(k)));
-            return hit ? hit.a : "Good question! Try asking me about a specific word (like 감사합니다), a grammar ending (like -요), or how streaks, hearts, and XP work — I'm best with Korean-learning basics right now.";
+            if (hit) return hit.a;
+
+            const word = findWordMatch(text);
+            if (word) {
+                return `${word.kr} (${word.rom}) means "${word.en}" in English. 좋은 질문이에요! (jo-eun jilmunieyo — great question!) Try using it in the K-Drama tab or a quiz to lock it in.`;
+            }
+
+            return "그건 아직 몰라요 (I don't know that one yet)! Try asking about a specific word from your lessons — Korean or English both work (e.g. \"what does 감사합니다 mean\" or \"how do I say goodbye\"). I can also explain grammar endings like -요, or how streaks, hearts, and XP work.";
         }
         function botSayTyping() {
             const wrap = document.getElementById('chatMessages');
@@ -2859,7 +3225,8 @@
                 completedUnits: [], pro: false, weekLog: {}, joinDate: todayKeyInit(),
                 totalAnswers: 0, correctAnswers: 0,
                 skillStats: { meaning: { correct: 0, total: 0 }, match: { correct: 0, total: 0 }, write: { correct: 0, total: 0 }, speak: { correct: 0, total: 0 } },
-                settings: { reminder: false, sound: false }
+                settings: { reminder: false, sound: false },
+                completedScenes: [], tutorAskDate: null, tutorAskCount: 0
             };
             selectedTier = null;
             saveState();
@@ -2872,6 +3239,7 @@
            ========================================================= */
         renderStats();
         renderHome();
+        setupPlanSelector();
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
