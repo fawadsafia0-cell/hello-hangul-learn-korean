@@ -226,6 +226,80 @@
             margin-top: 4px;
         }
 
+        /* ---- Hangul chart entry card + grid ---- */
+        .chart-link-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #FFF3DE, #FFE3EF);
+            border-radius: 18px;
+            padding: 14px 16px;
+            margin-top: 14px;
+            box-shadow: var(--shadow);
+        }
+
+        .chart-link-ic {
+            font-size: 26px;
+        }
+
+        .chart-link-text {
+            flex: 1;
+        }
+
+        .chart-link-text b {
+            display: block;
+            font-size: 15px;
+        }
+
+        .chart-link-text span {
+            font-size: 12px;
+            color: var(--text-soft);
+        }
+
+        .chart-link-arrow {
+            font-size: 22px;
+            color: var(--text-soft);
+        }
+
+        .hangul-section {
+            margin-top: 18px;
+        }
+
+        .hangul-section h3 {
+            font-size: 14px;
+            margin: 0 0 10px;
+            color: var(--text-soft);
+            font-weight: 800;
+        }
+
+        .hangul-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .hangul-cell {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 12px 4px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .hangul-cell .h-ch {
+            font-family: 'Baloo 2', cursive;
+            font-size: 24px;
+            color: var(--text);
+        }
+
+        .hangul-cell .h-rom {
+            display: block;
+            font-size: 10px;
+            color: var(--text-soft);
+            margin-top: 2px;
+            font-weight: 700;
+        }
+
         .tier-row::-webkit-scrollbar {
             display: none;
         }
@@ -1317,6 +1391,11 @@
                 </div>
                 <div class="hero-tags" id="heroTags"></div>
             </div>
+            <div class="chart-link-card" onclick="openHangulChart()">
+                <div class="chart-link-ic">🔤</div>
+                <div class="chart-link-text"><b>Hangul Chart</b><span>All 40 letters + a quick quiz</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
             <div class="section-title">Choose your level</div>
             <div class="tier-row" id="tierRow"></div>
             <div class="section-title">Your path</div>
@@ -1401,8 +1480,8 @@
         <!-- KDRAMA -->
         <div class="screen" id="screen-kdrama">
             <div class="section-title" style="margin-top:6px;">🎬 K-Drama Challenge</div>
-            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Guess the meaning of real drama lines to
-                earn XP. Tap a scene to play!</p>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Watch each scene's lines, learn the
+                grammar, then take a quick quiz to earn XP.</p>
             <div id="kdramaList"></div>
         </div>
 
@@ -1434,6 +1513,21 @@
             </div>
         </div>
 
+        <!-- HANGUL CHART -->
+        <div class="screen" id="screen-hangul">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div style="flex:1;"></div>
+            </div>
+            <div class="section-title" style="margin-top:0;">🔤 Hangul Chart</div>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Tap any letter to hear it. Learn all 40
+                and try the quiz below.</p>
+            <div id="hangulChartWrap"></div>
+            <button class="primary-btn" style="background:linear-gradient(135deg,#FFC9DE,#B7A4E0);margin-top:8px;"
+                onclick="startHangulQuiz()">📝 Take the Hangul Quiz</button>
+        </div>
+
+
         <!-- CHAT -->
         <div class="screen" id="screen-chat">
             <div class="section-title" style="margin-top:6px;">💬 Ask your tutor</div>
@@ -1452,7 +1546,7 @@
         <!-- PRO -->
         <div class="screen" id="screen-pro">
             <div class="pro-hero">
-                <div style="font-size:36px;">👑</div>
+                <div style="font-size:36px;">💎</div>
                 <h2>Hangul Pro</h2>
                 <p style="opacity:.85;font-size:13px;">Unlock the full path and learn without limits.</p>
             </div>
@@ -1608,7 +1702,7 @@
             <button class="navbtn" data-tab="kdrama" onclick="showScreen('kdrama')"><span
                     class="ic">🎬</span>K-Drama</button>
             <button class="navbtn" data-tab="chat" onclick="showScreen('chat')"><span class="ic">💬</span>Tutor</button>
-            <button class="navbtn" data-tab="pro" onclick="showScreen('pro')"><span class="ic">👑</span>Pro</button>
+            <button class="navbtn" data-tab="pro" onclick="showScreen('pro')"><span class="ic">💎</span>Pro</button>
             <button class="navbtn" data-tab="profile" onclick="showScreen('profile')"><span
                     class="ic">👤</span>Profile</button>
         </div>
@@ -2326,6 +2420,31 @@
             },
         ];
 
+        const HANGUL_CHART = [
+            {
+                title: "Basic Consonants (자음)", chars: [
+                    { ch: "ㄱ", rom: "g / k" }, { ch: "ㄴ", rom: "n" }, { ch: "ㄷ", rom: "d / t" }, { ch: "ㄹ", rom: "r / l" },
+                    { ch: "ㅁ", rom: "m" }, { ch: "ㅂ", rom: "b / p" }, { ch: "ㅅ", rom: "s" }, { ch: "ㅇ", rom: "ng / silent" },
+                    { ch: "ㅈ", rom: "j" }, { ch: "ㅊ", rom: "ch" }, { ch: "ㅋ", rom: "k" }, { ch: "ㅌ", rom: "t" },
+                    { ch: "ㅍ", rom: "p" }, { ch: "ㅎ", rom: "h" }]
+            },
+            {
+                title: "Double Consonants (쌍자음)", chars: [
+                    { ch: "ㄲ", rom: "kk" }, { ch: "ㄸ", rom: "tt" }, { ch: "ㅃ", rom: "pp" }, { ch: "ㅆ", rom: "ss" }, { ch: "ㅉ", rom: "jj" }]
+            },
+            {
+                title: "Basic Vowels (모음)", chars: [
+                    { ch: "ㅏ", rom: "a" }, { ch: "ㅑ", rom: "ya" }, { ch: "ㅓ", rom: "eo" }, { ch: "ㅕ", rom: "yeo" }, { ch: "ㅗ", rom: "o" },
+                    { ch: "ㅛ", rom: "yo" }, { ch: "ㅜ", rom: "u" }, { ch: "ㅠ", rom: "yu" }, { ch: "ㅡ", rom: "eu" }, { ch: "ㅣ", rom: "i" }]
+            },
+            {
+                title: "Compound Vowels (이중모음)", chars: [
+                    { ch: "ㅐ", rom: "ae" }, { ch: "ㅒ", rom: "yae" }, { ch: "ㅔ", rom: "e" }, { ch: "ㅖ", rom: "ye" }, { ch: "ㅘ", rom: "wa" },
+                    { ch: "ㅙ", rom: "wae" }, { ch: "ㅚ", rom: "oe" }, { ch: "ㅝ", rom: "wo" }, { ch: "ㅞ", rom: "we" }, { ch: "ㅟ", rom: "wi" }, { ch: "ㅢ", rom: "ui" }]
+            },
+        ];
+        const ALL_HANGUL_CHARS = HANGUL_CHART.flatMap(s => s.chars);
+
         const CHAT_TOPICS = [
             { k: ["안녕하세요", "안녕", "hello", "hi ", "hi,", "hey"], a: "안녕하세요! (annyeonghaseyo) means 'hello' — the 하세요 part is a polite verb ending you'll see A LOT. With close friends, you can just say 안녕 (annyeong) instead. 반가워요! (I'm glad to meet you!)" },
             { k: ["bye", "goodbye", "안녕히"], a: "There are two ways to say goodbye in Korean depending on who's leaving! 안녕히 가세요 (annyeonghi gaseyo) — say this to someone who is leaving. 안녕히 계세요 (annyeonghi gyeseyo) — say this if YOU are the one leaving and they're staying. 다음에 봐요! (See you next time!)" },
@@ -2855,6 +2974,34 @@
             return shuffle(qs).slice(0, Math.min(words.length, 8));
         }
 
+        function openHangulChart() {
+            showScreen('hangul');
+            renderHangulChart();
+        }
+        function renderHangulChart() {
+            const wrap = document.getElementById('hangulChartWrap');
+            if (wrap.dataset.built) return;
+            wrap.dataset.built = '1';
+            HANGUL_CHART.forEach(section => {
+                const sec = document.createElement('div');
+                sec.className = 'hangul-section';
+                sec.innerHTML = `<h3>${section.title}</h3><div class="hangul-grid"></div>`;
+                const grid = sec.querySelector('.hangul-grid');
+                section.chars.forEach(c => {
+                    const cell = document.createElement('button');
+                    cell.className = 'hangul-cell';
+                    cell.innerHTML = `<span class="h-ch">${c.ch}</span><span class="h-rom">${c.rom}</span>`;
+                    cell.onclick = () => speakKorean(c.ch);
+                    grid.appendChild(cell);
+                });
+                wrap.appendChild(sec);
+            });
+        }
+        function startHangulQuiz() {
+            lastCompletedLesson = { title: "Hangul Chart", words: ALL_HANGUL_CHARS.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
+            startQuiz();
+        }
+
         function startQuiz() {
             const lesson = lastCompletedLesson;
             if (!lesson) { goHome(); return; }
@@ -2962,12 +3109,39 @@
         }
 
         function startKdramaGame(idx) {
-            kdramaState = { scene: KDRAMA_SCENES[idx], sceneIndex: idx, lineIndex: 0, correctCount: 0 };
+            kdramaState = { scene: KDRAMA_SCENES[idx], sceneIndex: idx, phase: 'watch', watchIndex: 0, lineIndex: 0, correctCount: 0 };
             document.getElementById('kdramaSceneLabel').textContent = kdramaState.scene.title;
             showScreen('kdrama-game');
-            renderKdramaQuestion();
+            renderKdramaWatchStep();
         }
         function exitKdramaGame() { showScreen('kdrama'); }
+
+        function kdramaProgress() {
+            const total = kdramaState.scene.lines.length * 2; // watch steps + quiz steps
+            const done = kdramaState.phase === 'watch' ? kdramaState.watchIndex : (kdramaState.scene.lines.length + kdramaState.lineIndex);
+            return Math.round((done / total) * 100);
+        }
+
+        function renderKdramaWatchStep() {
+            document.getElementById('kdramaProgressFill').style.width = kdramaProgress() + '%';
+            const scene = kdramaState.scene;
+            const line = scene.lines[kdramaState.watchIndex];
+            const area = document.getElementById('kdramaGameArea');
+            if (!line) { kdramaState.phase = 'quiz'; renderKdramaQuestion(); return; }
+            area.innerHTML = `<div class="exercise-card teach-card">
+    <div class="ex-prompt">Scene line ${kdramaState.watchIndex + 1} of ${scene.lines.length} · Watch &amp; learn</div>
+    <div class="ex-main" style="font-size:22px;">${line.kr}</div>
+    <div class="ex-sub">${line.rom}</div>
+    <button class="listen-btn" onclick="speakKorean('${line.kr.replace(/'/g, "\\'")}')">🔊 Listen</button>
+    <div class="teach-meaning">"${line.en}"</div>
+    <div class="kdrama-note show" style="text-align:left;margin-top:12px;"><p>${line.note}</p></div>
+    <button class="primary-btn" onclick="nextKdramaWatchStep()">${kdramaState.watchIndex === scene.lines.length - 1 ? "Take the quiz →" : 'Next line →'}</button>
+  </div>`;
+        }
+        function nextKdramaWatchStep() {
+            kdramaState.watchIndex++;
+            renderKdramaWatchStep();
+        }
 
         function buildKdramaOptions(correctLine) {
             let pool = ALL_KDRAMA_LINES.filter(l => l.en !== correctLine.en);
@@ -2978,13 +3152,12 @@
         function renderKdramaQuestion() {
             const scene = kdramaState.scene;
             const total = scene.lines.length;
-            const pct = Math.round((kdramaState.lineIndex / total) * 100);
-            document.getElementById('kdramaProgressFill').style.width = pct + '%';
+            document.getElementById('kdramaProgressFill').style.width = kdramaProgress() + '%';
             const line = scene.lines[kdramaState.lineIndex];
             const area = document.getElementById('kdramaGameArea');
             if (!line) { finishKdramaGame(); return; }
             area.innerHTML = `<div class="exercise-card">
-    <div class="ex-prompt">What does this line mean?</div>
+    <div class="ex-prompt">Quiz · What does this line mean?</div>
     <div class="ex-main" style="font-size:22px;">${line.kr}</div>
     <div class="ex-sub">${line.rom}</div>
     <div class="choices" id="kdramaChoiceWrap"></div>
@@ -3173,7 +3346,7 @@
             document.getElementById('pWords').textContent = wordsMet;
             const acc = state.totalAnswers ? Math.round(state.correctAnswers / state.totalAnswers * 100) : 0;
             document.getElementById('pAccuracy').textContent = acc + '%';
-            document.getElementById('profileSub').textContent = state.pro ? 'Hangul Pro member 👑' : (state.xp > 0 ? 'Making great progress' : 'Just getting started');
+            document.getElementById('profileSub').textContent = state.pro ? 'Hangul Pro member 💎' : (state.xp > 0 ? 'Making great progress' : 'Just getting started');
 
             const week = document.getElementById('weekRow');
             week.innerHTML = '';
