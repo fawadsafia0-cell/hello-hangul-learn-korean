@@ -90,6 +90,8 @@
             width: 32px;
             height: 32px;
             flex-shrink: 0;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .brand span {
@@ -269,6 +271,13 @@
             display: flex;
             flex-direction: column;
             gap: 14px;
+        }
+
+        #kdramaList {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 16px;
         }
 
         .unit-card {
@@ -1286,17 +1295,7 @@
 
         <div class="topbar">
             <div class="brand">
-                <svg class="mascot" viewBox="0 0 40 40">
-                    <circle cx="20" cy="20" r="20" fill="url(#logoGrad)" />
-                    <defs>
-                        <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
-                            <stop offset="0" stop-color="#FFC9DE" />
-                            <stop offset="1" stop-color="#B7A4E0" />
-                        </linearGradient>
-                    </defs>
-                    <text x="20" y="27" font-family="'Baloo 2',cursive" font-size="19" font-weight="800" fill="#FFFFFF"
-                        text-anchor="middle">한</text>
-                </svg>
+                <img class="mascot" src="icons/logo-small.png" alt="Hello Hangul logo">
                 <span>Hello Hangul</span>
             </div>
             <div class="stats-pill">
