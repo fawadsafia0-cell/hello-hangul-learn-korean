@@ -1,8 +1,9 @@
+
 // Hello Hangul — service worker
 // Caches the app shell so the app opens instantly and works offline
 // after the first visit. Bump CACHE_NAME whenever you deploy an update
 // so old cached files get replaced.
-const CACHE_NAME = 'hello-hangul-v1';
+const CACHE_NAME = 'hello-hangul-v2';
 const APP_SHELL = [
     './',
     './index.html',
