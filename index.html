@@ -738,6 +738,18 @@
             justify-content: center;
         }
 
+        .tile-chip.word-tile {
+            font-size: 16px;
+            min-width: auto;
+            padding: 0 12px;
+            height: auto;
+            min-height: 40px;
+        }
+
+        .tile-chip.word-tile.empty {
+            min-width: 50px;
+        }
+
         .tile-chip.empty {
             background: #FAF7FE;
             border: 2px solid var(--line);
@@ -1568,6 +1580,18 @@
                 <div class="chart-link-text"><b>Number Chart</b><span>Both number systems + a quick quiz</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
+            <div class="chart-link-card" onclick="openSentenceBuilder()">
+                <div class="chart-link-ic">🧩</div>
+                <div class="chart-link-text"><b>Sentence Builder</b><span>Rebuild real drama sentences word by
+                        word</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
+            <div class="chart-link-card" onclick="openListeningMode()">
+                <div class="chart-link-ic">🎧</div>
+                <div class="chart-link-text"><b>Listening Practice</b><span>Hear it first, no text — then guess the
+                        meaning</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
             <div class="videocall-link-card" onclick="openVideoCall()">
                 <img class="videocall-link-avatar" id="videocallLinkAvatarHome" src="" alt="Han">
                 <div class="chart-link-text"><b>Video call with Han</b><span>Practice live — Han reacts to your
@@ -1717,6 +1741,30 @@
             <div id="numberChartWrap"></div>
             <button class="primary-btn" style="background:linear-gradient(135deg,#A8E6CF,#B7A4E0);margin-top:8px;"
                 onclick="startNumberQuiz()">📝 Take the Number Quiz</button>
+        </div>
+
+        <!-- SENTENCE BUILDER -->
+        <div class="screen" id="screen-sentence">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div class="lesson-progress">
+                    <div class="lesson-progress-fill" id="sentenceProgressFill"
+                        style="width:0%;background:linear-gradient(90deg,#A8E6CF,#B7A4E0);"></div>
+                </div>
+            </div>
+            <div id="sentenceArea"></div>
+        </div>
+
+        <!-- LISTENING MODE -->
+        <div class="screen" id="screen-listening">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div class="lesson-progress">
+                    <div class="lesson-progress-fill" id="listeningProgressFill"
+                        style="width:0%;background:linear-gradient(90deg,#FFC9DE,#B7A4E0);"></div>
+                </div>
+            </div>
+            <div id="listeningArea"></div>
         </div>
 
 
@@ -1896,7 +1944,8 @@
             <div class="section-title">Settings</div>
             <div class="unit-card" style="cursor:default;">
                 <div class="unit-icon" style="background:#F0E9FB;">🔔</div>
-                <div class="unit-info"><b>Daily reminder</b><small>Nudge me to practice every day</small></div>
+                <div class="unit-info"><b>Daily reminder</b><small>Browser notification while the app is open</small>
+                </div>
                 <label class="switch"><input type="checkbox" id="toggleReminder"
                         onchange="toggleSetting('reminder', this.checked)"><span class="slider"></span></label>
             </div>
@@ -1907,6 +1956,18 @@
                 <label class="switch"><input type="checkbox" id="toggleSound"
                         onchange="toggleSetting('sound', this.checked)"><span class="slider"></span></label>
             </div>
+            <div class="unit-card" onclick="exportProgress()" style="margin-top:10px;">
+                <div class="unit-icon" style="background:#E4F8EE;">⬇️</div>
+                <div class="unit-info"><b>Export progress</b><small>Save a backup file of your XP, streak, and
+                        lessons</small></div>
+            </div>
+            <div class="unit-card" onclick="document.getElementById('importFileInput').click()"
+                style="margin-top:10px;">
+                <div class="unit-icon" style="background:#E9F1FF;">⬆️</div>
+                <div class="unit-info"><b>Import progress</b><small>Restore from a backup file</small></div>
+            </div>
+            <input type="file" id="importFileInput" accept="application/json" style="display:none;"
+                onchange="importProgress(event)">
             <div class="unit-card" onclick="resetProgress()" style="margin-top:10px;">
                 <div class="unit-icon" style="background:#FFEAF0;">🗑️</div>
                 <div class="unit-info"><b>Reset all progress</b><small>Start fresh from Lesson 1</small></div>
@@ -3304,6 +3365,178 @@
             startQuiz();
         }
 
+        /* =========================================================
+           SENTENCE BUILDER (rebuild real K-Drama sentences word by word)
+           ========================================================= */
+        let sentenceState = null;
+        let sentenceTileState = null;
+
+        function openSentenceBuilder() {
+            sentenceState = { pool: shuffle(ALL_KDRAMA_LINES).slice(0, 8), index: 0, correctCount: 0 };
+            showScreen('sentence');
+            renderSentenceStep();
+        }
+        function renderSentenceStep() {
+            const pct = Math.round((sentenceState.index / sentenceState.pool.length) * 100);
+            document.getElementById('sentenceProgressFill').style.width = pct + '%';
+            const line = sentenceState.pool[sentenceState.index];
+            const area = document.getElementById('sentenceArea');
+            if (!line) { finishSentenceBuilder(); return; }
+            const words = line.kr.split(' ');
+            sentenceTileState = { target: words, bank: shuffle(words), picked: [], usedIdx: [] };
+            area.innerHTML = `<div class="exercise-card">
+    <div class="ex-prompt">Build this sentence</div>
+    <div class="ex-sub" style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px;">"${line.en}"</div>
+    <button class="listen-btn" style="margin:6px auto 0;" onclick="speakKorean('${line.kr.replace(/'/g, "\\'")}')">🔊 Hear it</button>
+    <div class="tile-answer" id="sentenceAnswer" style="flex-wrap:wrap;"></div>
+    <div class="tile-bank" id="sentenceBank"></div>
+    <button class="primary-btn" id="sentenceSubmit" onclick="checkSentence()" disabled>Check</button>
+  </div>`;
+            renderSentenceTiles();
+        }
+        function renderSentenceTiles() {
+            const answerWrap = document.getElementById('sentenceAnswer');
+            const bankWrap = document.getElementById('sentenceBank');
+            answerWrap.innerHTML = '';
+            bankWrap.innerHTML = '';
+            sentenceTileState.target.forEach((w, i) => {
+                const filled = i < sentenceTileState.picked.length;
+                const chip = document.createElement('button');
+                chip.className = 'tile-chip word-tile ' + (filled ? 'filled' : 'empty');
+                chip.textContent = filled ? sentenceTileState.picked[i] : '';
+                if (filled) {
+                    const pos = i;
+                    chip.onclick = () => removeSentenceTileAt(pos);
+                }
+                answerWrap.appendChild(chip);
+            });
+            sentenceTileState.bank.forEach((w, idx) => {
+                const used = sentenceTileState.usedIdx.includes(idx);
+                const tile = document.createElement('button');
+                tile.className = 'tile-chip word-tile bank' + (used ? ' used' : '');
+                tile.textContent = w;
+                tile.disabled = used;
+                tile.onclick = () => pickSentenceTile(idx, w);
+                bankWrap.appendChild(tile);
+            });
+            document.getElementById('sentenceSubmit').disabled = sentenceTileState.picked.length !== sentenceTileState.target.length;
+        }
+        function pickSentenceTile(idx, w) {
+            if (sentenceTileState.picked.length >= sentenceTileState.target.length) return;
+            sentenceTileState.usedIdx.push(idx);
+            sentenceTileState.picked.push(w);
+            renderSentenceTiles();
+        }
+        function removeSentenceTileAt(pos) {
+            const removedWord = sentenceTileState.picked[pos];
+            for (let i = sentenceTileState.usedIdx.length - 1; i >= 0; i--) {
+                if (sentenceTileState.bank[sentenceTileState.usedIdx[i]] === removedWord) {
+                    sentenceTileState.usedIdx.splice(i, 1);
+                    break;
+                }
+            }
+            sentenceTileState.picked.splice(pos, 1);
+            renderSentenceTiles();
+        }
+        function checkSentence() {
+            const correct = sentenceTileState.picked.join(' ') === sentenceTileState.target.join(' ');
+            const line = sentenceState.pool[sentenceState.index];
+            if (correct) sentenceState.correctCount++;
+            const bar = document.createElement('div');
+            bar.className = 'feedback-bar ' + (correct ? 'correct' : 'wrong');
+            bar.innerHTML = `<b>${correct ? '정답이에요! Correct!' : 'Not quite'}</b>
+    <span>${line.kr}${correct ? '' : ' — the correct order.'}</span>
+    <span style="display:block;font-size:12px;margin-top:4px;opacity:.85;">${line.note}</span>
+    <button class="fb-btn" onclick="nextSentenceStep(this)">Continue</button>`;
+            document.body.appendChild(bar);
+        }
+        function nextSentenceStep(btn) {
+            btn.closest('.feedback-bar').remove();
+            sentenceState.index++;
+            renderSentenceStep();
+        }
+        function finishSentenceBuilder() {
+            const total = sentenceState.pool.length;
+            const earned = sentenceState.correctCount * 8;
+            state.xp += earned; saveState(); renderStats();
+            document.getElementById('sentenceArea').innerHTML = `<div class="result-screen">
+    <div class="result-emoji">🧩</div>
+    <h2>Sentences complete!</h2>
+    <div class="result-stats">
+      <div class="rstat"><b>${sentenceState.correctCount}/${total}</b><span>CORRECT</span></div>
+      <div class="rstat"><b>+${earned}</b><span>XP EARNED</span></div>
+    </div>
+    <button class="primary-btn" style="background:var(--mint);color:#215C42;" onclick="goHome()">Continue</button>
+  </div>`;
+        }
+
+        /* =========================================================
+           LISTENING MODE (hear it first, no text shown)
+           ========================================================= */
+        let listeningState = null;
+
+        function openListeningMode() {
+            listeningState = { pool: shuffle(ALL_VOCAB).slice(0, 10), index: 0, correctCount: 0 };
+            showScreen('listening');
+            renderListeningStep();
+        }
+        function renderListeningStep() {
+            const pct = Math.round((listeningState.index / listeningState.pool.length) * 100);
+            document.getElementById('listeningProgressFill').style.width = pct + '%';
+            const word = listeningState.pool[listeningState.index];
+            const area = document.getElementById('listeningArea');
+            if (!word) { finishListeningMode(); return; }
+            const options = buildOptions(listeningState.pool, word, 'en');
+            area.innerHTML = `<div class="exercise-card">
+    <div class="ex-prompt">Listen, then choose the meaning</div>
+    <button class="mic-btn" style="background:var(--primary);font-size:26px;" onclick="speakKorean('${word.kr.replace(/'/g, "\\'")}')">🔊</button>
+    <div class="ex-sub" style="margin-top:10px;">Tap to hear it again</div>
+    <div class="choices" id="listeningChoiceWrap" style="margin-top:16px;"></div>
+  </div>`;
+            speakKorean(word.kr);
+            const wrap = document.getElementById('listeningChoiceWrap');
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'choice';
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    const correct = opt === word.en;
+                    [...wrap.children].forEach(c => c.disabled = true);
+                    btn.classList.add(correct ? 'correct' : 'wrong');
+                    if (!correct) {
+                        [...wrap.children].find(c => c.textContent === word.en).classList.add('correct');
+                    }
+                    if (correct) listeningState.correctCount++;
+                    const bar = document.createElement('div');
+                    bar.className = 'feedback-bar ' + (correct ? 'correct' : 'wrong');
+                    bar.innerHTML = `<b>${correct ? '잘했어요! Correct!' : 'Good try!'}</b>
+        <span>${word.kr} (${word.rom}) = ${word.en}</span>
+        <button class="fb-btn" onclick="nextListeningStep(this)">Continue</button>`;
+                    document.body.appendChild(bar);
+                };
+                wrap.appendChild(btn);
+            });
+        }
+        function nextListeningStep(btn) {
+            btn.closest('.feedback-bar').remove();
+            listeningState.index++;
+            renderListeningStep();
+        }
+        function finishListeningMode() {
+            const total = listeningState.pool.length;
+            const earned = listeningState.correctCount * 5;
+            state.xp += earned; saveState(); renderStats();
+            document.getElementById('listeningArea').innerHTML = `<div class="result-screen">
+    <div class="result-emoji">🎧</div>
+    <h2>Listening practice complete!</h2>
+    <div class="result-stats">
+      <div class="rstat"><b>${listeningState.correctCount}/${total}</b><span>CORRECT</span></div>
+      <div class="rstat"><b>+${earned}</b><span>XP EARNED</span></div>
+    </div>
+    <button class="primary-btn" style="background:var(--mint);color:#215C42;" onclick="goHome()">Continue</button>
+  </div>`;
+        }
+
         function startQuiz() {
             const lesson = lastCompletedLesson;
             if (!lesson) { goHome(); return; }
@@ -3815,7 +4048,65 @@
         function toggleSetting(key, val) {
             state.settings[key] = val;
             saveState();
+            if (key === 'reminder' && val) {
+                if ('Notification' in window) {
+                    Notification.requestPermission().then(permission => {
+                        if (permission === 'granted') {
+                            new Notification('Hello Hangul', { body: "Reminders will show while the app is open in a browser tab. For reminders when the app is fully closed, this needs to be enabled from your phone's app settings once installed." });
+                        } else {
+                            alert("Notifications were blocked. You can enable them later from your browser or phone settings.");
+                            state.settings.reminder = false;
+                            document.getElementById('toggleReminder').checked = false;
+                            saveState();
+                        }
+                    });
+                } else {
+                    alert("Notifications aren't supported in this browser.");
+                    state.settings.reminder = false;
+                    document.getElementById('toggleReminder').checked = false;
+                    saveState();
+                }
+            }
         }
+
+        function exportProgress() {
+            const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `hello-hangul-backup-${todayKey()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function importProgress(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (typeof imported.xp !== 'number' || !Array.isArray(imported.completedUnits)) {
+                        alert('That file doesn\'t look like a valid Hello Hangul backup.');
+                        return;
+                    }
+                    if (!confirm('This will replace your current progress with the backup. Continue?')) return;
+                    state = imported;
+                    saveState();
+                    renderStats();
+                    renderHome();
+                    renderProfile();
+                    alert('Progress restored!');
+                } catch (err) {
+                    alert('Could not read that file — make sure it\'s a Hello Hangul backup JSON.');
+                }
+                event.target.value = '';
+            };
+            reader.readAsText(file);
+        }
+
         function resetProgress() {
             if (!confirm('Reset all progress? This cannot be undone.')) return;
             localStorage.removeItem('dasom_state');
