@@ -4164,13 +4164,88 @@
                 });
             });
         }
-        function mockUpgrade() {
+
+        /* =========================================================
+           GOOGLE PLAY BILLING (via the Digital Goods API)
+           ==========================================================
+           IMPORTANT — how this actually works:
+           - This only functions inside the real Android app once it's
+             installed from Google Play. It cannot work in a normal
+             browser tab, and it cannot be tested with a sideloaded APK —
+             Play Billing requires the app to be distributed through Play
+             Console (at minimum, uploaded to internal testing).
+           - Product IDs below MUST be created in Play Console under
+             Monetize > Products > Subscriptions with these EXACT IDs
+             before purchases will work: hangul_pro_weekly,
+             hangul_pro_monthly, hangul_pro_yearly.
+           - When billing isn't available (i.e. testing in a browser),
+             this falls back to the existing local preview toggle so you
+             can still test the rest of the app's Pro-gated features.
+           ========================================================= */
+        const PLAY_PRODUCT_IDS = {
+            weekly: 'hangul_pro_weekly',
+            monthly: 'hangul_pro_monthly',
+            yearly: 'hangul_pro_yearly'
+        };
+        let digitalGoodsService = null;
+
+        async function getDigitalGoodsService() {
+            if (digitalGoodsService) return digitalGoodsService;
+            if (!('getDigitalGoodsService' in window)) return null;
+            try {
+                digitalGoodsService = await window.getDigitalGoodsService('https://play.google.com/billing');
+                return digitalGoodsService;
+            } catch (err) {
+                return null;
+            }
+        }
+
+        async function mockUpgrade() {
             const selected = document.querySelector('input[name="proPlan"]:checked');
+            const planKey = selected ? selected.value : 'monthly';
             const planLabels = { weekly: 'Weekly ($10/week)', monthly: 'Monthly ($20/month)', yearly: 'Yearly ($200/year)' };
-            const planText = selected ? planLabels[selected.value] : 'Monthly ($20/month)';
-            state.pro = true; state.hearts = state.maxHearts;
-            saveState(); renderStats(); renderHome();
-            alert('Hangul Pro unlocked (preview) — ' + planText + ' plan. Unlimited hearts, all lessons, and unlimited tutor chat are now open.');
+            const planText = planLabels[planKey];
+
+            const service = await getDigitalGoodsService();
+
+            if (!service) {
+                // No real Play Billing available (browser testing, or not yet published) — local preview only.
+                state.pro = true; state.hearts = state.maxHearts;
+                saveState(); renderStats(); renderHome();
+                alert('Hangul Pro unlocked (LOCAL PREVIEW ONLY — no real payment) — ' + planText + ' plan.\n\nReal purchases only work once this app is installed from Google Play with matching subscription products set up in Play Console.');
+                return;
+            }
+
+            try {
+                const productId = PLAY_PRODUCT_IDS[planKey];
+                const details = await service.getDetails([productId]);
+                if (!details || details.length === 0) {
+                    alert('This subscription isn\'t set up in Play Console yet (expected product ID: ' + productId + '). Add it under Monetize > Products > Subscriptions, then try again.');
+                    return;
+                }
+
+                const paymentMethod = { supportedMethods: 'https://play.google.com/billing', data: { sku: productId } };
+                const paymentRequest = new PaymentRequest([paymentMethod]);
+                const paymentResponse = await paymentRequest.show();
+                const purchaseToken = paymentResponse.details.purchaseToken;
+                await paymentResponse.complete('success');
+
+                // Acknowledge the purchase so Google doesn't auto-refund it
+                if (service.acknowledge) await service.acknowledge(purchaseToken, 'repeatable');
+
+                state.pro = true;
+                state.hearts = state.maxHearts;
+                state.proPurchaseToken = purchaseToken;
+                state.proPlan = planKey;
+                saveState(); renderStats(); renderHome();
+                alert('Hangul Pro unlocked — ' + planText + ' plan. Thank you!');
+            } catch (err) {
+                if (err && err.name === 'AbortError') {
+                    // user cancelled the purchase sheet — no error needed
+                    return;
+                }
+                alert('Purchase could not be completed: ' + (err && err.message ? err.message : 'unknown error'));
+            }
         }
 
         /* =========================================================
