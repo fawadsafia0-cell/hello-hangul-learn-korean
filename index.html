@@ -2056,15 +2056,15 @@
                     <input type="radio" name="proPlan" value="monthly" checked>
                     <div class="plan-top"><span class="plan-name">Monthly</span><span class="plan-badge popular">Most
                             Popular</span></div>
-                    <div class="plan-price">$20<span>/month</span></div>
+                    <div class="plan-price">$18<span>/month</span></div>
                     <div class="plan-sub">Full flexibility, cancel any time</div>
                 </label>
                 <label class="plan-card" data-plan="yearly">
                     <input type="radio" name="proPlan" value="yearly">
                     <div class="plan-top"><span class="plan-name">Yearly</span><span class="plan-badge save">Save
-                            17%</span></div>
-                    <div class="plan-price">$200<span>/year</span></div>
-                    <div class="plan-sub">Just $16.67/month — 2 months free</div>
+                            61%</span></div>
+                    <div class="plan-price">$84<span>/year</span></div>
+                    <div class="plan-sub">Just $7/month — best value</div>
                 </label>
             </div>
 
@@ -4203,7 +4203,7 @@
         async function mockUpgrade() {
             const selected = document.querySelector('input[name="proPlan"]:checked');
             const planKey = selected ? selected.value : 'monthly';
-            const planLabels = { weekly: 'Weekly ($10/week)', monthly: 'Monthly ($20/month)', yearly: 'Yearly ($200/year)' };
+            const planLabels = { weekly: 'Weekly ($10/week)', monthly: 'Monthly ($18/month)', yearly: 'Yearly ($84/year)' };
             const planText = planLabels[planKey];
 
             const service = await getDigitalGoodsService();
