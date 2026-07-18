@@ -2604,24 +2604,24 @@
         const HANGUL_CHART = [
             {
                 title: "Basic Consonants (자음)", chars: [
-                    { ch: "ㄱ", rom: "g / k" }, { ch: "ㄴ", rom: "n" }, { ch: "ㄷ", rom: "d / t" }, { ch: "ㄹ", rom: "r / l" },
-                    { ch: "ㅁ", rom: "m" }, { ch: "ㅂ", rom: "b / p" }, { ch: "ㅅ", rom: "s" }, { ch: "ㅇ", rom: "ng / silent" },
-                    { ch: "ㅈ", rom: "j" }, { ch: "ㅊ", rom: "ch" }, { ch: "ㅋ", rom: "k" }, { ch: "ㅌ", rom: "t" },
-                    { ch: "ㅍ", rom: "p" }, { ch: "ㅎ", rom: "h" }]
+                    { ch: "ㄱ", rom: "g / k", sample: "가" }, { ch: "ㄴ", rom: "n", sample: "나" }, { ch: "ㄷ", rom: "d / t", sample: "다" }, { ch: "ㄹ", rom: "r / l", sample: "라" },
+                    { ch: "ㅁ", rom: "m", sample: "마" }, { ch: "ㅂ", rom: "b / p", sample: "바" }, { ch: "ㅅ", rom: "s", sample: "사" }, { ch: "ㅇ", rom: "ng / silent", sample: "아" },
+                    { ch: "ㅈ", rom: "j", sample: "자" }, { ch: "ㅊ", rom: "ch", sample: "차" }, { ch: "ㅋ", rom: "k", sample: "카" }, { ch: "ㅌ", rom: "t", sample: "타" },
+                    { ch: "ㅍ", rom: "p", sample: "파" }, { ch: "ㅎ", rom: "h", sample: "하" }]
             },
             {
                 title: "Double Consonants (쌍자음)", chars: [
-                    { ch: "ㄲ", rom: "kk" }, { ch: "ㄸ", rom: "tt" }, { ch: "ㅃ", rom: "pp" }, { ch: "ㅆ", rom: "ss" }, { ch: "ㅉ", rom: "jj" }]
+                    { ch: "ㄲ", rom: "kk", sample: "까" }, { ch: "ㄸ", rom: "tt", sample: "따" }, { ch: "ㅃ", rom: "pp", sample: "빠" }, { ch: "ㅆ", rom: "ss", sample: "싸" }, { ch: "ㅉ", rom: "jj", sample: "짜" }]
             },
             {
                 title: "Basic Vowels (모음)", chars: [
-                    { ch: "ㅏ", rom: "a" }, { ch: "ㅑ", rom: "ya" }, { ch: "ㅓ", rom: "eo" }, { ch: "ㅕ", rom: "yeo" }, { ch: "ㅗ", rom: "o" },
-                    { ch: "ㅛ", rom: "yo" }, { ch: "ㅜ", rom: "u" }, { ch: "ㅠ", rom: "yu" }, { ch: "ㅡ", rom: "eu" }, { ch: "ㅣ", rom: "i" }]
+                    { ch: "ㅏ", rom: "a", sample: "아" }, { ch: "ㅑ", rom: "ya", sample: "야" }, { ch: "ㅓ", rom: "eo", sample: "어" }, { ch: "ㅕ", rom: "yeo", sample: "여" }, { ch: "ㅗ", rom: "o", sample: "오" },
+                    { ch: "ㅛ", rom: "yo", sample: "요" }, { ch: "ㅜ", rom: "u", sample: "우" }, { ch: "ㅠ", rom: "yu", sample: "유" }, { ch: "ㅡ", rom: "eu", sample: "으" }, { ch: "ㅣ", rom: "i", sample: "이" }]
             },
             {
                 title: "Compound Vowels (이중모음)", chars: [
-                    { ch: "ㅐ", rom: "ae" }, { ch: "ㅒ", rom: "yae" }, { ch: "ㅔ", rom: "e" }, { ch: "ㅖ", rom: "ye" }, { ch: "ㅘ", rom: "wa" },
-                    { ch: "ㅙ", rom: "wae" }, { ch: "ㅚ", rom: "oe" }, { ch: "ㅝ", rom: "wo" }, { ch: "ㅞ", rom: "we" }, { ch: "ㅟ", rom: "wi" }, { ch: "ㅢ", rom: "ui" }]
+                    { ch: "ㅐ", rom: "ae", sample: "애" }, { ch: "ㅒ", rom: "yae", sample: "얘" }, { ch: "ㅔ", rom: "e", sample: "에" }, { ch: "ㅖ", rom: "ye", sample: "예" }, { ch: "ㅘ", rom: "wa", sample: "와" },
+                    { ch: "ㅙ", rom: "wae", sample: "왜" }, { ch: "ㅚ", rom: "oe", sample: "외" }, { ch: "ㅝ", rom: "wo", sample: "워" }, { ch: "ㅞ", rom: "we", sample: "웨" }, { ch: "ㅟ", rom: "wi", sample: "위" }, { ch: "ㅢ", rom: "ui", sample: "의" }]
             },
         ];
         const ALL_HANGUL_CHARS = HANGUL_CHART.flatMap(s => s.chars);
@@ -3172,7 +3172,7 @@
                     const cell = document.createElement('button');
                     cell.className = 'hangul-cell';
                     cell.innerHTML = `<span class="h-ch">${c.ch}</span><span class="h-rom">${c.rom}</span>`;
-                    cell.onclick = () => speakKorean(c.ch);
+                    cell.onclick = () => speakKorean(c.sample || c.ch);
                     grid.appendChild(cell);
                 });
                 wrap.appendChild(sec);
