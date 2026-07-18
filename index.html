@@ -272,6 +272,13 @@
             font-weight: 800;
         }
 
+        .number-note {
+            font-size: 11.5px;
+            color: var(--text-soft);
+            margin: -6px 0 10px;
+            opacity: .85;
+        }
+
         .hangul-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -984,6 +991,7 @@
             background: linear-gradient(135deg, #2D2340, #4A3768);
             border-radius: 18px;
             padding: 14px 16px;
+            margin-top: 14px;
             margin-bottom: 14px;
             box-shadow: var(--shadow);
             position: relative;
@@ -1555,6 +1563,11 @@
                 <div class="chart-link-text"><b>Hangul Chart</b><span>All 40 letters + a quick quiz</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
+            <div class="chart-link-card" onclick="openNumberChart()">
+                <div class="chart-link-ic">🔢</div>
+                <div class="chart-link-text"><b>Number Chart</b><span>Both number systems + a quick quiz</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
             <div class="videocall-link-card" onclick="openVideoCall()">
                 <img class="videocall-link-avatar" id="videocallLinkAvatarHome" src="" alt="Han">
                 <div class="chart-link-text"><b>Video call with Han</b><span>Practice live — Han reacts to your
@@ -1690,6 +1703,20 @@
             <div id="hangulChartWrap"></div>
             <button class="primary-btn" style="background:linear-gradient(135deg,#FFC9DE,#B7A4E0);margin-top:8px;"
                 onclick="startHangulQuiz()">📝 Take the Hangul Quiz</button>
+        </div>
+
+        <!-- NUMBER CHART -->
+        <div class="screen" id="screen-numbers">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div style="flex:1;"></div>
+            </div>
+            <div class="section-title" style="margin-top:0;">🔢 Number Chart</div>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Korean has two number systems. Tap any
+                number to hear it, then try the quiz.</p>
+            <div id="numberChartWrap"></div>
+            <button class="primary-btn" style="background:linear-gradient(135deg,#A8E6CF,#B7A4E0);margin-top:8px;"
+                onclick="startNumberQuiz()">📝 Take the Number Quiz</button>
         </div>
 
 
@@ -2647,6 +2674,40 @@
         ];
         const ALL_HANGUL_CHARS = HANGUL_CHART.flatMap(s => s.chars);
 
+        const NUMBER_CHART = [
+            {
+                title: "Sino-Korean 0–10 (한자어 숫자)", note: "Used for money, phone numbers, dates, math, and minutes.", chars: [
+                    { ch: "영", rom: "0 · yeong", en: "0" }, { ch: "일", rom: "1 · il", en: "1" }, { ch: "이", rom: "2 · i", en: "2" },
+                    { ch: "삼", rom: "3 · sam", en: "3" }, { ch: "사", rom: "4 · sa", en: "4" }, { ch: "오", rom: "5 · o", en: "5" },
+                    { ch: "육", rom: "6 · yuk", en: "6" }, { ch: "칠", rom: "7 · chil", en: "7" }, { ch: "팔", rom: "8 · pal", en: "8" },
+                    { ch: "구", rom: "9 · gu", en: "9" }, { ch: "십", rom: "10 · sip", en: "10" }]
+            },
+            {
+                title: "Sino-Korean Tens", note: "Formed by [digit] + 십. Example: 이십 = 2 + 10 = 20.", chars: [
+                    { ch: "이십", rom: "20 · isip", en: "20" }, { ch: "삼십", rom: "30 · samsip", en: "30" }, { ch: "사십", rom: "40 · sasip", en: "40" },
+                    { ch: "오십", rom: "50 · osip", en: "50" }, { ch: "육십", rom: "60 · yuksip", en: "60" }, { ch: "칠십", rom: "70 · chilsip", en: "70" },
+                    { ch: "팔십", rom: "80 · palsip", en: "80" }, { ch: "구십", rom: "90 · gusip", en: "90" }]
+            },
+            {
+                title: "Sino-Korean Big Units", note: "Everything above 10 is built from these + 0-9.", chars: [
+                    { ch: "백", rom: "100 · baek", en: "100" }, { ch: "천", rom: "1,000 · cheon", en: "1,000" }, { ch: "만", rom: "10,000 · man", en: "10,000" }]
+            },
+            {
+                title: "Native Korean 1–10 (고유어 숫자)", note: "Used for counting objects, people, and your age.", chars: [
+                    { ch: "하나", rom: "1 · hana", en: "1 (native)" }, { ch: "둘", rom: "2 · dul", en: "2 (native)" }, { ch: "셋", rom: "3 · set", en: "3 (native)" },
+                    { ch: "넷", rom: "4 · net", en: "4 (native)" }, { ch: "다섯", rom: "5 · daseot", en: "5 (native)" }, { ch: "여섯", rom: "6 · yeoseot", en: "6 (native)" },
+                    { ch: "일곱", rom: "7 · ilgop", en: "7 (native)" }, { ch: "여덟", rom: "8 · yeodeol", en: "8 (native)" }, { ch: "아홉", rom: "9 · ahop", en: "9 (native)" },
+                    { ch: "열", rom: "10 · yeol", en: "10 (native)" }]
+            },
+            {
+                title: "Native Korean Tens", note: "Native counting stops at 99 — Sino-Korean takes over at 100.", chars: [
+                    { ch: "스물", rom: "20 · seumul", en: "20 (native)" }, { ch: "서른", rom: "30 · seoreun", en: "30 (native)" }, { ch: "마흔", rom: "40 · maheun", en: "40 (native)" },
+                    { ch: "쉰", rom: "50 · swin", en: "50 (native)" }, { ch: "예순", rom: "60 · yesun", en: "60 (native)" }, { ch: "일흔", rom: "70 · ilheun", en: "70 (native)" },
+                    { ch: "여든", rom: "80 · yeodeun", en: "80 (native)" }, { ch: "아흔", rom: "90 · aheun", en: "90 (native)" }]
+            },
+        ];
+        const ALL_NUMBER_ITEMS = NUMBER_CHART.flatMap(s => s.chars.map(c => ({ kr: c.ch, en: c.en, rom: c.rom })));
+
         const CHAT_TOPICS = [
             { k: ["안녕하세요", "안녕", "hello", "hi ", "hi,", "hey"], a: "안녕하세요! (annyeonghaseyo) means 'hello' — the 하세요 part is a polite verb ending you'll see A LOT. With close friends, you can just say 안녕 (annyeong) instead. 반가워요! (I'm glad to meet you!)" },
             { k: ["bye", "goodbye", "안녕히"], a: "There are two ways to say goodbye in Korean depending on who's leaving! 안녕히 가세요 (annyeonghi gaseyo) — say this to someone who is leaving. 안녕히 계세요 (annyeonghi gyeseyo) — say this if YOU are the one leaving and they're staying. 다음에 봐요! (See you next time!)" },
@@ -3212,6 +3273,34 @@
         }
         function startHangulQuiz() {
             lastCompletedLesson = { title: "Hangul Chart", words: ALL_HANGUL_CHARS.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
+            startQuiz();
+        }
+
+        function openNumberChart() {
+            showScreen('numbers');
+            renderNumberChart();
+        }
+        function renderNumberChart() {
+            const wrap = document.getElementById('numberChartWrap');
+            if (wrap.dataset.built) return;
+            wrap.dataset.built = '1';
+            NUMBER_CHART.forEach(section => {
+                const sec = document.createElement('div');
+                sec.className = 'hangul-section';
+                sec.innerHTML = `<h3>${section.title}</h3><p class="number-note">${section.note}</p><div class="hangul-grid"></div>`;
+                const grid = sec.querySelector('.hangul-grid');
+                section.chars.forEach(c => {
+                    const cell = document.createElement('button');
+                    cell.className = 'hangul-cell';
+                    cell.innerHTML = `<span class="h-ch" style="font-size:20px;">${c.ch}</span><span class="h-rom">${c.rom}</span>`;
+                    cell.onclick = () => speakKorean(c.ch);
+                    grid.appendChild(cell);
+                });
+                wrap.appendChild(sec);
+            });
+        }
+        function startNumberQuiz() {
+            lastCompletedLesson = { title: "Number Chart", words: ALL_NUMBER_ITEMS };
             startQuiz();
         }
 
