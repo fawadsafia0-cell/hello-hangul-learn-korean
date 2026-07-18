@@ -557,7 +557,7 @@
             background: var(--card);
             display: flex;
             justify-content: space-around;
-            padding: 10px 6px calc(10px + env(safe-area-inset-bottom));
+            padding: 10px 3px calc(10px + env(safe-area-inset-bottom));
             box-shadow: 0 -4px 18px rgba(154, 130, 204, 0.12);
             z-index: 10;
         }
@@ -569,9 +569,9 @@
             align-items: center;
             gap: 2px;
             color: var(--text-soft);
-            font-size: 11px;
+            font-size: 9.5px;
             font-weight: 700;
-            padding: 4px 8px;
+            padding: 4px 4px;
             border-radius: 12px;
         }
 
@@ -1654,28 +1654,6 @@
                 </div>
                 <div class="hero-tags" id="heroTags"></div>
             </div>
-            <div class="chart-link-card" id="reviewLinkCard" onclick="openReview()"
-                style="background:linear-gradient(135deg,#FFE9C7,#FFC9DE);">
-                <div class="chart-link-ic">🔁</div>
-                <div class="chart-link-text"><b>Review</b><span id="reviewDueLabel">Words due for review</span></div>
-                <div class="chart-link-arrow">›</div>
-            </div>
-            <div class="chart-link-card" onclick="openHangulChart()">
-                <div class="chart-link-ic">🔤</div>
-                <div class="chart-link-text"><b>Hangul Chart</b><span>All 40 letters + a quick quiz</span></div>
-                <div class="chart-link-arrow">›</div>
-            </div>
-            <div class="chart-link-card" onclick="openNumberChart()">
-                <div class="chart-link-ic">🔢</div>
-                <div class="chart-link-text"><b>Number Chart</b><span>Both number systems + a quick quiz</span></div>
-                <div class="chart-link-arrow">›</div>
-            </div>
-            <div class="chart-link-card" onclick="openGrammar()">
-                <div class="chart-link-ic">📖</div>
-                <div class="chart-link-text"><b>Grammar & Particles</b><span>Particles, verb conjugation,
-                        honorifics</span></div>
-                <div class="chart-link-arrow">›</div>
-            </div>
             <div class="chart-link-card" onclick="openSentenceBuilder()">
                 <div class="chart-link-ic">🧩</div>
                 <div class="chart-link-text"><b>Sentence Builder</b><span>Rebuild real drama sentences word by
@@ -1696,12 +1674,6 @@
             <div class="chart-link-card" onclick="openReading()">
                 <div class="chart-link-ic">📰</div>
                 <div class="chart-link-text"><b>Reading Practice</b><span>Short passages with comprehension
-                        questions</span></div>
-                <div class="chart-link-arrow">›</div>
-            </div>
-            <div class="chart-link-card" onclick="openTopik()">
-                <div class="chart-link-ic">🎓</div>
-                <div class="chart-link-text"><b>TOPIK Practice</b><span>Exam-style vocab, grammar & reading
                         questions</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
@@ -2102,6 +2074,42 @@
         </div>
 
         <!-- PROFILE -->
+        <!-- MORE -->
+        <div class="screen" id="screen-more">
+            <div class="section-title" style="margin-top:6px;">🧭 More</div>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Quick access to charts, review, and
+                practice tools.</p>
+            <div class="chart-link-card" onclick="openTopik()">
+                <div class="chart-link-ic">🏆</div>
+                <div class="chart-link-text"><b>TOPIK Practice</b><span>Official-style proficiency test questions</span>
+                </div>
+                <div class="chart-link-arrow">›</div>
+            </div>
+            <div class="chart-link-card" id="moreReviewCard" onclick="openReview()"
+                style="background:linear-gradient(135deg,#FFE9C7,#FFC9DE);">
+                <div class="chart-link-ic">📅</div>
+                <div class="chart-link-text"><b>Daily Review</b><span id="moreReviewDueLabel">Words due for
+                        review</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
+            <div class="chart-link-card" onclick="openHangulChart()">
+                <div class="chart-link-ic">🔤</div>
+                <div class="chart-link-text"><b>Hangul Chart</b><span>All 40 letters + a quick quiz</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
+            <div class="chart-link-card" onclick="openNumberChart()">
+                <div class="chart-link-ic">🔢</div>
+                <div class="chart-link-text"><b>Number Chart</b><span>Both number systems + a quick quiz</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
+            <div class="chart-link-card" onclick="openGrammar()">
+                <div class="chart-link-ic">📖</div>
+                <div class="chart-link-text"><b>Grammar & Particles</b><span>Particles, verb conjugation,
+                        honorifics</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
+        </div>
+
         <div class="screen" id="screen-profile">
             <div class="profile-card">
                 <svg class="level-ring" viewBox="0 0 100 100">
@@ -2188,6 +2196,7 @@
                     class="ic">🎬</span>K-Drama</button>
             <button class="navbtn" data-tab="chat" onclick="showScreen('chat')"><span class="ic">💬</span>Tutor</button>
             <button class="navbtn" data-tab="pro" onclick="showScreen('pro')"><span class="ic">💎</span>Pro</button>
+            <button class="navbtn" data-tab="more" onclick="showScreen('more')"><span class="ic">•••</span>More</button>
             <button class="navbtn" data-tab="profile" onclick="showScreen('profile')"><span
                     class="ic">👤</span>Profile</button>
         </div>
@@ -3152,6 +3161,12 @@
             if (reviewLabel) {
                 reviewLabel.textContent = dueCount > 0 ? `${dueCount} word${dueCount === 1 ? '' : 's'} due today` : "No reviews due yet — keep learning!";
                 reviewCard.style.opacity = dueCount > 0 ? '1' : '.6';
+            }
+            const moreReviewLabel = document.getElementById('moreReviewDueLabel');
+            const moreReviewCard = document.getElementById('moreReviewCard');
+            if (moreReviewLabel) {
+                moreReviewLabel.textContent = dueCount > 0 ? `${dueCount} word${dueCount === 1 ? '' : 's'} due today` : "No reviews due yet — keep learning!";
+                moreReviewCard.style.opacity = dueCount > 0 ? '1' : '.6';
             }
         }
 
