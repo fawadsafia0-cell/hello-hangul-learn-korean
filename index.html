@@ -4229,6 +4229,72 @@
             },
         ];
         const ALL_ROLEPLAY_LINES = ROLEPLAY_SCENARIOS.flatMap(s => s.lines);
+        ROLEPLAY_SCENARIOS.push(
+            {
+                title: "Taking a Taxi", sub: "Getting a ride",
+                lines: [
+                    { kr: "어디로 모실까요?", rom: "eodiro mosilkkayo?", en: "Where can I take you?", note: "'모시다' is the honorific 'to take/escort someone' — a polite way taxi drivers ask." },
+                    { kr: "공항까지 가 주세요.", rom: "gonghangkkaji ga juseyo.", en: "Please take me to the airport.", note: "'-까지' = up to/until (a destination)." },
+                    { kr: "얼마나 걸릴까요?", rom: "eolmana geollilkkayo?", en: "About how long will it take?", note: "'-ㄹ까요?' softly asks for an estimate/opinion." },
+                    { kr: "여기서 세워 주세요.", rom: "yeogiseo sewo juseyo.", en: "Please stop here.", note: "'세우다' = to stop/park (a vehicle)." }]
+            },
+            {
+                title: "Job Interview", sub: "At a company",
+                lines: [
+                    { kr: "자기소개 좀 해 주시겠어요?", rom: "jagisogae jom hae jusigesseoyo?", en: "Could you introduce yourself?", note: "'자기소개' = self-introduction; a very common interview opener." },
+                    { kr: "이 일을 왜 하고 싶으세요?", rom: "i ireul wae hago sipeuseyo?", en: "Why do you want this job?", note: "'-고 싶으세요?' politely asks about a desire/motivation." },
+                    { kr: "경력이 어떻게 되세요?", rom: "gyeongnyeogi eotteoke doeseyo?", en: "What's your work experience?", note: "'경력' = career/experience; '어떻게 되세요?' is a polite way to ask for details." },
+                    { kr: "언제부터 일하실 수 있어요?", rom: "eonjebuteo ilhasil su isseoyo?", en: "When can you start working?", note: "'-부터' = starting from; '-실 수 있어요?' = honorific 'can you...?'" }]
+            },
+            {
+                title: "Shopping for Clothes", sub: "At a clothing store",
+                lines: [
+                    { kr: "이거 입어 봐도 돼요?", rom: "igeo ibeo bwado dwaeyo?", en: "Can I try this on?", note: "'-아/어 봐도 되다' = to be allowed to try doing something." },
+                    { kr: "탈의실은 저쪽에 있어요.", rom: "taruisireun jeojjoge isseoyo.", en: "The fitting room is over there.", note: "'탈의실' = fitting/changing room." },
+                    { kr: "더 큰 사이즈 있어요?", rom: "deo keun saijeu isseoyo?", en: "Do you have a bigger size?", note: "'더' = more; used before adjectives for comparison." },
+                    { kr: "이걸로 할게요.", rom: "igeollo halgeyo.", en: "I'll take this one.", note: "'-로 하다' = to decide on/go with something." }]
+            },
+            {
+                title: "At the Bank", sub: "Opening an account",
+                lines: [
+                    { kr: "통장을 만들고 싶어요.", rom: "tongjangeul mandeulgo sipeoyo.", en: "I'd like to open a bank account.", note: "'통장' = bankbook/account; '만들다' = to make/create." },
+                    { kr: "신분증 가지고 오셨어요?", rom: "sinbunjeung gajigo osyeosseoyo?", en: "Did you bring your ID?", note: "'신분증' = ID card; '가지고 오다' = to bring." },
+                    { kr: "비밀번호를 설정해 주세요.", rom: "bimilbeonhoreul seoljeonghae juseyo.", en: "Please set a password/PIN.", note: "'비밀번호' = password/PIN; '설정하다' = to set/configure." },
+                    { kr: "카드는 언제 나와요?", rom: "kadeuneun eonje nawayo?", en: "When will the card be ready?", note: "'나오다' here means 'to come out/be issued.'" }]
+            },
+            {
+                title: "Doctor's Visit", sub: "Describing symptoms",
+                lines: [
+                    { kr: "어떻게 오셨어요?", rom: "eotteoke osyeosseoyo?", en: "What brings you in today?", note: "Common polite opener a doctor uses, lit. 'how did you come?'" },
+                    { kr: "목이 아프고 기침을 해요.", rom: "mogi apeugo gichimeul haeyo.", en: "My throat hurts and I have a cough.", note: "'기침을 하다' = to cough." },
+                    { kr: "언제부터 아프셨어요?", rom: "eonjebuteo apeusyeosseoyo?", en: "Since when have you been sick?", note: "'-부터' = since/starting from." },
+                    { kr: "푹 쉬시고 물 많이 드세요.", rom: "puk swisigo mul mani deuseyo.", en: "Rest well and drink lots of water.", note: "'푹 쉬다' = to rest thoroughly." }]
+            },
+            {
+                title: "Renting an Apartment", sub: "Talking to a landlord",
+                lines: [
+                    { kr: "월세가 얼마예요?", rom: "wolsega eolmayeyo?", en: "How much is the monthly rent?", note: "'월세' = monthly rent." },
+                    { kr: "보증금은 얼마 필요해요?", rom: "bojeunggeumeun eolma piryohaeyo?", en: "How much deposit is needed?", note: "'보증금' = security deposit; '필요하다' = to need." },
+                    { kr: "관리비가 포함돼 있어요?", rom: "gwallibiga pohamdwae isseoyo?", en: "Is the maintenance fee included?", note: "'관리비' = maintenance/management fee; '포함되다' = to be included." },
+                    { kr: "언제부터 입주할 수 있어요?", rom: "eonjebuteo ipjuhal su isseoyo?", en: "When can I move in?", note: "'입주하다' = to move into a residence." }]
+            },
+            {
+                title: "Phone Call", sub: "Calling a friend",
+                lines: [
+                    { kr: "여보세요?", rom: "yeoboseyo?", en: "Hello? (on the phone)", note: "'여보세요' is used specifically for answering/starting phone calls, not in-person greetings." },
+                    { kr: "지금 통화 괜찮아?", rom: "jigeum tonghwa gwaenchana?", en: "Is now an okay time to talk?", note: "'통화' = phone call; casual speech between friends." },
+                    { kr: "잠깐만 기다려 줘.", rom: "jamkkanman gidaryeo jwo.", en: "Wait just a moment.", note: "'잠깐만' = just a moment; '기다리다' = to wait." },
+                    { kr: "나중에 다시 전화할게.", rom: "najunge dasi jeonhwahalge.", en: "I'll call again later.", note: "'나중에' = later; '-ㄹ게' = casual promise/intention." }]
+            },
+            {
+                title: "Airport Immigration", sub: "Entering the country",
+                lines: [
+                    { kr: "여행 목적이 뭐예요?", rom: "yeohaeng mokjeogi mwoyeyo?", en: "What's the purpose of your trip?", note: "'목적' = purpose; standard immigration question." },
+                    { kr: "관광하러 왔어요.", rom: "gwangwanghareo wasseoyo.", en: "I came for sightseeing.", note: "'-러 오다' = to come in order to do something." },
+                    { kr: "얼마나 머무르실 거예요?", rom: "eolmana meomureusil geoyeyo?", en: "How long will you be staying?", note: "'머무르다' = to stay/remain (honorific -실 form)." },
+                    { kr: "일주일 정도 있을 거예요.", rom: "iljuil jeongdo isseul geoyeyo.", en: "I'll be here for about a week.", note: "'정도' = approximately/about." }]
+            }
+        );
 
         /* =========================================================
            GRAMMAR: Particles
