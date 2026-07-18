@@ -274,7 +274,7 @@
 
         .hangul-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 8px;
         }
 
@@ -298,6 +298,15 @@
             color: var(--text-soft);
             margin-top: 2px;
             font-weight: 700;
+        }
+
+        .hangul-cell .h-hint {
+            display: block;
+            font-size: 8.5px;
+            color: var(--text-soft);
+            opacity: .75;
+            margin-top: 1px;
+            line-height: 1.2;
         }
 
         .tier-row::-webkit-scrollbar {
@@ -2604,24 +2613,36 @@
         const HANGUL_CHART = [
             {
                 title: "Basic Consonants (자음)", chars: [
-                    { ch: "ㄱ", rom: "g / k", sample: "가" }, { ch: "ㄴ", rom: "n", sample: "나" }, { ch: "ㄷ", rom: "d / t", sample: "다" }, { ch: "ㄹ", rom: "r / l", sample: "라" },
-                    { ch: "ㅁ", rom: "m", sample: "마" }, { ch: "ㅂ", rom: "b / p", sample: "바" }, { ch: "ㅅ", rom: "s", sample: "사" }, { ch: "ㅇ", rom: "ng / silent", sample: "아" },
-                    { ch: "ㅈ", rom: "j", sample: "자" }, { ch: "ㅊ", rom: "ch", sample: "차" }, { ch: "ㅋ", rom: "k", sample: "카" }, { ch: "ㅌ", rom: "t", sample: "타" },
-                    { ch: "ㅍ", rom: "p", sample: "파" }, { ch: "ㅎ", rom: "h", sample: "하" }]
+                    { ch: "ㄱ", rom: "g / k", sample: "가", hint: "like 'g' in go" }, { ch: "ㄴ", rom: "n", sample: "나", hint: "like 'n' in no" },
+                    { ch: "ㄷ", rom: "d / t", sample: "다", hint: "like 'd' in dog" }, { ch: "ㄹ", rom: "r / l", sample: "라", hint: "like 'l' in law" },
+                    { ch: "ㅁ", rom: "m", sample: "마", hint: "like 'm' in mom" }, { ch: "ㅂ", rom: "b / p", sample: "바", hint: "like 'b' in boy" },
+                    { ch: "ㅅ", rom: "s", sample: "사", hint: "like 's' in sun" }, { ch: "ㅇ", rom: "ng / silent", sample: "아", hint: "silent, or 'ng' in sing" },
+                    { ch: "ㅈ", rom: "j", sample: "자", hint: "like 'j' in jam" }, { ch: "ㅊ", rom: "ch", sample: "차", hint: "like 'ch' in chip" },
+                    { ch: "ㅋ", rom: "k", sample: "카", hint: "like 'k' in kite" }, { ch: "ㅌ", rom: "t", sample: "타", hint: "like 't' in top" },
+                    { ch: "ㅍ", rom: "p", sample: "파", hint: "like 'p' in pie" }, { ch: "ㅎ", rom: "h", sample: "하", hint: "like 'h' in hat" }]
             },
             {
                 title: "Double Consonants (쌍자음)", chars: [
-                    { ch: "ㄲ", rom: "kk", sample: "까" }, { ch: "ㄸ", rom: "tt", sample: "따" }, { ch: "ㅃ", rom: "pp", sample: "빠" }, { ch: "ㅆ", rom: "ss", sample: "싸" }, { ch: "ㅉ", rom: "jj", sample: "짜" }]
+                    { ch: "ㄲ", rom: "kk", sample: "까", hint: "tense, like 'sk' in skip" }, { ch: "ㄸ", rom: "tt", sample: "따", hint: "tense, like 'st' in stop" },
+                    { ch: "ㅃ", rom: "pp", sample: "빠", hint: "tense, like 'sp' in spot" }, { ch: "ㅆ", rom: "ss", sample: "싸", hint: "tense, like 'ss' in hiss" },
+                    { ch: "ㅉ", rom: "jj", sample: "짜", hint: "tense, sharp 'j' sound" }]
             },
             {
                 title: "Basic Vowels (모음)", chars: [
-                    { ch: "ㅏ", rom: "a", sample: "아" }, { ch: "ㅑ", rom: "ya", sample: "야" }, { ch: "ㅓ", rom: "eo", sample: "어" }, { ch: "ㅕ", rom: "yeo", sample: "여" }, { ch: "ㅗ", rom: "o", sample: "오" },
-                    { ch: "ㅛ", rom: "yo", sample: "요" }, { ch: "ㅜ", rom: "u", sample: "우" }, { ch: "ㅠ", rom: "yu", sample: "유" }, { ch: "ㅡ", rom: "eu", sample: "으" }, { ch: "ㅣ", rom: "i", sample: "이" }]
+                    { ch: "ㅏ", rom: "a", sample: "아", hint: "like 'a' in father" }, { ch: "ㅑ", rom: "ya", sample: "야", hint: "like 'ya' in yacht" },
+                    { ch: "ㅓ", rom: "eo", sample: "어", hint: "like 'u' in gut" }, { ch: "ㅕ", rom: "yeo", sample: "여", hint: "like 'yu' in young" },
+                    { ch: "ㅗ", rom: "o", sample: "오", hint: "like 'o' in go" }, { ch: "ㅛ", rom: "yo", sample: "요", hint: "like 'yo' in yodel" },
+                    { ch: "ㅜ", rom: "u", sample: "우", hint: "like 'oo' in food" }, { ch: "ㅠ", rom: "yu", sample: "유", hint: "like 'you'" },
+                    { ch: "ㅡ", rom: "eu", sample: "으", hint: "like 'oo' in good" }, { ch: "ㅣ", rom: "i", sample: "이", hint: "like 'ee' in see" }]
             },
             {
                 title: "Compound Vowels (이중모음)", chars: [
-                    { ch: "ㅐ", rom: "ae", sample: "애" }, { ch: "ㅒ", rom: "yae", sample: "얘" }, { ch: "ㅔ", rom: "e", sample: "에" }, { ch: "ㅖ", rom: "ye", sample: "예" }, { ch: "ㅘ", rom: "wa", sample: "와" },
-                    { ch: "ㅙ", rom: "wae", sample: "왜" }, { ch: "ㅚ", rom: "oe", sample: "외" }, { ch: "ㅝ", rom: "wo", sample: "워" }, { ch: "ㅞ", rom: "we", sample: "웨" }, { ch: "ㅟ", rom: "wi", sample: "위" }, { ch: "ㅢ", rom: "ui", sample: "의" }]
+                    { ch: "ㅐ", rom: "ae", sample: "애", hint: "like 'e' in bed" }, { ch: "ㅒ", rom: "yae", sample: "얘", hint: "like 'ye' in yes" },
+                    { ch: "ㅔ", rom: "e", sample: "에", hint: "like 'e' in bed" }, { ch: "ㅖ", rom: "ye", sample: "예", hint: "like 'ye' in yes" },
+                    { ch: "ㅘ", rom: "wa", sample: "와", hint: "like 'wa' in watch" }, { ch: "ㅙ", rom: "wae", sample: "왜", hint: "like 'we' in wet" },
+                    { ch: "ㅚ", rom: "oe", sample: "외", hint: "like 'we' in wet" }, { ch: "ㅝ", rom: "wo", sample: "워", hint: "like 'wo' in won" },
+                    { ch: "ㅞ", rom: "we", sample: "웨", hint: "like 'we' in wet" }, { ch: "ㅟ", rom: "wi", sample: "위", hint: "like 'wee' in week" },
+                    { ch: "ㅢ", rom: "ui", sample: "의", hint: "blend of 'eu' + 'i'" }]
             },
         ];
         const ALL_HANGUL_CHARS = HANGUL_CHART.flatMap(s => s.chars);
@@ -2853,12 +2874,23 @@
         }
         function exitLesson() { goHome(); }
 
+        let koreanVoice = null;
+        function loadKoreanVoice() {
+            const voices = window.speechSynthesis.getVoices();
+            koreanVoice = voices.find(v => v.lang === 'ko-KR') || voices.find(v => v.lang && v.lang.startsWith('ko')) || null;
+        }
+        if ('speechSynthesis' in window) {
+            loadKoreanVoice();
+            window.speechSynthesis.onvoiceschanged = loadKoreanVoice;
+        }
         function speakKorean(text) {
             if (!('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel();
             const utter = new SpeechSynthesisUtterance(text.replace(/^-/, ''));
             utter.lang = 'ko-KR';
-            utter.rate = 0.9;
+            utter.rate = 0.85;
+            utter.pitch = 1;
+            if (koreanVoice) utter.voice = koreanVoice;
             window.speechSynthesis.speak(utter);
         }
 
@@ -3171,7 +3203,7 @@
                 section.chars.forEach(c => {
                     const cell = document.createElement('button');
                     cell.className = 'hangul-cell';
-                    cell.innerHTML = `<span class="h-ch">${c.ch}</span><span class="h-rom">${c.rom}</span>`;
+                    cell.innerHTML = `<span class="h-ch">${c.ch}</span><span class="h-rom">${c.rom}</span><span class="h-hint">${c.hint}</span>`;
                     cell.onclick = () => speakKorean(c.sample || c.ch);
                     grid.appendChild(cell);
                 });
