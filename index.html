@@ -316,6 +316,90 @@
             line-height: 1.2;
         }
 
+        /* ---- Grammar hub ---- */
+        .conj-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .conj-item {
+            background: #FAF7FE;
+            border-radius: 12px;
+            padding: 10px 6px;
+            text-align: center;
+        }
+
+        .conj-label {
+            display: block;
+            font-size: 9.5px;
+            font-weight: 800;
+            color: var(--text-soft);
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .conj-item b {
+            display: block;
+            font-family: 'Baloo 2', cursive;
+            font-size: 16px;
+            margin-top: 4px;
+            color: var(--text);
+        }
+
+        .conj-item small {
+            display: block;
+            font-size: 10px;
+            color: var(--text-soft);
+            margin-top: 2px;
+        }
+
+        .honorific-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .honorific-col {
+            flex: 1;
+            background: #FAF7FE;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .honorific-col.formal {
+            background: #F0E9FB;
+        }
+
+        .honorific-col b {
+            display: block;
+            font-family: 'Baloo 2', cursive;
+            font-size: 16px;
+            margin-top: 4px;
+            color: var(--text);
+        }
+
+        .honorific-col small {
+            display: block;
+            font-size: 10.5px;
+            color: var(--text-soft);
+            margin-top: 2px;
+        }
+
+        .stroke-list {
+            margin: 10px 0 0;
+            padding-left: 20px;
+            font-size: 13.5px;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .stroke-list li {
+            margin-bottom: 4px;
+        }
+
         .tier-row::-webkit-scrollbar {
             display: none;
         }
@@ -1570,6 +1654,12 @@
                 </div>
                 <div class="hero-tags" id="heroTags"></div>
             </div>
+            <div class="chart-link-card" id="reviewLinkCard" onclick="openReview()"
+                style="background:linear-gradient(135deg,#FFE9C7,#FFC9DE);">
+                <div class="chart-link-ic">🔁</div>
+                <div class="chart-link-text"><b>Review</b><span id="reviewDueLabel">Words due for review</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
             <div class="chart-link-card" onclick="openHangulChart()">
                 <div class="chart-link-ic">🔤</div>
                 <div class="chart-link-text"><b>Hangul Chart</b><span>All 40 letters + a quick quiz</span></div>
@@ -1580,16 +1670,39 @@
                 <div class="chart-link-text"><b>Number Chart</b><span>Both number systems + a quick quiz</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
+            <div class="chart-link-card" onclick="openGrammar()">
+                <div class="chart-link-ic">📖</div>
+                <div class="chart-link-text"><b>Grammar & Particles</b><span>Particles, verb conjugation,
+                        honorifics</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
             <div class="chart-link-card" onclick="openSentenceBuilder()">
                 <div class="chart-link-ic">🧩</div>
                 <div class="chart-link-text"><b>Sentence Builder</b><span>Rebuild real drama sentences word by
                         word</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
+            <div class="chart-link-card" onclick="openRoleplay()">
+                <div class="chart-link-ic">🗣️</div>
+                <div class="chart-link-text"><b>Role-Play</b><span>Coffee shops, hotels, directions & more</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
             <div class="chart-link-card" onclick="openListeningMode()">
                 <div class="chart-link-ic">🎧</div>
                 <div class="chart-link-text"><b>Listening Practice</b><span>Hear it first, no text — then guess the
                         meaning</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
+            <div class="chart-link-card" onclick="openReading()">
+                <div class="chart-link-ic">📰</div>
+                <div class="chart-link-text"><b>Reading Practice</b><span>Short passages with comprehension
+                        questions</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
+            <div class="chart-link-card" onclick="openTopik()">
+                <div class="chart-link-ic">🎓</div>
+                <div class="chart-link-text"><b>TOPIK Practice</b><span>Exam-style vocab, grammar & reading
+                        questions</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
             <div class="videocall-link-card" onclick="openVideoCall()">
@@ -1715,6 +1828,46 @@
             </div>
         </div>
 
+        <!-- ROLEPLAY LIST -->
+        <div class="screen" id="screen-roleplay">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div style="flex:1;"></div>
+            </div>
+            <div class="section-title" style="margin-top:0;">🗣️ Role-Play Conversations</div>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Practice real situations — order coffee,
+                ask directions, check into a hotel, and more.</p>
+            <div id="roleplayList" class="unit-path"></div>
+        </div>
+
+        <!-- ROLEPLAY GAME -->
+        <div class="screen" id="screen-roleplay-game">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="exitRoleplayGame()">✕</button>
+                <div class="lesson-progress">
+                    <div class="lesson-progress-fill" id="roleplayProgressFill"
+                        style="width:0%;background:linear-gradient(90deg,#A8E6CF,#B7A4E0);"></div>
+                </div>
+                <div class="q-heart" style="color:var(--primary-dark);">🗣️ <span id="roleplaySceneLabel"></span></div>
+            </div>
+            <div id="roleplayGameArea"></div>
+        </div>
+
+        <!-- ROLEPLAY COMPLETE -->
+        <div class="screen" id="screen-roleplay-complete">
+            <div class="result-screen">
+                <div class="result-emoji">🗣️</div>
+                <h2>Conversation complete!</h2>
+                <p style="color:var(--text-soft)" id="roleplayResultSceneTitle"></p>
+                <div class="result-stats">
+                    <div class="rstat"><b id="roleplayResultScore">0/0</b><span>CORRECT</span></div>
+                    <div class="rstat"><b id="roleplayResultXp">+0</b><span>XP EARNED</span></div>
+                </div>
+                <button class="primary-btn" style="background:var(--mint);color:#215C42;"
+                    onclick="showScreen('roleplay')">Back to scenarios</button>
+            </div>
+        </div>
+
         <!-- HANGUL CHART -->
         <div class="screen" id="screen-hangul">
             <div class="lesson-header">
@@ -1730,6 +1883,60 @@
         </div>
 
         <!-- NUMBER CHART -->
+        <!-- REVIEW (SRS) -->
+        <!-- GRAMMAR HUB -->
+        <div class="screen" id="screen-grammar">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div style="flex:1;"></div>
+            </div>
+            <div class="section-title" style="margin-top:0;">📖 Grammar & Particles</div>
+            <div class="tier-row" id="grammarTabRow"></div>
+            <div id="grammarContentWrap"></div>
+        </div>
+
+        <!-- READING PRACTICE -->
+        <div class="screen" id="screen-reading">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div style="flex:1;"></div>
+            </div>
+            <div class="section-title" style="margin-top:0;">📰 Reading Practice</div>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Short passages, graded by level. Read,
+                then answer.</p>
+            <div id="readingListWrap"></div>
+        </div>
+        <div class="screen" id="screen-reading-detail">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="showScreen('reading')">✕</button>
+                <div style="flex:1;"></div>
+            </div>
+            <div id="readingDetailWrap"></div>
+        </div>
+
+        <!-- TOPIK PRACTICE -->
+        <div class="screen" id="screen-topik">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div class="lesson-progress">
+                    <div class="lesson-progress-fill" id="topikProgressFill"
+                        style="width:0%;background:linear-gradient(90deg,#B7A4E0,#FFC9DE);"></div>
+                </div>
+            </div>
+            <div id="topikArea"></div>
+        </div>
+
+        <div class="screen" id="screen-review">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div class="lesson-progress">
+                    <div class="lesson-progress-fill" id="reviewProgressFill"
+                        style="width:0%;background:linear-gradient(90deg,#FFD9A8,#B7A4E0);"></div>
+                </div>
+            </div>
+            <div id="reviewArea"></div>
+        </div>
+
         <div class="screen" id="screen-numbers">
             <div class="lesson-header">
                 <button class="exit-btn" onclick="goHome()">✕</button>
@@ -2811,7 +3018,9 @@
             totalAnswers: 0, correctAnswers: 0,
             skillStats: { meaning: { correct: 0, total: 0 }, match: { correct: 0, total: 0 }, write: { correct: 0, total: 0 }, speak: { correct: 0, total: 0 } },
             settings: { reminder: false, sound: false },
-            completedScenes: [], tutorAskDate: null, tutorAskCount: 0
+            completedScenes: [], tutorAskDate: null, tutorAskCount: 0,
+            completedRoleplays: [],
+            srs: {}
         };
         function todayKeyInit() { return new Date().toISOString().slice(0, 10); }
         function saveState() { localStorage.setItem('dasom_state', JSON.stringify(state)); }
@@ -2823,8 +3032,10 @@
             if (!state.skillStats) state.skillStats = { meaning: { correct: 0, total: 0 }, match: { correct: 0, total: 0 }, write: { correct: 0, total: 0 }, speak: { correct: 0, total: 0 } };
             if (!state.settings) state.settings = { reminder: false, sound: false };
             if (!state.completedScenes) state.completedScenes = [];
+            if (!state.completedRoleplays) state.completedRoleplays = [];
             if (state.tutorAskDate === undefined) state.tutorAskDate = null;
             if (state.tutorAskCount === undefined) state.tutorAskCount = 0;
+            if (!state.srs) state.srs = {};
             saveState();
         })();
 
@@ -2935,6 +3146,13 @@
     <div class="hero-tag">${tier.emoji} ${tier.name} · ${prog.done}/${prog.total}</div>
     <div class="hero-tag">🔥 ${state.streak}-day streak</div>
     <div class="hero-tag">⭐ ${state.xp} XP</div>`;
+            const dueCount = srsGetDueWords().length;
+            const reviewLabel = document.getElementById('reviewDueLabel');
+            const reviewCard = document.getElementById('reviewLinkCard');
+            if (reviewLabel) {
+                reviewLabel.textContent = dueCount > 0 ? `${dueCount} word${dueCount === 1 ? '' : 's'} due today` : "No reviews due yet — keep learning!";
+                reviewCard.style.opacity = dueCount > 0 ? '1' : '.6';
+            }
         }
 
         /* =========================================================
@@ -3262,6 +3480,7 @@
             else if (!state.pro) {
                 state.hearts = Math.max(0, state.hearts - 1);
             }
+            if (step.word) srsRecordAnswer(step.word.kr, correct);
             saveState(); renderStats();
             showFeedback(correct);
         }
@@ -3574,10 +3793,331 @@
                         [...wrap.children].find(c => c.textContent === correctVal).classList.add('correct');
                     }
                     if (correct) quizState.score++;
+                    srsRecordAnswer(q.word.kr, correct);
                     setTimeout(() => { quizState.index++; renderQuizQuestion(); }, 700);
                 };
                 wrap.appendChild(btn);
             });
+        }
+
+        /* =========================================================
+           SPACED REPETITION (SRS) — simplified SM-2 style
+           ========================================================= */
+        function dateAddDays(dateStr, days) {
+            const d = new Date(dateStr + 'T00:00:00');
+            d.setDate(d.getDate() + days);
+            return d.toISOString().slice(0, 10);
+        }
+        function srsRecordAnswer(kr, correct) {
+            if (!kr) return;
+            const today = todayKey();
+            let rec = state.srs[kr];
+            if (!rec) { rec = { interval: 1, ease: 2.5, reps: 0, dueDate: today }; }
+            if (correct) {
+                rec.reps++;
+                rec.interval = rec.reps === 1 ? 1 : Math.round(rec.interval * rec.ease);
+                rec.ease = Math.min(3.0, rec.ease + 0.1);
+            } else {
+                rec.reps = 0;
+                rec.interval = 1;
+                rec.ease = Math.max(1.3, rec.ease - 0.2);
+            }
+            rec.dueDate = dateAddDays(today, rec.interval);
+            rec.lastSeen = today;
+            state.srs[kr] = rec;
+        }
+        function srsGetDueWords() {
+            const today = todayKey();
+            const dueKrs = Object.keys(state.srs).filter(kr => state.srs[kr].dueDate <= today);
+            const pool = [...ALL_VOCAB, ...ALL_HANGUL_CHARS.map(c => ({ kr: c.ch, en: c.rom, rom: '' })), ...ALL_NUMBER_ITEMS];
+            const seen = new Set();
+            const result = [];
+            dueKrs.forEach(kr => {
+                const word = pool.find(w => w.kr === kr);
+                if (word && !seen.has(kr)) { seen.add(kr); result.push(word); }
+            });
+            return result;
+        }
+
+        let reviewState = null;
+        /* =========================================================
+           GRAMMAR HUB (particles / conjugation / honorifics / writing)
+           ========================================================= */
+        let grammarTab = 'particles';
+        function openGrammar() {
+            showScreen('grammar');
+            renderGrammarTabs();
+            renderGrammarContent();
+        }
+        function renderGrammarTabs() {
+            const row = document.getElementById('grammarTabRow');
+            const tabs = [
+                { key: 'particles', label: 'Particles', emoji: '🔤' },
+                { key: 'conjugation', label: 'Verbs', emoji: '🔀' },
+                { key: 'honorific', label: 'Honorific', emoji: '🙏' },
+                { key: 'writing', label: 'Writing', emoji: '✍️' },
+            ];
+            row.innerHTML = '';
+            tabs.forEach(t => {
+                const chip = document.createElement('button');
+                chip.className = 'tier-chip' + (grammarTab === t.key ? ' active' : '');
+                chip.innerHTML = `<span class="t-emoji">${t.emoji}</span><b>${t.label}</b>`;
+                chip.onclick = () => { grammarTab = t.key; renderGrammarTabs(); renderGrammarContent(); };
+                row.appendChild(chip);
+            });
+        }
+        function renderGrammarContent() {
+            const wrap = document.getElementById('grammarContentWrap');
+            wrap.innerHTML = '';
+            if (grammarTab === 'particles') {
+                PARTICLES.forEach(p => {
+                    const card = document.createElement('div');
+                    card.className = 'scene-card';
+                    card.innerHTML = `<h3 style="font-size:20px;">${p.p}</h3><small>${p.name}</small>
+        <p style="font-size:13px;margin:10px 0;color:var(--text);">${p.usage}</p>
+        <div class="line open" style="cursor:default;">
+          <div class="kr">${p.example}</div>
+          <div class="rom">${p.exRom}</div>
+          <div class="brk" style="display:block;">${p.exEn}</div>
+        </div>`;
+                    wrap.appendChild(card);
+                });
+            } else if (grammarTab === 'conjugation') {
+                VERB_CONJUGATIONS.forEach(v => {
+                    const card = document.createElement('div');
+                    card.className = 'scene-card';
+                    card.innerHTML = `<h3 style="font-size:20px;">${v.dict}</h3><small>${v.rom} · ${v.en}</small>
+        <div class="conj-grid">
+          <div class="conj-item"><span class="conj-label">Present</span><b>${v.present}</b><small>${v.presentRom}</small></div>
+          <div class="conj-item"><span class="conj-label">Past</span><b>${v.past}</b><small>${v.pastRom}</small></div>
+          <div class="conj-item"><span class="conj-label">Future</span><b>${v.future}</b><small>${v.futureRom}</small></div>
+        </div>`;
+                    wrap.appendChild(card);
+                });
+            } else if (grammarTab === 'honorific') {
+                HONORIFIC_PAIRS.forEach(h => {
+                    const card = document.createElement('div');
+                    card.className = 'scene-card';
+                    card.innerHTML = `<small style="display:block;margin-bottom:8px;">${h.en}</small>
+        <div class="honorific-row">
+          <div class="honorific-col"><span class="conj-label">Casual</span><b>${h.casual}</b><small>${h.casualRom}</small></div>
+          <div class="honorific-col formal"><span class="conj-label">Formal</span><b>${h.formal}</b><small>${h.formalRom}</small></div>
+        </div>`;
+                    wrap.appendChild(card);
+                });
+            } else if (grammarTab === 'writing') {
+                const grid = document.createElement('div');
+                grid.className = 'hangul-grid';
+                grid.style.gridTemplateColumns = 'repeat(6,1fr)';
+                STROKE_ORDER.forEach(s => {
+                    const cell = document.createElement('button');
+                    cell.className = 'hangul-cell';
+                    cell.innerHTML = `<span class="h-ch">${s.ch}</span>`;
+                    cell.onclick = () => showStrokeDetail(s);
+                    grid.appendChild(cell);
+                });
+                wrap.appendChild(grid);
+                const detail = document.createElement('div');
+                detail.id = 'strokeDetailWrap';
+                detail.style.marginTop = '16px';
+                wrap.appendChild(detail);
+            }
+        }
+        function showStrokeDetail(s) {
+            const detail = document.getElementById('strokeDetailWrap');
+            detail.innerHTML = `<div class="scene-card">
+    <h3 style="font-size:32px;font-family:'Baloo 2',cursive;">${s.ch}</h3>
+    <small>${s.strokes.length} stroke${s.strokes.length > 1 ? 's' : ''}</small>
+    <ol class="stroke-list">
+      ${s.strokes.map((step, i) => `<li>${step}</li>`).join('')}
+    </ol>
+  </div>`;
+        }
+
+        /* =========================================================
+           READING PRACTICE
+           ========================================================= */
+        function openReading() {
+            showScreen('reading');
+            renderReadingList();
+        }
+        function renderReadingList() {
+            const wrap = document.getElementById('readingListWrap');
+            if (wrap.dataset.built) return;
+            wrap.dataset.built = '1';
+            READING_PASSAGES.forEach((p, idx) => {
+                const card = document.createElement('div');
+                card.className = 'unit-card';
+                card.innerHTML = `<div class="unit-icon" style="background:#E9F1FF;">📰</div>
+      <div class="unit-info"><b>${p.title}</b><small>${p.titleEn} · ${p.level}</small></div>`;
+                card.onclick = () => openReadingDetail(idx);
+                wrap.appendChild(card);
+            });
+        }
+        let readingDetailState = null;
+        function openReadingDetail(idx) {
+            const passage = READING_PASSAGES[idx];
+            readingDetailState = { passage, answered: 0, correct: 0 };
+            showScreen('reading-detail');
+            const wrap = document.getElementById('readingDetailWrap');
+            wrap.innerHTML = `<div class="exercise-card" style="text-align:left;">
+    <div class="ex-prompt" style="text-align:center;">${passage.level}</div>
+    <h2 style="margin:4px 0 2px;">${passage.title}</h2>
+    <p style="color:var(--text-soft);font-size:13px;margin:0 0 14px;">${passage.titleEn}</p>
+    <p style="font-size:17px;line-height:1.7;">${passage.text}</p>
+    <button class="listen-btn" onclick="speakKorean('${passage.text.replace(/'/g, "\\'")}')">🔊 Listen</button>
+    <details style="margin-top:12px;">
+      <summary style="cursor:pointer;font-size:13px;color:var(--primary-dark);font-weight:800;">Show romanization</summary>
+      <p style="font-size:13px;color:var(--text-soft);margin-top:6px;">${passage.textRom}</p>
+    </details>
+    <details style="margin-top:8px;">
+      <summary style="cursor:pointer;font-size:13px;color:var(--primary-dark);font-weight:800;">Show English translation</summary>
+      <p style="font-size:13px;color:var(--text-soft);margin-top:6px;">${passage.translation}</p>
+    </details>
+    <div class="section-title" style="margin-top:20px;">Comprehension</div>
+    <div id="readingQuestions"></div>
+  </div>`;
+            const qWrap = document.getElementById('readingQuestions');
+            passage.questions.forEach((q, qi) => {
+                const qCard = document.createElement('div');
+                qCard.style.marginTop = '14px';
+                qCard.innerHTML = `<div class="ex-prompt" style="text-align:left;">${q.q}</div><div class="choices" id="readingQ${qi}"></div>`;
+                qWrap.appendChild(qCard);
+                const optWrap = qCard.querySelector('#readingQ' + qi);
+                q.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice';
+                    btn.textContent = opt;
+                    btn.onclick = () => {
+                        const correct = opt === q.answer;
+                        [...optWrap.children].forEach(c => c.disabled = true);
+                        btn.classList.add(correct ? 'correct' : 'wrong');
+                        if (!correct) [...optWrap.children].find(c => c.textContent === q.answer).classList.add('correct');
+                        readingDetailState.answered++;
+                        if (correct) readingDetailState.correct++;
+                        if (readingDetailState.answered === passage.questions.length) {
+                            const earned = readingDetailState.correct * 6;
+                            state.xp += earned; saveState(); renderStats();
+                            setTimeout(() => {
+                                alert(`Nice reading! ${readingDetailState.correct}/${passage.questions.length} correct — +${earned} XP`);
+                            }, 300);
+                        }
+                    };
+                    optWrap.appendChild(btn);
+                });
+            });
+        }
+
+        /* =========================================================
+           TOPIK-STYLE PRACTICE TEST
+           ========================================================= */
+        let topikState = null;
+        function openTopik() {
+            topikState = { questions: shuffle(TOPIK_QUESTIONS), index: 0, correct: 0 };
+            showScreen('topik');
+            renderTopikQuestion();
+        }
+        function renderTopikQuestion() {
+            const pct = Math.round((topikState.index / topikState.questions.length) * 100);
+            document.getElementById('topikProgressFill').style.width = pct + '%';
+            const q = topikState.questions[topikState.index];
+            const area = document.getElementById('topikArea');
+            if (!q) { finishTopik(); return; }
+            area.innerHTML = `<div class="exercise-card">
+    <div class="ex-prompt">${q.type.toUpperCase()} · Question ${topikState.index + 1} of ${topikState.questions.length}</div>
+    <p style="font-size:17px;font-weight:700;margin:10px 0 2px;">${q.q}</p>
+    <p style="font-size:12.5px;color:var(--text-soft);margin:0 0 14px;">${q.qEn}</p>
+    <div class="choices" id="topikChoiceWrap"></div>
+  </div>`;
+            const wrap = document.getElementById('topikChoiceWrap');
+            q.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'choice';
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    const correct = opt === q.answer;
+                    [...wrap.children].forEach(c => c.disabled = true);
+                    btn.classList.add(correct ? 'correct' : 'wrong');
+                    if (!correct) [...wrap.children].find(c => c.textContent === q.answer).classList.add('correct');
+                    if (correct) topikState.correct++;
+                    setTimeout(() => { topikState.index++; renderTopikQuestion(); }, 900);
+                };
+                wrap.appendChild(btn);
+            });
+        }
+        function finishTopik() {
+            const total = topikState.questions.length;
+            const pct = Math.round((topikState.correct / total) * 100);
+            const earned = topikState.correct * 8;
+            state.xp += earned; saveState(); renderStats();
+            document.getElementById('topikArea').innerHTML = `<div class="result-screen">
+    <div class="result-emoji">🎓</div>
+    <h2>Practice test complete!</h2>
+    <div class="result-stats">
+      <div class="rstat"><b>${topikState.correct}/${total}</b><span>CORRECT</span></div>
+      <div class="rstat"><b>${pct}%</b><span>SCORE</span></div>
+    </div>
+    <p style="color:var(--text-soft);font-size:13px;">+${earned} XP earned</p>
+    <button class="primary-btn" style="background:var(--mint);color:#215C42;" onclick="goHome()">Continue</button>
+  </div>`;
+        }
+
+        function openReview() {
+            const due = srsGetDueWords();
+            if (due.length === 0) {
+                alert("No words due for review right now — come back after you've learned a few more, or after some time has passed!");
+                return;
+            }
+            reviewState = { pool: shuffle(due).slice(0, 15), index: 0, correctCount: 0 };
+            showScreen('review');
+            renderReviewStep();
+        }
+        function renderReviewStep() {
+            const pct = Math.round((reviewState.index / reviewState.pool.length) * 100);
+            document.getElementById('reviewProgressFill').style.width = pct + '%';
+            const word = reviewState.pool[reviewState.index];
+            const area = document.getElementById('reviewArea');
+            if (!word) { finishReview(); return; }
+            const options = buildOptions(reviewState.pool.length >= 4 ? reviewState.pool : ALL_VOCAB, word, 'en');
+            area.innerHTML = `<div class="exercise-card">
+    <div class="ex-prompt">Do you still remember this?</div>
+    <div class="ex-main">${word.kr}</div>
+    <div class="ex-sub">${word.rom || ''}</div>
+    <div class="choices" id="reviewChoiceWrap"></div>
+  </div>`;
+            const wrap = document.getElementById('reviewChoiceWrap');
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'choice';
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    const correct = opt === word.en;
+                    [...wrap.children].forEach(c => c.disabled = true);
+                    btn.classList.add(correct ? 'correct' : 'wrong');
+                    if (!correct) {
+                        [...wrap.children].find(c => c.textContent === word.en).classList.add('correct');
+                    }
+                    if (correct) reviewState.correctCount++;
+                    srsRecordAnswer(word.kr, correct);
+                    saveState();
+                    setTimeout(() => { reviewState.index++; renderReviewStep(); }, 900);
+                };
+                wrap.appendChild(btn);
+            });
+        }
+        function finishReview() {
+            const total = reviewState.pool.length;
+            const earned = reviewState.correctCount * 5;
+            state.xp += earned; saveState(); renderStats();
+            document.getElementById('reviewArea').innerHTML = `<div class="result-screen">
+    <div class="result-emoji">🔁</div>
+    <h2>Review complete!</h2>
+    <div class="result-stats">
+      <div class="rstat"><b>${reviewState.correctCount}/${total}</b><span>REMEMBERED</span></div>
+      <div class="rstat"><b>+${earned}</b><span>XP EARNED</span></div>
+    </div>
+    <button class="primary-btn" style="background:var(--mint);color:#215C42;" onclick="goHome()">Continue</button>
+  </div>`;
         }
 
         function finishQuiz() {
@@ -3622,7 +4162,215 @@
            K-DRAMA
            ========================================================= */
         const ALL_KDRAMA_LINES = KDRAMA_SCENES.flatMap(s => s.lines);
+
+        const ROLEPLAY_SCENARIOS = [
+            {
+                title: "Ordering Coffee", sub: "At a café",
+                lines: [
+                    { kr: "뭐 드릴까요?", rom: "mwo deurilkkayo?", en: "What can I get you?", note: "Standard phrase a barista/server uses. '드리다' is the humble form of 'to give.'" },
+                    { kr: "아이스 아메리카노 한 잔 주세요.", rom: "aiseu amerikano han jan juseyo.", en: "One iced Americano, please.", note: "'한 잔' = one cup/glass — counter word for drinks. '주세요' = please give me." },
+                    { kr: "여기서 드시나요, 포장하시나요?", rom: "yeogiseo deusinayo, pojanghasinayo?", en: "For here, or to go?", note: "'드시다' = honorific 'to eat/drink'; '포장하다' = to pack/wrap up." },
+                    { kr: "가지고 갈게요.", rom: "gajigo galgeyo.", en: "I'll take it to go.", note: "'가지고 가다' = to take (something) and go, i.e. 'to go.'" }]
+            },
+            {
+                title: "Asking for Directions", sub: "On the street",
+                lines: [
+                    { kr: "실례합니다, 지하철역이 어디예요?", rom: "sillyehamnida, jihacheollyeogi eodiyeyo?", en: "Excuse me, where's the subway station?", note: "'실례합니다' politely opens a question to a stranger." },
+                    { kr: "이 길을 따라 쭉 가세요.", rom: "i gireul ttara jjuk gaseyo.", en: "Go straight along this road.", note: "'따라가다' = to follow/go along; '쭉' = straight/continuously." },
+                    { kr: "얼마나 걸려요?", rom: "eolmana geollyeoyo?", en: "How long does it take?", note: "'걸리다' = to take (time)." },
+                    { kr: "걸어서 십 분 정도 걸려요.", rom: "georeoseo sip bun jeongdo geollyeoyo.", en: "It takes about 10 minutes on foot.", note: "'걸어서' = on foot / by walking; '정도' = approximately." }]
+            },
+            {
+                title: "Hotel Check-In", sub: "At the front desk",
+                lines: [
+                    { kr: "예약하셨나요?", rom: "yeyakhasyeonnayo?", en: "Do you have a reservation?", note: "'예약하다' = to reserve/book." },
+                    { kr: "네, 제 이름으로 예약했어요.", rom: "ne, je ireumeuro yeyakhaesseoyo.", en: "Yes, I booked it under my name.", note: "'이름으로' = under (my) name, using -으로 for 'by means of.'" },
+                    { kr: "여권 좀 보여 주시겠어요?", rom: "yeogwon jom boyeo jusigesseoyo?", en: "Could you show me your passport?", note: "'-여 주시겠어요?' is a very polite way to make a request." },
+                    { kr: "몇 시에 체크아웃해야 돼요?", rom: "myeot sie chekeuautaeya dwaeyo?", en: "What time do I need to check out?", note: "'-아야 돼요' = must/have to." }]
+            },
+            {
+                title: "At the Restaurant", sub: "Ordering a meal",
+                lines: [
+                    { kr: "몇 분이세요?", rom: "myeot bunieseyo?", en: "How many people (in your party)?", note: "'분' is the honorific counter for people." },
+                    { kr: "두 명이요.", rom: "du myeongiyo.", en: "Two people.", note: "'명' is the plain counter for people, used casually here." },
+                    { kr: "이거 매워요?", rom: "igeo maewoyo?", en: "Is this spicy?", note: "'맵다' = spicy; irregular ㅂ-verb, becomes '매워요.'" },
+                    { kr: "조금 매운데 괜찮아요.", rom: "jogeum maeunde gwaenchanayo.", en: "It's a little spicy, but it's fine.", note: "'-는데' softly connects two related ideas." }]
+            },
+            {
+                title: "Making Plans", sub: "Texting a friend",
+                lines: [
+                    { kr: "이번 주말에 시간 있어?", rom: "ibeon jumare sigan isseo?", en: "Do you have time this weekend?", note: "Casual speech between friends — no 요 ending." },
+                    { kr: "응, 왜?", rom: "eung, wae?", en: "Yeah, why?", note: "'응' = casual 'yeah'; '왜' = why." },
+                    { kr: "같이 영화 보러 갈래?", rom: "gachi yeonghwa boreo gallae?", en: "Want to go watch a movie together?", note: "'-러 가다' = to go in order to do something; '-ㄹ래?' = casual invitation." },
+                    { kr: "좋아, 몇 시에 만날까?", rom: "joa, myeot sie mannalkka?", en: "Sounds good, what time should we meet?", note: "'-ㄹ까?' = casual 'shall we...?'" }]
+            },
+            {
+                title: "At the Pharmacy", sub: "Feeling unwell",
+                lines: [
+                    { kr: "어디가 아프세요?", rom: "eodiga apeuseyo?", en: "Where does it hurt?", note: "Polite question a pharmacist/doctor would ask." },
+                    { kr: "머리가 아프고 열이 나요.", rom: "meoriga apeugo yeori nayo.", en: "I have a headache and a fever.", note: "'열이 나다' = to have a fever (lit. fever comes out)." },
+                    { kr: "이 약을 하루에 세 번 드세요.", rom: "i yageul harue se beon deuseyo.", en: "Take this medicine three times a day.", note: "'하루에 세 번' = three times per day." },
+                    { kr: "식사 후에 먹어야 돼요?", rom: "siksa hue meogeoya dwaeyo?", en: "Do I need to take it after meals?", note: "'식사 후에' = after a meal." }]
+            },
+        ];
+        const ALL_ROLEPLAY_LINES = ROLEPLAY_SCENARIOS.flatMap(s => s.lines);
+
+        /* =========================================================
+           GRAMMAR: Particles
+           ========================================================= */
+        const PARTICLES = [
+            { p: "은 / 는", name: "Topic marker", usage: "Marks the topic of the sentence (what you're talking about). 은 after a consonant, 는 after a vowel.", example: "저는 학생이에요.", exRom: "jeoneun haksaengieyo.", exEn: "As for me, I'm a student." },
+            { p: "이 / 가", name: "Subject marker", usage: "Marks the grammatical subject of the sentence. 이 after a consonant, 가 after a vowel.", example: "고양이가 귀여워요.", exRom: "goyangiga gwiyeowoyo.", exEn: "The cat is cute." },
+            { p: "을 / 를", name: "Object marker", usage: "Marks the direct object of a verb. 을 after a consonant, 를 after a vowel.", example: "밥을 먹어요.", exRom: "bapeul meogeoyo.", exEn: "I eat rice." },
+            { p: "에", name: "Time / location (to, at, in)", usage: "Marks a point in time, or a destination/static location.", example: "학교에 가요.", exRom: "hakgyoe gayo.", exEn: "I go to school." },
+            { p: "에서", name: "Location (at, from)", usage: "Marks where an action happens, or where something starts from.", example: "집에서 공부해요.", exRom: "jibeseo gongbuhaeyo.", exEn: "I study at home." },
+            { p: "도", name: "Also / too", usage: "Adds the meaning 'also' or 'too' to a noun, replacing 은/는/이/가.", example: "저도 가요.", exRom: "jeodo gayo.", exEn: "I'm going too." },
+            { p: "만", name: "Only", usage: "Limits something to just the noun it attaches to.", example: "하나만 주세요.", exRom: "hanaman juseyo.", exEn: "Please give me just one." },
+            { p: "와 / 과 / 하고", name: "And / with", usage: "Connects two nouns, or means 'with' someone. 와/하고 after vowels, 과/하고 after consonants.", example: "친구와 영화를 봐요.", exRom: "chinguwa yeonghwareul bwayo.", exEn: "I watch a movie with my friend." },
+            { p: "의", name: "Possessive (’s)", usage: "Shows possession, like 's in English. Often dropped in casual speech.", example: "제 친구의 이름", exRom: "je chinguui ireum", exEn: "my friend's name" },
+            { p: "로 / 으로", name: "Direction / method / tool", usage: "Marks direction of movement, or the means/tool used to do something.", example: "버스로 가요.", exRom: "beoseuro gayo.", exEn: "I go by bus." },
+            { p: "부터", name: "From (time)", usage: "Marks the starting point of a time range.", example: "9시부터 일해요.", exRom: "ahopsibuteo ilhaeyo.", exEn: "I work from 9 o'clock." },
+            { p: "까지", name: "Until / up to", usage: "Marks the end point of a time or place range.", example: "6시까지 일해요.", exRom: "yeoseotsikkaji ilhaeyo.", exEn: "I work until 6 o'clock." },
+        ];
+
+        /* =========================================================
+           GRAMMAR: Verb Conjugation
+           ========================================================= */
+        const VERB_CONJUGATIONS = [
+            { dict: "가다", rom: "gada", en: "to go", present: "가요", presentRom: "gayo", past: "갔어요", pastRom: "gasseoyo", future: "갈 거예요", futureRom: "gal geoyeyo" },
+            { dict: "먹다", rom: "meokda", en: "to eat", present: "먹어요", presentRom: "meogeoyo", past: "먹었어요", pastRom: "meogeosseoyo", future: "먹을 거예요", futureRom: "meogeul geoyeyo" },
+            { dict: "하다", rom: "hada", en: "to do", present: "해요", presentRom: "haeyo", past: "했어요", pastRom: "haesseoyo", future: "할 거예요", futureRom: "hal geoyeyo" },
+            { dict: "보다", rom: "boda", en: "to see / watch", present: "봐요", presentRom: "bwayo", past: "봤어요", pastRom: "bwasseoyo", future: "볼 거예요", futureRom: "bol geoyeyo" },
+            { dict: "읽다", rom: "ikda", en: "to read", present: "읽어요", presentRom: "ilgeoyo", past: "읽었어요", pastRom: "ilgeosseoyo", future: "읽을 거예요", futureRom: "ilgeul geoyeyo" },
+            { dict: "쓰다", rom: "sseuda", en: "to write / use", present: "써요", presentRom: "sseoyo", past: "썼어요", pastRom: "sseosseoyo", future: "쓸 거예요", futureRom: "sseul geoyeyo" },
+            { dict: "자다", rom: "jada", en: "to sleep", present: "자요", presentRom: "jayo", past: "잤어요", pastRom: "jasseoyo", future: "잘 거예요", futureRom: "jal geoyeyo" },
+            { dict: "오다", rom: "oda", en: "to come", present: "와요", presentRom: "wayo", past: "왔어요", pastRom: "wasseoyo", future: "올 거예요", futureRom: "ol geoyeyo" },
+            { dict: "사다", rom: "sada", en: "to buy", present: "사요", presentRom: "sayo", past: "샀어요", pastRom: "sasseoyo", future: "살 거예요", futureRom: "sal geoyeyo" },
+            { dict: "만나다", rom: "mannada", en: "to meet", present: "만나요", presentRom: "mannayo", past: "만났어요", pastRom: "mannasseoyo", future: "만날 거예요", futureRom: "mannal geoyeyo" },
+        ];
+
+        /* =========================================================
+           GRAMMAR: Honorific vs Casual speech
+           ========================================================= */
+        const HONORIFIC_PAIRS = [
+            { casual: "안녕", casualRom: "annyeong", formal: "안녕하세요", formalRom: "annyeonghaseyo", en: "hello" },
+            { casual: "이름이 뭐야?", casualRom: "ireumi mwoya?", formal: "성함이 어떻게 되세요?", formalRom: "seonghami eotteoke doeseyo?", en: "what's your name?" },
+            { casual: "먹어", casualRom: "meogeo", formal: "드세요", formalRom: "deuseyo", en: "eat (command/offer)" },
+            { casual: "있어", casualRom: "isseo", formal: "계세요", formalRom: "gyeseyo", en: "to be present / exist" },
+            { casual: "자", casualRom: "ja", formal: "주무세요", formalRom: "jumuseyo", en: "sleep" },
+            { casual: "몇 살이야?", casualRom: "myeot sariya?", formal: "연세가 어떻게 되세요?", formalRom: "yeonsega eotteoke doeseyo?", en: "how old are you?" },
+            { casual: "미안해", casualRom: "mianhae", formal: "죄송합니다", formalRom: "joesonghamnida", en: "sorry" },
+            { casual: "고마워", casualRom: "gomawo", formal: "감사합니다", formalRom: "gamsahamnida", en: "thank you" },
+            { casual: "알겠어", casualRom: "algesseo", formal: "알겠습니다", formalRom: "algesseumnida", en: "I understand / got it" },
+            { casual: "괜찮아?", casualRom: "gwaenchana?", formal: "괜찮으세요?", formalRom: "gwaenchaneuseyo?", en: "are you okay?" },
+        ];
+
         let kdramaState = null;
+
+        /* =========================================================
+           READING PRACTICE
+           ========================================================= */
+        const READING_PASSAGES = [
+            {
+                level: "Beginner", title: "저의 하루", titleEn: "My Day",
+                text: "안녕하세요. 저는 학생이에요. 저는 아침에 학교에 가요. 학교에서 친구를 만나요. 저녁에 집에서 밥을 먹어요.",
+                textRom: "annyeonghaseyo. jeoneun haksaengieyo. jeoneun achime hakgyoe gayo. hakgyoeseo chingureul mannayo. jeonyeoge jibeseo bapeul meogeoyo.",
+                translation: "Hello. I'm a student. I go to school in the morning. I meet my friend at school. I eat dinner at home in the evening.",
+                questions: [
+                    { q: "Where does the person go in the morning?", options: ["Home", "School", "A restaurant", "The park"], answer: "School" },
+                    { q: "What do they do at school?", options: ["Sleep", "Eat dinner", "Meet a friend", "Watch TV"], answer: "Meet a friend" },
+                ]
+            },
+            {
+                level: "Beginner", title: "우리 가족", titleEn: "My Family",
+                text: "우리 가족은 네 명이에요. 아빠, 엄마, 오빠, 그리고 저예요. 아빠는 회사에서 일해요. 엄마는 요리를 잘해요.",
+                textRom: "uri gajogeun ne myeongieyo. appa, eomma, oppa, geurigo jeoyeyo. appaneun hoesaeseo ilhaeyo. eommaneun yorireul jalhaeyo.",
+                translation: "My family has four people. Dad, mom, older brother, and me. Dad works at a company. Mom is good at cooking.",
+                questions: [
+                    { q: "How many people are in the family?", options: ["Two", "Three", "Four", "Five"], answer: "Four" },
+                    { q: "What is mom good at?", options: ["Singing", "Cooking", "Driving", "Dancing"], answer: "Cooking" },
+                ]
+            },
+            {
+                level: "Intermediate", title: "주말 계획", titleEn: "Weekend Plans",
+                text: "이번 주말에 친구들과 영화를 보러 갈 거예요. 영화가 끝나면 같이 저녁을 먹을 거예요. 그 다음에는 카페에서 커피를 마시면서 이야기할 거예요.",
+                textRom: "ibeon jumare chingudeulgwa yeonghwareul boreo gal geoyeyo. yeonghwaga kkeutnamyeon gachi jeonyeogeul meogeul geoyeyo. geu daeumeneun kapeeseo keopireul masimyeonseo iyagihal geoyeyo.",
+                translation: "This weekend I'm going to watch a movie with friends. After the movie ends, we'll eat dinner together. After that, we'll drink coffee at a cafe while talking.",
+                questions: [
+                    { q: "What will they do after the movie?", options: ["Go home", "Eat dinner together", "Go shopping", "Watch another movie"], answer: "Eat dinner together" },
+                    { q: "Where will they talk?", options: ["At school", "At a cafe", "At home", "At the movie theater"], answer: "At a cafe" },
+                ]
+            },
+            {
+                level: "Intermediate", title: "새로운 취미", titleEn: "A New Hobby",
+                text: "저는 요즘 그림 그리기를 배우고 있어요. 처음에는 어려웠지만 지금은 재미있어요. 매주 화요일마다 미술 학원에 가요.",
+                textRom: "jeoneun yojeum geurim geurigireul baeugo isseoyo. cheoeumeneun eoryeowotjiman jigeumeun jaemiisseoyo. maeju hwayoilmada misul hagwone gayo.",
+                translation: "I've been learning to draw lately. It was hard at first, but now it's fun. I go to art class every Tuesday.",
+                questions: [
+                    { q: "What is the person learning?", options: ["Singing", "Drawing", "Cooking", "Swimming"], answer: "Drawing" },
+                    { q: "What day do they go to class?", options: ["Monday", "Tuesday", "Wednesday", "Sunday"], answer: "Tuesday" },
+                ]
+            },
+            {
+                level: "Advanced", title: "회사 생활", titleEn: "Office Life",
+                text: "입사한 지 벌써 일 년이 지났다. 처음에는 모든 게 낯설고 힘들었지만, 이제는 업무에도 익숙해졌고 동료들과도 편하게 지낸다. 다만 야근이 잦아서 개인 시간이 부족한 것이 아쉽다.",
+                textRom: "ipsahan ji beolsseo il nyeoni jinatda. cheoeumeneun modeun ge natseolgo himdeuleotjiman, ijeneun eommue-do ikseukhaejyeotgo dongnyodeulgwado pyeonhage jinaenda. daman yageuni jajaseo gaein siganieul buzokhan geosi asipda.",
+                translation: "It's already been a year since I joined the company. At first everything was unfamiliar and hard, but now I've gotten used to the work and get along comfortably with colleagues. However, I regret that overtime is frequent, leaving little personal time.",
+                questions: [
+                    { q: "How long has the person worked there?", options: ["A month", "Six months", "A year", "Five years"], answer: "A year" },
+                    { q: "What does the person regret?", options: ["Low salary", "Not enough personal time", "Bad colleagues", "Long commute"], answer: "Not enough personal time" },
+                ]
+            },
+        ];
+
+        /* =========================================================
+           TOPIK I - STYLE PRACTICE QUESTIONS
+           ========================================================= */
+        const TOPIK_QUESTIONS = [
+            { type: "vocab", q: "( )에 들어갈 가장 알맞은 것을 고르세요: 저는 매일 아침 커피를 ( ).", qEn: "Choose the best word: I drink coffee every morning.", options: ["마셔요", "먹어요", "봐요", "가요"], answer: "마셔요" },
+            { type: "vocab", q: "다음 단어의 반대말을 고르세요: 크다", qEn: "Choose the opposite of '크다' (big)", options: ["작다", "많다", "길다", "높다"], answer: "작다" },
+            { type: "grammar", q: "( )에 알맞은 조사를 고르세요: 저( ) 학생이에요.", qEn: "Choose the correct particle.", options: ["는", "를", "도", "만"], answer: "는" },
+            { type: "grammar", q: "( )에 알맞은 조사를 고르세요: 학교( ) 가요.", qEn: "Choose the correct particle.", options: ["에", "의", "와", "은"], answer: "에" },
+            { type: "grammar", q: "다음 중 과거형이 맞는 것을 고르세요: 가다 → ?", qEn: "Choose the correct past tense of '가다' (to go).", options: ["갔어요", "가요", "갈 거예요", "가세요"], answer: "갔어요" },
+            { type: "vocab", q: "( )에 들어갈 가장 알맞은 것을 고르세요: 오늘은 날씨가 아주 ( ).", qEn: "Choose the best word for the weather.", options: ["더워요", "먹어요", "자요", "읽어요"], answer: "더워요" },
+            { type: "grammar", q: "다음 중 미래형이 맞는 것을 고르세요: 먹다 → ?", qEn: "Choose the correct future tense of '먹다' (to eat).", options: ["먹을 거예요", "먹었어요", "먹어요", "먹지 마세요"], answer: "먹을 거예요" },
+            { type: "reading", q: "'저는 매일 도서관에서 책을 읽어요' 이 문장에서 저는 무엇을 해요?", qEn: "According to the sentence, what does the person do every day?", options: ["Reads books", "Writes books", "Sells books", "Buys books"], answer: "Reads books" },
+            { type: "vocab", q: "( )에 들어갈 가장 알맞은 것을 고르세요: 미안해요, ( )이 늦었어요.", qEn: "Choose the best word — 'Sorry, I'm ___.'", options: ["시간", "마음", "날씨", "돈"], answer: "시간" },
+            { type: "grammar", q: "( )에 알맞은 조사를 고르세요: 저( ) 그것을 몰라요.", qEn: "Choose the correct particle — 'I don't know that either.'", options: ["도", "을", "에서", "까지"], answer: "도" },
+            { type: "reading", q: "'주말에 친구와 영화를 볼 거예요' 이 사람은 언제 영화를 봐요?", qEn: "When will this person watch a movie?", options: ["Today", "Tomorrow", "This weekend", "Next month"], answer: "This weekend" },
+            { type: "vocab", q: "다음 단어의 반대말을 고르세요: 많다", qEn: "Choose the opposite of '많다' (a lot)", options: ["적다", "크다", "좋다", "빠르다"], answer: "적다" },
+        ];
+
+        /* =========================================================
+           STROKE ORDER GUIDE (24 basic letters)
+           ========================================================= */
+        const STROKE_ORDER = [
+            { ch: "ㄱ", strokes: ["Start top-left, draw right, then turn and go straight down."] },
+            { ch: "ㄴ", strokes: ["Start at top, draw straight down, then turn right."] },
+            { ch: "ㄷ", strokes: ["Draw the top horizontal line, left to right.", "Draw down the left side, then across the bottom."] },
+            { ch: "ㄹ", strokes: ["Draw like ㄱ (right, then down).", "Draw a short horizontal line across the middle.", "Draw down then across, like the bottom of ㄷ."] },
+            { ch: "ㅁ", strokes: ["Draw the top horizontal line.", "Draw down the left side.", "Draw right then up the right side to close the box."] },
+            { ch: "ㅂ", strokes: ["Draw the left vertical line, top to bottom.", "Draw the top horizontal line connecting.", "Draw the right vertical line, top to bottom.", "Draw the bottom horizontal line connecting."] },
+            { ch: "ㅅ", strokes: ["Draw a diagonal stroke from the top down to the left.", "Draw a diagonal stroke from the top down to the right."] },
+            { ch: "ㅇ", strokes: ["Draw one continuous circle, starting at the top."] },
+            { ch: "ㅈ", strokes: ["Draw a short horizontal line at the top.", "Draw the sweeping stroke below it, like ㅅ."] },
+            { ch: "ㅊ", strokes: ["Draw a small diagonal tick above.", "Draw a short horizontal line.", "Draw the sweeping stroke below, like ㅅ."] },
+            { ch: "ㅋ", strokes: ["Draw like ㄱ (right, then down).", "Add a short horizontal tick through the middle."] },
+            { ch: "ㅌ", strokes: ["Draw the top horizontal line.", "Draw a short horizontal tick through the middle.", "Draw down the left side, then across the bottom, like ㄷ."] },
+            { ch: "ㅍ", strokes: ["Draw the top horizontal line.", "Draw the left vertical line down.", "Draw the right vertical line down.", "Draw the bottom horizontal line."] },
+            { ch: "ㅎ", strokes: ["Draw a short tick at the top.", "Draw a horizontal line below it.", "Draw a circle at the bottom."] },
+            { ch: "ㅏ", strokes: ["Draw the vertical line, top to bottom.", "Draw a short horizontal tick to the right, at mid-height."] },
+            { ch: "ㅑ", strokes: ["Draw the vertical line, top to bottom.", "Draw two short horizontal ticks to the right."] },
+            { ch: "ㅓ", strokes: ["Draw a short horizontal tick to the left, at mid-height.", "Draw the vertical line, top to bottom."] },
+            { ch: "ㅕ", strokes: ["Draw two short horizontal ticks to the left.", "Draw the vertical line, top to bottom."] },
+            { ch: "ㅗ", strokes: ["Draw the horizontal line, left to right.", "Draw a short vertical tick upward from the middle."] },
+            { ch: "ㅛ", strokes: ["Draw the horizontal line, left to right.", "Draw two short vertical ticks upward."] },
+            { ch: "ㅜ", strokes: ["Draw the horizontal line, left to right.", "Draw a short vertical tick downward from the middle."] },
+            { ch: "ㅠ", strokes: ["Draw the horizontal line, left to right.", "Draw two short vertical ticks downward."] },
+            { ch: "ㅡ", strokes: ["Draw one horizontal line, left to right."] },
+            { ch: "ㅣ", strokes: ["Draw one vertical line, top to bottom."] },
+        ];
+
 
         function renderKdramaList() {
             const wrap = document.getElementById('kdramaList');
@@ -3734,6 +4482,126 @@
             document.getElementById('kdramaResultXp').textContent = '+' + earned;
             showScreen('kdrama-complete');
             renderKdramaList();
+        }
+
+        /* =========================================================
+           ROLE-PLAY CONVERSATIONS (same watch-then-quiz engine as K-Drama)
+           ========================================================= */
+        let roleplayState = null;
+
+        function openRoleplay() {
+            showScreen('roleplay');
+            renderRoleplayList();
+        }
+        function renderRoleplayList() {
+            const wrap = document.getElementById('roleplayList');
+            wrap.innerHTML = '';
+            ROLEPLAY_SCENARIOS.forEach((scene, idx) => {
+                const done = state.completedRoleplays.includes(idx);
+                const card = document.createElement('div');
+                card.className = 'unit-card' + (done ? ' done-card' : '');
+                card.innerHTML = `
+      <div class="unit-num" style="background:#A8E6CF33;">🗣️${done ? '<span class="check">✓</span>' : ''}</div>
+      <div class="unit-info">
+        <b>${scene.title}</b>
+        <small>${scene.sub} · ${scene.lines.length} lines · ${done ? 'Completed' : 'Not played'}</small>
+        <div class="progress-bar"><div class="progress-fill" style="width:${done ? 100 : 0}%;background:#A8E6CF"></div></div>
+      </div>`;
+                card.onclick = () => startRoleplayGame(idx);
+                wrap.appendChild(card);
+            });
+        }
+
+        function startRoleplayGame(idx) {
+            roleplayState = { scene: ROLEPLAY_SCENARIOS[idx], sceneIndex: idx, phase: 'watch', watchIndex: 0, lineIndex: 0, correctCount: 0 };
+            document.getElementById('roleplaySceneLabel').textContent = roleplayState.scene.title;
+            showScreen('roleplay-game');
+            renderRoleplayWatchStep();
+        }
+        function exitRoleplayGame() { showScreen('roleplay'); }
+
+        function roleplayProgress() {
+            const total = roleplayState.scene.lines.length * 2;
+            const done = roleplayState.phase === 'watch' ? roleplayState.watchIndex : (roleplayState.scene.lines.length + roleplayState.lineIndex);
+            return Math.round((done / total) * 100);
+        }
+
+        function renderRoleplayWatchStep() {
+            document.getElementById('roleplayProgressFill').style.width = roleplayProgress() + '%';
+            const scene = roleplayState.scene;
+            const line = scene.lines[roleplayState.watchIndex];
+            const area = document.getElementById('roleplayGameArea');
+            if (!line) { roleplayState.phase = 'quiz'; renderRoleplayQuestion(); return; }
+            area.innerHTML = `<div class="exercise-card teach-card">
+    <div class="ex-prompt">Line ${roleplayState.watchIndex + 1} of ${scene.lines.length} · Watch &amp; learn</div>
+    <div class="ex-main" style="font-size:22px;">${line.kr}</div>
+    <div class="ex-sub">${line.rom}</div>
+    <button class="listen-btn" onclick="speakKorean('${line.kr.replace(/'/g, "\\'")}')">🔊 Listen</button>
+    <div class="teach-meaning">"${line.en}"</div>
+    <div class="kdrama-note show" style="text-align:left;margin-top:12px;"><p>${line.note}</p></div>
+    <button class="primary-btn" style="background:linear-gradient(135deg,#A8E6CF,#B7A4E0);" onclick="nextRoleplayWatchStep()">${roleplayState.watchIndex === scene.lines.length - 1 ? "Take the quiz →" : 'Next line →'}</button>
+  </div>`;
+        }
+        function nextRoleplayWatchStep() {
+            roleplayState.watchIndex++;
+            renderRoleplayWatchStep();
+        }
+
+        function buildRoleplayOptions(correctLine) {
+            let pool = ALL_ROLEPLAY_LINES.filter(l => l.en !== correctLine.en);
+            pool = shuffle(pool).slice(0, 3).map(l => l.en);
+            return shuffle([correctLine.en, ...pool]);
+        }
+
+        function renderRoleplayQuestion() {
+            const scene = roleplayState.scene;
+            document.getElementById('roleplayProgressFill').style.width = roleplayProgress() + '%';
+            const line = scene.lines[roleplayState.lineIndex];
+            const area = document.getElementById('roleplayGameArea');
+            if (!line) { finishRoleplayGame(); return; }
+            area.innerHTML = `<div class="exercise-card">
+    <div class="ex-prompt">Quiz · What does this line mean?</div>
+    <div class="ex-main" style="font-size:22px;">${line.kr}</div>
+    <div class="ex-sub">${line.rom}</div>
+    <div class="choices" id="roleplayChoiceWrap"></div>
+    <div class="kdrama-note" id="roleplayNoteBox"></div>
+  </div>`;
+            const wrap = document.getElementById('roleplayChoiceWrap');
+            buildRoleplayOptions(line).forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'choice';
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    const correct = opt === line.en;
+                    [...wrap.children].forEach(c => c.disabled = true);
+                    btn.classList.add(correct ? 'correct' : 'wrong');
+                    if (!correct) {
+                        [...wrap.children].find(c => c.textContent === line.en).classList.add('correct');
+                    }
+                    if (correct) roleplayState.correctCount++;
+                    const noteBox = document.getElementById('roleplayNoteBox');
+                    noteBox.classList.add('show');
+                    noteBox.innerHTML = `<b>${correct ? '정답이에요! Correct! 🎉' : 'Good try!'}</b><p>${line.note}</p>
+        <button class="primary-btn" style="background:linear-gradient(135deg,#A8E6CF,#B7A4E0);" onclick="nextRoleplayLine()">Continue</button>`;
+                };
+                wrap.appendChild(btn);
+            });
+        }
+        function nextRoleplayLine() {
+            roleplayState.lineIndex++;
+            renderRoleplayQuestion();
+        }
+        function finishRoleplayGame() {
+            const total = roleplayState.scene.lines.length;
+            const earned = roleplayState.correctCount * 5;
+            state.xp += earned;
+            if (!state.completedRoleplays.includes(roleplayState.sceneIndex)) state.completedRoleplays.push(roleplayState.sceneIndex);
+            saveState(); renderStats();
+            document.getElementById('roleplayResultSceneTitle').textContent = `"${roleplayState.scene.title}"`;
+            document.getElementById('roleplayResultScore').textContent = roleplayState.correctCount + '/' + total;
+            document.getElementById('roleplayResultXp').textContent = '+' + earned;
+            showScreen('roleplay-complete');
+            renderRoleplayList();
         }
 
         /* =========================================================
