@@ -363,9 +363,28 @@
             min-height: 34px;
         }
 
+        .draw-meaning {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text);
+            text-align: center;
+            margin-top: 10px;
+            background: #F3ECFB;
+            border-radius: 10px;
+            padding: 8px;
+        }
+
+        .draw-meaning small {
+            display: block;
+            font-weight: 700;
+            color: var(--text-soft);
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
         .draw-controls {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             margin-top: 10px;
         }
 
@@ -374,9 +393,9 @@
             background: #F3ECFB;
             color: var(--primary-dark);
             border-radius: 12px;
-            padding: 11px 6px;
+            padding: 11px 2px;
             font-weight: 800;
-            font-size: 12.5px;
+            font-size: 11px;
         }
 
         .hangul-cell {
@@ -1122,6 +1141,7 @@
             border-radius: 16px;
             font-size: 14px;
             line-height: 1.4;
+            white-space: pre-line;
         }
 
         .msg.bot {
@@ -2224,12 +2244,18 @@
                     <div class="draw-guide" id="drawGuideChar">ㄱ</div>
                     <canvas id="drawCanvas" class="draw-canvas"></canvas>
                 </div>
+                <div class="draw-meaning" id="drawMeaning"></div>
                 <div class="draw-stroke-tip" id="drawStrokeTip"></div>
                 <div class="draw-controls">
                     <button class="draw-btn" onclick="clearDrawCanvas()">🧹 Clear</button>
-                    <button class="draw-btn" onclick="toggleDrawGuide()" id="drawGuideToggle">👁️ Hide guide</button>
-                    <button class="draw-btn" onclick="nextDrawChar()">Next letter →</button>
+                    <button class="draw-btn" onclick="speakDrawChar()">🔊 Sound</button>
+                    <button class="draw-btn" onclick="toggleDrawGuide()" id="drawGuideToggle">👁️ Hide</button>
+                    <button class="draw-btn" onclick="nextDrawChar()">Next →</button>
                 </div>
+                <button class="primary-btn" id="drawQuizBtn"
+                    style="display:none;background:linear-gradient(135deg,#FFC9DE,#B7A4E0);margin-top:12px;"
+                    onclick="quizDrawChar()">📝 Quiz me on this letter</button>
+                <div id="drawQuizArea"></div>
             </div>
         </div>
 
@@ -3147,7 +3173,14 @@
             // Korean number word typed directly (e.g. "오십") — exact match first, then longest substring match
             const koreanNumMatch = ALL_NUMBER_ITEMS.find(n => trimmed === n.kr)
                 || [...ALL_NUMBER_ITEMS].sort((a, b) => b.kr.length - a.kr.length).find(n => text.includes(n.kr));
-            if (koreanNumMatch) return koreanNumMatch;
+            if (koreanNumMatch) {
+                const numStr = koreanNumMatch.en.replace(' (native)', '');
+                return {
+                    sino: ALL_NUMBER_ITEMS.find(n => n.en === numStr) || null,
+                    native: ALL_NUMBER_ITEMS.find(n => n.en === `${numStr} (native)`) || null,
+                    askedSystem: koreanNumMatch.en.includes('(native)') ? 'native' : 'sino'
+                };
+            }
 
             // digit typed (e.g. "50")
             const digitMatch = lower.match(/\b(\d{1,6})\b/);
@@ -3156,14 +3189,15 @@
             if (numStr === '1000') numStr = '1,000';
             if (numStr === '10000') numStr = '10,000';
 
-            const wantsNative = /native/.test(lower);
-            const target = wantsNative ? `${numStr} (native)` : numStr;
-            let found = ALL_NUMBER_ITEMS.find(n => n.en === target);
-            if (!found && !wantsNative) {
-                // fall back to native if no sino entry exists for that exact number (native tens only)
-                found = ALL_NUMBER_ITEMS.find(n => n.en === `${numStr} (native)`);
-            }
-            return found || null;
+            const sino = ALL_NUMBER_ITEMS.find(n => n.en === numStr) || null;
+            const native = ALL_NUMBER_ITEMS.find(n => n.en === `${numStr} (native)`) || null;
+            if (!sino && !native) return null;
+
+            let askedSystem = null;
+            if (/native/.test(lower)) askedSystem = 'native';
+            else if (/sino/.test(lower)) askedSystem = 'sino';
+
+            return { sino, native, askedSystem };
         }
 
         /* =========================================================
@@ -4100,7 +4134,7 @@
         /* =========================================================
            DRAW & TRACE (free-hand canvas practice, not auto-graded)
            ========================================================= */
-        let drawState = { index: 0, guideOn: true, drawing: false, ctx: null };
+        let drawState = { index: 0, guideOn: true, drawing: false, ctx: null, hasDrawn: false };
 
         function openDrawTrace() {
             showScreen('draw');
@@ -4144,6 +4178,10 @@
             const start = (e) => {
                 e.preventDefault();
                 drawState.drawing = true;
+                if (!drawState.hasDrawn) {
+                    drawState.hasDrawn = true;
+                    document.getElementById('drawQuizBtn').style.display = 'block';
+                }
                 const p = getPos(e);
                 drawState.ctx.beginPath();
                 drawState.ctx.moveTo(p.x, p.y);
@@ -4165,11 +4203,22 @@
             canvas.ontouchmove = move;
             canvas.ontouchend = end;
         }
+        function currentDrawInfo() {
+            const s = STROKE_ORDER[drawState.index];
+            const info = ALL_HANGUL_CHARS.find(h => h.ch === s.ch);
+            return { s, info };
+        }
         function loadDrawChar(idx) {
             drawState.index = idx;
-            const s = STROKE_ORDER[idx];
+            drawState.hasDrawn = false;
+            const { s, info } = currentDrawInfo();
             document.getElementById('drawGuideChar').textContent = s.ch;
+            document.getElementById('drawMeaning').innerHTML = info
+                ? `${s.ch} = "${info.rom}" <small>${info.hint || ''}</small>`
+                : s.ch;
             document.getElementById('drawStrokeTip').innerHTML = s.strokes.map((step, i) => `<b>${i + 1}.</b> ${step}`).join('<br>');
+            document.getElementById('drawQuizBtn').style.display = 'none';
+            document.getElementById('drawQuizArea').innerHTML = '';
             clearDrawCanvas();
             renderDrawPicker();
         }
@@ -4177,14 +4226,44 @@
             const canvas = document.getElementById('drawCanvas');
             if (drawState.ctx) drawState.ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
+        function speakDrawChar() {
+            const { info, s } = currentDrawInfo();
+            speakKorean(info && info.sample ? info.sample : s.ch);
+        }
         function toggleDrawGuide() {
             drawState.guideOn = !drawState.guideOn;
             document.getElementById('drawGuideChar').style.visibility = drawState.guideOn ? 'visible' : 'hidden';
-            document.getElementById('drawGuideToggle').textContent = drawState.guideOn ? '👁️ Hide guide' : '👁️ Show guide';
+            document.getElementById('drawGuideToggle').textContent = drawState.guideOn ? '👁️ Hide' : '👁️ Show';
         }
         function nextDrawChar() {
             const next = (drawState.index + 1) % STROKE_ORDER.length;
             loadDrawChar(next);
+        }
+        function quizDrawChar() {
+            const { s, info } = currentDrawInfo();
+            if (!info) return;
+            const options = buildOptions(ALL_HANGUL_CHARS, info, 'rom');
+            const area = document.getElementById('drawQuizArea');
+            area.innerHTML = `<div class="exercise-card" style="margin-top:14px;">
+    <div class="ex-prompt">Quick quiz — what sound is this?</div>
+    <div class="ex-main">${s.ch}</div>
+    <div class="choices" id="drawQuizChoiceWrap"></div>
+  </div>`;
+            const wrap = document.getElementById('drawQuizChoiceWrap');
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'choice';
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    const correct = opt === info.rom;
+                    [...wrap.children].forEach(c => c.disabled = true);
+                    btn.classList.add(correct ? 'correct' : 'wrong');
+                    if (!correct) {
+                        [...wrap.children].find(c => c.textContent === info.rom).classList.add('correct');
+                    }
+                };
+                wrap.appendChild(btn);
+            });
         }
 
         /* =========================================================
@@ -5061,7 +5140,7 @@
                     body: JSON.stringify({
                         model: "llama-3.3-70b-versatile",
                         messages: [
-                            { role: "system", content: "You are Han, a warm, encouraging Korean-language tutor inside a learning app called Hello Hangul. You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Korean and English together — give the Korean phrase, its romanization, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Korean word, phrase, grammar point, or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly." },
+                            { role: "system", content: "You are Han, a warm, encouraging Korean-language tutor inside a learning app called Hello Hangul. You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Korean and English together — give the Korean phrase, its romanization, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Korean word, phrase, grammar point, or cultural topic, not just app mechanics. When asked about a number, remember Korean has two number systems (Sino-Korean, used for money/dates/phone numbers/math, and Native Korean, used for counting objects/age, which only goes up to 99) — explain both systems for that number when the learner doesn't specify one. Keep answers short (2-5 sentences), warm, and beginner-friendly." },
                             { role: "user", content: text }
                         ]
                     })
@@ -5078,12 +5157,27 @@
         function ruleBasedReply(text) {
             const lower = text.toLowerCase();
 
-            const numberWord = findNumberMatch(text);
-            if (numberWord) {
-                const isNative = numberWord.en.includes('(native)');
-                const system = isNative ? 'Native Korean' : 'Sino-Korean';
-                const usage = isNative ? "used for counting objects, people, and age" : "used for money, phone numbers, dates, math, and minutes";
-                return `${numberWord.kr} (${numberWord.rom}) is how you say that number in ${system} — ${usage}. Tap it in the Number Chart (under More) to hear it out loud!`;
+            const numMatch = findNumberMatch(text);
+            if (numMatch) {
+                const { sino, native, askedSystem } = numMatch;
+                const sinoUsage = "used for money, phone numbers, dates, math, and minutes";
+                const nativeUsage = "used for counting objects, people, and your age";
+
+                if (askedSystem === 'native' && native) {
+                    return `${native.kr} (${native.rom}) is the Native Korean way to say that number — ${nativeUsage}. Tap it in the Number Chart (under More) to hear it!`;
+                }
+                if (askedSystem === 'sino' && sino) {
+                    return `${sino.kr} (${sino.rom}) is the Sino-Korean way to say that number — ${sinoUsage}. Tap it in the Number Chart (under More) to hear it!`;
+                }
+                if (sino && native) {
+                    return `That number has two forms in Korean:\n🔹 Sino-Korean: ${sino.kr} (${sino.rom}) — ${sinoUsage}\n🔹 Native Korean: ${native.kr} (${native.rom}) — ${nativeUsage}\nTap either one in the Number Chart (under More) to hear them!`;
+                }
+                if (sino) {
+                    return `${sino.kr} (${sino.rom}) is how you say that number in Sino-Korean — ${sinoUsage}. Korean doesn't have a native-Korean word for numbers this large, so Sino-Korean is the only option here.`;
+                }
+                if (native) {
+                    return `${native.kr} (${native.rom}) is how you say that number in Native Korean — ${nativeUsage}.`;
+                }
             }
 
             const hit = CHAT_TOPICS.find(t => t.k.some(k => lower.includes(k)));
