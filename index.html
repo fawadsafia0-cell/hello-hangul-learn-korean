@@ -285,6 +285,100 @@
             gap: 8px;
         }
 
+        /* ---- Draw & Trace ---- */
+        .draw-picker {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 4px 0 10px;
+        }
+
+        .draw-pick-cell {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--card);
+            border: 2px solid var(--line);
+            font-family: 'Baloo 2', cursive;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+        }
+
+        .draw-pick-cell.active {
+            border-color: var(--primary);
+            background: #F0E9FB;
+            color: var(--primary-dark);
+        }
+
+        .draw-stage {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .draw-canvas-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1/1;
+            max-width: 320px;
+            margin: 0 auto;
+            border-radius: 16px;
+            background: #FAF7FE;
+            border: 2px dashed var(--line);
+            overflow: hidden;
+        }
+
+        .draw-guide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Baloo 2', cursive;
+            font-size: min(55vw, 220px);
+            color: var(--line);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .draw-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+            cursor: crosshair;
+        }
+
+        .draw-stroke-tip {
+            font-size: 12.5px;
+            color: var(--text-soft);
+            text-align: center;
+            margin-top: 12px;
+            min-height: 34px;
+        }
+
+        .draw-controls {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .draw-btn {
+            flex: 1;
+            background: #F3ECFB;
+            color: var(--primary-dark);
+            border-radius: 12px;
+            padding: 11px 6px;
+            font-weight: 800;
+            font-size: 12.5px;
+        }
+
         .hangul-cell {
             background: var(--card);
             border-radius: 14px;
@@ -2107,6 +2201,35 @@
                 <div class="chart-link-text"><b>Grammar & Particles</b><span>Particles, verb conjugation,
                         honorifics</span></div>
                 <div class="chart-link-arrow">›</div>
+            </div>
+            <div class="chart-link-card" onclick="openDrawTrace()">
+                <div class="chart-link-ic">✍️</div>
+                <div class="chart-link-text"><b>Draw & Trace</b><span>Practice writing Hangul by hand</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
+        </div>
+
+        <!-- DRAW & TRACE -->
+        <div class="screen" id="screen-draw">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div style="flex:1;"></div>
+            </div>
+            <div class="section-title" style="margin-top:0;">✍️ Draw &amp; Trace</div>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Pick a letter, then trace it on the
+                canvas. This is free-hand practice for muscle memory — not auto-graded.</p>
+            <div class="draw-picker" id="drawPicker"></div>
+            <div class="draw-stage">
+                <div class="draw-canvas-wrap">
+                    <div class="draw-guide" id="drawGuideChar">ㄱ</div>
+                    <canvas id="drawCanvas" class="draw-canvas"></canvas>
+                </div>
+                <div class="draw-stroke-tip" id="drawStrokeTip"></div>
+                <div class="draw-controls">
+                    <button class="draw-btn" onclick="clearDrawCanvas()">🧹 Clear</button>
+                    <button class="draw-btn" onclick="toggleDrawGuide()" id="drawGuideToggle">👁️ Hide guide</button>
+                    <button class="draw-btn" onclick="nextDrawChar()">Next letter →</button>
+                </div>
             </div>
         </div>
 
@@ -3972,6 +4095,96 @@
       ${s.strokes.map((step, i) => `<li>${step}</li>`).join('')}
     </ol>
   </div>`;
+        }
+
+        /* =========================================================
+           DRAW & TRACE (free-hand canvas practice, not auto-graded)
+           ========================================================= */
+        let drawState = { index: 0, guideOn: true, drawing: false, ctx: null };
+
+        function openDrawTrace() {
+            showScreen('draw');
+            renderDrawPicker();
+            setupDrawCanvas();
+            loadDrawChar(drawState.index);
+        }
+        function renderDrawPicker() {
+            const wrap = document.getElementById('drawPicker');
+            wrap.innerHTML = '';
+            STROKE_ORDER.forEach((s, idx) => {
+                const cell = document.createElement('button');
+                cell.className = 'draw-pick-cell' + (idx === drawState.index ? ' active' : '');
+                cell.textContent = s.ch;
+                cell.onclick = () => loadDrawChar(idx);
+                wrap.appendChild(cell);
+            });
+        }
+        function setupDrawCanvas() {
+            const canvas = document.getElementById('drawCanvas');
+            const wrap = canvas.parentElement;
+            const resize = () => {
+                const rect = wrap.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+                const ctx = canvas.getContext('2d');
+                ctx.lineWidth = 10;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.strokeStyle = '#6A4FB0';
+                drawState.ctx = ctx;
+            };
+            resize();
+            window.addEventListener('resize', resize);
+
+            const getPos = (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const point = e.touches ? e.touches[0] : e;
+                return { x: point.clientX - rect.left, y: point.clientY - rect.top };
+            };
+            const start = (e) => {
+                e.preventDefault();
+                drawState.drawing = true;
+                const p = getPos(e);
+                drawState.ctx.beginPath();
+                drawState.ctx.moveTo(p.x, p.y);
+            };
+            const move = (e) => {
+                if (!drawState.drawing) return;
+                e.preventDefault();
+                const p = getPos(e);
+                drawState.ctx.lineTo(p.x, p.y);
+                drawState.ctx.stroke();
+            };
+            const end = () => { drawState.drawing = false; };
+
+            canvas.onmousedown = start;
+            canvas.onmousemove = move;
+            canvas.onmouseup = end;
+            canvas.onmouseleave = end;
+            canvas.ontouchstart = start;
+            canvas.ontouchmove = move;
+            canvas.ontouchend = end;
+        }
+        function loadDrawChar(idx) {
+            drawState.index = idx;
+            const s = STROKE_ORDER[idx];
+            document.getElementById('drawGuideChar').textContent = s.ch;
+            document.getElementById('drawStrokeTip').innerHTML = s.strokes.map((step, i) => `<b>${i + 1}.</b> ${step}`).join('<br>');
+            clearDrawCanvas();
+            renderDrawPicker();
+        }
+        function clearDrawCanvas() {
+            const canvas = document.getElementById('drawCanvas');
+            if (drawState.ctx) drawState.ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+        function toggleDrawGuide() {
+            drawState.guideOn = !drawState.guideOn;
+            document.getElementById('drawGuideChar').style.visibility = drawState.guideOn ? 'visible' : 'hidden';
+            document.getElementById('drawGuideToggle').textContent = drawState.guideOn ? '👁️ Hide guide' : '👁️ Show guide';
+        }
+        function nextDrawChar() {
+            const next = (drawState.index + 1) % STROKE_ORDER.length;
+            loadDrawChar(next);
         }
 
         /* =========================================================
