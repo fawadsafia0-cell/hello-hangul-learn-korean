@@ -1825,7 +1825,7 @@
                         questions</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="videocall-link-card ko-only" id="videocallCardHome" onclick="openVideoCall()">
+            <div class="videocall-link-card" id="videocallCardHome" onclick="openVideoCall()">
                 <img class="videocall-link-avatar" id="videocallLinkAvatarHome" src="" alt="Han">
                 <div class="chart-link-text"><b>Video call with Han</b><span>Practice live — Han reacts to your
                         answers</span></div>
@@ -1994,9 +1994,9 @@
                 <button class="exit-btn" onclick="goHome()">✕</button>
                 <div style="flex:1;"></div>
             </div>
-            <div class="section-title" style="margin-top:0;">🔤 Hangul Chart</div>
-            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Tap any letter to hear it. Learn all 40
-                and try the quiz below.</p>
+            <div class="section-title" style="margin-top:0;" id="alphabetChartTitle">🔤 Hangul Chart</div>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;" id="alphabetChartSub">Tap any letter to
+                hear it. Learn all 40 and try the quiz below.</p>
             <div id="hangulChartWrap"></div>
             <button class="primary-btn" style="background:linear-gradient(135deg,#FFC9DE,#B7A4E0);margin-top:8px;"
                 onclick="startHangulQuiz()">📝 Take the Hangul Quiz</button>
@@ -2010,7 +2010,7 @@
                 <button class="exit-btn" onclick="goHome()">✕</button>
                 <div style="flex:1;"></div>
             </div>
-            <div class="section-title" style="margin-top:0;">📖 Grammar & Particles</div>
+            <div class="section-title" style="margin-top:0;" id="grammarScreenTitle">📖 Grammar & Particles</div>
             <div class="tier-row" id="grammarTabRow"></div>
             <div id="grammarContentWrap"></div>
         </div>
@@ -2062,9 +2062,9 @@
                 <button class="exit-btn" onclick="goHome()">✕</button>
                 <div style="flex:1;"></div>
             </div>
-            <div class="section-title" style="margin-top:0;">🔢 Number Chart</div>
-            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Korean has two number systems. Tap any
-                number to hear it, then try the quiz.</p>
+            <div class="section-title" style="margin-top:0;" id="numberChartTitle">🔢 Number Chart</div>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;" id="numberChartSub">Korean has two number
+                systems. Tap any number to hear it, then try the quiz.</p>
             <div id="numberChartWrap"></div>
             <button class="primary-btn" style="background:linear-gradient(135deg,#A8E6CF,#B7A4E0);margin-top:8px;"
                 onclick="startNumberQuiz()">📝 Take the Number Quiz</button>
@@ -2241,10 +2241,10 @@
             <div class="section-title" style="margin-top:6px;">🧭 More</div>
             <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Quick access to charts, review, and
                 practice tools.</p>
-            <div class="chart-link-card ko-only" id="topikCard" onclick="openTopik()">
+            <div class="chart-link-card" id="topikCard" onclick="openTopik()">
                 <div class="chart-link-ic">🏆</div>
-                <div class="chart-link-text"><b>TOPIK Practice</b><span>Official-style proficiency test questions</span>
-                </div>
+                <div class="chart-link-text"><b id="topikCardTitle">TOPIK Practice</b><span
+                        id="topikCardSub">Official-style proficiency test questions</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
             <div class="chart-link-card ko-only" id="moreReviewCard" onclick="openReview()"
@@ -2254,25 +2254,28 @@
                         review</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="chart-link-card ko-only" id="hangulChartCard" onclick="openHangulChart()">
+            <div class="chart-link-card" id="hangulChartCard" onclick="openHangulChart()">
                 <div class="chart-link-ic">🔤</div>
-                <div class="chart-link-text"><b>Hangul Chart</b><span>All 40 letters + a quick quiz</span></div>
+                <div class="chart-link-text"><b id="alphabetCardTitle">Hangul Chart</b><span id="alphabetCardSub">All 40
+                        letters + a quick quiz</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="chart-link-card ko-only" id="numberChartCard" onclick="openNumberChart()">
+            <div class="chart-link-card" id="numberChartCard" onclick="openNumberChart()">
                 <div class="chart-link-ic">🔢</div>
-                <div class="chart-link-text"><b>Number Chart</b><span>Both number systems + a quick quiz</span></div>
+                <div class="chart-link-text"><b>Number Chart</b><span id="numberCardSub">Both number systems + a quick
+                        quiz</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="chart-link-card ko-only" id="grammarCard" onclick="openGrammar()">
+            <div class="chart-link-card" id="grammarCard" onclick="openGrammar()">
                 <div class="chart-link-ic">📖</div>
-                <div class="chart-link-text"><b>Grammar & Particles</b><span>Particles, verb conjugation,
-                        honorifics</span></div>
+                <div class="chart-link-text"><b id="grammarCardTitle">Grammar & Particles</b><span
+                        id="grammarCardSub">Particles, verb conjugation, honorifics</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="chart-link-card ko-only" id="drawTraceCard" onclick="openDrawTrace()">
+            <div class="chart-link-card" id="drawTraceCard" onclick="openDrawTrace()">
                 <div class="chart-link-ic">✍️</div>
-                <div class="chart-link-text"><b>Draw & Trace</b><span>Practice writing Hangul by hand</span></div>
+                <div class="chart-link-text"><b>Draw & Trace</b><span id="drawTraceCardSub">Practice writing Hangul by
+                        hand</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
         </div>
@@ -3256,6 +3259,34 @@
         ];
         const ALL_HANGUL_CHARS = HANGUL_CHART.flatMap(s => s.chars);
 
+        const SPANISH_ALPHABET = [
+            {
+                title: "Vowels", chars: [
+                    { ch: "a", rom: "ah", sample: "casa", hint: "like 'a' in father" }, { ch: "e", rom: "eh", sample: "mesa", hint: "like 'e' in bed" },
+                    { ch: "i", rom: "ee", sample: "sí", hint: "like 'ee' in see" }, { ch: "o", rom: "oh", sample: "amor", hint: "like 'o' in go" },
+                    { ch: "u", rom: "oo", sample: "tú", hint: "like 'oo' in food" }]
+            },
+            {
+                title: "Consonants (regular sounds)", chars: [
+                    { ch: "b", rom: "beh", sample: "bueno", hint: "like 'b' in boy" }, { ch: "c", rom: "seh", sample: "casa", hint: "like 'k' before a/o/u, 's' before e/i" },
+                    { ch: "d", rom: "deh", sample: "día", hint: "like 'd' in dog" }, { ch: "f", rom: "EH-feh", sample: "familia", hint: "like 'f' in fun" },
+                    { ch: "g", rom: "heh", sample: "gato", hint: "like 'g' in go before a/o/u, 'h' before e/i" }, { ch: "l", rom: "EH-leh", sample: "luna", hint: "like 'l' in law" },
+                    { ch: "m", rom: "EH-meh", sample: "mano", hint: "like 'm' in mom" }, { ch: "n", rom: "EH-neh", sample: "noche", hint: "like 'n' in no" },
+                    { ch: "p", rom: "peh", sample: "perro", hint: "like 'p' in pie" }, { ch: "s", rom: "EH-seh", sample: "sol", hint: "like 's' in sun" },
+                    { ch: "t", rom: "teh", sample: "tres", hint: "like 't' in top" }, { ch: "v", rom: "OO-veh", sample: "vaca", hint: "sounds like Spanish 'b'" }]
+            },
+            {
+                title: "Special Spanish letters", chars: [
+                    { ch: "ñ", rom: "EH-nyeh", sample: "año", hint: "like 'ny' in canyon — unique to Spanish" }, { ch: "ll", rom: "EH-yeh", sample: "llamar", hint: "like 'y' in yes" },
+                    { ch: "rr", rom: "EH-rreh", sample: "perro", hint: "a strong rolled 'r'" }, { ch: "j", rom: "HOH-tah", sample: "jugo", hint: "like 'h' in hat, from the throat" },
+                    { ch: "h", rom: "AH-cheh", sample: "hola", hint: "always silent in Spanish" }, { ch: "z", rom: "SEH-tah", sample: "zapato", hint: "like 's' in most of Latin America" },
+                    { ch: "ch", rom: "cheh", sample: "chico", hint: "like 'ch' in chip" }, { ch: "x", rom: "EH-kees", sample: "examen", hint: "usually like 'ks'" },
+                    { ch: "y", rom: "yeh", sample: "yo", hint: "like 'y' in yes, or 'ee' when alone" }, { ch: "q", rom: "koo", sample: "queso", hint: "like 'k', always followed by 'ue' or 'ui'" },
+                    { ch: "k", rom: "kah", sample: "kilo", hint: "like 'k', rare in native Spanish words" }, { ch: "w", rom: "OO-veh DOH-bleh", sample: "web", hint: "rare, only in loanwords" }]
+            },
+        ];
+        const ALL_SPANISH_ALPHABET = SPANISH_ALPHABET.flatMap(s => s.chars);
+
         const NUMBER_CHART = [
             {
                 title: "Sino-Korean 0–10 (한자어 숫자)", note: "Used for money, phone numbers, dates, math, and minutes.", chars: [
@@ -3289,6 +3320,27 @@
             },
         ];
         const ALL_NUMBER_ITEMS = NUMBER_CHART.flatMap(s => s.chars.map(c => ({ kr: c.ch, en: c.en, rom: c.rom })));
+
+        const SPANISH_NUMBER_CHART = [
+            {
+                title: "0–10", note: "Spanish has just one number system — much simpler than Korean's two!", chars: [
+                    { ch: "cero", rom: "0 · SEH-roh", en: "0" }, { ch: "uno", rom: "1 · OO-noh", en: "1" }, { ch: "dos", rom: "2 · dohs", en: "2" },
+                    { ch: "tres", rom: "3 · trehs", en: "3" }, { ch: "cuatro", rom: "4 · KWAH-troh", en: "4" }, { ch: "cinco", rom: "5 · SEEN-koh", en: "5" },
+                    { ch: "seis", rom: "6 · SAY-ees", en: "6" }, { ch: "siete", rom: "7 · see-EH-teh", en: "7" }, { ch: "ocho", rom: "8 · OH-choh", en: "8" },
+                    { ch: "nueve", rom: "9 · noo-EH-veh", en: "9" }, { ch: "diez", rom: "10 · dee-EHS", en: "10" }]
+            },
+            {
+                title: "Tens", note: "Formed with -enta (mostly). Example: cuarenta = 40.", chars: [
+                    { ch: "veinte", rom: "20 · VAYN-teh", en: "20" }, { ch: "treinta", rom: "30 · TRAYN-tah", en: "30" }, { ch: "cuarenta", rom: "40 · kwah-REN-tah", en: "40" },
+                    { ch: "cincuenta", rom: "50 · seen-KWEN-tah", en: "50" }, { ch: "sesenta", rom: "60 · seh-SEN-tah", en: "60" }, { ch: "setenta", rom: "70 · seh-TEN-tah", en: "70" },
+                    { ch: "ochenta", rom: "80 · oh-CHEN-tah", en: "80" }, { ch: "noventa", rom: "90 · noh-VEN-tah", en: "90" }]
+            },
+            {
+                title: "Big Units", note: "Everything above 100 builds from these + smaller numbers.", chars: [
+                    { ch: "cien", rom: "100 · see-EN", en: "100" }, { ch: "mil", rom: "1,000 · meel", en: "1,000" }, { ch: "millón", rom: "1,000,000 · mee-YOHN", en: "1,000,000" }]
+            },
+        ];
+        const ALL_SPANISH_NUMBERS = SPANISH_NUMBER_CHART.flatMap(s => s.chars.map(c => ({ kr: c.ch, en: c.en, rom: c.rom })));
 
         const CHAT_TOPICS = [
             { k: ["안녕하세요", "안녕", "hello", "hi ", "hi,", "hey"], a: "안녕하세요! (annyeonghaseyo) means 'hello' — the 하세요 part is a polite verb ending you'll see A LOT. With close friends, you can just say 안녕 (annyeong) instead. 반가워요! (I'm glad to meet you!)" },
@@ -3430,6 +3482,26 @@
             if (kdramaNav) kdramaNav.classList.toggle('lang-hidden', !isKorean);
             const tutorNote = document.getElementById('tutorLangNote');
             if (tutorNote) tutorNote.style.display = isKorean ? 'none' : 'block';
+
+            const topikTitle = document.getElementById('topikCardTitle');
+            if (topikTitle) {
+                topikTitle.textContent = isKorean ? 'TOPIK Practice' : 'DELE Practice';
+                document.getElementById('topikCardSub').textContent = isKorean ? 'Official-style proficiency test questions' : 'Spanish proficiency-style test questions';
+            }
+            const alphabetTitle = document.getElementById('alphabetCardTitle');
+            if (alphabetTitle) {
+                alphabetTitle.textContent = isKorean ? 'Hangul Chart' : 'Spanish Alphabet';
+                document.getElementById('alphabetCardSub').textContent = isKorean ? 'All 40 letters + a quick quiz' : 'All 27 letters + a quick quiz';
+            }
+            const numberSub = document.getElementById('numberCardSub');
+            if (numberSub) numberSub.textContent = isKorean ? 'Both number systems + a quick quiz' : 'Numbers 0–1,000,000 + a quick quiz';
+            const grammarTitle = document.getElementById('grammarCardTitle');
+            if (grammarTitle) {
+                grammarTitle.textContent = isKorean ? 'Grammar & Particles' : 'Verb Conjugation';
+                document.getElementById('grammarCardSub').textContent = isKorean ? 'Particles, verb conjugation, honorifics' : 'Present, past, and future tense drills';
+            }
+            const drawSub = document.getElementById('drawTraceCardSub');
+            if (drawSub) drawSub.textContent = isKorean ? 'Practice writing Hangul by hand' : 'Practice writing Spanish letters by hand';
         }
         function activeTiers() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
@@ -3932,13 +4004,21 @@
 
         function openHangulChart() {
             showScreen('hangul');
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            document.getElementById('alphabetChartTitle').textContent = lang === 'es' ? '🔤 Spanish Alphabet' : '🔤 Hangul Chart';
+            document.getElementById('alphabetChartSub').textContent = lang === 'es'
+                ? 'Tap any letter to hear it. Learn all 27 letters and try the quiz below.'
+                : 'Tap any letter to hear it. Learn all 40 and try the quiz below.';
             renderHangulChart();
         }
         function renderHangulChart() {
             const wrap = document.getElementById('hangulChartWrap');
-            if (wrap.dataset.built) return;
-            wrap.dataset.built = '1';
-            HANGUL_CHART.forEach(section => {
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            if (wrap.dataset.built === lang) return;
+            wrap.dataset.built = lang;
+            wrap.innerHTML = '';
+            const chart = lang === 'es' ? SPANISH_ALPHABET : HANGUL_CHART;
+            chart.forEach(section => {
                 const sec = document.createElement('div');
                 sec.className = 'hangul-section';
                 sec.innerHTML = `<h3>${section.title}</h3><div class="hangul-grid"></div>`;
@@ -3947,26 +4027,39 @@
                     const cell = document.createElement('button');
                     cell.className = 'hangul-cell';
                     cell.innerHTML = `<span class="h-ch">${c.ch}</span><span class="h-rom">${c.rom}</span><span class="h-hint">${c.hint}</span>`;
-                    cell.onclick = () => speakKorean(c.sample || c.ch);
+                    cell.onclick = () => speakLearning(c.sample || c.ch);
                     grid.appendChild(cell);
                 });
                 wrap.appendChild(sec);
             });
         }
         function startHangulQuiz() {
-            lastCompletedLesson = { title: "Hangul Chart", words: ALL_HANGUL_CHARS.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            if (lang === 'es') {
+                lastCompletedLesson = { title: "Spanish Alphabet", words: ALL_SPANISH_ALPHABET.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
+            } else {
+                lastCompletedLesson = { title: "Hangul Chart", words: ALL_HANGUL_CHARS.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
+            }
             startQuiz();
         }
 
         function openNumberChart() {
             showScreen('numbers');
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            document.getElementById('numberChartTitle').textContent = lang === 'es' ? '🔢 Number Chart' : '🔢 Number Chart';
+            document.getElementById('numberChartSub').textContent = lang === 'es'
+                ? 'Spanish uses one number system — tap any number to hear it, then try the quiz.'
+                : 'Korean has two number systems. Tap any number to hear it, then try the quiz.';
             renderNumberChart();
         }
         function renderNumberChart() {
             const wrap = document.getElementById('numberChartWrap');
-            if (wrap.dataset.built) return;
-            wrap.dataset.built = '1';
-            NUMBER_CHART.forEach(section => {
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            if (wrap.dataset.built === lang) return;
+            wrap.dataset.built = lang;
+            wrap.innerHTML = '';
+            const chart = lang === 'es' ? SPANISH_NUMBER_CHART : NUMBER_CHART;
+            chart.forEach(section => {
                 const sec = document.createElement('div');
                 sec.className = 'hangul-section';
                 sec.innerHTML = `<h3>${section.title}</h3><p class="number-note">${section.note}</p><div class="hangul-grid"></div>`;
@@ -3975,14 +4068,19 @@
                     const cell = document.createElement('button');
                     cell.className = 'hangul-cell';
                     cell.innerHTML = `<span class="h-ch" style="font-size:20px;">${c.ch}</span><span class="h-rom">${c.rom}</span>`;
-                    cell.onclick = () => speakKorean(c.ch);
+                    cell.onclick = () => speakLearning(c.ch);
                     grid.appendChild(cell);
                 });
                 wrap.appendChild(sec);
             });
         }
         function startNumberQuiz() {
-            lastCompletedLesson = { title: "Number Chart", words: ALL_NUMBER_ITEMS };
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            if (lang === 'es') {
+                lastCompletedLesson = { title: "Spanish Numbers", words: ALL_SPANISH_NUMBERS };
+            } else {
+                lastCompletedLesson = { title: "Number Chart", words: ALL_NUMBER_ITEMS };
+            }
             startQuiz();
         }
 
@@ -4247,18 +4345,25 @@
            ========================================================= */
         let grammarTab = 'particles';
         function openGrammar() {
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            if (lang === 'es') grammarTab = 'conjugation';
+            else if (grammarTab === 'conjugation' && !VERB_CONJUGATIONS.length) grammarTab = 'particles';
+            document.getElementById('grammarScreenTitle').textContent = lang === 'es' ? '📖 Verb Conjugation' : '📖 Grammar & Particles';
             showScreen('grammar');
             renderGrammarTabs();
             renderGrammarContent();
         }
         function renderGrammarTabs() {
             const row = document.getElementById('grammarTabRow');
-            const tabs = [
-                { key: 'particles', label: 'Particles', emoji: '🔤' },
-                { key: 'conjugation', label: 'Verbs', emoji: '🔀' },
-                { key: 'honorific', label: 'Honorific', emoji: '🙏' },
-                { key: 'writing', label: 'Writing', emoji: '✍️' },
-            ];
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            const tabs = lang === 'es'
+                ? [{ key: 'conjugation', label: 'Verbs', emoji: '🔀' }]
+                : [
+                    { key: 'particles', label: 'Particles', emoji: '🔤' },
+                    { key: 'conjugation', label: 'Verbs', emoji: '🔀' },
+                    { key: 'honorific', label: 'Honorific', emoji: '🙏' },
+                    { key: 'writing', label: 'Writing', emoji: '✍️' },
+                ];
             row.innerHTML = '';
             tabs.forEach(t => {
                 const chip = document.createElement('button');
@@ -4271,6 +4376,7 @@
         function renderGrammarContent() {
             const wrap = document.getElementById('grammarContentWrap');
             wrap.innerHTML = '';
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (grammarTab === 'particles') {
                 PARTICLES.forEach(p => {
                     const card = document.createElement('div');
@@ -4285,7 +4391,8 @@
                     wrap.appendChild(card);
                 });
             } else if (grammarTab === 'conjugation') {
-                VERB_CONJUGATIONS.forEach(v => {
+                const verbs = lang === 'es' ? VERB_CONJUGATIONS_ES : VERB_CONJUGATIONS;
+                verbs.forEach(v => {
                     const card = document.createElement('div');
                     card.className = 'scene-card';
                     card.innerHTML = `<h3 style="font-size:20px;">${v.dict}</h3><small>${v.rom} · ${v.en}</small>
@@ -4341,8 +4448,17 @@
            ========================================================= */
         let drawState = { index: 0, guideOn: true, drawing: false, ctx: null, hasDrawn: false };
 
+        function activeStrokeOrder() {
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            return lang === 'es' ? STROKE_ORDER_ES : STROKE_ORDER;
+        }
+        function activeAlphabetChars() {
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            return lang === 'es' ? ALL_SPANISH_ALPHABET : ALL_HANGUL_CHARS;
+        }
         function openDrawTrace() {
             showScreen('draw');
+            drawState.index = 0;
             renderDrawPicker();
             setupDrawCanvas();
             loadDrawChar(drawState.index);
@@ -4350,7 +4466,7 @@
         function renderDrawPicker() {
             const wrap = document.getElementById('drawPicker');
             wrap.innerHTML = '';
-            STROKE_ORDER.forEach((s, idx) => {
+            activeStrokeOrder().forEach((s, idx) => {
                 const cell = document.createElement('button');
                 cell.className = 'draw-pick-cell' + (idx === drawState.index ? ' active' : '');
                 cell.textContent = s.ch;
@@ -4409,8 +4525,8 @@
             canvas.ontouchend = end;
         }
         function currentDrawInfo() {
-            const s = STROKE_ORDER[drawState.index];
-            const info = ALL_HANGUL_CHARS.find(h => h.ch === s.ch);
+            const s = activeStrokeOrder()[drawState.index];
+            const info = activeAlphabetChars().find(h => h.ch === s.ch);
             return { s, info };
         }
         function loadDrawChar(idx) {
@@ -4433,7 +4549,7 @@
         }
         function speakDrawChar() {
             const { info, s } = currentDrawInfo();
-            speakKorean(info && info.sample ? info.sample : s.ch);
+            speakLearning(info && info.sample ? info.sample : s.ch);
         }
         function toggleDrawGuide() {
             drawState.guideOn = !drawState.guideOn;
@@ -4441,13 +4557,13 @@
             document.getElementById('drawGuideToggle').textContent = drawState.guideOn ? '👁️ Hide' : '👁️ Show';
         }
         function nextDrawChar() {
-            const next = (drawState.index + 1) % STROKE_ORDER.length;
+            const next = (drawState.index + 1) % activeStrokeOrder().length;
             loadDrawChar(next);
         }
         function quizDrawChar() {
             const { s, info } = currentDrawInfo();
             if (!info) return;
-            const options = buildOptions(ALL_HANGUL_CHARS, info, 'rom');
+            const options = buildOptions(activeAlphabetChars(), info, 'rom');
             const area = document.getElementById('drawQuizArea');
             area.innerHTML = `<div class="exercise-card" style="margin-top:14px;">
     <div class="ex-prompt">Quick quiz — what sound is this?</div>
@@ -4550,7 +4666,9 @@
            ========================================================= */
         let topikState = null;
         function openTopik() {
-            topikState = { questions: shuffle(TOPIK_QUESTIONS), index: 0, correct: 0 };
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            const bank = lang === 'es' ? DELE_QUESTIONS : TOPIK_QUESTIONS;
+            topikState = { questions: shuffle(bank), index: 0, correct: 0 };
             showScreen('topik');
             renderTopikQuestion();
         }
@@ -4927,6 +5045,19 @@
             { dict: "만나다", rom: "mannada", en: "to meet", present: "만나요", presentRom: "mannayo", past: "만났어요", pastRom: "mannasseoyo", future: "만날 거예요", futureRom: "mannal geoyeyo" },
         ];
 
+        const VERB_CONJUGATIONS_ES = [
+            { dict: "hablar", rom: "ah-BLAR", en: "to speak", present: "hablo", presentRom: "AH-bloh", past: "hablé", pastRom: "ah-BLEH", future: "voy a hablar", futureRom: "boy ah ah-BLAR" },
+            { dict: "comer", rom: "koh-MEHR", en: "to eat", present: "como", presentRom: "KOH-moh", past: "comí", pastRom: "koh-MEE", future: "voy a comer", futureRom: "boy ah koh-MEHR" },
+            { dict: "vivir", rom: "vee-VEER", en: "to live", present: "vivo", presentRom: "VEE-voh", past: "viví", pastRom: "vee-VEE", future: "voy a vivir", futureRom: "boy ah vee-VEER" },
+            { dict: "tener", rom: "teh-NEHR", en: "to have", present: "tengo", presentRom: "TEN-goh", past: "tuve", pastRom: "TOO-veh", future: "voy a tener", futureRom: "boy ah teh-NEHR" },
+            { dict: "ir", rom: "eer", en: "to go", present: "voy", presentRom: "boy", past: "fui", pastRom: "fwee", future: "voy a ir", futureRom: "boy ah eer" },
+            { dict: "ver", rom: "vehr", en: "to see", present: "veo", presentRom: "VEH-oh", past: "vi", pastRom: "vee", future: "voy a ver", futureRom: "boy ah vehr" },
+            { dict: "hacer", rom: "ah-SEHR", en: "to do / make", present: "hago", presentRom: "AH-goh", past: "hice", pastRom: "EE-seh", future: "voy a hacer", futureRom: "boy ah ah-SEHR" },
+            { dict: "leer", rom: "leh-EHR", en: "to read", present: "leo", presentRom: "LEH-oh", past: "leí", pastRom: "leh-EE", future: "voy a leer", futureRom: "boy ah leh-EHR" },
+            { dict: "dormir", rom: "dohr-MEER", en: "to sleep", present: "duermo", presentRom: "DWEHR-moh", past: "dormí", pastRom: "dohr-MEE", future: "voy a dormir", futureRom: "boy ah dohr-MEER" },
+            { dict: "escribir", rom: "es-kree-BEER", en: "to write", present: "escribo", presentRom: "es-KREE-boh", past: "escribí", pastRom: "es-kree-BEE", future: "voy a escribir", futureRom: "boy ah es-kree-BEER" },
+        ];
+
         /* =========================================================
            GRAMMAR: Honorific vs Casual speech
            ========================================================= */
@@ -5019,6 +5150,21 @@
             { type: "vocab", q: "다음 단어의 반대말을 고르세요: 많다", qEn: "Choose the opposite of '많다' (a lot)", options: ["적다", "크다", "좋다", "빠르다"], answer: "적다" },
         ];
 
+        const DELE_QUESTIONS = [
+            { type: "vocab", q: "Elige la palabra correcta: Todas las mañanas ( ) café.", qEn: "Choose the correct word: Every morning I ___ coffee.", options: ["bebo", "como", "veo", "voy"], answer: "bebo" },
+            { type: "vocab", q: "Elige el antónimo de: grande", qEn: "Choose the opposite of 'grande' (big)", options: ["pequeño", "mucho", "largo", "alto"], answer: "pequeño" },
+            { type: "grammar", q: "Elige el artículo correcto: ( ) casa es muy bonita.", qEn: "Choose the correct article: ___ house is very pretty.", options: ["La", "El", "Los", "Las"], answer: "La" },
+            { type: "grammar", q: "Elige la forma correcta: Yo ( ) español todos los días.", qEn: "Choose the correct form: I ___ Spanish every day.", options: ["hablo", "hablas", "habla", "hablamos"], answer: "hablo" },
+            { type: "grammar", q: "Elige el pasado correcto de 'ir': Ayer yo ( ) al cine.", qEn: "Choose the correct past tense of 'ir' (to go).", options: ["fui", "voy", "iré", "iba"], answer: "fui" },
+            { type: "vocab", q: "Elige la palabra correcta: Hoy hace mucho ( ).", qEn: "Choose the best word for hot weather.", options: ["calor", "frío", "viento", "comida"], answer: "calor" },
+            { type: "grammar", q: "Elige el futuro correcto de 'comer': Mañana ( ) pizza.", qEn: "Choose the correct future of 'comer' (to eat).", options: ["voy a comer", "como", "comí", "comiendo"], answer: "voy a comer" },
+            { type: "reading", q: "'Todos los días leo un libro en la biblioteca.' ¿Qué hace esta persona?", qEn: "According to the sentence, what does this person do?", options: ["Reads books", "Writes books", "Sells books", "Buys books"], answer: "Reads books" },
+            { type: "vocab", q: "Elige la palabra correcta: Lo siento, llego ( ).", qEn: "Choose the best word — 'Sorry, I'm ___.'", options: ["tarde", "temprano", "bien", "mal"], answer: "tarde" },
+            { type: "grammar", q: "Elige la forma correcta: Ella ( ) veinte años.", qEn: "Choose the correct form — 'She is 20 years old.'", options: ["tiene", "tengo", "tienes", "tenemos"], answer: "tiene" },
+            { type: "reading", q: "'El sábado voy a ver una película con mi amigo.' ¿Cuándo verá la película?", qEn: "When will this person watch the movie?", options: ["Today", "Tomorrow", "On Saturday", "Next month"], answer: "On Saturday" },
+            { type: "vocab", q: "Elige el antónimo de: mucho", qEn: "Choose the opposite of 'mucho' (a lot)", options: ["poco", "grande", "bueno", "rápido"], answer: "poco" },
+        ];
+
         /* =========================================================
            STROKE ORDER GUIDE (24 basic letters)
            ========================================================= */
@@ -5047,6 +5193,26 @@
             { ch: "ㅠ", strokes: ["Draw the horizontal line, left to right.", "Draw two short vertical ticks downward."] },
             { ch: "ㅡ", strokes: ["Draw one horizontal line, left to right."] },
             { ch: "ㅣ", strokes: ["Draw one vertical line, top to bottom."] },
+        ];
+
+        const STROKE_ORDER_ES = [
+            { ch: "a", strokes: ["Start with a small circle, then add a short vertical line on the right side."] },
+            { ch: "e", strokes: ["Draw a small horizontal loop, starting from the middle and curving around."] },
+            { ch: "i", strokes: ["Draw a short vertical line, then add a dot above it."] },
+            { ch: "o", strokes: ["Draw one continuous circle, starting at the top."] },
+            { ch: "u", strokes: ["Draw a small 'u' curve, then a short vertical line on the right."] },
+            { ch: "ñ", strokes: ["Draw a lowercase 'n', then add the wavy tilde (~) above it — this mark is unique to Spanish."] },
+            { ch: "b", strokes: ["Draw a vertical line top to bottom, then a loop on the right at the bottom half."] },
+            { ch: "c", strokes: ["Draw a curved line like an open circle, from top to bottom."] },
+            { ch: "d", strokes: ["Draw a circle, then a tall vertical line on the right side."] },
+            { ch: "g", strokes: ["Draw a circle, then a curved tail hanging below the line."] },
+            { ch: "l", strokes: ["Draw one tall vertical line, top to bottom."] },
+            { ch: "m", strokes: ["Draw two connected humps, like two 'n' shapes side by side."] },
+            { ch: "n", strokes: ["Draw a short vertical line, then a hump curving back down."] },
+            { ch: "r", strokes: ["Draw a short vertical line, then a small curve at the top right."] },
+            { ch: "rr", strokes: ["Write two 'r' letters together — this doubled sound is rolled strongly."] },
+            { ch: "t", strokes: ["Draw a vertical line, then cross it with a short horizontal line near the top."] },
+            { ch: "ll", strokes: ["Write two lowercase 'l' letters together — historically treated as one letter in Spanish."] },
         ];
 
 
