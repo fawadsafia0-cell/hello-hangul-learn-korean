@@ -1781,6 +1781,13 @@
                 </div>
                 <div class="hero-tags" id="heroTags"></div>
             </div>
+            <div class="chart-link-card" id="langPickCard" onclick="openLanguagePicker()"
+                style="background:linear-gradient(135deg,#E9F1FF,#F0E9FB);">
+                <div class="chart-link-ic" id="langPickFlag">🇰🇷</div>
+                <div class="chart-link-text"><b id="langPickLabel">Learning: Korean</b><span data-i18n="lang_change">Tap
+                        to choose a different language</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
             <div class="chart-link-card" onclick="openSentenceBuilder()">
                 <div class="chart-link-ic">🧩</div>
                 <div class="chart-link-text"><b>Sentence Builder</b><span>Rebuild real drama sentences word by
@@ -2202,6 +2209,18 @@
 
         <!-- PROFILE -->
         <!-- MORE -->
+        <!-- LANGUAGE PICKER -->
+        <div class="screen" id="screen-language-picker">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div style="flex:1;"></div>
+            </div>
+            <div class="section-title" style="margin-top:0;">🌍 Choose a Language</div>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Korean is fully built out. Other languages
+                are coming soon — we're not going to fake lessons for languages we haven't actually built yet.</p>
+            <div id="languageListWrap" class="unit-path"></div>
+        </div>
+
         <div class="screen" id="screen-more">
             <div class="section-title" style="margin-top:6px;">🧭 More</div>
             <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Quick access to charts, review, and
@@ -3255,6 +3274,7 @@
             if (!state.skillStats) state.skillStats = { meaning: { correct: 0, total: 0 }, match: { correct: 0, total: 0 }, write: { correct: 0, total: 0 }, speak: { correct: 0, total: 0 } };
             if (!state.settings) state.settings = { reminder: false, sound: false };
             if (!state.settings.appLang) state.settings.appLang = 'en';
+            if (!state.settings.learningLang) state.settings.learningLang = 'ko';
             if (!state.completedScenes) state.completedScenes = [];
             if (!state.completedRoleplays) state.completedRoleplays = [];
             if (state.tutorAskDate === undefined) state.tutorAskDate = null;
@@ -5456,42 +5476,42 @@
                 home_subtitle: "Pick up where you left off and keep your streak alive.",
                 home_choose_level: "Choose your level", home_your_path: "Your path",
                 profile_achievements: "Achievements", profile_settings: "Settings",
-                settings_app_language: "App Language", settings_app_language_sub: "Interface language — lesson content stays in English"
+                settings_app_language: "App Language", settings_app_language_sub: "Interface language — lesson content stays in English", lang_change: "Tap to choose a different language"
             },
             es: {
                 nav_home: "Inicio", nav_kdrama: "K-Drama", nav_tutor: "Tutor", nav_pro: "Pro", nav_more: "Más", nav_profile: "Perfil",
                 home_subtitle: "Continúa donde lo dejaste y mantén tu racha activa.",
                 home_choose_level: "Elige tu nivel", home_your_path: "Tu camino",
                 profile_achievements: "Logros", profile_settings: "Configuración",
-                settings_app_language: "Idioma de la app", settings_app_language_sub: "Idioma de la interfaz — el contenido de las lecciones queda en inglés"
+                settings_app_language: "Idioma de la app", settings_app_language_sub: "Idioma de la interfaz — el contenido de las lecciones queda en inglés", lang_change: "Toca para elegir otro idioma"
             },
             fr: {
                 nav_home: "Accueil", nav_kdrama: "K-Drama", nav_tutor: "Tuteur", nav_pro: "Pro", nav_more: "Plus", nav_profile: "Profil",
                 home_subtitle: "Reprenez où vous en étiez et gardez votre série active.",
                 home_choose_level: "Choisissez votre niveau", home_your_path: "Votre parcours",
                 profile_achievements: "Succès", profile_settings: "Paramètres",
-                settings_app_language: "Langue de l'appli", settings_app_language_sub: "Langue de l'interface — le contenu des leçons reste en anglais"
+                settings_app_language: "Langue de l'appli", settings_app_language_sub: "Langue de l'interface — le contenu des leçons reste en anglais", lang_change: "Touchez pour changer de langue"
             },
             pt: {
                 nav_home: "Início", nav_kdrama: "K-Drama", nav_tutor: "Tutor", nav_pro: "Pro", nav_more: "Mais", nav_profile: "Perfil",
                 home_subtitle: "Continue de onde parou e mantenha sua sequência ativa.",
                 home_choose_level: "Escolha seu nível", home_your_path: "Seu caminho",
                 profile_achievements: "Conquistas", profile_settings: "Configurações",
-                settings_app_language: "Idioma do app", settings_app_language_sub: "Idioma da interface — o conteúdo das lições continua em inglês"
+                settings_app_language: "Idioma do app", settings_app_language_sub: "Idioma da interface — o conteúdo das lições continua em inglês", lang_change: "Toque para escolher outro idioma"
             },
             hi: {
                 nav_home: "होम", nav_kdrama: "K-ड्रामा", nav_tutor: "ट्यूटर", nav_pro: "प्रो", nav_more: "और", nav_profile: "प्रोफ़ाइल",
                 home_subtitle: "जहाँ से छोड़ा था वहीं से शुरू करें और अपनी स्ट्रीक बनाए रखें।",
                 home_choose_level: "अपना स्तर चुनें", home_your_path: "आपका पथ",
                 profile_achievements: "उपलब्धियाँ", profile_settings: "सेटिंग्स",
-                settings_app_language: "ऐप की भाषा", settings_app_language_sub: "इंटरफ़ेस की भाषा — पाठ की सामग्री अंग्रेज़ी में ही रहेगी"
+                settings_app_language: "ऐप की भाषा", settings_app_language_sub: "इंटरफ़ेस की भाषा — पाठ की सामग्री अंग्रेज़ी में ही रहेगी", lang_change: "दूसरी भाषा चुनने के लिए टैप करें"
             },
             ur: {
                 nav_home: "ہوم", nav_kdrama: "کے-ڈرامہ", nav_tutor: "ٹیوٹر", nav_pro: "پرو", nav_more: "مزید", nav_profile: "پروفائل",
                 home_subtitle: "جہاں چھوڑا تھا وہیں سے جاری رکھیں اور اپنی اسٹریک برقرار رکھیں۔",
                 home_choose_level: "اپنی سطح منتخب کریں", home_your_path: "آپ کا راستہ",
                 profile_achievements: "کامیابیاں", profile_settings: "ترتیبات",
-                settings_app_language: "ایپ کی زبان", settings_app_language_sub: "انٹرفیس کی زبان — سبق کا مواد انگریزی میں ہی رہے گا"
+                settings_app_language: "ایپ کی زبان", settings_app_language_sub: "انٹرفیس کی زبان — سبق کا مواد انگریزی میں ہی رہے گا", lang_change: "دوسری زبان منتخب کرنے کے لیے تھپتھپائیں"
             },
         };
 
@@ -5510,6 +5530,66 @@
             state.settings.appLang = lang;
             saveState();
             applyLanguage();
+        }
+
+        /* =========================================================
+           LANGUAGE TO LEARN (which language the lessons teach)
+           ========================================================= */
+        const LANGUAGES_TO_LEARN = [
+            { code: 'ko', name: 'Korean', flag: '🇰🇷', available: true },
+            { code: 'ja', name: 'Japanese', flag: '🇯🇵', available: false },
+            { code: 'es', name: 'Spanish', flag: '🇪🇸', available: false },
+            { code: 'fr', name: 'French', flag: '🇫🇷', available: false },
+            { code: 'de', name: 'German', flag: '🇩🇪', available: false },
+            { code: 'zh', name: 'Chinese (Mandarin)', flag: '🇨🇳', available: false },
+            { code: 'it', name: 'Italian', flag: '🇮🇹', available: false },
+            { code: 'pt', name: 'Portuguese', flag: '🇵🇹', available: false },
+            { code: 'ar', name: 'Arabic', flag: '🇸🇦', available: false },
+            { code: 'hi', name: 'Hindi', flag: '🇮🇳', available: false },
+            { code: 'ru', name: 'Russian', flag: '🇷🇺', available: false },
+            { code: 'vi', name: 'Vietnamese', flag: '🇻🇳', available: false },
+            { code: 'tr', name: 'Turkish', flag: '🇹🇷', available: false },
+            { code: 'th', name: 'Thai', flag: '🇹🇭', available: false },
+            { code: 'ur', name: 'Urdu', flag: '🇵🇰', available: false },
+        ];
+
+        function openLanguagePicker() {
+            showScreen('language-picker');
+            renderLanguageList();
+        }
+        function renderLanguageList() {
+            const wrap = document.getElementById('languageListWrap');
+            wrap.innerHTML = '';
+            const current = (state.settings && state.settings.learningLang) || 'ko';
+            LANGUAGES_TO_LEARN.forEach(lang => {
+                const isCurrent = lang.code === current;
+                const card = document.createElement('div');
+                card.className = 'unit-card' + (lang.available ? '' : ' locked');
+                card.innerHTML = `
+      <div class="unit-num" style="background:${lang.available ? '#A8E6CF44' : '#EDE5F5'};font-size:22px;">${lang.available ? lang.flag : '🔒'}</div>
+      <div class="unit-info">
+        <b>${lang.name}${isCurrent ? ' ✓' : ''}</b>
+        <small>${lang.available ? (isCurrent ? 'Currently learning' : 'Available — tap to switch') : 'Coming soon'}</small>
+      </div>`;
+                if (lang.available) {
+                    card.onclick = () => selectLearningLanguage(lang.code);
+                } else {
+                    card.onclick = () => alert(`${lang.name} isn't built yet. We only add a language once we can build it out properly — no fake or placeholder lessons. Stay tuned!`);
+                }
+                wrap.appendChild(card);
+            });
+        }
+        function selectLearningLanguage(code) {
+            state.settings.learningLang = code;
+            saveState();
+            updateLangPickCard();
+            goHome();
+        }
+        function updateLangPickCard() {
+            const code = (state.settings && state.settings.learningLang) || 'ko';
+            const lang = LANGUAGES_TO_LEARN.find(l => l.code === code) || LANGUAGES_TO_LEARN[0];
+            document.getElementById('langPickFlag').textContent = lang.flag;
+            document.getElementById('langPickLabel').textContent = 'Learning: ' + lang.name;
         }
 
 
@@ -5599,6 +5679,7 @@
         renderHome();
         setupPlanSelector();
         applyLanguage();
+        updateLangPickCard();
         document.getElementById('videocallLinkAvatar').src = HAN_HAPPY_SRC;
         document.getElementById('videocallLinkAvatarHome').src = HAN_HAPPY_SRC;
 
