@@ -2421,6 +2421,95 @@
             { key: "fluent", name: "Fluent", emoji: "👑", color: "#B7A4E0", dark: "#6A4FB0" },
         ];
 
+        /* =========================================================
+           SPANISH CONTENT — first language being built after Korean.
+           Beginner tier is real, complete content. Intermediate/Advanced/
+           Fluent are intentionally empty for now (shown honestly as
+           "Coming soon" rather than faked) until built out.
+           ========================================================= */
+        const TIERS_ES = TIERS;
+        const LEVELS_ES = [
+            {
+                tier: "beginner", title: "Spanish Basics", icon: "🇪🇸", words: [
+                    { kr: "hola", rom: "OH-lah", en: "hello" }, { kr: "gracias", rom: "GRAH-see-ahs", en: "thank you" },
+                    { kr: "sí", rom: "see", en: "yes" }, { kr: "no", rom: "noh", en: "no" },
+                    { kr: "nombre", rom: "NOHM-breh", en: "name" }, { kr: "amigo", rom: "ah-MEE-goh", en: "friend" }]
+            },
+            {
+                tier: "beginner", title: "Greetings & Manners", icon: "🙏", words: [
+                    { kr: "adiós", rom: "ah-dee-OHS", en: "goodbye" }, { kr: "lo siento", rom: "loh see-EN-toh", en: "I'm sorry" },
+                    { kr: "disculpe", rom: "dees-KOOL-peh", en: "excuse me" }, { kr: "mucho gusto", rom: "MOO-choh GOOS-toh", en: "nice to meet you" },
+                    { kr: "está bien", rom: "es-TAH bee-EN", en: "it's okay" }, { kr: "por favor", rom: "por fah-VOR", en: "please" }]
+            },
+            {
+                tier: "beginner", title: "Numbers 1-6", icon: "🔢", words: [
+                    { kr: "uno", rom: "OO-noh", en: "one" }, { kr: "dos", rom: "dohs", en: "two" },
+                    { kr: "tres", rom: "trehs", en: "three" }, { kr: "cuatro", rom: "KWAH-troh", en: "four" },
+                    { kr: "cinco", rom: "SEEN-koh", en: "five" }, { kr: "seis", rom: "SAY-ees", en: "six" }]
+            },
+            {
+                tier: "beginner", title: "Days & Time", icon: "🕒", words: [
+                    { kr: "hoy", rom: "oy", en: "today" }, { kr: "mañana", rom: "mah-NYAH-nah", en: "tomorrow" },
+                    { kr: "ayer", rom: "ah-YEHR", en: "yesterday" }, { kr: "ahora", rom: "ah-OH-rah", en: "now" },
+                    { kr: "tiempo", rom: "tee-EM-poh", en: "time" }, { kr: "la mañana", rom: "lah mah-NYAH-nah", en: "morning" }]
+            },
+            {
+                tier: "beginner", title: "Family", icon: "👪", words: [
+                    { kr: "familia", rom: "fah-MEE-lyah", en: "family" }, { kr: "mamá", rom: "mah-MAH", en: "mom" },
+                    { kr: "papá", rom: "pah-PAH", en: "dad" }, { kr: "hermano", rom: "ehr-MAH-noh", en: "brother" },
+                    { kr: "hermana", rom: "ehr-MAH-nah", en: "sister" }, { kr: "abuelo", rom: "ah-BWEH-loh", en: "grandfather" }]
+            },
+            {
+                tier: "beginner", title: "Food & Drink", icon: "🍚", words: [
+                    { kr: "comida", rom: "koh-MEE-dah", en: "food" }, { kr: "agua", rom: "AH-gwah", en: "water" },
+                    { kr: "café", rom: "kah-FEH", en: "coffee" }, { kr: "pan", rom: "pahn", en: "bread" },
+                    { kr: "arroz", rom: "ah-ROHS", en: "rice" }, { kr: "delicioso", rom: "deh-lee-see-OH-soh", en: "delicious" }]
+            },
+            {
+                tier: "beginner", title: "Colors", icon: "🎨", words: [
+                    { kr: "rojo", rom: "ROH-hoh", en: "red" }, { kr: "azul", rom: "ah-SOOL", en: "blue" },
+                    { kr: "amarillo", rom: "ah-mah-REE-yoh", en: "yellow" }, { kr: "verde", rom: "VEHR-deh", en: "green" },
+                    { kr: "negro", rom: "NEH-groh", en: "black" }, { kr: "blanco", rom: "BLAHN-koh", en: "white" }]
+            },
+            {
+                tier: "beginner", title: "Body Parts", icon: "🧍", words: [
+                    { kr: "cabeza", rom: "kah-BEH-sah", en: "head" }, { kr: "mano", rom: "MAH-noh", en: "hand" },
+                    { kr: "ojo", rom: "OH-hoh", en: "eye" }, { kr: "nariz", rom: "nah-REES", en: "nose" },
+                    { kr: "boca", rom: "BOH-kah", en: "mouth" }, { kr: "pierna", rom: "pee-EHR-nah", en: "leg" }]
+            },
+            {
+                tier: "beginner", title: "Animals", icon: "🐾", words: [
+                    { kr: "perro", rom: "PEH-rroh", en: "dog" }, { kr: "gato", rom: "GAH-toh", en: "cat" },
+                    { kr: "pájaro", rom: "PAH-hah-roh", en: "bird" }, { kr: "pez", rom: "pehs", en: "fish" },
+                    { kr: "oso", rom: "OH-soh", en: "bear" }, { kr: "conejo", rom: "koh-NEH-hoh", en: "rabbit" }]
+            },
+            {
+                tier: "beginner", title: "Clothing", icon: "👕", words: [
+                    { kr: "ropa", rom: "ROH-pah", en: "clothes" }, { kr: "zapatos", rom: "sah-PAH-tohs", en: "shoes" },
+                    { kr: "sombrero", rom: "sohm-BREH-roh", en: "hat" }, { kr: "pantalones", rom: "pahn-tah-LOH-nehs", en: "pants" },
+                    { kr: "falda", rom: "FAHL-dah", en: "skirt" }, { kr: "bolso", rom: "BOHL-soh", en: "bag" }]
+            },
+            {
+                tier: "beginner", title: "Weather", icon: "⛅", words: [
+                    { kr: "clima", rom: "KLEE-mah", en: "weather" }, { kr: "lluvia", rom: "YOO-vee-ah", en: "rain" },
+                    { kr: "nieve", rom: "nee-EH-veh", en: "snow" }, { kr: "viento", rom: "vee-EN-toh", en: "wind" },
+                    { kr: "hace calor", rom: "AH-seh kah-LOR", en: "it's hot" }, { kr: "hace frío", rom: "AH-seh FREE-oh", en: "it's cold" }]
+            },
+            {
+                tier: "beginner", title: "House & Rooms", icon: "🏠", words: [
+                    { kr: "casa", rom: "KAH-sah", en: "house" }, { kr: "habitación", rom: "ah-bee-tah-see-OHN", en: "room" },
+                    { kr: "cama", rom: "KAH-mah", en: "bed" }, { kr: "baño", rom: "BAH-nyoh", en: "bathroom" },
+                    { kr: "cocina", rom: "koh-SEE-nah", en: "kitchen" }, { kr: "puerta", rom: "PWEHR-tah", en: "door" }]
+            },
+            {
+                tier: "beginner", title: "School & Objects", icon: "🎒", words: [
+                    { kr: "escuela", rom: "es-KWEH-lah", en: "school" }, { kr: "libro", rom: "LEE-broh", en: "book" },
+                    { kr: "lápiz", rom: "LAH-pees", en: "pencil" }, { kr: "mochila", rom: "moh-CHEE-lah", en: "backpack" },
+                    { kr: "maestro", rom: "mah-EHS-troh", en: "teacher" }, { kr: "estudiante", rom: "es-too-dee-AHN-teh", en: "student" }]
+            },
+        ];
+        LEVELS_ES.forEach((l, i) => { l.id = 1000 + i + 1; });
+
         const LEVELS = [
             /* ---------------- BEGINNER ---------------- */
             {
@@ -3311,12 +3400,27 @@
            ========================================================= */
         let selectedTier = state.pro ? null : null; // set on init below
 
-        function lessonsForTier(tierKey) { return LEVELS.filter(l => l.tier === tierKey); }
+        function activeLangLabel() {
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            return lang === 'es' ? 'Español' : '한국어';
+        }
+        function activeTiers() {
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            return lang === 'es' ? TIERS_ES : TIERS;
+        }
+        function activeLevels() {
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            return lang === 'es' ? LEVELS_ES : LEVELS;
+        }
+
+        function lessonsForTier(tierKey) { return activeLevels().filter(l => l.tier === tierKey); }
 
         function isTierUnlocked(tierIndex) {
             if (state.pro || tierIndex === 0) return true;
-            const prevTier = TIERS[tierIndex - 1];
+            const tiers = activeTiers();
+            const prevTier = tiers[tierIndex - 1];
             const prevLessons = lessonsForTier(prevTier.key);
+            if (prevLessons.length === 0) return false; // previous tier has no content yet — nothing to "complete"
             return prevLessons.every(l => state.completedUnits.includes(l.id));
         }
 
@@ -3327,24 +3431,29 @@
         }
 
         function firstAvailableTierKey() {
-            for (let i = 0; i < TIERS.length; i++) {
-                const p = tierProgress(TIERS[i].key);
-                if (p.done < p.total || i === TIERS.length - 1) return TIERS[i].key;
+            const tiers = activeTiers();
+            for (let i = 0; i < tiers.length; i++) {
+                const p = tierProgress(tiers[i].key);
+                if (p.total === 0) continue; // skip empty "coming soon" tiers when picking a default
+                if (p.done < p.total) return tiers[i].key;
             }
-            return TIERS[0].key;
+            return tiers[0].key;
         }
 
         function renderTierRow() {
             const wrap = document.getElementById('tierRow');
             wrap.innerHTML = '';
-            TIERS.forEach((t, idx) => {
-                const unlocked = isTierUnlocked(idx);
+            const tiers = activeTiers();
+            tiers.forEach((t, idx) => {
                 const prog = tierProgress(t.key);
+                const isEmpty = prog.total === 0;
+                const unlocked = !isEmpty && isTierUnlocked(idx);
                 const chip = document.createElement('button');
                 chip.className = 'tier-chip' + (t.key === selectedTier ? ' active' : '') + (unlocked ? '' : ' tlocked');
-                chip.innerHTML = `<span class="t-emoji">${unlocked ? t.emoji : '🔒'}</span><b>${t.name}</b><small>${prog.done}/${prog.total}</small>`;
+                chip.innerHTML = `<span class="t-emoji">${isEmpty ? '🚧' : (unlocked ? t.emoji : '🔒')}</span><b>${t.name}</b><small>${isEmpty ? 'Coming soon' : prog.done + '/' + prog.total}</small>`;
                 chip.onclick = () => {
-                    if (!unlocked) { alert('Complete ' + TIERS[idx - 1].name + ' to unlock ' + t.name + ' — or go Pro to unlock everything.'); return; }
+                    if (isEmpty) { alert(t.name + ' for this language isn\'t built yet — check back soon!'); return; }
+                    if (!unlocked) { alert('Complete ' + tiers[idx - 1].name + ' to unlock ' + t.name + ' — or go Pro to unlock everything.'); return; }
                     selectedTier = t.key;
                     renderTierRow();
                     renderUnits();
@@ -3356,8 +3465,9 @@
         function renderUnits() {
             const wrap = document.getElementById('unitPath');
             wrap.innerHTML = '';
-            const tierIdx = TIERS.findIndex(t => t.key === selectedTier);
-            const tier = TIERS[tierIdx];
+            const tiers = activeTiers();
+            const tierIdx = tiers.findIndex(t => t.key === selectedTier);
+            const tier = tiers[tierIdx];
             const lessons = lessonsForTier(selectedTier);
             lessons.forEach((l, idx) => {
                 const done = state.completedUnits.includes(l.id);
@@ -3375,8 +3485,12 @@
                 wrap.appendChild(card);
             });
             const hour = new Date().getHours();
-            document.getElementById('homeGreeting').textContent =
-                (hour < 12 ? '좋은 아침이에요 🌤️' : hour < 18 ? '안녕하세요 👋' : '좋은 저녁이에요 🌙');
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            const greetings = {
+                ko: (hour < 12 ? '좋은 아침이에요 🌤️' : hour < 18 ? '안녕하세요 👋' : '좋은 저녁이에요 🌙'),
+                es: (hour < 12 ? '¡Buenos días! 🌤️' : hour < 18 ? '¡Hola! 👋' : '¡Buenas noches! 🌙')
+            };
+            document.getElementById('homeGreeting').textContent = greetings[lang] || greetings.ko;
         }
 
         function renderHome() {
@@ -3483,6 +3597,17 @@
             if (koreanVoice) utter.voice = koreanVoice;
             window.speechSynthesis.speak(utter);
         }
+        const LANG_TTS_CODE = { ko: 'ko-KR', es: 'es-ES' };
+        function speakLearning(text) {
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            if (lang === 'ko') { speakKorean(text); return; }
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = LANG_TTS_CODE[lang] || 'en-US';
+            utter.rate = 0.9;
+            window.speechSynthesis.speak(utter);
+        }
 
         function updateLessonProgress() {
             const teachTotal = lessonState.unit.words.length;
@@ -3504,7 +3629,7 @@
     <div class="ex-prompt">New word ${lessonState.teachIndex + 1} of ${words.length}</div>
     <div class="ex-main">${w.kr}</div>
     <div class="ex-sub">${w.rom}</div>
-    <button class="listen-btn" onclick="speakKorean('${w.kr.replace(/'/g, "\\'")}')">🔊 Listen</button>
+    <button class="listen-btn" onclick="speakLearning('${w.kr.replace(/'/g, "\\'")}')">🔊 Listen</button>
     <div class="teach-meaning">${w.en}</div>
     <button class="primary-btn" onclick="nextTeachStep()">${lessonState.teachIndex === words.length - 1 ? "Let's practice →" : 'Got it →'}</button>
   </div>`;
@@ -3529,7 +3654,7 @@
                 html += `<div class="ex-prompt">Build the Korean for</div>
       <div class="ex-main" style="font-size:24px;">"${step.word.en}"</div>
       <div class="ex-sub">
-        <button class="listen-btn" style="margin:6px auto 0;" onclick="speakKorean('${step.word.kr.replace(/'/g, "\\'")}')">🔊 Hear it</button>
+        <button class="listen-btn" style="margin:6px auto 0;" onclick="speakLearning('${step.word.kr.replace(/'/g, "\\'")}')">🔊 Hear it</button>
       </div>
       <div class="tile-answer" id="tileAnswer"></div>
       <div class="tile-bank" id="tileBank"></div>
@@ -3543,7 +3668,7 @@
       <button class="primary-btn" id="skipSpeak" onclick="handleAnswer(true)" style="background:var(--line);color:var(--text-soft);">Skip (no mic available)</button>`;
             } else if (step.type === 'match') {
                 html += `<div class="ex-prompt">Match the pairs</div>
-      <div class="match-col-labels"><span>English</span><span>한국어</span></div>
+      <div class="match-col-labels"><span>English</span><span>${activeLangLabel()}</span></div>
       <div class="match-grid" id="matchGrid"></div>`;
             }
             html += '</div>';
@@ -3667,7 +3792,7 @@
             }
             const micBtn = document.getElementById('micBtn');
             const recog = new SR();
-            recog.lang = 'ko-KR';
+            recog.lang = LANG_TTS_CODE[(state.settings && state.settings.learningLang) || 'ko'] || 'ko-KR';
             recog.onstart = () => { micBtn.classList.add('listening'); document.getElementById('heardText').textContent = 'Listening...'; };
             recog.onresult = (e) => {
                 const heard = e.results[0][0].transcript;
@@ -5540,7 +5665,7 @@
             { code: 'ja', name: 'Japanese', flag: '🇯🇵', available: false },
             { code: 'zh', name: 'Chinese (Mandarin)', flag: '🇨🇳', available: false },
             { code: 'yue', name: 'Cantonese', flag: '🇭🇰', available: false },
-            { code: 'es', name: 'Spanish', flag: '🇪🇸', available: false },
+            { code: 'es', name: 'Spanish', flag: '🇪🇸', available: true },
             { code: 'fr', name: 'French', flag: '🇫🇷', available: false },
             { code: 'de', name: 'German', flag: '🇩🇪', available: false },
             { code: 'it', name: 'Italian', flag: '🇮🇹', available: false },
@@ -5626,6 +5751,7 @@
         function selectLearningLanguage(code) {
             state.settings.learningLang = code;
             saveState();
+            selectedTier = null;
             updateLangPickCard();
             goHome();
         }
