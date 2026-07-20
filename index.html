@@ -285,6 +285,19 @@
             gap: 8px;
         }
 
+        .lang-select {
+            margin-top: 8px;
+            width: 100%;
+            padding: 9px 10px;
+            border-radius: 10px;
+            border: 2px solid var(--line);
+            background: var(--card);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
         /* ---- Draw & Trace ---- */
         .draw-picker {
             display: flex;
@@ -1764,7 +1777,7 @@
                 <div class="hero-blob"></div>
                 <div class="hero-content" style="padding-right:0;">
                     <h1 id="homeGreeting">안녕하세요 👋</h1>
-                    <p>Pick up where you left off and keep your streak alive.</p>
+                    <p data-i18n="home_subtitle">Pick up where you left off and keep your streak alive.</p>
                 </div>
                 <div class="hero-tags" id="heroTags"></div>
             </div>
@@ -1797,9 +1810,9 @@
                         answers</span></div>
                 <div class="videocall-pro-badge">💎 PRO</div>
             </div>
-            <div class="section-title">Choose your level</div>
+            <div class="section-title" data-i18n="home_choose_level">Choose your level</div>
             <div class="tier-row" id="tierRow"></div>
-            <div class="section-title">Your path</div>
+            <div class="section-title" data-i18n="home_your_path">Your path</div>
             <div class="unit-path" id="unitPath"></div>
         </div>
 
@@ -2302,10 +2315,26 @@
                 <div class="skill-row" id="skillRows"></div>
             </div>
 
-            <div class="section-title">Achievements</div>
+            <div class="section-title" data-i18n="profile_achievements">Achievements</div>
             <div class="badge-grid" id="badgeGrid"></div>
 
-            <div class="section-title">Settings</div>
+            <div class="section-title" data-i18n="profile_settings">Settings</div>
+            <div class="unit-card" style="cursor:default;">
+                <div class="unit-icon" style="background:#F3ECFB;">🌐</div>
+                <div class="unit-info">
+                    <b data-i18n="settings_app_language">App Language</b>
+                    <small data-i18n="settings_app_language_sub">Interface language — lesson content stays in
+                        English</small>
+                    <select id="appLangSelect" class="lang-select" onchange="setAppLanguage(this.value)">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="pt">Português</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="ur">اردو</option>
+                    </select>
+                </div>
+            </div>
             <div class="unit-card" style="cursor:default;">
                 <div class="unit-icon" style="background:#F0E9FB;">🔔</div>
                 <div class="unit-info"><b>Daily reminder</b><small>Browser notification while the app is open</small>
@@ -2339,15 +2368,18 @@
         </div>
 
         <div class="navbar">
-            <button class="navbtn active" data-tab="home" onclick="showScreen('home')"><span
-                    class="ic">🏠</span>Home</button>
-            <button class="navbtn" data-tab="kdrama" onclick="showScreen('kdrama')"><span
-                    class="ic">🎬</span>K-Drama</button>
-            <button class="navbtn" data-tab="chat" onclick="showScreen('chat')"><span class="ic">💬</span>Tutor</button>
-            <button class="navbtn" data-tab="pro" onclick="showScreen('pro')"><span class="ic">💎</span>Pro</button>
-            <button class="navbtn" data-tab="more" onclick="showScreen('more')"><span class="ic">•••</span>More</button>
-            <button class="navbtn" data-tab="profile" onclick="showScreen('profile')"><span
-                    class="ic">👤</span>Profile</button>
+            <button class="navbtn active" data-tab="home" onclick="showScreen('home')"><span class="ic">🏠</span><span
+                    data-i18n="nav_home">Home</span></button>
+            <button class="navbtn" data-tab="kdrama" onclick="showScreen('kdrama')"><span class="ic">🎬</span><span
+                    data-i18n="nav_kdrama">K-Drama</span></button>
+            <button class="navbtn" data-tab="chat" onclick="showScreen('chat')"><span class="ic">💬</span><span
+                    data-i18n="nav_tutor">Tutor</span></button>
+            <button class="navbtn" data-tab="pro" onclick="showScreen('pro')"><span class="ic">💎</span><span
+                    data-i18n="nav_pro">Pro</span></button>
+            <button class="navbtn" data-tab="more" onclick="showScreen('more')"><span class="ic">•••</span><span
+                    data-i18n="nav_more">More</span></button>
+            <button class="navbtn" data-tab="profile" onclick="showScreen('profile')"><span class="ic">👤</span><span
+                    data-i18n="nav_profile">Profile</span></button>
         </div>
     </div>
 
@@ -3222,6 +3254,7 @@
             if (state.correctAnswers === undefined) state.correctAnswers = 0;
             if (!state.skillStats) state.skillStats = { meaning: { correct: 0, total: 0 }, match: { correct: 0, total: 0 }, write: { correct: 0, total: 0 }, speak: { correct: 0, total: 0 } };
             if (!state.settings) state.settings = { reminder: false, sound: false };
+            if (!state.settings.appLang) state.settings.appLang = 'en';
             if (!state.completedScenes) state.completedScenes = [];
             if (!state.completedRoleplays) state.completedRoleplays = [];
             if (state.tutorAskDate === undefined) state.tutorAskDate = null;
@@ -5409,7 +5442,77 @@
 
             document.getElementById('toggleReminder').checked = !!state.settings.reminder;
             document.getElementById('toggleSound').checked = !!state.settings.sound;
+            document.getElementById('appLangSelect').value = state.settings.appLang || 'en';
         }
+        /* =========================================================
+           INTERFACE LANGUAGE (translates app chrome — nav, headers,
+           settings labels. Lesson/vocab content stays in English, since
+           accurately translating 400+ Korean vocab glosses into six
+           languages is a much larger project than the interface itself.)
+           ========================================================= */
+        const LANG_STRINGS = {
+            en: {
+                nav_home: "Home", nav_kdrama: "K-Drama", nav_tutor: "Tutor", nav_pro: "Pro", nav_more: "More", nav_profile: "Profile",
+                home_subtitle: "Pick up where you left off and keep your streak alive.",
+                home_choose_level: "Choose your level", home_your_path: "Your path",
+                profile_achievements: "Achievements", profile_settings: "Settings",
+                settings_app_language: "App Language", settings_app_language_sub: "Interface language — lesson content stays in English"
+            },
+            es: {
+                nav_home: "Inicio", nav_kdrama: "K-Drama", nav_tutor: "Tutor", nav_pro: "Pro", nav_more: "Más", nav_profile: "Perfil",
+                home_subtitle: "Continúa donde lo dejaste y mantén tu racha activa.",
+                home_choose_level: "Elige tu nivel", home_your_path: "Tu camino",
+                profile_achievements: "Logros", profile_settings: "Configuración",
+                settings_app_language: "Idioma de la app", settings_app_language_sub: "Idioma de la interfaz — el contenido de las lecciones queda en inglés"
+            },
+            fr: {
+                nav_home: "Accueil", nav_kdrama: "K-Drama", nav_tutor: "Tuteur", nav_pro: "Pro", nav_more: "Plus", nav_profile: "Profil",
+                home_subtitle: "Reprenez où vous en étiez et gardez votre série active.",
+                home_choose_level: "Choisissez votre niveau", home_your_path: "Votre parcours",
+                profile_achievements: "Succès", profile_settings: "Paramètres",
+                settings_app_language: "Langue de l'appli", settings_app_language_sub: "Langue de l'interface — le contenu des leçons reste en anglais"
+            },
+            pt: {
+                nav_home: "Início", nav_kdrama: "K-Drama", nav_tutor: "Tutor", nav_pro: "Pro", nav_more: "Mais", nav_profile: "Perfil",
+                home_subtitle: "Continue de onde parou e mantenha sua sequência ativa.",
+                home_choose_level: "Escolha seu nível", home_your_path: "Seu caminho",
+                profile_achievements: "Conquistas", profile_settings: "Configurações",
+                settings_app_language: "Idioma do app", settings_app_language_sub: "Idioma da interface — o conteúdo das lições continua em inglês"
+            },
+            hi: {
+                nav_home: "होम", nav_kdrama: "K-ड्रामा", nav_tutor: "ट्यूटर", nav_pro: "प्रो", nav_more: "और", nav_profile: "प्रोफ़ाइल",
+                home_subtitle: "जहाँ से छोड़ा था वहीं से शुरू करें और अपनी स्ट्रीक बनाए रखें।",
+                home_choose_level: "अपना स्तर चुनें", home_your_path: "आपका पथ",
+                profile_achievements: "उपलब्धियाँ", profile_settings: "सेटिंग्स",
+                settings_app_language: "ऐप की भाषा", settings_app_language_sub: "इंटरफ़ेस की भाषा — पाठ की सामग्री अंग्रेज़ी में ही रहेगी"
+            },
+            ur: {
+                nav_home: "ہوم", nav_kdrama: "کے-ڈرامہ", nav_tutor: "ٹیوٹر", nav_pro: "پرو", nav_more: "مزید", nav_profile: "پروفائل",
+                home_subtitle: "جہاں چھوڑا تھا وہیں سے جاری رکھیں اور اپنی اسٹریک برقرار رکھیں۔",
+                home_choose_level: "اپنی سطح منتخب کریں", home_your_path: "آپ کا راستہ",
+                profile_achievements: "کامیابیاں", profile_settings: "ترتیبات",
+                settings_app_language: "ایپ کی زبان", settings_app_language_sub: "انٹرفیس کی زبان — سبق کا مواد انگریزی میں ہی رہے گا"
+            },
+        };
+
+        function applyLanguage() {
+            const lang = (state.settings && state.settings.appLang) || 'en';
+            const strings = LANG_STRINGS[lang] || LANG_STRINGS.en;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (strings[key]) el.textContent = strings[key];
+            });
+            document.documentElement.dir = (lang === 'ur') ? 'rtl' : 'ltr';
+            const select = document.getElementById('appLangSelect');
+            if (select) select.value = lang;
+        }
+        function setAppLanguage(lang) {
+            state.settings.appLang = lang;
+            saveState();
+            applyLanguage();
+        }
+
+
         function toggleSetting(key, val) {
             state.settings[key] = val;
             saveState();
@@ -5495,6 +5598,7 @@
         renderStats();
         renderHome();
         setupPlanSelector();
+        applyLanguage();
         document.getElementById('videocallLinkAvatar').src = HAN_HAPPY_SRC;
         document.getElementById('videocallLinkAvatarHome').src = HAN_HAPPY_SRC;
 
