@@ -238,6 +238,20 @@
             box-shadow: var(--shadow);
         }
 
+        .lang-hidden {
+            display: none !important;
+        }
+
+        .ko-only-note {
+            font-size: 12px;
+            color: var(--text-soft);
+            text-align: center;
+            padding: 12px;
+            background: #F3ECFB;
+            border-radius: 12px;
+            margin-top: 14px;
+        }
+
         .chart-link-ic {
             font-size: 26px;
         }
@@ -1788,30 +1802,30 @@
                         to choose a different language</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="chart-link-card" onclick="openSentenceBuilder()">
+            <div class="chart-link-card ko-only" id="sentenceBuilderCard" onclick="openSentenceBuilder()">
                 <div class="chart-link-ic">🧩</div>
                 <div class="chart-link-text"><b>Sentence Builder</b><span>Rebuild real drama sentences word by
                         word</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="chart-link-card" onclick="openRoleplay()">
+            <div class="chart-link-card ko-only" id="roleplayCard" onclick="openRoleplay()">
                 <div class="chart-link-ic">🗣️</div>
                 <div class="chart-link-text"><b>Role-Play</b><span>Coffee shops, hotels, directions & more</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="chart-link-card" onclick="openListeningMode()">
+            <div class="chart-link-card ko-only" id="listeningCard" onclick="openListeningMode()">
                 <div class="chart-link-ic">🎧</div>
                 <div class="chart-link-text"><b>Listening Practice</b><span>Hear it first, no text — then guess the
                         meaning</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="chart-link-card" onclick="openReading()">
+            <div class="chart-link-card ko-only" id="readingCard" onclick="openReading()">
                 <div class="chart-link-ic">📰</div>
                 <div class="chart-link-text"><b>Reading Practice</b><span>Short passages with comprehension
                         questions</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="videocall-link-card" onclick="openVideoCall()">
+            <div class="videocall-link-card ko-only" id="videocallCardHome" onclick="openVideoCall()">
                 <img class="videocall-link-avatar" id="videocallLinkAvatarHome" src="" alt="Han">
                 <div class="chart-link-text"><b>Video call with Han</b><span>Practice live — Han reacts to your
                         answers</span></div>
@@ -2084,12 +2098,14 @@
         <!-- CHAT -->
         <div class="screen" id="screen-chat">
             <div class="section-title" style="margin-top:6px;">💬 Ask your tutor</div>
-            <div class="videocall-link-card" onclick="openVideoCall()">
+            <div class="videocall-link-card ko-only" id="videocallCardTutor" onclick="openVideoCall()">
                 <img class="videocall-link-avatar" id="videocallLinkAvatar" src="" alt="Han">
                 <div class="chart-link-text"><b>Video call with Han</b><span>Practice live — Han reacts to your
                         answers</span></div>
                 <div class="videocall-pro-badge">💎 PRO</div>
             </div>
+            <div class="ko-only-note lang-only-note" id="tutorLangNote" style="display:none;">Han currently specializes
+                in Korean — Spanish tutoring is more limited for now.</div>
             <div class="chat-wrap">
                 <div class="chat-messages" id="chatMessages"></div>
                 <div class="chat-input-row">
@@ -2130,14 +2146,14 @@
             </div>
             <div class="pro-feature">
                 <div class="ic">📹</div>
-                <div><b>Face-to-face with Han</b>
+                <div><b>Face-to-face with Han (Korean)</b>
                     <p>Live video call practice — Han reacts with real expressions to your answers.</p>
                 </div>
             </div>
             <div class="pro-feature">
                 <div class="ic">🔓</div>
-                <div><b>All 52 lessons unlocked</b>
-                    <p>Skip the queue — jump into any level instantly, no tier locks.</p>
+                <div><b>All lessons unlocked</b>
+                    <p>Skip the queue — jump into any level instantly, no tier locks, in any language.</p>
                 </div>
             </div>
             <div class="pro-feature">
@@ -2160,7 +2176,7 @@
             </div>
             <div class="pro-feature">
                 <div class="ic">🎬</div>
-                <div><b>Full K-Drama vault</b>
+                <div><b>Full K-Drama vault (Korean)</b>
                     <p>Play every scene with no lock, plus early access to new scenes.</p>
                 </div>
             </div>
@@ -2225,36 +2241,36 @@
             <div class="section-title" style="margin-top:6px;">🧭 More</div>
             <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Quick access to charts, review, and
                 practice tools.</p>
-            <div class="chart-link-card" onclick="openTopik()">
+            <div class="chart-link-card ko-only" id="topikCard" onclick="openTopik()">
                 <div class="chart-link-ic">🏆</div>
                 <div class="chart-link-text"><b>TOPIK Practice</b><span>Official-style proficiency test questions</span>
                 </div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="chart-link-card" id="moreReviewCard" onclick="openReview()"
+            <div class="chart-link-card ko-only" id="moreReviewCard" onclick="openReview()"
                 style="background:linear-gradient(135deg,#FFE9C7,#FFC9DE);">
                 <div class="chart-link-ic">📅</div>
                 <div class="chart-link-text"><b>Daily Review</b><span id="moreReviewDueLabel">Words due for
                         review</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="chart-link-card" onclick="openHangulChart()">
+            <div class="chart-link-card ko-only" id="hangulChartCard" onclick="openHangulChart()">
                 <div class="chart-link-ic">🔤</div>
                 <div class="chart-link-text"><b>Hangul Chart</b><span>All 40 letters + a quick quiz</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="chart-link-card" onclick="openNumberChart()">
+            <div class="chart-link-card ko-only" id="numberChartCard" onclick="openNumberChart()">
                 <div class="chart-link-ic">🔢</div>
                 <div class="chart-link-text"><b>Number Chart</b><span>Both number systems + a quick quiz</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="chart-link-card" onclick="openGrammar()">
+            <div class="chart-link-card ko-only" id="grammarCard" onclick="openGrammar()">
                 <div class="chart-link-ic">📖</div>
                 <div class="chart-link-text"><b>Grammar & Particles</b><span>Particles, verb conjugation,
                         honorifics</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
-            <div class="chart-link-card" onclick="openDrawTrace()">
+            <div class="chart-link-card ko-only" id="drawTraceCard" onclick="openDrawTrace()">
                 <div class="chart-link-ic">✍️</div>
                 <div class="chart-link-text"><b>Draw & Trace</b><span>Practice writing Hangul by hand</span></div>
                 <div class="chart-link-arrow">›</div>
@@ -2389,8 +2405,8 @@
         <div class="navbar">
             <button class="navbtn active" data-tab="home" onclick="showScreen('home')"><span class="ic">🏠</span><span
                     data-i18n="nav_home">Home</span></button>
-            <button class="navbtn" data-tab="kdrama" onclick="showScreen('kdrama')"><span class="ic">🎬</span><span
-                    data-i18n="nav_kdrama">K-Drama</span></button>
+            <button class="navbtn ko-only-nav" data-tab="kdrama" id="navKdrama" onclick="showScreen('kdrama')"><span
+                    class="ic">🎬</span><span data-i18n="nav_kdrama">K-Drama</span></button>
             <button class="navbtn" data-tab="chat" onclick="showScreen('chat')"><span class="ic">💬</span><span
                     data-i18n="nav_tutor">Tutor</span></button>
             <button class="navbtn" data-tab="pro" onclick="showScreen('pro')"><span class="ic">💎</span><span
@@ -3403,6 +3419,17 @@
         function activeLangLabel() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             return lang === 'es' ? 'Español' : '한국어';
+        }
+        function updateLanguageSpecificUI() {
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            const isKorean = lang === 'ko';
+            document.querySelectorAll('.ko-only').forEach(el => {
+                el.classList.toggle('lang-hidden', !isKorean);
+            });
+            const kdramaNav = document.getElementById('navKdrama');
+            if (kdramaNav) kdramaNav.classList.toggle('lang-hidden', !isKorean);
+            const tutorNote = document.getElementById('tutorLangNote');
+            if (tutorNote) tutorNote.style.display = isKorean ? 'none' : 'block';
         }
         function activeTiers() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
@@ -5753,6 +5780,7 @@
             saveState();
             selectedTier = null;
             updateLangPickCard();
+            updateLanguageSpecificUI();
             goHome();
         }
         function updateLangPickCard() {
@@ -5850,6 +5878,7 @@
         setupPlanSelector();
         applyLanguage();
         updateLangPickCard();
+        updateLanguageSpecificUI();
         document.getElementById('videocallLinkAvatar').src = HAN_HAPPY_SRC;
         document.getElementById('videocallLinkAvatarHome').src = HAN_HAPPY_SRC;
 
