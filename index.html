@@ -2767,6 +2767,333 @@
         ];
         LEVELS_ES.forEach((l, i) => { l.id = 1000 + i + 1; });
 
+        /* =========================================================
+           JAPANESE CONTENT
+           ========================================================= */
+        const TIERS_JA = TIERS;
+        const LEVELS_JA = [
+            /* ---------------- BEGINNER ---------------- */
+            {
+                tier: "beginner", title: "Japanese Basics", icon: "🇯🇵", words: [
+                    { kr: "こんにちは", rom: "konnichiwa", en: "hello" }, { kr: "ありがとう", rom: "arigatou", en: "thank you" },
+                    { kr: "はい", rom: "hai", en: "yes" }, { kr: "いいえ", rom: "iie", en: "no" },
+                    { kr: "なまえ", rom: "namae", en: "name" }, { kr: "ともだち", rom: "tomodachi", en: "friend" }]
+            },
+            {
+                tier: "beginner", title: "Greetings & Manners", icon: "🙏", words: [
+                    { kr: "さようなら", rom: "sayounara", en: "goodbye" }, { kr: "すみません", rom: "sumimasen", en: "excuse me / sorry" },
+                    { kr: "はじめまして", rom: "hajimemashite", en: "nice to meet you" }, { kr: "だいじょうぶ", rom: "daijoubu", en: "it's okay" },
+                    { kr: "おねがいします", rom: "onegaishimasu", en: "please" }, { kr: "しつれいします", rom: "shitsurei shimasu", en: "excuse me (formal)" }]
+            },
+            {
+                tier: "beginner", title: "Numbers 1-6", icon: "🔢", words: [
+                    { kr: "いち", rom: "ichi", en: "one" }, { kr: "に", rom: "ni", en: "two" },
+                    { kr: "さん", rom: "san", en: "three" }, { kr: "よん", rom: "yon", en: "four" },
+                    { kr: "ご", rom: "go", en: "five" }, { kr: "ろく", rom: "roku", en: "six" }]
+            },
+            {
+                tier: "beginner", title: "Days & Time", icon: "🕒", words: [
+                    { kr: "きょう", rom: "kyou", en: "today" }, { kr: "あした", rom: "ashita", en: "tomorrow" },
+                    { kr: "きのう", rom: "kinou", en: "yesterday" }, { kr: "いま", rom: "ima", en: "now" },
+                    { kr: "じかん", rom: "jikan", en: "time" }, { kr: "あさ", rom: "asa", en: "morning" }]
+            },
+            {
+                tier: "beginner", title: "Family", icon: "👪", words: [
+                    { kr: "かぞく", rom: "kazoku", en: "family" }, { kr: "はは", rom: "haha", en: "mom" },
+                    { kr: "ちち", rom: "chichi", en: "dad" }, { kr: "あに", rom: "ani", en: "older brother" },
+                    { kr: "あね", rom: "ane", en: "older sister" }, { kr: "いもうと", rom: "imouto", en: "younger sister" }]
+            },
+            {
+                tier: "beginner", title: "Food & Drink", icon: "🍚", words: [
+                    { kr: "たべもの", rom: "tabemono", en: "food" }, { kr: "みず", rom: "mizu", en: "water" },
+                    { kr: "コーヒー", rom: "koohii", en: "coffee" }, { kr: "パン", rom: "pan", en: "bread" },
+                    { kr: "ごはん", rom: "gohan", en: "rice / meal" }, { kr: "おいしい", rom: "oishii", en: "delicious" }]
+            },
+            {
+                tier: "beginner", title: "Colors", icon: "🎨", words: [
+                    { kr: "あか", rom: "aka", en: "red" }, { kr: "あお", rom: "ao", en: "blue" },
+                    { kr: "きいろ", rom: "kiiro", en: "yellow" }, { kr: "みどり", rom: "midori", en: "green" },
+                    { kr: "くろ", rom: "kuro", en: "black" }, { kr: "しろ", rom: "shiro", en: "white" }]
+            },
+            {
+                tier: "beginner", title: "Body Parts", icon: "🧍", words: [
+                    { kr: "あたま", rom: "atama", en: "head" }, { kr: "て", rom: "te", en: "hand" },
+                    { kr: "め", rom: "me", en: "eye" }, { kr: "はな", rom: "hana", en: "nose" },
+                    { kr: "くち", rom: "kuchi", en: "mouth" }, { kr: "あし", rom: "ashi", en: "leg / foot" }]
+            },
+            {
+                tier: "beginner", title: "Animals", icon: "🐾", words: [
+                    { kr: "いぬ", rom: "inu", en: "dog" }, { kr: "ねこ", rom: "neko", en: "cat" },
+                    { kr: "とり", rom: "tori", en: "bird" }, { kr: "さかな", rom: "sakana", en: "fish" },
+                    { kr: "くま", rom: "kuma", en: "bear" }, { kr: "うさぎ", rom: "usagi", en: "rabbit" }]
+            },
+            {
+                tier: "beginner", title: "Clothing", icon: "👕", words: [
+                    { kr: "ふく", rom: "fuku", en: "clothes" }, { kr: "くつ", rom: "kutsu", en: "shoes" },
+                    { kr: "ぼうし", rom: "boushi", en: "hat" }, { kr: "ズボン", rom: "zubon", en: "pants" },
+                    { kr: "スカート", rom: "sukaato", en: "skirt" }, { kr: "かばん", rom: "kaban", en: "bag" }]
+            },
+            {
+                tier: "beginner", title: "Weather", icon: "⛅", words: [
+                    { kr: "てんき", rom: "tenki", en: "weather" }, { kr: "あめ", rom: "ame", en: "rain" },
+                    { kr: "ゆき", rom: "yuki", en: "snow" }, { kr: "かぜ", rom: "kaze", en: "wind" },
+                    { kr: "あつい", rom: "atsui", en: "it's hot" }, { kr: "さむい", rom: "samui", en: "it's cold" }]
+            },
+            {
+                tier: "beginner", title: "House & Rooms", icon: "🏠", words: [
+                    { kr: "いえ", rom: "ie", en: "house" }, { kr: "へや", rom: "heya", en: "room" },
+                    { kr: "ベッド", rom: "beddo", en: "bed" }, { kr: "トイレ", rom: "toire", en: "bathroom" },
+                    { kr: "だいどころ", rom: "daidokoro", en: "kitchen" }, { kr: "ドア", rom: "doa", en: "door" }]
+            },
+            {
+                tier: "beginner", title: "School & Objects", icon: "🎒", words: [
+                    { kr: "がっこう", rom: "gakkou", en: "school" }, { kr: "ほん", rom: "hon", en: "book" },
+                    { kr: "えんぴつ", rom: "enpitsu", en: "pencil" }, { kr: "かばん", rom: "kaban", en: "school bag" },
+                    { kr: "せんせい", rom: "sensei", en: "teacher" }, { kr: "がくせい", rom: "gakusei", en: "student" }]
+            },
+
+            /* ---------------- INTERMEDIATE ---------------- */
+            {
+                tier: "intermediate", title: "Feelings & Emotions", icon: "💗", words: [
+                    { kr: "うれしい", rom: "ureshii", en: "happy" }, { kr: "かなしい", rom: "kanashii", en: "sad" },
+                    { kr: "おこっている", rom: "okotteiru", en: "angry" }, { kr: "つかれた", rom: "tsukareta", en: "tired" },
+                    { kr: "たのしみ", rom: "tanoshimi", en: "excited" }, { kr: "きんちょうする", rom: "kinchou suru", en: "nervous" }]
+            },
+            {
+                tier: "intermediate", title: "Directions & Places", icon: "🧭", words: [
+                    { kr: "ひだり", rom: "hidari", en: "left" }, { kr: "みぎ", rom: "migi", en: "right" },
+                    { kr: "ちかい", rom: "chikai", en: "near" }, { kr: "とおい", rom: "tooi", en: "far" },
+                    { kr: "ここ", rom: "koko", en: "here" }, { kr: "あそこ", rom: "asoko", en: "there" }]
+            },
+            {
+                tier: "intermediate", title: "Shopping", icon: "🛍️", words: [
+                    { kr: "いくらですか", rom: "ikura desu ka", en: "how much is it" }, { kr: "たかい", rom: "takai", en: "expensive" },
+                    { kr: "やすい", rom: "yasui", en: "cheap" }, { kr: "はらう", rom: "harau", en: "to pay" },
+                    { kr: "げんきん", rom: "genkin", en: "cash" }, { kr: "カード", rom: "kaado", en: "card" }]
+            },
+            {
+                tier: "intermediate", title: "Transportation", icon: "🚌", words: [
+                    { kr: "バス", rom: "basu", en: "bus" }, { kr: "でんしゃ", rom: "densha", en: "train" },
+                    { kr: "ひこうき", rom: "hikouki", en: "plane" }, { kr: "くるま", rom: "kuruma", en: "car" },
+                    { kr: "きっぷ", rom: "kippu", en: "ticket" }, { kr: "えき", rom: "eki", en: "station" }]
+            },
+            {
+                tier: "intermediate", title: "Hobbies", icon: "🎸", words: [
+                    { kr: "しゅみ", rom: "shumi", en: "hobby" }, { kr: "よむ", rom: "yomu", en: "to read" },
+                    { kr: "およぐ", rom: "oyogu", en: "to swim" }, { kr: "おどる", rom: "odoru", en: "to dance" },
+                    { kr: "えをかく", rom: "e wo kaku", en: "to paint" }, { kr: "うたう", rom: "utau", en: "to sing" }]
+            },
+            {
+                tier: "intermediate", title: "Work & Jobs", icon: "💼", words: [
+                    { kr: "しごと", rom: "shigoto", en: "job" }, { kr: "かいしゃ", rom: "kaisha", en: "company" },
+                    { kr: "じょうし", rom: "joushi", en: "boss" }, { kr: "かいぎ", rom: "kaigi", en: "meeting" },
+                    { kr: "きゅうりょう", rom: "kyuuryou", en: "salary" }, { kr: "スケジュール", rom: "sukejuuru", en: "schedule" }]
+            },
+            {
+                tier: "intermediate", title: "Health & Body", icon: "🩺", words: [
+                    { kr: "びょうき", rom: "byouki", en: "sick" }, { kr: "いたい", rom: "itai", en: "pain" },
+                    { kr: "びょういん", rom: "byouin", en: "hospital" }, { kr: "くすり", rom: "kusuri", en: "medicine" },
+                    { kr: "ねつ", rom: "netsu", en: "fever" }, { kr: "いしゃ", rom: "isha", en: "doctor" }]
+            },
+            {
+                tier: "intermediate", title: "Technology", icon: "📱", words: [
+                    { kr: "でんわ", rom: "denwa", en: "phone" }, { kr: "コンピューター", rom: "konpyuutaa", en: "computer" },
+                    { kr: "インターネット", rom: "intaanetto", en: "internet" }, { kr: "パスワード", rom: "pasuwaado", en: "password" },
+                    { kr: "アプリ", rom: "apuri", en: "app" }, { kr: "でんち", rom: "denchi", en: "battery" }]
+            },
+            {
+                tier: "intermediate", title: "Sports", icon: "⚽", words: [
+                    { kr: "サッカー", rom: "sakkaa", en: "soccer" }, { kr: "バスケットボール", rom: "basukettobooru", en: "basketball" },
+                    { kr: "はしる", rom: "hashiru", en: "to run" }, { kr: "かつ", rom: "katsu", en: "to win" },
+                    { kr: "まける", rom: "makeru", en: "to lose" }, { kr: "チーム", rom: "chiimu", en: "team" }]
+            },
+            {
+                tier: "intermediate", title: "Nature", icon: "🌳", words: [
+                    { kr: "やま", rom: "yama", en: "mountain" }, { kr: "かわ", rom: "kawa", en: "river" },
+                    { kr: "もり", rom: "mori", en: "forest" }, { kr: "そら", rom: "sora", en: "sky" },
+                    { kr: "き", rom: "ki", en: "tree" }, { kr: "はな", rom: "hana", en: "flower" }]
+            },
+            {
+                tier: "intermediate", title: "Numbers & Time", icon: "🔟", words: [
+                    { kr: "ふん", rom: "fun", en: "minute" }, { kr: "じ", rom: "ji", en: "o'clock" },
+                    { kr: "しゅう", rom: "shuu", en: "week" }, { kr: "つき", rom: "tsuki", en: "month" },
+                    { kr: "とし", rom: "toshi", en: "year" }, { kr: "とけい", rom: "tokei", en: "clock" }]
+            },
+            {
+                tier: "intermediate", title: "Making Plans", icon: "📅", words: [
+                    { kr: "やくそく", rom: "yakusoku", en: "appointment / promise" }, { kr: "あう", rom: "au", en: "to meet" },
+                    { kr: "さそう", rom: "sasou", en: "to invite" }, { kr: "キャンセルする", rom: "kyanseru suru", en: "to cancel" },
+                    { kr: "いそがしい", rom: "isogashii", en: "busy" }, { kr: "ひま", rom: "hima", en: "free time" }]
+            },
+            {
+                tier: "intermediate", title: "Restaurant & Ordering", icon: "🍽️", words: [
+                    { kr: "メニュー", rom: "menyuu", en: "menu" }, { kr: "ちゅうもんする", rom: "chuumon suru", en: "to order" },
+                    { kr: "おかんじょう", rom: "okanjou", en: "the bill" }, { kr: "チップ", rom: "chippu", en: "tip" },
+                    { kr: "よやく", rom: "yoyaku", en: "reservation" }, { kr: "ウェイター", rom: "weitaa", en: "waiter" }]
+            },
+
+            /* ---------------- ADVANCED ---------------- */
+            {
+                tier: "advanced", title: "Connectors & Grammar", icon: "🔗", words: [
+                    { kr: "だから", rom: "dakara", en: "therefore" }, { kr: "でも", rom: "demo", en: "however / but" },
+                    { kr: "けど", rom: "kedo", en: "although / but" }, { kr: "なぜなら", rom: "nazenara", en: "because" },
+                    { kr: "それで", rom: "sorede", en: "so / then" }, { kr: "あいだ", rom: "aida", en: "while / during" }]
+            },
+            {
+                tier: "advanced", title: "Business Japanese", icon: "🏢", words: [
+                    { kr: "けいやく", rom: "keiyaku", en: "contract" }, { kr: "こうしょう", rom: "koushou", en: "negotiation" },
+                    { kr: "とりひきさき", rom: "torihikisaki", en: "client" }, { kr: "うりあげ", rom: "uriage", en: "revenue" },
+                    { kr: "ほうこくしょ", rom: "houkokusho", en: "report" }, { kr: "しめきり", rom: "shimekiri", en: "deadline" }]
+            },
+            {
+                tier: "advanced", title: "News & Media", icon: "📰", words: [
+                    { kr: "ニュース", rom: "nyuusu", en: "news" }, { kr: "きじ", rom: "kiji", en: "article" },
+                    { kr: "きしゃ", rom: "kisha", en: "reporter" }, { kr: "せいさく", rom: "seisaku", en: "policy" },
+                    { kr: "よろん", rom: "yoron", en: "public opinion" }, { kr: "はっぴょうする", rom: "happyou suru", en: "to announce" }]
+            },
+            {
+                tier: "advanced", title: "Nuanced Emotions", icon: "🌫️", words: [
+                    { kr: "がっかりする", rom: "gakkari suru", en: "disappointed" }, { kr: "あっとうされる", rom: "attou sareru", en: "overwhelmed" },
+                    { kr: "ほこりに思う", rom: "hokori ni omou", en: "proud" }, { kr: "うらやましい", rom: "urayamashii", en: "jealous" },
+                    { kr: "なつかしい", rom: "natsukashii", en: "nostalgic / miss" }, { kr: "ほっとする", rom: "hotto suru", en: "relieved" }]
+            },
+            {
+                tier: "advanced", title: "Idioms: Body Expressions", icon: "🫴", words: [
+                    { kr: "さばをよむ", rom: "saba wo yomu", en: "to fudge the numbers" }, { kr: "あたまがいたい", rom: "atama ga itai", en: "to have a headache (lit. or figurative problem)" },
+                    { kr: "みみがいたい", rom: "mimi ga itai", en: "to be told an uncomfortable truth" }, { kr: "はらがたつ", rom: "hara ga tatsu", en: "to get angry" },
+                    { kr: "めがまわる", rom: "me ga mawaru", en: "to be extremely busy" }, { kr: "あしをあらう", rom: "ashi wo arau", en: "to quit a bad habit" }]
+            },
+            {
+                tier: "advanced", title: "Idioms: Everyday Life", icon: "🥣", words: [
+                    { kr: "ねこのてもかりたい", rom: "neko no te mo karitai", en: "extremely busy (lit. want even a cat's help)" }, { kr: "はなよりだんご", rom: "hana yori dango", en: "substance over style" },
+                    { kr: "したをまく", rom: "shita wo maku", en: "to be amazed" }, { kr: "みずにながす", rom: "mizu ni nagasu", en: "to let bygones be bygones" },
+                    { kr: "たかいかいもの", rom: "takai kaimono", en: "a costly mistake" }, { kr: "やまをかける", rom: "yama wo kakeru", en: "to bet/gamble on something" }]
+            },
+            {
+                tier: "advanced", title: "Travel Advanced", icon: "🛂", words: [
+                    { kr: "パスポート", rom: "pasupooto", en: "passport" }, { kr: "ぜいかん", rom: "zeikan", en: "customs" },
+                    { kr: "しゅくはく", rom: "shukuhaku", en: "lodging" }, { kr: "くうこう", rom: "kuukou", en: "airport" },
+                    { kr: "にもつ", rom: "nimotsu", en: "luggage" }, { kr: "にってい", rom: "nittei", en: "itinerary" }]
+            },
+            {
+                tier: "advanced", title: "Relationships", icon: "💌", words: [
+                    { kr: "こいびと", rom: "koibito", en: "partner / lover" }, { kr: "こいにおちる", rom: "koi ni ochiru", en: "to fall in love" },
+                    { kr: "わかれる", rom: "wakareru", en: "to break up" }, { kr: "ごうこん", rom: "goukon", en: "group blind date" },
+                    { kr: "ひとめぼれ", rom: "hitomebore", en: "love at first sight" }, { kr: "こんやく", rom: "konyaku", en: "engagement" }]
+            },
+            {
+                tier: "advanced", title: "Debate & Opinions", icon: "🗣️", words: [
+                    { kr: "さんせいする", rom: "sansei suru", en: "to agree" }, { kr: "はんたいする", rom: "hantai suru", en: "to disagree" },
+                    { kr: "しゅちょう", rom: "shuchou", en: "argument / claim" }, { kr: "かんてん", rom: "kanten", en: "point of view" },
+                    { kr: "せっとくする", rom: "settoku suru", en: "to convince" }, { kr: "だきょうする", rom: "dakyou suru", en: "to compromise" }]
+            },
+            {
+                tier: "advanced", title: "Formal Speech Levels", icon: "🎩", words: [
+                    { kr: "けいご", rom: "keigo", en: "honorific speech" }, { kr: "タメぐち", rom: "tameguchi", en: "casual speech" },
+                    { kr: "ていねいご", rom: "teineigo", en: "polite language" }, { kr: "そんけいご", rom: "sonkeigo", en: "respectful language" },
+                    { kr: "けんじょうご", rom: "kenjougo", en: "humble language" }, { kr: "しつれい", rom: "shitsurei", en: "rudeness" }]
+            },
+            {
+                tier: "advanced", title: "Slang & Internet Terms", icon: "📲", words: [
+                    { kr: "やばい", rom: "yabai", en: "crazy / awesome" }, { kr: "まじで", rom: "majide", en: "seriously" },
+                    { kr: "うける", rom: "ukeru", en: "funny / hilarious" }, { kr: "きもい", rom: "kimoi", en: "gross" },
+                    { kr: "リア充", rom: "riajuu", en: "someone with a fulfilling real life" }, { kr: "ぴえん", rom: "pien", en: "sad (internet slang)" }]
+            },
+            {
+                tier: "advanced", title: "Culture & History", icon: "⛩️", words: [
+                    { kr: "まつり", rom: "matsuri", en: "festival" }, { kr: "でんとう", rom: "dentou", en: "tradition" },
+                    { kr: "どくりつ", rom: "dokuritsu", en: "independence" }, { kr: "こっき", rom: "kokki", en: "flag" },
+                    { kr: "ぶんめい", rom: "bunmei", en: "civilization" }, { kr: "いさん", rom: "isan", en: "heritage" }]
+            },
+            {
+                tier: "advanced", title: "Advanced Verbs", icon: "💪", words: [
+                    { kr: "のりこえる", rom: "norikoeru", en: "to overcome" }, { kr: "たっせいする", rom: "tassei suru", en: "to achieve" },
+                    { kr: "あきらめる", rom: "akirameru", en: "to give up" }, { kr: "ちょうせんする", rom: "chousen suru", en: "to challenge / attempt" },
+                    { kr: "はったつする", rom: "hattatsu suru", en: "to develop" }, { kr: "じつげんする", rom: "jitsugen suru", en: "to realize / fulfill" }]
+            },
+
+            /* ---------------- FLUENT ---------------- */
+            {
+                tier: "fluent", title: "Yojijukugo (4-Character Idioms) I", icon: "🈴", words: [
+                    { kr: "いちごいちえ", rom: "ichigo ichie", en: "treasure every encounter (once in a lifetime)" }, { kr: "じがじさん", rom: "jiga jisan", en: "self-praise" },
+                    { kr: "しんきいってん", rom: "shinki itten", en: "a fresh start" }, { kr: "がりょうてんせい", rom: "garyou tensei", en: "the finishing touch" },
+                    { kr: "じゅうにんといろ", rom: "juunin toiro", en: "to each their own" }, { kr: "おんこちしん", rom: "onko chishin", en: "learning from the past" }]
+            },
+            {
+                tier: "fluent", title: "Literary Expressions", icon: "🖋️", words: [
+                    { kr: "ものがなしい", rom: "monoganashii", en: "melancholic" }, { kr: "はかない", rom: "hakanai", en: "fleeting / fragile" },
+                    { kr: "ゆうげん", rom: "yuugen", en: "subtle, profound grace" }, { kr: "うつろい", rom: "utsuroi", en: "transience" },
+                    { kr: "せつない", rom: "setsunai", en: "heart-wrenching" }, { kr: "わびさび", rom: "wabi-sabi", en: "beauty in imperfection" }]
+            },
+            {
+                tier: "fluent", title: "Yojijukugo (4-Character Idioms) II", icon: "🈵", words: [
+                    { kr: "きしかいせい", rom: "kishi kaisei", en: "a dramatic turnaround" }, { kr: "じごうじとく", rom: "jigou jitoku", en: "reap what you sow" },
+                    { kr: "いっしんふらん", rom: "isshin furan", en: "single-mindedly" }, { kr: "ゆうめいむじつ", rom: "yuumei mujitsu", en: "nominal only, no substance" },
+                    { kr: "たいぜんじじゃく", rom: "taizen jijaku", en: "calm and collected" }, { kr: "しこうさくご", rom: "shikou sakugo", en: "trial and error" }]
+            },
+            {
+                tier: "fluent", title: "Political & Social Terms", icon: "🏛️", words: [
+                    { kr: "みんしゅしゅぎ", rom: "minshu shugi", en: "democracy" }, { kr: "ふびょうどう", rom: "fubyoudou", en: "inequality" },
+                    { kr: "グローバルか", rom: "guroubaruka", en: "globalization" }, { kr: "じぞくかのうせい", rom: "jizoku kanousei", en: "sustainability" },
+                    { kr: "じんけん", rom: "jinken", en: "human rights" }, { kr: "せいふ", rom: "seifu", en: "government" }]
+            },
+            {
+                tier: "fluent", title: "Psychology & Nuance", icon: "🧠", words: [
+                    { kr: "じそんしん", rom: "jisonshin", en: "self-esteem" }, { kr: "レジリエンス", rom: "rejiriensu", en: "resilience" },
+                    { kr: "きょうかん", rom: "kyoukan", en: "empathy" }, { kr: "ふあん", rom: "fuan", en: "anxiety" },
+                    { kr: "しあわせ", rom: "shiawase", en: "wellbeing / happiness" }, { kr: "モチベーション", rom: "mochibeeshon", en: "motivation" }]
+            },
+            {
+                tier: "fluent", title: "Business Negotiation", icon: "🤝", words: [
+                    { kr: "ごうい", rom: "goui", en: "agreement" }, { kr: "ていあん", rom: "teian", en: "proposal" },
+                    { kr: "ゆうい", rom: "yuui", en: "advantage" }, { kr: "とうし", rom: "toushi", en: "investment" },
+                    { kr: "リスク", rom: "risuku", en: "risk" }, { kr: "もうかる", rom: "moukaru", en: "profitable" }]
+            },
+            {
+                tier: "fluent", title: "Academic Japanese", icon: "🎓", words: [
+                    { kr: "ろんぶん", rom: "ronbun", en: "thesis" }, { kr: "けんきゅう", rom: "kenkyuu", en: "research" },
+                    { kr: "かせつ", rom: "kasetsu", en: "hypothesis" }, { kr: "ぶんせき", rom: "bunseki", en: "analysis" },
+                    { kr: "けつろん", rom: "ketsuron", en: "conclusion" }, { kr: "さんこうぶんけん", rom: "sankou bunken", en: "bibliography" }]
+            },
+            {
+                tier: "fluent", title: "Poetic & Formal Writing", icon: "🕊️", words: [
+                    { kr: "しずか", rom: "shizuka", en: "serene" }, { kr: "たえまない", rom: "taemanai", en: "unceasing" },
+                    { kr: "どうどうとした", rom: "doudou to shita", en: "imposing" }, { kr: "したしい", rom: "shitashii", en: "dear / close" },
+                    { kr: "いいようのない", rom: "ii you no nai", en: "ineffable" }, { kr: "ねづいた", rom: "nezuita", en: "deeply rooted" }]
+            },
+            {
+                tier: "fluent", title: "Regional Dialects", icon: "🗾", words: [
+                    { kr: "おおきに", rom: "ookini", en: "thank you (Kansai)" }, { kr: "なんでやねん", rom: "nande yanen", en: "why on earth (Kansai)" },
+                    { kr: "めっちゃ", rom: "meccha", en: "super / very (Kansai/casual)" }, { kr: "だべ", rom: "dabe", en: "right? (Tohoku)" },
+                    { kr: "っしょ", rom: "ssho", en: "right? (Hokkaido)" }, { kr: "ばり", rom: "bari", en: "super (Kyushu)" }]
+            },
+            {
+                tier: "fluent", title: "Keigo (Honorific Depth)", icon: "🧩", words: [
+                    { kr: "いらっしゃる", rom: "irassharu", en: "to be/come/go (respectful)" }, { kr: "めしあがる", rom: "meshiagaru", en: "to eat (respectful)" },
+                    { kr: "うかがう", rom: "ukagau", en: "to visit / ask (humble)" }, { kr: "もうしあげる", rom: "moushiageru", en: "to say (humble)" },
+                    { kr: "ございます", rom: "gozaimasu", en: "polite form of 'to be'" }, { kr: "いたす", rom: "itasu", en: "to do (humble)" }]
+            },
+            {
+                tier: "fluent", title: "More Yojijukugo", icon: "📜", words: [
+                    { kr: "しちてんばっとう", rom: "shichiten battou", en: "writhing in agony" }, { kr: "だんいほうしょく", rom: "dan-i houshoku", en: "comfortable living" },
+                    { kr: "めいきょうしすい", rom: "meikyou shisui", en: "a calm, clear mind" }, { kr: "あんちゅうもさく", rom: "anchuu mosaku", en: "groping in the dark" },
+                    { kr: "ゆうじゅうふだん", rom: "yuujuu fudan", en: "indecisive" }, { kr: "せいてんはくじつ", rom: "seiten hakujitsu", en: "perfectly innocent" }]
+            },
+            {
+                tier: "fluent", title: "Professional Terms", icon: "⚖️", words: [
+                    { kr: "しんだん", rom: "shindan", en: "diagnosis" }, { kr: "しょほう", rom: "shohou", en: "prescription" },
+                    { kr: "そしょう", rom: "soshou", en: "lawsuit" }, { kr: "べんごし", rom: "bengoshi", en: "lawyer" },
+                    { kr: "はんけつ", rom: "hanketsu", en: "verdict" }, { kr: "さいばんしょ", rom: "saibansho", en: "court" }]
+            },
+            {
+                tier: "fluent", title: "Mastery Review", icon: "🏆", words: [
+                    { kr: "するどい", rom: "surudoi", en: "perceptive / sharp" }, { kr: "たようせい", rom: "tayousei", en: "versatility" },
+                    { kr: "きちょうめん", rom: "kichoumen", en: "meticulous" }, { kr: "ねばりづよい", rom: "nebarizuyoi", en: "tenacious" },
+                    { kr: "せいじつ", rom: "seijitsu", en: "honest / sincere" }, { kr: "ちえ", rom: "chie", en: "wisdom" }]
+            },
+        ];
+        LEVELS_JA.forEach((l, i) => { l.id = 2000 + i + 1; });
+
         const LEVELS = [
             /* ---------------- BEGINNER ---------------- */
             {
@@ -3525,6 +3852,121 @@
         ];
         const ALL_SPANISH_ALPHABET = SPANISH_ALPHABET.flatMap(s => s.chars);
 
+        const JAPANESE_KANA = [
+            {
+                title: "Vowels", chars: [
+                    { ch: "あ", rom: "a", sample: "あさ", hint: "like 'a' in father" }, { ch: "い", rom: "i", sample: "いぬ", hint: "like 'ee' in see" },
+                    { ch: "う", rom: "u", sample: "うみ", hint: "like 'oo' in food" }, { ch: "え", rom: "e", sample: "えき", hint: "like 'e' in bed" },
+                    { ch: "お", rom: "o", sample: "おと", hint: "like 'o' in go" }]
+            },
+            {
+                title: "K-row", chars: [
+                    { ch: "か", rom: "ka", sample: "かさ", hint: "like 'ka' in car" }, { ch: "き", rom: "ki", sample: "きた", hint: "like 'key'" },
+                    { ch: "く", rom: "ku", sample: "くも", hint: "like 'coo'" }, { ch: "け", rom: "ke", sample: "けさ", hint: "like 'ke' in kept" },
+                    { ch: "こ", rom: "ko", sample: "こえ", hint: "like 'co' in cold" }]
+            },
+            {
+                title: "S-row", chars: [
+                    { ch: "さ", rom: "sa", sample: "さかな", hint: "like 'sa' in salsa" }, { ch: "し", rom: "shi", sample: "しお", hint: "like 'she'" },
+                    { ch: "す", rom: "su", sample: "すし", hint: "like 'su' in super" }, { ch: "せ", rom: "se", sample: "せかい", hint: "like 'se' in set" },
+                    { ch: "そ", rom: "so", sample: "そら", hint: "like 'so'" }]
+            },
+            {
+                title: "T-row", chars: [
+                    { ch: "た", rom: "ta", sample: "たまご", hint: "like 'ta' in tacos" }, { ch: "ち", rom: "chi", sample: "ちず", hint: "like 'chee'" },
+                    { ch: "つ", rom: "tsu", sample: "つき", hint: "like 'tsu' — no direct English equivalent" }, { ch: "て", rom: "te", sample: "てがみ", hint: "like 'te' in tell" },
+                    { ch: "と", rom: "to", sample: "とけい", hint: "like 'toe'" }]
+            },
+            {
+                title: "N-row", chars: [
+                    { ch: "な", rom: "na", sample: "なつ", hint: "like 'na' in nachos" }, { ch: "に", rom: "ni", sample: "にく", hint: "like 'nee'" },
+                    { ch: "ぬ", rom: "nu", sample: "いぬ", hint: "like 'new' (short)" }, { ch: "ね", rom: "ne", sample: "ねこ", hint: "like 'ne' in net" },
+                    { ch: "の", rom: "no", sample: "のみもの", hint: "like 'no'" }]
+            },
+            {
+                title: "H-row", chars: [
+                    { ch: "は", rom: "ha", sample: "はな", hint: "like 'ha' in hard" }, { ch: "ひ", rom: "hi", sample: "ひと", hint: "like 'he'" },
+                    { ch: "ふ", rom: "fu", sample: "ふゆ", hint: "soft, between 'fu' and 'hu'" }, { ch: "へ", rom: "he", sample: "へや", hint: "like 'he' in help" },
+                    { ch: "ほ", rom: "ho", sample: "ほん", hint: "like 'ho' in hope" }]
+            },
+            {
+                title: "M-row", chars: [
+                    { ch: "ま", rom: "ma", sample: "まち", hint: "like 'ma' in mama" }, { ch: "み", rom: "mi", sample: "みず", hint: "like 'me'" },
+                    { ch: "む", rom: "mu", sample: "むし", hint: "like 'moo'" }, { ch: "め", rom: "me", sample: "めがね", hint: "like 'me' in met" },
+                    { ch: "も", rom: "mo", sample: "もも", hint: "like 'mo' in more" }]
+            },
+            {
+                title: "Y-row", chars: [
+                    { ch: "や", rom: "ya", sample: "やま", hint: "like 'ya' in yacht" }, { ch: "ゆ", rom: "yu", sample: "ゆき", hint: "like 'you'" },
+                    { ch: "よ", rom: "yo", sample: "よる", hint: "like 'yo'" }]
+            },
+            {
+                title: "R-row", chars: [
+                    { ch: "ら", rom: "ra", sample: "らいねん", hint: "tapped r, between 'r' and 'l'" }, { ch: "り", rom: "ri", sample: "りんご", hint: "like 'ree'" },
+                    { ch: "る", rom: "ru", sample: "るす", hint: "like 'roo'" }, { ch: "れ", rom: "re", sample: "れきし", hint: "like 're' in rest" },
+                    { ch: "ろ", rom: "ro", sample: "ろうか", hint: "like 'ro' in rome" }]
+            },
+            {
+                title: "W & N", chars: [
+                    { ch: "わ", rom: "wa", sample: "わたし", hint: "like 'wa' in watch" }, { ch: "を", rom: "wo", sample: "を", hint: "object particle, sounds like 'o'" },
+                    { ch: "ん", rom: "n", sample: "ほん", hint: "a standalone 'n' sound" }]
+            },
+        ];
+        const ALL_JAPANESE_KANA = JAPANESE_KANA.flatMap(s => s.chars);
+
+        const JAPANESE_NUMBER_CHART = [
+            {
+                title: "Numbers 0–10", note: "The building blocks — every other number is formed from these.", chars: [
+                    { ch: "ゼロ", rom: "0 · zero", en: "0" }, { ch: "いち", rom: "1 · ichi", en: "1" }, { ch: "に", rom: "2 · ni", en: "2" },
+                    { ch: "さん", rom: "3 · san", en: "3" }, { ch: "よん", rom: "4 · yon", en: "4" }, { ch: "ご", rom: "5 · go", en: "5" },
+                    { ch: "ろく", rom: "6 · roku", en: "6" }, { ch: "なな", rom: "7 · nana", en: "7" }, { ch: "はち", rom: "8 · hachi", en: "8" },
+                    { ch: "きゅう", rom: "9 · kyuu", en: "9" }, { ch: "じゅう", rom: "10 · juu", en: "10" }]
+            },
+            {
+                title: "Tens", note: "Formed with [digit] + じゅう. Example: にじゅう = 2 + 10 = 20.", chars: [
+                    { ch: "にじゅう", rom: "20 · nijuu", en: "20" }, { ch: "さんじゅう", rom: "30 · sanjuu", en: "30" }, { ch: "よんじゅう", rom: "40 · yonjuu", en: "40" },
+                    { ch: "ごじゅう", rom: "50 · gojuu", en: "50" }, { ch: "ろくじゅう", rom: "60 · rokujuu", en: "60" }, { ch: "ななじゅう", rom: "70 · nanajuu", en: "70" },
+                    { ch: "はちじゅう", rom: "80 · hachijuu", en: "80" }, { ch: "きゅうじゅう", rom: "90 · kyuujuu", en: "90" }]
+            },
+            {
+                title: "Big Units", note: "Everything above 100 is built from these + 0-99.", chars: [
+                    { ch: "ひゃく", rom: "100 · hyaku", en: "100" }, { ch: "せん", rom: "1,000 · sen", en: "1,000" }, { ch: "まん", rom: "10,000 · man", en: "10,000" }]
+            },
+        ];
+        const ALL_JAPANESE_NUMBERS = JAPANESE_NUMBER_CHART.flatMap(s => s.chars.map(c => ({ kr: c.ch, en: c.en, rom: c.rom })));
+
+        const JAPANESE_CHAT_TOPICS = [
+            { k: ["こんにちは", "konnichiwa", "hello", "hi "], a: "こんにちは (konnichiwa) means 'hello' — used mainly in the daytime. In the morning use おはよう (ohayou), and in the evening こんばんは (konbanwa)." },
+            { k: ["さようなら", "sayounara", "bye", "goodbye"], a: "さようなら (sayounara) means 'goodbye,' but it can sound quite final or formal! Casually, Japanese speakers often just say じゃあね (jaa ne) or またね (mata ne) — 'see you later.'" },
+            { k: ["おはよう", "ohayou", "good morning"], a: "おはよう (ohayou) means 'good morning' casually; おはようございます (ohayou gozaimasu) is the polite version, common when greeting coworkers or people you don't know well." },
+            { k: ["ありがとう", "arigatou", "thank"], a: "ありがとう (arigatou) means 'thank you.' For a more polite version (with strangers, at work, etc.), use ありがとうございます (arigatou gozaimasu)." },
+            { k: ["すみません", "sumimasen", "sorry"], a: "すみません (sumimasen) is incredibly versatile — it can mean 'sorry,' 'excuse me,' or even 'thank you' (for the trouble someone went to). Context decides the meaning!" },
+            { k: ["genki", "元気", "how are you"], a: "元気ですか? (genki desu ka?) means 'how are you? / are you well?' A common reply: はい、元気です (hai, genki desu) — 'yes, I'm well.'" },
+            { k: ["namae", "name", "なまえ"], a: "お名前は何ですか? (onamae wa nan desu ka?) means 'what is your name?' To answer: 私の名前は___です (watashi no namae wa ___ desu) — 'my name is ___.'" },
+            { k: ["keigo", "敬語", "honorific", "polite level"], a: "敬語 (keigo) is Japan's system of honorific speech — it has three levels: 丁寧語 (polite), 尊敬語 (respectful, for others' actions), and 謙譲語 (humble, for your own actions). It's a big topic, but essential for formal or business Japanese!" },
+            { k: ["hiragana", "ひらがな", "alphabet", "kana"], a: "Hiragana has 46 basic characters, each representing one syllable sound (not letters like English). It's the first writing system Japanese children learn, and it's what most beginner vocabulary is written in before kanji." },
+            { k: ["heart", "hearts", "lose"], a: "You lose a heart for each wrong answer in a lesson. Run out and the lesson ends — but hearts refill over time, or go Pro for unlimited hearts." },
+            { k: ["streak", "fire"], a: "Your streak counts consecutive days you complete at least one lesson. Miss a day and it resets — try a quick lesson daily! 頑張って! (ganbatte — good luck / do your best!)" },
+            { k: ["xp", "level", "points"], a: "XP is earned by finishing lessons and quizzes. It builds your Level on your Profile page — the more you practice, the higher you climb!" },
+            { k: ["pro", "premium", "upgrade", "subscription", "price", "cost"], a: "Hangul Pro unlocks unlimited hearts, every unit instantly, advanced speaking drills, deeper stats, and unlimited tutor chats. Check the Pro tab for pricing and plans!" },
+            { k: ["speak", "pronounce", "mic", "pronunciation"], a: "For speaking exercises, tap the mic and say the word naturally — the app compares what it hears to the target word. If your browser blocks the mic, check your site permissions." },
+            { k: ["difficult", "hard", "struggling", "stuck", "confus"], a: "大丈夫! (daijoubu — it's okay!) Everyone finds new grammar tricky at first. Try replaying lessons or retaking a quiz — repetition is what makes it click. 少しずつ! (sukoshizutsu — little by little!)" },
+            { k: ["kanji", "漢字"], a: "Kanji are the adopted Chinese characters used in Japanese writing, each carrying meaning (unlike hiragana/katakana, which are purely phonetic). This app currently focuses on hiragana-based vocabulary to keep things approachable — kanji is a great next step once you're comfortable with the kana!" },
+        ];
+
+        const STROKE_ORDER_JA = [
+            { ch: "あ", strokes: ["Stroke 1: a short horizontal-ish line top-left.", "Stroke 2: a curved vertical stroke through the middle.", "Stroke 3: a curved stroke that loops at the bottom."] },
+            { ch: "い", strokes: ["Stroke 1: a short curved vertical line.", "Stroke 2: a second, slightly longer curved line to its right."] },
+            { ch: "う", strokes: ["Stroke 1: a short mark at the top.", "Stroke 2: one curved stroke sweeping down and around, like a shallow 'U' with a hook."] },
+            { ch: "え", strokes: ["Stroke 1: a horizontal line.", "Stroke 2: a diagonal line crossing down.", "Stroke 3: a curved hook finishing at the bottom."] },
+            { ch: "お", strokes: ["Stroke 1: a horizontal line.", "Stroke 2: a vertical line with a curve at the bottom.", "Stroke 3: a short diagonal stroke to the upper right."] },
+            { ch: "か", strokes: ["Stroke 1: a vertical line with a slight leftward hook at the bottom.", "Stroke 2: a horizontal-diagonal stroke crossing it.", "Stroke 3: a small separate stroke to the lower right."] },
+            { ch: "き", strokes: ["Stroke 1: a horizontal line.", "Stroke 2: a second horizontal line below it.", "Stroke 3: a vertical stroke crossing both.", "Stroke 4: a small curved stroke at the bottom."] },
+            { ch: "く", strokes: ["One single stroke: a sharp angle, like a 'less than' (<) symbol."] },
+            { ch: "け", strokes: ["Stroke 1: a vertical line.", "Stroke 2: a horizontal-diagonal stroke crossing it.", "Stroke 3: a curved vertical hook stroke to the right."] },
+            { ch: "こ", strokes: ["Stroke 1: a horizontal line at the top.", "Stroke 2: a longer curved horizontal line below it."] },
+        ];
+
         const NUMBER_CHART = [
             {
                 title: "Sino-Korean 0–10 (한자어 숫자)", note: "Used for money, phone numbers, dates, math, and minutes.", chars: [
@@ -3624,13 +4066,18 @@
 
         const ALL_VOCAB = LEVELS.flatMap(l => l.words);
         const ALL_VOCAB_ES = LEVELS_ES.flatMap(l => l.words);
+        const ALL_VOCAB_JA = LEVELS_JA.flatMap(l => l.words);
         function activeVocabPool() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            return lang === 'es' ? ALL_VOCAB_ES : ALL_VOCAB;
+            if (lang === 'es') return ALL_VOCAB_ES;
+            if (lang === 'ja') return ALL_VOCAB_JA;
+            return ALL_VOCAB;
         }
         function activeChatTopics() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            return lang === 'es' ? SPANISH_CHAT_TOPICS : CHAT_TOPICS;
+            if (lang === 'es') return SPANISH_CHAT_TOPICS;
+            if (lang === 'ja') return JAPANESE_CHAT_TOPICS;
+            return CHAT_TOPICS;
         }
         function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
         const CHAT_STOPWORDS = new Set(["what", "does", "mean", "means", "is", "are", "how", "do", "the", "a", "an", "in", "of", "to", "say", "for", "and", "or", "you", "your", "word", "spanish", "korean", "english", "tell", "me", "about", "this", "that", "which", "can", "could", "would", "should", "please", "thanks", "thank"]);
@@ -3759,7 +4206,9 @@
 
         function activeLangLabel() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            return lang === 'es' ? 'Español' : '한국어';
+            if (lang === 'es') return 'Español';
+            if (lang === 'ja') return '日本語';
+            return '한국어';
         }
         function updateLanguageSpecificUI() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
@@ -3770,33 +4219,69 @@
             const kdramaNav = document.getElementById('navKdrama');
             if (kdramaNav) kdramaNav.classList.toggle('lang-hidden', !isKorean);
 
+            const topikText = {
+                ko: ['TOPIK Practice', 'Official-style proficiency test questions'],
+                es: ['DELE Practice', 'Spanish proficiency-style test questions'],
+                ja: ['JLPT Practice', 'Japanese proficiency-style test questions']
+            };
             const topikTitle = document.getElementById('topikCardTitle');
             if (topikTitle) {
-                topikTitle.textContent = isKorean ? 'TOPIK Practice' : 'DELE Practice';
-                document.getElementById('topikCardSub').textContent = isKorean ? 'Official-style proficiency test questions' : 'Spanish proficiency-style test questions';
+                const [t, s] = topikText[lang] || topikText.ko;
+                topikTitle.textContent = t;
+                document.getElementById('topikCardSub').textContent = s;
             }
+
+            const alphabetText = {
+                ko: ['Hangul Chart', 'All 40 letters + a quick quiz'],
+                es: ['Spanish Alphabet', 'All 27 letters + a quick quiz'],
+                ja: ['Hiragana Chart', 'All 46 characters + a quick quiz']
+            };
             const alphabetTitle = document.getElementById('alphabetCardTitle');
             if (alphabetTitle) {
-                alphabetTitle.textContent = isKorean ? 'Hangul Chart' : 'Spanish Alphabet';
-                document.getElementById('alphabetCardSub').textContent = isKorean ? 'All 40 letters + a quick quiz' : 'All 27 letters + a quick quiz';
+                const [t, s] = alphabetText[lang] || alphabetText.ko;
+                alphabetTitle.textContent = t;
+                document.getElementById('alphabetCardSub').textContent = s;
             }
+
+            const numberSubText = {
+                ko: 'Both number systems + a quick quiz',
+                es: 'Numbers 0–1,000,000 + a quick quiz',
+                ja: 'Numbers 0–10,000 + a quick quiz'
+            };
             const numberSub = document.getElementById('numberCardSub');
-            if (numberSub) numberSub.textContent = isKorean ? 'Both number systems + a quick quiz' : 'Numbers 0–1,000,000 + a quick quiz';
+            if (numberSub) numberSub.textContent = numberSubText[lang] || numberSubText.ko;
+
+            const grammarText = {
+                ko: ['Grammar & Particles', 'Particles, verb conjugation, honorifics'],
+                es: ['Verb Conjugation', 'Present, past, and future tense drills'],
+                ja: ['Grammar & Particles', 'Particles, verb forms, keigo levels']
+            };
             const grammarTitle = document.getElementById('grammarCardTitle');
             if (grammarTitle) {
-                grammarTitle.textContent = isKorean ? 'Grammar & Particles' : 'Verb Conjugation';
-                document.getElementById('grammarCardSub').textContent = isKorean ? 'Particles, verb conjugation, honorifics' : 'Present, past, and future tense drills';
+                const [t, s] = grammarText[lang] || grammarText.ko;
+                grammarTitle.textContent = t;
+                document.getElementById('grammarCardSub').textContent = s;
             }
+
+            const drawSubText = {
+                ko: 'Practice writing Hangul by hand',
+                es: 'Practice writing Spanish letters by hand',
+                ja: 'Practice writing hiragana by hand'
+            };
             const drawSub = document.getElementById('drawTraceCardSub');
-            if (drawSub) drawSub.textContent = isKorean ? 'Practice writing Hangul by hand' : 'Practice writing Spanish letters by hand';
+            if (drawSub) drawSub.textContent = drawSubText[lang] || drawSubText.ko;
         }
         function activeTiers() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            return lang === 'es' ? TIERS_ES : TIERS;
+            if (lang === 'es') return TIERS_ES;
+            if (lang === 'ja') return TIERS_JA;
+            return TIERS;
         }
         function activeLevels() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            return lang === 'es' ? LEVELS_ES : LEVELS;
+            if (lang === 'es') return LEVELS_ES;
+            if (lang === 'ja') return LEVELS_JA;
+            return LEVELS;
         }
 
         function lessonsForTier(tierKey) { return activeLevels().filter(l => l.tier === tierKey); }
@@ -3874,7 +4359,8 @@
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             const greetings = {
                 ko: (hour < 12 ? '좋은 아침이에요 🌤️' : hour < 18 ? '안녕하세요 👋' : '좋은 저녁이에요 🌙'),
-                es: (hour < 12 ? '¡Buenos días! 🌤️' : hour < 18 ? '¡Hola! 👋' : '¡Buenas noches! 🌙')
+                es: (hour < 12 ? '¡Buenos días! 🌤️' : hour < 18 ? '¡Hola! 👋' : '¡Buenas noches! 🌙'),
+                ja: (hour < 12 ? 'おはようございます 🌤️' : hour < 18 ? 'こんにちは 👋' : 'こんばんは 🌙')
             };
             document.getElementById('homeGreeting').textContent = greetings[lang] || greetings.ko;
         }
@@ -3983,7 +4469,7 @@
             if (koreanVoice) utter.voice = koreanVoice;
             window.speechSynthesis.speak(utter);
         }
-        const LANG_TTS_CODE = { ko: 'ko-KR', es: 'es-ES' };
+        const LANG_TTS_CODE = { ko: 'ko-KR', es: 'es-ES', ja: 'ja-JP' };
         function speakLearning(text) {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'ko') { speakKorean(text); return; }
@@ -4292,10 +4778,14 @@
         function openHangulChart() {
             showScreen('hangul');
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            document.getElementById('alphabetChartTitle').textContent = lang === 'es' ? '🔤 Spanish Alphabet' : '🔤 Hangul Chart';
-            document.getElementById('alphabetChartSub').textContent = lang === 'es'
-                ? 'Tap any letter to hear it. Learn all 27 letters and try the quiz below.'
-                : 'Tap any letter to hear it. Learn all 40 and try the quiz below.';
+            const titles = { es: '🔤 Spanish Alphabet', ja: '🔤 Hiragana Chart', ko: '🔤 Hangul Chart' };
+            const subs = {
+                es: 'Tap any letter to hear it. Learn all 27 letters and try the quiz below.',
+                ja: 'Tap any character to hear it. Learn all 46 basic hiragana and try the quiz below.',
+                ko: 'Tap any letter to hear it. Learn all 40 and try the quiz below.'
+            };
+            document.getElementById('alphabetChartTitle').textContent = titles[lang] || titles.ko;
+            document.getElementById('alphabetChartSub').textContent = subs[lang] || subs.ko;
             renderHangulChart();
         }
         function renderHangulChart() {
@@ -4304,7 +4794,7 @@
             if (wrap.dataset.built === lang) return;
             wrap.dataset.built = lang;
             wrap.innerHTML = '';
-            const chart = lang === 'es' ? SPANISH_ALPHABET : HANGUL_CHART;
+            const chart = lang === 'es' ? SPANISH_ALPHABET : lang === 'ja' ? JAPANESE_KANA : HANGUL_CHART;
             chart.forEach(section => {
                 const sec = document.createElement('div');
                 sec.className = 'hangul-section';
@@ -4324,6 +4814,8 @@
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'es') {
                 lastCompletedLesson = { title: "Spanish Alphabet", words: ALL_SPANISH_ALPHABET.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
+            } else if (lang === 'ja') {
+                lastCompletedLesson = { title: "Hiragana Chart", words: ALL_JAPANESE_KANA.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             } else {
                 lastCompletedLesson = { title: "Hangul Chart", words: ALL_HANGUL_CHARS.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             }
@@ -4333,10 +4825,13 @@
         function openNumberChart() {
             showScreen('numbers');
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            document.getElementById('numberChartTitle').textContent = lang === 'es' ? '🔢 Number Chart' : '🔢 Number Chart';
-            document.getElementById('numberChartSub').textContent = lang === 'es'
-                ? 'Spanish uses one number system — tap any number to hear it, then try the quiz.'
-                : 'Korean has two number systems. Tap any number to hear it, then try the quiz.';
+            const subs = {
+                es: 'Spanish uses one number system — tap any number to hear it, then try the quiz.',
+                ja: 'Tap any number to hear it, then try the quiz.',
+                ko: 'Korean has two number systems. Tap any number to hear it, then try the quiz.'
+            };
+            document.getElementById('numberChartTitle').textContent = '🔢 Number Chart';
+            document.getElementById('numberChartSub').textContent = subs[lang] || subs.ko;
             renderNumberChart();
         }
         function renderNumberChart() {
@@ -4345,7 +4840,7 @@
             if (wrap.dataset.built === lang) return;
             wrap.dataset.built = lang;
             wrap.innerHTML = '';
-            const chart = lang === 'es' ? SPANISH_NUMBER_CHART : NUMBER_CHART;
+            const chart = lang === 'es' ? SPANISH_NUMBER_CHART : lang === 'ja' ? JAPANESE_NUMBER_CHART : NUMBER_CHART;
             chart.forEach(section => {
                 const sec = document.createElement('div');
                 sec.className = 'hangul-section';
@@ -4365,6 +4860,8 @@
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'es') {
                 lastCompletedLesson = { title: "Spanish Numbers", words: ALL_SPANISH_NUMBERS };
+            } else if (lang === 'ja') {
+                lastCompletedLesson = { title: "Japanese Numbers", words: ALL_JAPANESE_NUMBERS };
             } else {
                 lastCompletedLesson = { title: "Number Chart", words: ALL_NUMBER_ITEMS };
             }
@@ -4737,11 +5234,15 @@
 
         function activeStrokeOrder() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            return lang === 'es' ? STROKE_ORDER_ES : STROKE_ORDER;
+            if (lang === 'es') return STROKE_ORDER_ES;
+            if (lang === 'ja') return STROKE_ORDER_JA;
+            return STROKE_ORDER;
         }
         function activeAlphabetChars() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            return lang === 'es' ? ALL_SPANISH_ALPHABET : ALL_HANGUL_CHARS;
+            if (lang === 'es') return ALL_SPANISH_ALPHABET;
+            if (lang === 'ja') return ALL_JAPANESE_KANA;
+            return ALL_HANGUL_CHARS;
         }
         function openDrawTrace() {
             showScreen('draw');
@@ -5790,9 +6291,12 @@
             const typingEl = botSayTyping();
             try {
                 const activeLang = (state.settings && state.settings.learningLang) || 'ko';
-                const systemPrompt = activeLang === 'es'
-                    ? "You are Han, a warm, encouraging Spanish-language tutor inside a learning app called Hello Hangul (currently teaching Spanish to this learner). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Spanish and English together — give the Spanish phrase, a simple pronunciation guide, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Spanish word, phrase, grammar point (including tú vs usted, subjunctive, ser vs estar), or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly."
-                    : "You are Han, a warm, encouraging Korean-language tutor inside a learning app called Hello Hangul. You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Korean and English together — give the Korean phrase, its romanization, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Korean word, phrase, grammar point, or cultural topic, not just app mechanics. When asked about a number, remember Korean has two number systems (Sino-Korean, used for money/dates/phone numbers/math, and Native Korean, used for counting objects/age, which only goes up to 99) — explain both systems for that number when the learner doesn't specify one. Keep answers short (2-5 sentences), warm, and beginner-friendly.";
+                const systemPrompts = {
+                    es: "You are Han, a warm, encouraging Spanish-language tutor inside a learning app called Hello Hangul (currently teaching Spanish to this learner). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Spanish and English together — give the Spanish phrase, a simple pronunciation guide, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Spanish word, phrase, grammar point (including tú vs usted, subjunctive, ser vs estar), or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly.",
+                    ja: "You are Han, a warm, encouraging Japanese-language tutor inside a learning app called Hello Hangul (currently teaching Japanese to this learner). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Japanese and English together — give the Japanese phrase (in hiragana/katakana, since this app focuses on kana rather than kanji), its romaji, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Japanese word, phrase, grammar point (including keigo/honorific levels, particles, verb conjugation), or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly.",
+                    ko: "You are Han, a warm, encouraging Korean-language tutor inside a learning app called Hello Hangul. You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Korean and English together — give the Korean phrase, its romanization, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Korean word, phrase, grammar point, or cultural topic, not just app mechanics. When asked about a number, remember Korean has two number systems (Sino-Korean, used for money/dates/phone numbers/math, and Native Korean, used for counting objects/age, which only goes up to 99) — explain both systems for that number when the learner doesn't specify one. Keep answers short (2-5 sentences), warm, and beginner-friendly."
+                };
+                const systemPrompt = systemPrompts[activeLang] || systemPrompts.ko;
                 const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
                     method: "POST",
                     headers: {
@@ -5843,7 +6347,7 @@
                         return `${native.kr} (${native.rom}) is how you say that number in Native Korean — ${nativeUsage}.`;
                     }
                 }
-            } else {
+            } else if (lang === 'es') {
                 const trimmedEs = text.trim().toLowerCase();
                 const spelledMatch = ALL_SPANISH_NUMBERS.find(n => n.kr.toLowerCase() === trimmedEs)
                     || [...ALL_SPANISH_NUMBERS].sort((a, b) => b.kr.length - a.kr.length).find(n => new RegExp('\\b' + escapeRegex(n.kr) + '\\b', 'i').test(lower));
@@ -5857,6 +6361,21 @@
                     const found = ALL_SPANISH_NUMBERS.find(n => n.en === numStr);
                     if (found) return `${found.kr} (${found.rom}) is how you say that number in Spanish. Tap it in the Number Chart (under More) to hear it!`;
                 }
+            } else if (lang === 'ja') {
+                const trimmedJa = text.trim();
+                const spelledMatch = ALL_JAPANESE_NUMBERS.find(n => n.kr === trimmedJa)
+                    || [...ALL_JAPANESE_NUMBERS].sort((a, b) => b.kr.length - a.kr.length).find(n => text.includes(n.kr));
+                if (spelledMatch) {
+                    return `${spelledMatch.kr} (${spelledMatch.rom}) is how you say that number in Japanese. Tap it in the Number Chart (under More) to hear it!`;
+                }
+                const digitMatch = lower.match(/\b(\d{1,7})\b/);
+                if (digitMatch) {
+                    let numStr = String(parseInt(digitMatch[1], 10));
+                    if (numStr === '1000') numStr = '1,000';
+                    if (numStr === '10000') numStr = '10,000';
+                    const found = ALL_JAPANESE_NUMBERS.find(n => n.en === numStr);
+                    if (found) return `${found.kr} (${found.rom}) is how you say that number in Japanese. Tap it in the Number Chart (under More) to hear it!`;
+                }
             }
 
             const hit = activeChatTopics().find(t => t.k.some(k => lower.includes(k)));
@@ -5864,14 +6383,14 @@
 
             const word = findWordMatch(text);
             if (word) {
-                return lang === 'es'
-                    ? `${word.kr} (${word.rom}) means "${word.en}" in English. ¡Buena pregunta! (Good question!) Try using it in a quiz to lock it in.`
-                    : `${word.kr} (${word.rom}) means "${word.en}" in English. 좋은 질문이에요! (jo-eun jilmunieyo — great question!) Try using it in the K-Drama tab or a quiz to lock it in.`;
+                if (lang === 'es') return `${word.kr} (${word.rom}) means "${word.en}" in English. ¡Buena pregunta! (Good question!) Try using it in a quiz to lock it in.`;
+                if (lang === 'ja') return `${word.kr} (${word.rom}) means "${word.en}" in English. いい質問ですね! (ii shitsumon desu ne — great question!) Try using it in a quiz to lock it in.`;
+                return `${word.kr} (${word.rom}) means "${word.en}" in English. 좋은 질문이에요! (jo-eun jilmunieyo — great question!) Try using it in the K-Drama tab or a quiz to lock it in.`;
             }
 
-            return lang === 'es'
-                ? "¡Todavía no sé eso! (I don't know that one yet!) Try asking about a specific word from your lessons — Spanish or English both work (e.g. \"what does gracias mean\" or \"how do I say goodbye\"). I can also explain grammar like tú vs usted, or how streaks, hearts, and XP work."
-                : "그건 아직 몰라요 (I don't know that one yet)! Try asking about a specific word from your lessons — Korean or English both work (e.g. \"what does 감사합니다 mean\" or \"how do I say goodbye\"). I can also explain grammar endings like -요, or how streaks, hearts, and XP work.";
+            if (lang === 'es') return "¡Todavía no sé eso! (I don't know that one yet!) Try asking about a specific word from your lessons — Spanish or English both work (e.g. \"what does gracias mean\" or \"how do I say goodbye\"). I can also explain grammar like tú vs usted, or how streaks, hearts, and XP work.";
+            if (lang === 'ja') return "それはまだ分かりません! (sore wa mada wakarimasen — I don't know that one yet!) Try asking about a specific word from your lessons — Japanese or English both work (e.g. \"what does arigatou mean\" or \"how do I say goodbye\"). I can also explain keigo levels, hiragana, or how streaks, hearts, and XP work.";
+            return "그건 아직 몰라요 (I don't know that one yet)! Try asking about a specific word from your lessons — Korean or English both work (e.g. \"what does 감사합니다 mean\" or \"how do I say goodbye\"). I can also explain grammar endings like -요, or how streaks, hearts, and XP work.";
         }
         function botSayTyping() {
             const wrap = document.getElementById('chatMessages');
@@ -5928,9 +6447,12 @@
         function startVideoCallRound() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             videoCallState = { pool: shuffle(activeVocabPool()).slice(0, 10), index: 0, phase: 'teach', streak: 0, correctCount: 0 };
-            document.getElementById('videocallCaption').textContent = lang === 'es'
-                ? "¡Hola! I'm Han — let's warm up first, then I'll quiz you in Spanish."
-                : "Hi! I'm Han — let's warm up first, then I'll quiz you.";
+            const greetings = {
+                es: "¡Hola! I'm Han — let's warm up first, then I'll quiz you in Spanish.",
+                ja: "こんにちは! I'm Han — let's warm up first, then I'll quiz you in Japanese.",
+                ko: "Hi! I'm Han — let's warm up first, then I'll quiz you."
+            };
+            document.getElementById('videocallCaption').textContent = greetings[lang] || greetings.ko;
             setVideoCallMood('neutral');
             renderVideoCallStep();
         }
@@ -5982,7 +6504,9 @@
                         const lang = (state.settings && state.settings.learningLang) || 'ko';
                         const linesKo = ["잘했어요! Nice work! 😊", "That's it! You're on a roll!", "맞아요! Correct!", "Great job — keep going!"];
                         const linesEs = ["¡Muy bien! Nice work! 😊", "That's it! You're on a roll!", "¡Correcto! Correct!", "¡Excelente! Keep going!"];
-                        const lines = lang === 'es' ? linesEs : linesKo;
+                        const linesJa = ["よくできました! Nice work! 😊", "That's it! You're on a roll!", "正解! Correct!", "すごい! Keep going!"];
+                        const linesMap = { es: linesEs, ja: linesJa, ko: linesKo };
+                        const lines = linesMap[lang] || linesKo;
                         document.getElementById('videocallCaption').textContent = lines[Math.floor(Math.random() * lines.length)];
                     } else {
                         videoCallState.streak = 0;
@@ -6173,7 +6697,7 @@
            ========================================================= */
         const LANGUAGES_TO_LEARN = [
             { code: 'ko', name: 'Korean', flag: '🇰🇷', available: true },
-            { code: 'ja', name: 'Japanese', flag: '🇯🇵', available: false },
+            { code: 'ja', name: 'Japanese', flag: '🇯🇵', available: true },
             { code: 'zh', name: 'Chinese (Mandarin)', flag: '🇨🇳', available: false },
             { code: 'yue', name: 'Cantonese', flag: '🇭🇰', available: false },
             { code: 'es', name: 'Spanish', flag: '🇪🇸', available: true },
