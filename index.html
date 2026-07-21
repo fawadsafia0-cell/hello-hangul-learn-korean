@@ -587,6 +587,38 @@
             gap: 14px;
         }
 
+        .lang-search-wrap {
+            position: relative;
+            margin: 14px 0;
+        }
+
+        .lang-search-ic {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 15px;
+            opacity: .6;
+            pointer-events: none;
+        }
+
+        .lang-search-input {
+            width: 100%;
+            padding: 13px 14px 13px 40px;
+            border-radius: 14px;
+            border: 2px solid var(--line);
+            background: var(--card);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .lang-search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
         #kdramaList {
             display: flex;
             flex-direction: column;
@@ -2230,9 +2262,18 @@
                 <div style="flex:1;"></div>
             </div>
             <div class="section-title" style="margin-top:0;">🌍 Choose a Language</div>
-            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Korean is fully built out. Other languages
-                are coming soon — we're not going to fake lessons for languages we haven't actually built yet.</p>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Korean, Spanish, and Japanese are fully
+                built out. Other languages are coming soon — we're not going to fake lessons for languages we haven't
+                actually built yet.</p>
+            <div class="lang-search-wrap">
+                <span class="lang-search-ic">🔍</span>
+                <input type="text" id="languageSearchInput" class="lang-search-input" placeholder="Search languages..."
+                    oninput="filterLanguageList(this.value)">
+            </div>
             <div id="languageListWrap" class="unit-path"></div>
+            <p id="languageNoResults"
+                style="display:none;color:var(--text-soft);font-size:13px;text-align:center;margin-top:20px;">No
+                languages match that search.</p>
         </div>
 
         <div class="screen" id="screen-more">
@@ -6755,10 +6796,20 @@
             { code: 'eu', name: 'Basque', flag: '🏴', available: false },
             { code: 'eo', name: 'Esperanto', flag: '🌐', available: false },
             { code: 'la', name: 'Latin', flag: '🏛️', available: false },
+            { code: 'en', name: 'English', flag: '🇬🇧', available: false },
+            { code: 'hu', name: 'Hungarian', flag: '🇭🇺', available: false },
+            { code: 'haw', name: 'Hawaiian', flag: '🌺', available: false },
+            { code: 'nv', name: 'Navajo', flag: '🪶', available: false },
+            { code: 'tlh', name: 'Klingon', flag: '🖖', available: false },
+            { code: 'val', name: 'High Valyrian', flag: '🐉', available: false },
+            { code: 'gd', name: 'Scottish Gaelic', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', available: false },
         ];
 
         function openLanguagePicker() {
             showScreen('language-picker');
+            const searchInput = document.getElementById('languageSearchInput');
+            if (searchInput) searchInput.value = '';
+            document.getElementById('languageNoResults').style.display = 'none';
             renderLanguageList();
         }
         function renderLanguageList() {
@@ -6769,6 +6820,7 @@
                 const isCurrent = lang.code === current;
                 const card = document.createElement('div');
                 card.className = 'unit-card' + (lang.available ? '' : ' locked');
+                card.dataset.langName = lang.name.toLowerCase();
                 card.innerHTML = `
       <div class="unit-num" style="background:${lang.available ? '#A8E6CF44' : '#EDE5F5'};font-size:22px;">${lang.available ? lang.flag : '🔒'}</div>
       <div class="unit-info">
@@ -6782,6 +6834,17 @@
                 }
                 wrap.appendChild(card);
             });
+        }
+        function filterLanguageList(query) {
+            const wrap = document.getElementById('languageListWrap');
+            const q = query.trim().toLowerCase();
+            let visibleCount = 0;
+            [...wrap.children].forEach(card => {
+                const matches = card.dataset.langName.includes(q);
+                card.style.display = matches ? '' : 'none';
+                if (matches) visibleCount++;
+            });
+            document.getElementById('languageNoResults').style.display = visibleCount === 0 ? 'block' : 'none';
         }
         function selectLearningLanguage(code) {
             state.settings.learningLang = code;
