@@ -2098,14 +2098,12 @@
         <!-- CHAT -->
         <div class="screen" id="screen-chat">
             <div class="section-title" style="margin-top:6px;">💬 Ask your tutor</div>
-            <div class="videocall-link-card ko-only" id="videocallCardTutor" onclick="openVideoCall()">
+            <div class="videocall-link-card" id="videocallCardTutor" onclick="openVideoCall()">
                 <img class="videocall-link-avatar" id="videocallLinkAvatar" src="" alt="Han">
                 <div class="chart-link-text"><b>Video call with Han</b><span>Practice live — Han reacts to your
                         answers</span></div>
                 <div class="videocall-pro-badge">💎 PRO</div>
             </div>
-            <div class="ko-only-note lang-only-note" id="tutorLangNote" style="display:none;">Han currently specializes
-                in Korean — Spanish tutoring is more limited for now.</div>
             <div class="chat-wrap">
                 <div class="chat-messages" id="chatMessages"></div>
                 <div class="chat-input-row">
@@ -2525,6 +2523,246 @@
                     { kr: "escuela", rom: "es-KWEH-lah", en: "school" }, { kr: "libro", rom: "LEE-broh", en: "book" },
                     { kr: "lápiz", rom: "LAH-pees", en: "pencil" }, { kr: "mochila", rom: "moh-CHEE-lah", en: "backpack" },
                     { kr: "maestro", rom: "mah-EHS-troh", en: "teacher" }, { kr: "estudiante", rom: "es-too-dee-AHN-teh", en: "student" }]
+            },
+
+            /* ---------------- INTERMEDIATE ---------------- */
+            {
+                tier: "intermediate", title: "Feelings & Emotions", icon: "💗", words: [
+                    { kr: "feliz", rom: "feh-LEES", en: "happy" }, { kr: "triste", rom: "TREES-teh", en: "sad" },
+                    { kr: "enojado", rom: "eh-noh-HAH-doh", en: "angry" }, { kr: "cansado", rom: "kahn-SAH-doh", en: "tired" },
+                    { kr: "emocionado", rom: "eh-moh-see-oh-NAH-doh", en: "excited" }, { kr: "nervioso", rom: "nehr-vee-OH-soh", en: "nervous" }]
+            },
+            {
+                tier: "intermediate", title: "Directions & Places", icon: "🧭", words: [
+                    { kr: "izquierda", rom: "ees-kee-EHR-dah", en: "left" }, { kr: "derecha", rom: "deh-REH-chah", en: "right" },
+                    { kr: "cerca", rom: "SEHR-kah", en: "near" }, { kr: "lejos", rom: "LEH-hohs", en: "far" },
+                    { kr: "aquí", rom: "ah-KEE", en: "here" }, { kr: "allí", rom: "ah-YEE", en: "there" }]
+            },
+            {
+                tier: "intermediate", title: "Shopping", icon: "🛍️", words: [
+                    { kr: "¿cuánto cuesta?", rom: "KWAHN-toh KWES-tah", en: "how much is it" }, { kr: "caro", rom: "KAH-roh", en: "expensive" },
+                    { kr: "barato", rom: "bah-RAH-toh", en: "cheap" }, { kr: "pagar", rom: "pah-GAHR", en: "to pay" },
+                    { kr: "efectivo", rom: "eh-fek-TEE-voh", en: "cash" }, { kr: "tarjeta", rom: "tahr-HEH-tah", en: "card" }]
+            },
+            {
+                tier: "intermediate", title: "Transportation", icon: "🚌", words: [
+                    { kr: "autobús", rom: "ow-toh-BOOS", en: "bus" }, { kr: "tren", rom: "trehn", en: "train" },
+                    { kr: "avión", rom: "ah-vee-OHN", en: "plane" }, { kr: "coche", rom: "KOH-cheh", en: "car" },
+                    { kr: "boleto", rom: "boh-LEH-toh", en: "ticket" }, { kr: "parada", rom: "pah-RAH-dah", en: "bus stop" }]
+            },
+            {
+                tier: "intermediate", title: "Hobbies", icon: "🎸", words: [
+                    { kr: "pasatiempo", rom: "pah-sah-tee-EM-poh", en: "hobby" }, { kr: "leer", rom: "leh-EHR", en: "to read" },
+                    { kr: "nadar", rom: "nah-DAHR", en: "to swim" }, { kr: "bailar", rom: "bahy-LAHR", en: "to dance" },
+                    { kr: "pintar", rom: "peen-TAHR", en: "to paint" }, { kr: "cantar", rom: "kahn-TAHR", en: "to sing" }]
+            },
+            {
+                tier: "intermediate", title: "Work & Jobs", icon: "💼", words: [
+                    { kr: "trabajo", rom: "trah-BAH-hoh", en: "job" }, { kr: "oficina", rom: "oh-fee-SEE-nah", en: "office" },
+                    { kr: "jefe", rom: "HEH-feh", en: "boss" }, { kr: "reunión", rom: "reh-oo-nee-OHN", en: "meeting" },
+                    { kr: "sueldo", rom: "SWEL-doh", en: "salary" }, { kr: "horario", rom: "oh-RAH-ree-oh", en: "schedule" }]
+            },
+            {
+                tier: "intermediate", title: "Health & Body", icon: "🩺", words: [
+                    { kr: "enfermo", rom: "en-FEHR-moh", en: "sick" }, { kr: "dolor", rom: "doh-LOR", en: "pain" },
+                    { kr: "hospital", rom: "ohs-pee-TAHL", en: "hospital" }, { kr: "medicina", rom: "meh-dee-SEE-nah", en: "medicine" },
+                    { kr: "fiebre", rom: "fee-EH-breh", en: "fever" }, { kr: "doctor", rom: "dohk-TOR", en: "doctor" }]
+            },
+            {
+                tier: "intermediate", title: "Technology", icon: "📱", words: [
+                    { kr: "teléfono", rom: "teh-LEH-foh-noh", en: "phone" }, { kr: "computadora", rom: "kohm-poo-tah-DOH-rah", en: "computer" },
+                    { kr: "internet", rom: "een-tehr-NET", en: "internet" }, { kr: "contraseña", rom: "kohn-trah-SEH-nyah", en: "password" },
+                    { kr: "aplicación", rom: "ah-plee-kah-see-OHN", en: "app" }, { kr: "batería", rom: "bah-teh-REE-ah", en: "battery" }]
+            },
+            {
+                tier: "intermediate", title: "Sports", icon: "⚽", words: [
+                    { kr: "fútbol", rom: "FOOT-bohl", en: "soccer" }, { kr: "baloncesto", rom: "bah-lohn-SES-toh", en: "basketball" },
+                    { kr: "correr", rom: "koh-RREHR", en: "to run" }, { kr: "ganar", rom: "gah-NAHR", en: "to win" },
+                    { kr: "perder", rom: "pehr-DEHR", en: "to lose" }, { kr: "equipo", rom: "eh-KEE-poh", en: "team" }]
+            },
+            {
+                tier: "intermediate", title: "Nature", icon: "🌳", words: [
+                    { kr: "montaña", rom: "mohn-TAH-nyah", en: "mountain" }, { kr: "río", rom: "REE-oh", en: "river" },
+                    { kr: "bosque", rom: "BOHS-keh", en: "forest" }, { kr: "cielo", rom: "see-EH-loh", en: "sky" },
+                    { kr: "árbol", rom: "AHR-bohl", en: "tree" }, { kr: "flor", rom: "flor", en: "flower" }]
+            },
+            {
+                tier: "intermediate", title: "Numbers & Time", icon: "🔟", words: [
+                    { kr: "minuto", rom: "mee-NOO-toh", en: "minute" }, { kr: "hora", rom: "OH-rah", en: "hour" },
+                    { kr: "semana", rom: "seh-MAH-nah", en: "week" }, { kr: "mes", rom: "mehs", en: "month" },
+                    { kr: "año", rom: "AH-nyoh", en: "year" }, { kr: "reloj", rom: "reh-LOH", en: "clock" }]
+            },
+            {
+                tier: "intermediate", title: "Making Plans", icon: "📅", words: [
+                    { kr: "cita", rom: "SEE-tah", en: "appointment" }, { kr: "quedar", rom: "keh-DAHR", en: "to meet up" },
+                    { kr: "invitar", rom: "een-vee-TAHR", en: "to invite" }, { kr: "cancelar", rom: "kahn-seh-LAHR", en: "to cancel" },
+                    { kr: "ocupado", rom: "oh-koo-PAH-doh", en: "busy" }, { kr: "libre", rom: "LEE-breh", en: "free (available)" }]
+            },
+            {
+                tier: "intermediate", title: "Restaurant & Ordering", icon: "🍽️", words: [
+                    { kr: "menú", rom: "meh-NOO", en: "menu" }, { kr: "pedir", rom: "peh-DEER", en: "to order" },
+                    { kr: "cuenta", rom: "KWEN-tah", en: "the bill" }, { kr: "propina", rom: "proh-PEE-nah", en: "tip" },
+                    { kr: "reserva", rom: "reh-SEHR-vah", en: "reservation" }, { kr: "mesero", rom: "meh-SEH-roh", en: "waiter" }]
+            },
+
+            /* ---------------- ADVANCED ---------------- */
+            {
+                tier: "advanced", title: "Connectors & Grammar", icon: "🔗", words: [
+                    { kr: "por eso", rom: "por EH-soh", en: "therefore" }, { kr: "sin embargo", rom: "seen em-BAHR-goh", en: "however" },
+                    { kr: "aunque", rom: "OWN-keh", en: "although" }, { kr: "porque", rom: "POR-keh", en: "because" },
+                    { kr: "entonces", rom: "en-TOHN-sehs", en: "so / then" }, { kr: "mientras", rom: "mee-EN-trahs", en: "while" }]
+            },
+            {
+                tier: "advanced", title: "Business Spanish", icon: "🏢", words: [
+                    { kr: "contrato", rom: "kohn-TRAH-toh", en: "contract" }, { kr: "negociación", rom: "neh-goh-see-ah-see-OHN", en: "negotiation" },
+                    { kr: "cliente", rom: "klee-EN-teh", en: "client" }, { kr: "ingresos", rom: "een-GREH-sohs", en: "revenue" },
+                    { kr: "informe", rom: "een-FOR-meh", en: "report" }, { kr: "plazo", rom: "PLAH-soh", en: "deadline" }]
+            },
+            {
+                tier: "advanced", title: "News & Media", icon: "📰", words: [
+                    { kr: "noticias", rom: "noh-TEE-see-ahs", en: "news" }, { kr: "artículo", rom: "ahr-TEE-koo-loh", en: "article" },
+                    { kr: "reportero", rom: "reh-por-TEH-roh", en: "reporter" }, { kr: "política", rom: "poh-LEE-tee-kah", en: "policy / politics" },
+                    { kr: "opinión pública", rom: "oh-pee-nee-OHN POO-blee-kah", en: "public opinion" }, { kr: "anunciar", rom: "ah-noon-see-AHR", en: "to announce" }]
+            },
+            {
+                tier: "advanced", title: "Nuanced Emotions", icon: "🌫️", words: [
+                    { kr: "decepcionado", rom: "deh-sep-see-oh-NAH-doh", en: "disappointed" }, { kr: "agobiado", rom: "ah-goh-bee-AH-doh", en: "overwhelmed" },
+                    { kr: "orgulloso", rom: "or-goo-YOH-soh", en: "proud" }, { kr: "celoso", rom: "seh-LOH-soh", en: "jealous" },
+                    { kr: "extrañar", rom: "ex-trah-NYAHR", en: "to miss someone" }, { kr: "aliviado", rom: "ah-lee-vee-AH-doh", en: "relieved" }]
+            },
+            {
+                tier: "advanced", title: "Idioms: Everyday Life", icon: "🫴", words: [
+                    { kr: "costar un ojo de la cara", rom: "kohs-TAHR oon OH-hoh", en: "to cost an arm and a leg" }, { kr: "estar en las nubes", rom: "es-TAHR en lahs NOO-behs", en: "to have your head in the clouds" },
+                    { kr: "meter la pata", rom: "meh-TEHR lah PAH-tah", en: "to mess up" }, { kr: "tomar el pelo", rom: "toh-MAHR el PEH-loh", en: "to pull someone's leg" },
+                    { kr: "no tener pelos en la lengua", rom: "noh teh-NEHR PEH-lohs", en: "to speak bluntly" }, { kr: "ser pan comido", rom: "sehr pahn koh-MEE-doh", en: "to be a piece of cake" }]
+            },
+            {
+                tier: "advanced", title: "Idioms: Wisdom & Weather", icon: "🌧️", words: [
+                    { kr: "dar en el clavo", rom: "dahr en el KLAH-voh", en: "to hit the nail on the head" }, { kr: "ponerse las pilas", rom: "poh-NEHR-seh lahs PEE-lahs", en: "to get your act together" },
+                    { kr: "llover a cántaros", rom: "yoh-VEHR ah KAHN-tah-rohs", en: "to rain cats and dogs" }, { kr: "estar como una cabra", rom: "es-TAHR KOH-moh OO-nah KAH-brah", en: "to be crazy" },
+                    { kr: "matar dos pájaros de un tiro", rom: "mah-TAHR dohs PAH-hah-rohs", en: "to kill two birds with one stone" }, { kr: "no dar pie con bola", rom: "noh dahr pee-EH kohn BOH-lah", en: "to not get anything right" }]
+            },
+            {
+                tier: "advanced", title: "Travel Advanced", icon: "🛂", words: [
+                    { kr: "pasaporte", rom: "pah-sah-POR-teh", en: "passport" }, { kr: "aduana", rom: "ah-DWAH-nah", en: "customs" },
+                    { kr: "alojamiento", rom: "ah-loh-hah-mee-EN-toh", en: "lodging" }, { kr: "aeropuerto", rom: "ah-eh-roh-PWEHR-toh", en: "airport" },
+                    { kr: "equipaje", rom: "eh-kee-PAH-heh", en: "luggage" }, { kr: "itinerario", rom: "ee-tee-neh-RAH-ree-oh", en: "itinerary" }]
+            },
+            {
+                tier: "advanced", title: "Relationships", icon: "💌", words: [
+                    { kr: "pareja", rom: "pah-REH-hah", en: "partner / couple" }, { kr: "enamorarse", rom: "eh-nah-moh-RAHR-seh", en: "to fall in love" },
+                    { kr: "romper", rom: "rohm-PEHR", en: "to break up" }, { kr: "cita a ciegas", rom: "SEE-tah ah see-EH-gahs", en: "blind date" },
+                    { kr: "amor a primera vista", rom: "ah-MOR ah pree-MEH-rah VEES-tah", en: "love at first sight" }, { kr: "comprometerse", rom: "kohm-proh-meh-TEHR-seh", en: "to commit / get engaged" }]
+            },
+            {
+                tier: "advanced", title: "Debate & Opinions", icon: "🗣️", words: [
+                    { kr: "estar de acuerdo", rom: "es-TAHR deh ah-KWEHR-doh", en: "to agree" }, { kr: "estar en desacuerdo", rom: "es-TAHR en deh-sah-KWEHR-doh", en: "to disagree" },
+                    { kr: "argumento", rom: "ahr-goo-MEN-toh", en: "argument" }, { kr: "punto de vista", rom: "POON-toh deh VEES-tah", en: "point of view" },
+                    { kr: "convencer", rom: "kohn-ven-SEHR", en: "to convince" }, { kr: "comprometer", rom: "kohm-proh-meh-TEHR", en: "to compromise" }]
+            },
+            {
+                tier: "advanced", title: "Formal Speech (Tú vs Usted)", icon: "🎩", words: [
+                    { kr: "usted", rom: "oos-TEHD", en: "you (formal)" }, { kr: "tú", rom: "too", en: "you (informal)" },
+                    { kr: "formalidad", rom: "for-mah-lee-DAHD", en: "formality" }, { kr: "cortesía", rom: "kor-teh-SEE-ah", en: "courtesy" },
+                    { kr: "respeto", rom: "res-PEH-toh", en: "respect" }, { kr: "modales", rom: "moh-DAH-lehs", en: "manners" }]
+            },
+            {
+                tier: "advanced", title: "Slang & Internet Terms", icon: "📲", words: [
+                    { kr: "chévere", rom: "CHEH-veh-reh", en: "cool (Latin America)" }, { kr: "guay", rom: "gwahy", en: "cool (Spain)" },
+                    { kr: "qué onda", rom: "keh OHN-dah", en: "what's up" }, { kr: "no manches", rom: "noh MAHN-chehs", en: "no way (Mexico)" },
+                    { kr: "tremendo", rom: "treh-MEN-doh", en: "awesome / huge" }, { kr: "fiaca", rom: "fee-AH-kah", en: "laziness (Argentina)" }]
+            },
+            {
+                tier: "advanced", title: "Culture & History", icon: "🏛️", words: [
+                    { kr: "fiesta", rom: "fee-ES-tah", en: "celebration / holiday" }, { kr: "tradición", rom: "trah-dee-see-OHN", en: "tradition" },
+                    { kr: "independencia", rom: "een-deh-pen-DEN-see-ah", en: "independence" }, { kr: "bandera", rom: "bahn-DEH-rah", en: "flag" },
+                    { kr: "civilización", rom: "see-vee-lee-sah-see-OHN", en: "civilization" }, { kr: "patrimonio", rom: "pah-tree-MOH-nee-oh", en: "heritage" }]
+            },
+            {
+                tier: "advanced", title: "Advanced Verbs", icon: "💪", words: [
+                    { kr: "superar", rom: "soo-peh-RAHR", en: "to overcome" }, { kr: "lograr", rom: "loh-GRAHR", en: "to achieve" },
+                    { kr: "rendirse", rom: "ren-DEER-seh", en: "to give up" }, { kr: "atreverse", rom: "ah-treh-VEHR-seh", en: "to dare" },
+                    { kr: "desarrollar", rom: "deh-sah-rroh-YAHR", en: "to develop" }, { kr: "realizar", rom: "reh-ah-lee-SAHR", en: "to fulfill / carry out" }]
+            },
+
+            /* ---------------- FLUENT ---------------- */
+            {
+                tier: "fluent", title: "Refranes (Proverbs) Part 1", icon: "📜", words: [
+                    { kr: "más vale tarde que nunca", rom: "mahs VAH-leh TAHR-deh keh NOON-kah", en: "better late than never" }, { kr: "no hay mal que por bien no venga", rom: "noh ahy mahl keh por bee-EN", en: "every cloud has a silver lining" },
+                    { kr: "quien mucho abarca poco aprieta", rom: "kee-EN MOO-choh ah-BAHR-kah", en: "don't bite off more than you can chew" }, { kr: "a caballo regalado no se le mira el diente", rom: "ah kah-BAH-yoh reh-gah-LAH-doh", en: "don't look a gift horse in the mouth" },
+                    { kr: "el que la sigue la consigue", rom: "el keh lah SEE-geh", en: "persistence pays off" }, { kr: "no todo lo que brilla es oro", rom: "noh TOH-doh loh keh BREE-yah", en: "not all that glitters is gold" }]
+            },
+            {
+                tier: "fluent", title: "Literary Expressions", icon: "🖋️", words: [
+                    { kr: "melancólico", rom: "meh-lahn-KOH-lee-koh", en: "melancholic" }, { kr: "fugaz", rom: "foo-GAHS", en: "fleeting" },
+                    { kr: "añoranza", rom: "ah-nyoh-RAHN-sah", en: "longing / nostalgia" }, { kr: "etéreo", rom: "eh-TEH-reh-oh", en: "ethereal" },
+                    { kr: "efímero", rom: "eh-FEE-meh-roh", en: "ephemeral" }, { kr: "sublime", rom: "soo-BLEE-meh", en: "sublime" }]
+            },
+            {
+                tier: "fluent", title: "Refranes Part 2", icon: "🪞", words: [
+                    { kr: "en boca cerrada no entran moscas", rom: "en BOH-kah seh-RRAH-dah", en: "silence is golden" }, { kr: "más vale pájaro en mano que cien volando", rom: "mahs VAH-leh PAH-hah-roh", en: "a bird in hand is worth two in the bush" },
+                    { kr: "donde hay humo hay fuego", rom: "DOHN-deh ahy OO-moh", en: "where there's smoke there's fire" }, { kr: "al mal tiempo buena cara", rom: "ahl mahl tee-EM-poh BWEH-nah KAH-rah", en: "keep a stiff upper lip" },
+                    { kr: "camarón que se duerme se lo lleva la corriente", rom: "kah-mah-ROHN keh seh DWEHR-meh", en: "the early bird catches the worm" }, { kr: "dime con quién andas y te diré quién eres", rom: "DEE-meh kohn kee-EN AHN-dahs", en: "you are known by the company you keep" }]
+            },
+            {
+                tier: "fluent", title: "Political & Social Terms", icon: "🏛️", words: [
+                    { kr: "democracia", rom: "deh-moh-KRAH-see-ah", en: "democracy" }, { kr: "desigualdad", rom: "deh-see-gwahl-DAHD", en: "inequality" },
+                    { kr: "globalización", rom: "gloh-bah-lee-sah-see-OHN", en: "globalization" }, { kr: "sostenibilidad", rom: "sohs-teh-nee-bee-lee-DAHD", en: "sustainability" },
+                    { kr: "derechos humanos", rom: "deh-REH-chohs oo-MAH-nohs", en: "human rights" }, { kr: "gobierno", rom: "goh-bee-EHR-noh", en: "government" }]
+            },
+            {
+                tier: "fluent", title: "Psychology & Nuance", icon: "🧠", words: [
+                    { kr: "autoestima", rom: "ow-toh-es-TEE-mah", en: "self-esteem" }, { kr: "resiliencia", rom: "reh-see-lee-EN-see-ah", en: "resilience" },
+                    { kr: "empatía", rom: "em-pah-TEE-ah", en: "empathy" }, { kr: "ansiedad", rom: "ahn-see-eh-DAHD", en: "anxiety" },
+                    { kr: "bienestar", rom: "bee-en-es-TAHR", en: "wellbeing" }, { kr: "motivación", rom: "moh-tee-vah-see-OHN", en: "motivation" }]
+            },
+            {
+                tier: "fluent", title: "Business Negotiation", icon: "🤝", words: [
+                    { kr: "acuerdo", rom: "ah-KWEHR-doh", en: "agreement" }, { kr: "propuesta", rom: "proh-PWES-tah", en: "proposal" },
+                    { kr: "ventaja", rom: "ven-TAH-hah", en: "advantage" }, { kr: "inversión", rom: "een-vehr-see-OHN", en: "investment" },
+                    { kr: "riesgo", rom: "ree-ES-goh", en: "risk" }, { kr: "rentable", rom: "ren-TAH-bleh", en: "profitable" }]
+            },
+            {
+                tier: "fluent", title: "Academic Spanish", icon: "🎓", words: [
+                    { kr: "tesis", rom: "TEH-sees", en: "thesis" }, { kr: "investigación", rom: "een-ves-tee-gah-see-OHN", en: "research" },
+                    { kr: "hipótesis", rom: "ee-POH-teh-sees", en: "hypothesis" }, { kr: "análisis", rom: "ah-NAH-lee-sees", en: "analysis" },
+                    { kr: "conclusión", rom: "kohn-kloo-see-OHN", en: "conclusion" }, { kr: "bibliografía", rom: "bee-blee-oh-grah-FEE-ah", en: "bibliography" }]
+            },
+            {
+                tier: "fluent", title: "Poetic & Formal Writing", icon: "🕊️", words: [
+                    { kr: "sereno", rom: "seh-REH-noh", en: "serene" }, { kr: "incesante", rom: "een-seh-SAHN-teh", en: "unceasing" },
+                    { kr: "imponente", rom: "eem-poh-NEN-teh", en: "imposing" }, { kr: "entrañable", rom: "en-trah-NYAH-bleh", en: "dear / close" },
+                    { kr: "inefable", rom: "ee-neh-FAH-bleh", en: "ineffable" }, { kr: "arraigado", rom: "ah-rrahy-GAH-doh", en: "deeply rooted" }]
+            },
+            {
+                tier: "fluent", title: "Regional Flavor", icon: "🗺️", words: [
+                    { kr: "che", rom: "cheh", en: "hey (Argentina)" }, { kr: "pana", rom: "PAH-nah", en: "buddy (Venezuela)" },
+                    { kr: "guagua", rom: "GWAH-gwah", en: "bus (Caribbean)" }, { kr: "tío/tía", rom: "TEE-oh / TEE-ah", en: "dude (Spain)" },
+                    { kr: "órale", rom: "OH-rah-leh", en: "wow / okay (Mexico)" }, { kr: "pololo/a", rom: "poh-LOH-loh", en: "boyfriend/girlfriend (Chile)" }]
+            },
+            {
+                tier: "fluent", title: "Complex Grammar: Subjunctive", icon: "🧩", words: [
+                    { kr: "ojalá", rom: "oh-hah-LAH", en: "I hope / wish (triggers subjunctive)" }, { kr: "es posible que", rom: "es poh-SEE-bleh keh", en: "it's possible that" },
+                    { kr: "dudo que", rom: "DOO-doh keh", en: "I doubt that" }, { kr: "espero que", rom: "es-PEH-roh keh", en: "I hope that" },
+                    { kr: "quizás", rom: "kee-SAHS", en: "maybe (often + subjunctive)" }, { kr: "para que", rom: "PAH-rah keh", en: "so that" }]
+            },
+            {
+                tier: "fluent", title: "More Proverbs", icon: "📖", words: [
+                    { kr: "cría cuervos y te sacarán los ojos", rom: "KREE-ah KWEHR-vohs", en: "no good deed goes unpunished" }, { kr: "a quien madruga Dios le ayuda", rom: "ah kee-EN mah-DROO-gah", en: "the early bird catches the worm" },
+                    { kr: "perro que ladra no muerde", rom: "PEH-rroh keh LAH-drah", en: "his bark is worse than his bite" }, { kr: "no hay peor sordo que el que no quiere oír", rom: "noh ahy peh-OR SOR-doh", en: "there's none so deaf as those who will not hear" },
+                    { kr: "zapatero a tus zapatos", rom: "sah-pah-TEH-roh ah toos sah-PAH-tohs", en: "stick to what you know" }, { kr: "más vale prevenir que lamentar", rom: "mahs VAH-leh preh-veh-NEER", en: "better safe than sorry" }]
+            },
+            {
+                tier: "fluent", title: "Professional Terms", icon: "⚖️", words: [
+                    { kr: "diagnóstico", rom: "dee-ahg-NOHS-tee-koh", en: "diagnosis" }, { kr: "receta", rom: "reh-SEH-tah", en: "prescription" },
+                    { kr: "demanda", rom: "deh-MAHN-dah", en: "lawsuit" }, { kr: "abogado", rom: "ah-boh-GAH-doh", en: "lawyer" },
+                    { kr: "sentencia", rom: "sen-TEN-see-ah", en: "sentence / ruling" }, { kr: "tribunal", rom: "tree-boo-NAHL", en: "court" }]
+            },
+            {
+                tier: "fluent", title: "Mastery Review", icon: "🏆", words: [
+                    { kr: "perspicaz", rom: "pehrs-pee-KAHS", en: "perceptive" }, { kr: "versátil", rom: "vehr-SAH-teel", en: "versatile" },
+                    { kr: "meticuloso", rom: "meh-tee-koo-LOH-soh", en: "meticulous" }, { kr: "tenaz", rom: "teh-NAHS", en: "tenacious" },
+                    { kr: "íntegro", rom: "EEN-teh-groh", en: "honest / upright" }, { kr: "sabiduría", rom: "sah-bee-doo-REE-ah", en: "wisdom" }]
             },
         ];
         LEVELS_ES.forEach((l, i) => { l.id = 1000 + i + 1; });
@@ -3363,24 +3601,75 @@
             { k: ["speak korean", "in korean", "korean only", "can you speak"], a: "네, 조금 할 수 있어요! (ne, jogeum hal su isseoyo — yes, I can speak a little!) Ask me about any word from your lessons and I'll answer with the Korean, romanization, AND the English meaning." },
         ];
 
+        const SPANISH_CHAT_TOPICS = [
+            { k: ["hola", "hello", "hi "], a: "¡Hola! (OH-lah) means 'hello.' It works any time of day and with anyone — very safe and simple. ¡Mucho gusto! (Nice to meet you!)" },
+            { k: ["adiós", "bye", "goodbye"], a: "Adiós (ah-dee-OHS) means 'goodbye' — but Spanish speakers often use hasta luego (see you later) or nos vemos (we'll see each other) for a more casual, everyday farewell." },
+            { k: ["buenos días", "good morning"], a: "Buenos días (BWEH-nohs DEE-ahs) means 'good morning.' Later in the day you'd switch to buenas tardes (good afternoon) and buenas noches (good evening/night)." },
+            { k: ["buenas noches", "good night"], a: "Buenas noches (BWEH-nahs NOH-chehs) covers both 'good evening' and 'good night,' depending on context — used both as a greeting and a farewell after dark." },
+            { k: ["gracias", "thank"], a: "Gracias (GRAH-see-ahs) means 'thank you.' For extra emphasis, muchas gracias (thank you very much) is very common and totally natural in everyday speech." },
+            { k: ["lo siento", "sorry"], a: "Lo siento (loh see-EN-toh) means 'I'm sorry.' For a quick 'excuse me' (like squeezing past someone), use perdón or disculpe instead." },
+            { k: ["cómo estás", "how are you"], a: "¿Cómo estás? (KOH-moh es-TAHS) means 'how are you?' (casual). A common reply: bien, gracias, ¿y tú? — 'good, thanks, and you?'" },
+            { k: ["tu nombre", "your name", "cómo te llamas"], a: "¿Cómo te llamas? (KOH-moh teh YAH-mahs) means 'what's your name?' — literally 'what do you call yourself.' To answer: me llamo ___ (my name is ___)." },
+            { k: ["te quiero", "love", "te amo"], a: "Te quiero (teh kee-EH-roh) is a warm 'I love you,' used with family, friends, or partners. Te amo (teh AH-moh) is stronger and reserved mostly for romantic love." },
+            { k: ["tú", "usted", "formal"], a: "Tú is the informal 'you' (friends, family, peers), while usted is the formal, respectful 'you' (strangers, elders, professional settings). Choosing the right one matters a lot in Spanish!" },
+            { k: ["alfabeto", "alphabet"], a: "The Spanish alphabet uses the same Latin letters as English, plus one extra: ñ (like 'ny' in canyon). Spelling is much more consistent than English — most letters make one predictable sound." },
+            { k: ["heart", "hearts", "lose"], a: "You lose a heart for each wrong answer in a lesson. Run out and the lesson ends — but hearts refill over time, or go Pro for unlimited hearts." },
+            { k: ["streak", "fire", "racha"], a: "Your streak counts consecutive days you complete at least one lesson. Miss a day and it resets — try a quick lesson daily! ¡Tú puedes! (You can do it!)" },
+            { k: ["xp", "level", "points", "nivel"], a: "XP is earned by finishing lessons and quizzes. It builds your Level on your Profile page — the more you practice, the higher you climb!" },
+            { k: ["pro", "premium", "upgrade", "subscription", "price", "cost"], a: "Hangul Pro unlocks unlimited hearts, every unit instantly, advanced speaking drills, deeper stats, and unlimited tutor chats. Check the Pro tab for pricing and plans!" },
+            { k: ["speak", "pronounce", "mic", "pronunciation"], a: "For speaking exercises, tap the mic and say the word naturally — the app compares what it hears to the target word. If your browser blocks the mic, check your site permissions." },
+            { k: ["difficult", "hard", "struggling", "stuck", "confus"], a: "¡No te preocupes! (Don't worry!) Everyone finds new grammar tricky at first. Try replaying lessons or retaking a quiz — repetition is what makes it click. ¡Poco a poco! (Little by little!)" },
+            { k: ["subjunctive", "subjuntivo"], a: "The subjunctive is used after expressions of doubt, wish, or emotion — like ojalá (I hope), es posible que (it's possible that), or espero que (I hope that). It's one of the trickiest parts of Spanish grammar, so don't stress if it takes practice!" },
+        ];
+
         const ALL_VOCAB = LEVELS.flatMap(l => l.words);
+        const ALL_VOCAB_ES = LEVELS_ES.flatMap(l => l.words);
+        function activeVocabPool() {
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            return lang === 'es' ? ALL_VOCAB_ES : ALL_VOCAB;
+        }
+        function activeChatTopics() {
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            return lang === 'es' ? SPANISH_CHAT_TOPICS : CHAT_TOPICS;
+        }
+        function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+        const CHAT_STOPWORDS = new Set(["what", "does", "mean", "means", "is", "are", "how", "do", "the", "a", "an", "in", "of", "to", "say", "for", "and", "or", "you", "your", "word", "spanish", "korean", "english", "tell", "me", "about", "this", "that", "which", "can", "could", "would", "should", "please", "thanks", "thank"]);
         function findWordMatch(text) {
-            const koreanMatch = ALL_VOCAB.find(w => text.includes(w.kr));
-            if (koreanMatch) return koreanMatch;
+            const pool = activeVocabPool();
+            // Korean text has no ASCII word boundaries, so match by longest substring first
+            // (prevents a short word like "사" winning over "감사합니다" just by array order).
+            const koreanCandidates = pool.filter(w => /[\u3131-\uD79D]/.test(w.kr) && text.includes(w.kr));
+            if (koreanCandidates.length) {
+                return koreanCandidates.sort((a, b) => b.kr.length - a.kr.length)[0];
+            }
+            // Latin-script target words (e.g. Spanish) require a word boundary to avoid
+            // matches like "pan" inside "spanish".
+            const latinMatch = pool.find(w => !/[\u3131-\uD79D]/.test(w.kr) && new RegExp('\\b' + escapeRegex(w.kr) + '\\b', 'i').test(text));
+            if (latinMatch) return latinMatch;
+
             const lower = text.toLowerCase();
-            return ALL_VOCAB.find(w => {
+            if (lower.length <= 2) return null;
+            return pool.find(w => {
                 const enLower = w.en.toLowerCase();
-                if (enLower.includes(lower) && lower.length > 2) return true;
-                return lower.split(/\s+/).some(word => word.length > 2 && enLower.includes(word));
+                if (enLower === lower) return true;
+                return lower.split(/\s+/).some(word => word.length > 2 && !CHAT_STOPWORDS.has(word) && enLower.includes(word));
             }) || null;
         }
 
         function findNumberMatch(text) {
             const lower = text.toLowerCase();
             const trimmed = text.trim();
-            // Korean number word typed directly (e.g. "오십") — exact match first, then longest substring match
-            const koreanNumMatch = ALL_NUMBER_ITEMS.find(n => trimmed === n.kr)
-                || [...ALL_NUMBER_ITEMS].sort((a, b) => b.kr.length - a.kr.length).find(n => text.includes(n.kr));
+            // Korean number word typed directly (e.g. "오십") — exact match first, then longest substring match.
+            // Skip the substring fallback if a longer regular vocabulary word also matches (e.g. don't let
+            // "사" (4) win over "감사합니다" just because it's a substring of it).
+            let koreanNumMatch = ALL_NUMBER_ITEMS.find(n => trimmed === n.kr);
+            if (!koreanNumMatch) {
+                const candidate = [...ALL_NUMBER_ITEMS].sort((a, b) => b.kr.length - a.kr.length).find(n => text.includes(n.kr));
+                if (candidate) {
+                    const longerVocabMatch = ALL_VOCAB.find(w => w.kr.length > candidate.kr.length && text.includes(w.kr));
+                    if (!longerVocabMatch) koreanNumMatch = candidate;
+                }
+            }
             if (koreanNumMatch) {
                 const numStr = koreanNumMatch.en.replace(' (native)', '');
                 return {
@@ -3480,8 +3769,6 @@
             });
             const kdramaNav = document.getElementById('navKdrama');
             if (kdramaNav) kdramaNav.classList.toggle('lang-hidden', !isKorean);
-            const tutorNote = document.getElementById('tutorLangNote');
-            if (tutorNote) tutorNote.style.display = isKorean ? 'none' : 'block';
 
             const topikTitle = document.getElementById('topikCardTitle');
             if (topikTitle) {
@@ -5502,6 +5789,10 @@
 
             const typingEl = botSayTyping();
             try {
+                const activeLang = (state.settings && state.settings.learningLang) || 'ko';
+                const systemPrompt = activeLang === 'es'
+                    ? "You are Han, a warm, encouraging Spanish-language tutor inside a learning app called Hello Hangul (currently teaching Spanish to this learner). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Spanish and English together — give the Spanish phrase, a simple pronunciation guide, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Spanish word, phrase, grammar point (including tú vs usted, subjunctive, ser vs estar), or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly."
+                    : "You are Han, a warm, encouraging Korean-language tutor inside a learning app called Hello Hangul. You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Korean and English together — give the Korean phrase, its romanization, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Korean word, phrase, grammar point, or cultural topic, not just app mechanics. When asked about a number, remember Korean has two number systems (Sino-Korean, used for money/dates/phone numbers/math, and Native Korean, used for counting objects/age, which only goes up to 99) — explain both systems for that number when the learner doesn't specify one. Keep answers short (2-5 sentences), warm, and beginner-friendly.";
                 const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
                     method: "POST",
                     headers: {
@@ -5511,7 +5802,7 @@
                     body: JSON.stringify({
                         model: "llama-3.3-70b-versatile",
                         messages: [
-                            { role: "system", content: "You are Han, a warm, encouraging Korean-language tutor inside a learning app called Hello Hangul. You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Korean and English together — give the Korean phrase, its romanization, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Korean word, phrase, grammar point, or cultural topic, not just app mechanics. When asked about a number, remember Korean has two number systems (Sino-Korean, used for money/dates/phone numbers/math, and Native Korean, used for counting objects/age, which only goes up to 99) — explain both systems for that number when the learner doesn't specify one. Keep answers short (2-5 sentences), warm, and beginner-friendly." },
+                            { role: "system", content: systemPrompt },
                             { role: "user", content: text }
                         ]
                     })
@@ -5527,39 +5818,60 @@
         }
         function ruleBasedReply(text) {
             const lower = text.toLowerCase();
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
 
-            const numMatch = findNumberMatch(text);
-            if (numMatch) {
-                const { sino, native, askedSystem } = numMatch;
-                const sinoUsage = "used for money, phone numbers, dates, math, and minutes";
-                const nativeUsage = "used for counting objects, people, and your age";
+            if (lang === 'ko') {
+                const numMatch = findNumberMatch(text);
+                if (numMatch) {
+                    const { sino, native, askedSystem } = numMatch;
+                    const sinoUsage = "used for money, phone numbers, dates, math, and minutes";
+                    const nativeUsage = "used for counting objects, people, and your age";
 
-                if (askedSystem === 'native' && native) {
-                    return `${native.kr} (${native.rom}) is the Native Korean way to say that number — ${nativeUsage}. Tap it in the Number Chart (under More) to hear it!`;
+                    if (askedSystem === 'native' && native) {
+                        return `${native.kr} (${native.rom}) is the Native Korean way to say that number — ${nativeUsage}. Tap it in the Number Chart (under More) to hear it!`;
+                    }
+                    if (askedSystem === 'sino' && sino) {
+                        return `${sino.kr} (${sino.rom}) is the Sino-Korean way to say that number — ${sinoUsage}. Tap it in the Number Chart (under More) to hear it!`;
+                    }
+                    if (sino && native) {
+                        return `That number has two forms in Korean:\n🔹 Sino-Korean: ${sino.kr} (${sino.rom}) — ${sinoUsage}\n🔹 Native Korean: ${native.kr} (${native.rom}) — ${nativeUsage}\nTap either one in the Number Chart (under More) to hear them!`;
+                    }
+                    if (sino) {
+                        return `${sino.kr} (${sino.rom}) is how you say that number in Sino-Korean — ${sinoUsage}. Korean doesn't have a native-Korean word for numbers this large, so Sino-Korean is the only option here.`;
+                    }
+                    if (native) {
+                        return `${native.kr} (${native.rom}) is how you say that number in Native Korean — ${nativeUsage}.`;
+                    }
                 }
-                if (askedSystem === 'sino' && sino) {
-                    return `${sino.kr} (${sino.rom}) is the Sino-Korean way to say that number — ${sinoUsage}. Tap it in the Number Chart (under More) to hear it!`;
+            } else {
+                const trimmedEs = text.trim().toLowerCase();
+                const spelledMatch = ALL_SPANISH_NUMBERS.find(n => n.kr.toLowerCase() === trimmedEs)
+                    || [...ALL_SPANISH_NUMBERS].sort((a, b) => b.kr.length - a.kr.length).find(n => new RegExp('\\b' + escapeRegex(n.kr) + '\\b', 'i').test(lower));
+                if (spelledMatch) {
+                    return `${spelledMatch.kr} (${spelledMatch.rom}) is how you say that number in Spanish. Tap it in the Number Chart (under More) to hear it!`;
                 }
-                if (sino && native) {
-                    return `That number has two forms in Korean:\n🔹 Sino-Korean: ${sino.kr} (${sino.rom}) — ${sinoUsage}\n🔹 Native Korean: ${native.kr} (${native.rom}) — ${nativeUsage}\nTap either one in the Number Chart (under More) to hear them!`;
-                }
-                if (sino) {
-                    return `${sino.kr} (${sino.rom}) is how you say that number in Sino-Korean — ${sinoUsage}. Korean doesn't have a native-Korean word for numbers this large, so Sino-Korean is the only option here.`;
-                }
-                if (native) {
-                    return `${native.kr} (${native.rom}) is how you say that number in Native Korean — ${nativeUsage}.`;
+                const digitMatch = lower.match(/\b(\d{1,7})\b/);
+                if (digitMatch) {
+                    let numStr = String(parseInt(digitMatch[1], 10));
+                    if (numStr === '1000') numStr = '1,000';
+                    const found = ALL_SPANISH_NUMBERS.find(n => n.en === numStr);
+                    if (found) return `${found.kr} (${found.rom}) is how you say that number in Spanish. Tap it in the Number Chart (under More) to hear it!`;
                 }
             }
 
-            const hit = CHAT_TOPICS.find(t => t.k.some(k => lower.includes(k)));
+            const hit = activeChatTopics().find(t => t.k.some(k => lower.includes(k)));
             if (hit) return hit.a;
 
             const word = findWordMatch(text);
             if (word) {
-                return `${word.kr} (${word.rom}) means "${word.en}" in English. 좋은 질문이에요! (jo-eun jilmunieyo — great question!) Try using it in the K-Drama tab or a quiz to lock it in.`;
+                return lang === 'es'
+                    ? `${word.kr} (${word.rom}) means "${word.en}" in English. ¡Buena pregunta! (Good question!) Try using it in a quiz to lock it in.`
+                    : `${word.kr} (${word.rom}) means "${word.en}" in English. 좋은 질문이에요! (jo-eun jilmunieyo — great question!) Try using it in the K-Drama tab or a quiz to lock it in.`;
             }
 
-            return "그건 아직 몰라요 (I don't know that one yet)! Try asking about a specific word from your lessons — Korean or English both work (e.g. \"what does 감사합니다 mean\" or \"how do I say goodbye\"). I can also explain grammar endings like -요, or how streaks, hearts, and XP work.";
+            return lang === 'es'
+                ? "¡Todavía no sé eso! (I don't know that one yet!) Try asking about a specific word from your lessons — Spanish or English both work (e.g. \"what does gracias mean\" or \"how do I say goodbye\"). I can also explain grammar like tú vs usted, or how streaks, hearts, and XP work."
+                : "그건 아직 몰라요 (I don't know that one yet)! Try asking about a specific word from your lessons — Korean or English both work (e.g. \"what does 감사합니다 mean\" or \"how do I say goodbye\"). I can also explain grammar endings like -요, or how streaks, hearts, and XP work.";
         }
         function botSayTyping() {
             const wrap = document.getElementById('chatMessages');
@@ -5614,8 +5926,11 @@
         }
 
         function startVideoCallRound() {
-            videoCallState = { pool: shuffle(ALL_VOCAB).slice(0, 10), index: 0, phase: 'teach', streak: 0, correctCount: 0 };
-            document.getElementById('videocallCaption').textContent = "Hi! I'm Han — let's warm up first, then I'll quiz you.";
+            const lang = (state.settings && state.settings.learningLang) || 'ko';
+            videoCallState = { pool: shuffle(activeVocabPool()).slice(0, 10), index: 0, phase: 'teach', streak: 0, correctCount: 0 };
+            document.getElementById('videocallCaption').textContent = lang === 'es'
+                ? "¡Hola! I'm Han — let's warm up first, then I'll quiz you in Spanish."
+                : "Hi! I'm Han — let's warm up first, then I'll quiz you.";
             setVideoCallMood('neutral');
             renderVideoCallStep();
         }
@@ -5632,7 +5947,7 @@
       <div class="ex-prompt">New word</div>
       <div class="ex-main">${word.kr}</div>
       <div class="ex-sub">${word.rom}</div>
-      <button class="listen-btn" onclick="speakKorean('${word.kr.replace(/'/g, "\\'")}')">🔊 Listen</button>
+      <button class="listen-btn" onclick="speakLearning('${word.kr.replace(/'/g, "\\'")}')">🔊 Listen</button>
       <div class="teach-meaning">${word.en}</div>
       <button class="primary-btn" onclick="videoCallState.phase='quiz'; renderVideoCallStep();">I'm ready →</button>
     </div>`;
@@ -5664,7 +5979,10 @@
                         videoCallState.correctCount++;
                         state.xp += 5; saveState(); renderStats();
                         setVideoCallMood('happy');
-                        const lines = ["잘했어요! Nice work! 😊", "That's it! You're on a roll!", "맞아요! Correct!", "Great job — keep going!"];
+                        const lang = (state.settings && state.settings.learningLang) || 'ko';
+                        const linesKo = ["잘했어요! Nice work! 😊", "That's it! You're on a roll!", "맞아요! Correct!", "Great job — keep going!"];
+                        const linesEs = ["¡Muy bien! Nice work! 😊", "That's it! You're on a roll!", "¡Correcto! Correct!", "¡Excelente! Keep going!"];
+                        const lines = lang === 'es' ? linesEs : linesKo;
                         document.getElementById('videocallCaption').textContent = lines[Math.floor(Math.random() * lines.length)];
                     } else {
                         videoCallState.streak = 0;
