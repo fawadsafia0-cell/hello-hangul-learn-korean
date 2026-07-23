@@ -3836,6 +3836,753 @@
         ];
         LEVELS_ZH.forEach((l, i) => { l.id = 4000 + i + 1; });
 
+        /* =========================================================
+           AFRIKAANS CONTENT
+           ========================================================= */
+        const TIERS_AF = TIERS;
+        const LEVELS_AF = [
+            /* ---------------- BEGINNER ---------------- */
+            {
+                tier: "beginner", title: "Afrikaans Basics", icon: "🇿🇦", words: [
+                    { kr: "hallo", rom: "HAH-loo", en: "hello" }, { kr: "dankie", rom: "DAHN-kee", en: "thank you" },
+                    { kr: "ja", rom: "yah", en: "yes" }, { kr: "nee", rom: "nee-uh", en: "no" },
+                    { kr: "naam", rom: "naahm", en: "name" }, { kr: "vriend", rom: "freend", en: "friend" }]
+            },
+            {
+                tier: "beginner", title: "Greetings & Manners", icon: "🙏", words: [
+                    { kr: "totsiens", rom: "tot-SEENS", en: "goodbye" }, { kr: "jammer", rom: "YAH-mer", en: "sorry" },
+                    { kr: "verskoon my", rom: "fer-SKOO-un my", en: "excuse me" }, { kr: "aangename kennis", rom: "AHN-guh-nah-muh KEN-nis", en: "nice to meet you" },
+                    { kr: "dis reg", rom: "dis rekh", en: "it's okay" }, { kr: "asseblief", rom: "AH-suh-bleef", en: "please" }]
+            },
+            {
+                tier: "beginner", title: "Numbers 1-6", icon: "🔢", words: [
+                    { kr: "een", rom: "ee-un", en: "one" }, { kr: "twee", rom: "tvee", en: "two" },
+                    { kr: "drie", rom: "dree", en: "three" }, { kr: "vier", rom: "feer", en: "four" },
+                    { kr: "vyf", rom: "fayf", en: "five" }, { kr: "ses", rom: "ses", en: "six" }]
+            },
+            {
+                tier: "beginner", title: "Days & Time", icon: "🕒", words: [
+                    { kr: "vandag", rom: "fun-DAHKH", en: "today" }, { kr: "môre", rom: "MOH-ruh", en: "tomorrow" },
+                    { kr: "gister", rom: "GHIS-ter", en: "yesterday" }, { kr: "nou", rom: "noh", en: "now" },
+                    { kr: "tyd", rom: "tayt", en: "time" }, { kr: "oggend", rom: "OKH-ent", en: "morning" }]
+            },
+            {
+                tier: "beginner", title: "Family", icon: "👪", words: [
+                    { kr: "familie", rom: "fah-MEE-lee", en: "family" }, { kr: "ma", rom: "mah", en: "mom" },
+                    { kr: "pa", rom: "pah", en: "dad" }, { kr: "broer", rom: "broor", en: "brother" },
+                    { kr: "suster", rom: "SUS-ter", en: "sister" }, { kr: "oupa", rom: "OH-pah", en: "grandfather" }]
+            },
+            {
+                tier: "beginner", title: "Food & Drink", icon: "🍚", words: [
+                    { kr: "kos", rom: "kos", en: "food" }, { kr: "water", rom: "VAH-ter", en: "water" },
+                    { kr: "koffie", rom: "KOH-fee", en: "coffee" }, { kr: "brood", rom: "broo-uht", en: "bread" },
+                    { kr: "rys", rom: "rays", en: "rice" }, { kr: "heerlik", rom: "HEER-lik", en: "delicious" }]
+            },
+            {
+                tier: "beginner", title: "Colors", icon: "🎨", words: [
+                    { kr: "rooi", rom: "roh-ee", en: "red" }, { kr: "blou", rom: "bloh", en: "blue" },
+                    { kr: "geel", rom: "gheel", en: "yellow" }, { kr: "groen", rom: "khroon", en: "green" },
+                    { kr: "swart", rom: "svart", en: "black" }, { kr: "wit", rom: "vit", en: "white" }]
+            },
+            {
+                tier: "beginner", title: "Body Parts", icon: "🧍", words: [
+                    { kr: "kop", rom: "kop", en: "head" }, { kr: "hand", rom: "hunt", en: "hand" },
+                    { kr: "oog", rom: "oo-uhkh", en: "eye" }, { kr: "neus", rom: "nöhs", en: "nose" },
+                    { kr: "mond", rom: "mont", en: "mouth" }, { kr: "been", rom: "bee-un", en: "leg" }]
+            },
+            {
+                tier: "beginner", title: "Animals", icon: "🐾", words: [
+                    { kr: "hond", rom: "hont", en: "dog" }, { kr: "kat", rom: "kat", en: "cat" },
+                    { kr: "voël", rom: "FOH-ul", en: "bird" }, { kr: "vis", rom: "fis", en: "fish" },
+                    { kr: "beer", rom: "bee-ur", en: "bear" }, { kr: "konyn", rom: "koh-NAYN", en: "rabbit" }]
+            },
+            {
+                tier: "beginner", title: "Clothing", icon: "👕", words: [
+                    { kr: "klere", rom: "KLEE-ruh", en: "clothes" }, { kr: "skoene", rom: "SKOO-nuh", en: "shoes" },
+                    { kr: "hoed", rom: "hoot", en: "hat" }, { kr: "broek", rom: "brook", en: "pants" },
+                    { kr: "romp", rom: "romp", en: "skirt" }, { kr: "sak", rom: "sak", en: "bag" }]
+            },
+            {
+                tier: "beginner", title: "Weather", icon: "⛅", words: [
+                    { kr: "weer", rom: "vee-ur", en: "weather" }, { kr: "reën", rom: "REH-un", en: "rain" },
+                    { kr: "sneeu", rom: "SNEE-oh", en: "snow" }, { kr: "wind", rom: "vint", en: "wind" },
+                    { kr: "warm", rom: "varm", en: "it's hot" }, { kr: "koud", rom: "koh-ut", en: "it's cold" }]
+            },
+            {
+                tier: "beginner", title: "House & Rooms", icon: "🏠", words: [
+                    { kr: "huis", rom: "hoys", en: "house" }, { kr: "kamer", rom: "KAH-mer", en: "room" },
+                    { kr: "bed", rom: "bet", en: "bed" }, { kr: "badkamer", rom: "BUT-kah-mer", en: "bathroom" },
+                    { kr: "kombuis", rom: "kom-BOYS", en: "kitchen" }, { kr: "deur", rom: "dö-ur", en: "door" }]
+            },
+            {
+                tier: "beginner", title: "School & Objects", icon: "🎒", words: [
+                    { kr: "skool", rom: "skoo-ul", en: "school" }, { kr: "boek", rom: "book", en: "book" },
+                    { kr: "potlood", rom: "POT-loo-ut", en: "pencil" }, { kr: "rugsak", rom: "RUKH-sak", en: "backpack" },
+                    { kr: "onderwyser", rom: "ON-der-vay-ser", en: "teacher" }, { kr: "student", rom: "stu-DENT", en: "student" }]
+            },
+
+            /* ---------------- INTERMEDIATE ---------------- */
+            {
+                tier: "intermediate", title: "Feelings & Emotions", icon: "💗", words: [
+                    { kr: "gelukkig", rom: "kheh-LUK-ikh", en: "happy" }, { kr: "hartseer", rom: "HART-see-ur", en: "sad" },
+                    { kr: "kwaad", rom: "kvah-ut", en: "angry" }, { kr: "moeg", rom: "mookh", en: "tired" },
+                    { kr: "opgewonde", rom: "op-kheh-VON-duh", en: "excited" }, { kr: "senuweeagtig", rom: "seh-NEW-vee-akh-tikh", en: "nervous" }]
+            },
+            {
+                tier: "intermediate", title: "Directions & Places", icon: "🧭", words: [
+                    { kr: "links", rom: "links", en: "left" }, { kr: "regs", rom: "rekhs", en: "right" },
+                    { kr: "naby", rom: "NAH-by", en: "near" }, { kr: "ver", rom: "fer", en: "far" },
+                    { kr: "hier", rom: "heer", en: "here" }, { kr: "daar", rom: "dah-ur", en: "there" }]
+            },
+            {
+                tier: "intermediate", title: "Shopping", icon: "🛍️", words: [
+                    { kr: "hoeveel kos dit", rom: "hoo-FEE-ul kos dit", en: "how much is it" }, { kr: "duur", rom: "deer", en: "expensive" },
+                    { kr: "goedkoop", rom: "khoot-KOH-up", en: "cheap" }, { kr: "betaal", rom: "beh-TAHL", en: "to pay" },
+                    { kr: "kontant", rom: "kon-TUNT", en: "cash" }, { kr: "kaart", rom: "kah-urt", en: "card" }]
+            },
+            {
+                tier: "intermediate", title: "Transportation", icon: "🚌", words: [
+                    { kr: "bus", rom: "bus", en: "bus" }, { kr: "trein", rom: "trayn", en: "train" },
+                    { kr: "vliegtuig", rom: "FLEEKH-toykh", en: "plane" }, { kr: "motor", rom: "MOH-tor", en: "car" },
+                    { kr: "kaartjie", rom: "KAHRT-kee", en: "ticket" }, { kr: "stasie", rom: "STAH-see", en: "station" }]
+            },
+            {
+                tier: "intermediate", title: "Hobbies", icon: "🎸", words: [
+                    { kr: "stokperdjie", rom: "STOK-perd-kee", en: "hobby" }, { kr: "lees", rom: "lee-us", en: "to read" },
+                    { kr: "swem", rom: "svem", en: "to swim" }, { kr: "dans", rom: "duns", en: "to dance" },
+                    { kr: "verf", rom: "ferf", en: "to paint" }, { kr: "sing", rom: "sing", en: "to sing" }]
+            },
+            {
+                tier: "intermediate", title: "Work & Jobs", icon: "💼", words: [
+                    { kr: "werk", rom: "verk", en: "job" }, { kr: "maatskappy", rom: "MAHT-skah-pay", en: "company" },
+                    { kr: "baas", rom: "bah-us", en: "boss" }, { kr: "vergadering", rom: "fer-KHAH-deh-ring", en: "meeting" },
+                    { kr: "salaris", rom: "sah-LAH-ris", en: "salary" }, { kr: "skedule", rom: "SKED-yool", en: "schedule" }]
+            },
+            {
+                tier: "intermediate", title: "Health & Body", icon: "🩺", words: [
+                    { kr: "siek", rom: "seek", en: "sick" }, { kr: "pyn", rom: "payn", en: "pain" },
+                    { kr: "hospitaal", rom: "hos-pee-TAHL", en: "hospital" }, { kr: "medisyne", rom: "meh-dee-SAY-nuh", en: "medicine" },
+                    { kr: "koors", rom: "koh-urs", en: "fever" }, { kr: "dokter", rom: "DOK-ter", en: "doctor" }]
+            },
+            {
+                tier: "intermediate", title: "Technology", icon: "📱", words: [
+                    { kr: "foon", rom: "foo-un", en: "phone" }, { kr: "rekenaar", rom: "REH-keh-nah-ur", en: "computer" },
+                    { kr: "internet", rom: "IN-ter-net", en: "internet" }, { kr: "wagwoord", rom: "VAKH-voo-urt", en: "password" },
+                    { kr: "app", rom: "ap", en: "app" }, { kr: "battery", rom: "BAH-tuh-ray", en: "battery" }]
+            },
+            {
+                tier: "intermediate", title: "Sports", icon: "⚽", words: [
+                    { kr: "sokker", rom: "SOK-er", en: "soccer" }, { kr: "basketbal", rom: "BAS-ket-bahl", en: "basketball" },
+                    { kr: "hardloop", rom: "HART-loh-up", en: "to run" }, { kr: "wen", rom: "ven", en: "to win" },
+                    { kr: "verloor", rom: "fer-LOH-ur", en: "to lose" }, { kr: "span", rom: "spun", en: "team" }]
+            },
+            {
+                tier: "intermediate", title: "Nature", icon: "🌳", words: [
+                    { kr: "berg", rom: "berkh", en: "mountain" }, { kr: "rivier", rom: "ree-FEER", en: "river" },
+                    { kr: "bos", rom: "bos", en: "forest" }, { kr: "lug", rom: "lukh", en: "sky" },
+                    { kr: "boom", rom: "boh-um", en: "tree" }, { kr: "blom", rom: "blom", en: "flower" }]
+            },
+            {
+                tier: "intermediate", title: "Numbers & Time", icon: "🔟", words: [
+                    { kr: "minuut", rom: "mee-NEWT", en: "minute" }, { kr: "uur", rom: "eer", en: "hour" },
+                    { kr: "week", rom: "vee-uk", en: "week" }, { kr: "maand", rom: "mah-unt", en: "month" },
+                    { kr: "jaar", rom: "yah-ur", en: "year" }, { kr: "horlosie", rom: "hor-LOH-see", en: "clock" }]
+            },
+            {
+                tier: "intermediate", title: "Making Plans", icon: "📅", words: [
+                    { kr: "afspraak", rom: "UF-sprahk", en: "appointment" }, { kr: "ontmoet", rom: "ont-MOOT", en: "to meet up" },
+                    { kr: "nooi", rom: "noy", en: "to invite" }, { kr: "kanselleer", rom: "kun-suh-LEER", en: "to cancel" },
+                    { kr: "besig", rom: "BEH-sikh", en: "busy" }, { kr: "vry", rom: "fray", en: "free" }]
+            },
+            {
+                tier: "intermediate", title: "Restaurant & Ordering", icon: "🍽️", words: [
+                    { kr: "spyskaart", rom: "SPAYS-kah-urt", en: "menu" }, { kr: "bestel", rom: "beh-STEL", en: "to order" },
+                    { kr: "rekening", rom: "REH-keh-ning", en: "the bill" }, { kr: "fooitjie", rom: "FOH-ee-kee", en: "tip" },
+                    { kr: "bespreking", rom: "beh-SPREH-king", en: "reservation" }, { kr: "kelner", rom: "KEL-ner", en: "waiter" }]
+            },
+
+            /* ---------------- ADVANCED ---------------- */
+            {
+                tier: "advanced", title: "Connectors & Grammar", icon: "🔗", words: [
+                    { kr: "daarom", rom: "DAH-rom", en: "therefore" }, { kr: "maar", rom: "mah-ur", en: "however / but" },
+                    { kr: "alhoewel", rom: "al-hoo-VEL", en: "although" }, { kr: "omdat", rom: "OM-dut", en: "because" },
+                    { kr: "toe", rom: "too", en: "then / when" }, { kr: "terwyl", rom: "ter-VAYL", en: "while" }]
+            },
+            {
+                tier: "advanced", title: "Business Afrikaans", icon: "🏢", words: [
+                    { kr: "kontrak", rom: "kon-TRUK", en: "contract" }, { kr: "onderhandeling", rom: "ON-der-hun-deh-ling", en: "negotiation" },
+                    { kr: "kliënt", rom: "klee-ENT", en: "client" }, { kr: "inkomste", rom: "in-KOM-stuh", en: "revenue" },
+                    { kr: "verslag", rom: "fer-SLUKH", en: "report" }, { kr: "sperdatum", rom: "SPER-dah-tum", en: "deadline" }]
+            },
+            {
+                tier: "advanced", title: "News & Media", icon: "📰", words: [
+                    { kr: "nuus", rom: "nee-us", en: "news" }, { kr: "artikel", rom: "ar-TEE-kel", en: "article" },
+                    { kr: "verslaggewer", rom: "fer-SLUKH-kheh-ver", en: "reporter" }, { kr: "beleid", rom: "beh-LAYT", en: "policy" },
+                    { kr: "openbare mening", rom: "OH-pen-bah-ruh MEH-ning", en: "public opinion" }, { kr: "aankondig", rom: "AHN-kon-dikh", en: "to announce" }]
+            },
+            {
+                tier: "advanced", title: "Nuanced Emotions", icon: "🌫️", words: [
+                    { kr: "teleurgesteld", rom: "teh-LÖR-kheh-stelt", en: "disappointed" }, { kr: "oorweldig", rom: "OH-ur-vel-dikh", en: "overwhelmed" },
+                    { kr: "trots", rom: "trots", en: "proud" }, { kr: "jaloers", rom: "yah-LOORS", en: "jealous" },
+                    { kr: "mis", rom: "mis", en: "to miss someone" }, { kr: "verlig", rom: "fer-LIKH", en: "relieved" }]
+            },
+            {
+                tier: "advanced", title: "Idioms: Everyday Life", icon: "🫴", words: [
+                    { kr: "die knoop deurhak", rom: "dee knoh-up DÖR-huk", en: "to make a firm decision" }, { kr: "'n appeltjie te skil hê", rom: "un AH-pel-kee tuh skil heh", en: "to have a bone to pick" },
+                    { kr: "die spyker op die kop slaan", rom: "dee SPAY-ker op dee kop slahn", en: "to hit the nail on the head" }, { kr: "met die deur in die huis val", rom: "met dee dö-ur in dee hoys ful", en: "to get straight to the point" },
+                    { kr: "op eiers loop", rom: "op AY-ers loh-up", en: "to walk on eggshells" }, { kr: "soos 'n vis in die water", rom: "soo-us un fis in dee VAH-ter", en: "comfortable, like a fish in water" }]
+            },
+            {
+                tier: "advanced", title: "Idioms: Wisdom & Weather", icon: "🌧️", words: [
+                    { kr: "perde agter die wa span", rom: "PER-duh AKH-ter dee vah spun", en: "to put the cart before the horse" }, { kr: "die hand bo die kop hou", rom: "dee hunt boh dee kop hoh", en: "to protect or shield someone" },
+                    { kr: "die kat uit die boom kyk", rom: "dee kat oyt dee boh-um kayk", en: "to wait and see" }, { kr: "die spyker verkeerd inslaan", rom: "dee SPAY-ker fer-KEE-urt IN-slahn", en: "to get it wrong entirely" },
+                    { kr: "koud van iemand kry", rom: "koh-ut fun EE-mant kray", en: "to get cold feet about someone" }, { kr: "'n appel val nie ver van die boom nie", rom: "un AH-pel ful nee fer fun dee boh-um nee", en: "like father, like son" }]
+            },
+            {
+                tier: "advanced", title: "Travel Advanced", icon: "🛂", words: [
+                    { kr: "paspoort", rom: "PUS-poh-urt", en: "passport" }, { kr: "doeane", rom: "doo-AH-nuh", en: "customs" },
+                    { kr: "verblyf", rom: "fer-BLAYF", en: "lodging" }, { kr: "lughawe", rom: "LUKH-hah-vuh", en: "airport" },
+                    { kr: "bagasie", rom: "bah-KHAH-see", en: "luggage" }, { kr: "reisplan", rom: "RAYS-plun", en: "itinerary" }]
+            },
+            {
+                tier: "advanced", title: "Relationships", icon: "💌", words: [
+                    { kr: "metgesel", rom: "MET-kheh-sel", en: "partner" }, { kr: "verlief raak", rom: "fer-LEEF rahk", en: "to fall in love" },
+                    { kr: "opbreek", rom: "OP-breek", en: "to break up" }, { kr: "blinde afspraak", rom: "BLIN-duh UF-sprahk", en: "blind date" },
+                    { kr: "liefde op die eerste oogopslag", rom: "LEEF-duh op dee EER-stuh OH-khop-slukh", en: "love at first sight" }, { kr: "verloof", rom: "fer-LOH-uf", en: "engagement" }]
+            },
+            {
+                tier: "advanced", title: "Debate & Opinions", icon: "🗣️", words: [
+                    { kr: "saamstem", rom: "SAHM-stem", en: "to agree" }, { kr: "verskil", rom: "fer-SKIL", en: "to disagree" },
+                    { kr: "argument", rom: "ar-khu-MENT", en: "argument" }, { kr: "standpunt", rom: "STUNT-punt", en: "point of view" },
+                    { kr: "oortuig", rom: "OH-ur-toykh", en: "to convince" }, { kr: "kompromie", rom: "kom-proh-MEE", en: "to compromise" }]
+            },
+            {
+                tier: "advanced", title: "Formal Speech (U vs Jy)", icon: "🎩", words: [
+                    { kr: "u", rom: "ew", en: "you (formal)" }, { kr: "jy", rom: "yay", en: "you (informal)" },
+                    { kr: "hoflikheid", rom: "HOF-lik-hayt", en: "politeness" }, { kr: "beleefdheid", rom: "beh-LEEFT-hayt", en: "courtesy" },
+                    { kr: "respek", rom: "reh-SPEK", en: "respect" }, { kr: "maniere", rom: "mah-NEE-ruh", en: "manners" }]
+            },
+            {
+                tier: "advanced", title: "Slang & Everyday Terms", icon: "📲", words: [
+                    { kr: "gaaf", rom: "khahf", en: "cool / nice" }, { kr: "lekker", rom: "LEH-ker", en: "nice / great" },
+                    { kr: "bakgat", rom: "BUK-khut", en: "awesome (slang)" }, { kr: "sommer", rom: "SOM-er", en: "just because" },
+                    { kr: "eish", rom: "aysh", en: "expression of frustration" }, { kr: "kwaai", rom: "kvah-ee", en: "cool / awesome (slang)" }]
+            },
+            {
+                tier: "advanced", title: "Culture & History", icon: "🏛️", words: [
+                    { kr: "fees", rom: "fee-us", en: "festival" }, { kr: "tradisie", rom: "trah-DEE-see", en: "tradition" },
+                    { kr: "onafhanklikheid", rom: "on-uf-HUNK-lik-hayt", en: "independence" }, { kr: "vlag", rom: "flukh", en: "flag" },
+                    { kr: "beskawing", rom: "beh-SKAH-ving", en: "civilization" }, { kr: "erfenis", rom: "ER-feh-nis", en: "heritage" }]
+            },
+            {
+                tier: "advanced", title: "Advanced Verbs", icon: "💪", words: [
+                    { kr: "oorwin", rom: "OH-ur-vin", en: "to overcome" }, { kr: "bereik", rom: "beh-RAYK", en: "to achieve" },
+                    { kr: "moed opgee", rom: "moot OP-khee", en: "to give up" }, { kr: "waag", rom: "vahkh", en: "to dare" },
+                    { kr: "ontwikkel", rom: "ont-VIK-el", en: "to develop" }, { kr: "vervul", rom: "fer-FUL", en: "to fulfill" }]
+            },
+
+            /* ---------------- FLUENT ---------------- */
+            {
+                tier: "fluent", title: "Proverbs Part 1", icon: "📜", words: [
+                    { kr: "'n boer maak 'n plan", rom: "un boor mahk un plun", en: "a resourceful person finds a way" }, { kr: "oos wes tuis bes", rom: "oh-us ves toys bes", en: "there's no place like home" },
+                    { kr: "aanhouer wen", rom: "AHN-hoh-er ven", en: "persistence pays off" }, { kr: "soos vader soos seun", rom: "soo-us FAH-der soo-us sö-un", en: "like father, like son" },
+                    { kr: "alle goeie dinge kom in drieë", rom: "AH-luh KHOO-yuh DING-uh kom in DREE-uh", en: "good things come in threes" }, { kr: "moenie die kalfie voor die koei uitjaag nie", rom: "MOO-nee dee KUL-fee foor dee koo-ee OYT-yahkh nee", en: "don't put the cart before the horse" }]
+            },
+            {
+                tier: "fluent", title: "Literary Expressions", icon: "🖋️", words: [
+                    { kr: "weemoedig", rom: "vee-MOO-dikh", en: "melancholic" }, { kr: "verganklik", rom: "fer-KHUNK-lik", en: "fleeting" },
+                    { kr: "nostalgies", rom: "nos-TUL-khees", en: "nostalgic" }, { kr: "etereus", rom: "eh-teh-RÖS", en: "ethereal" },
+                    { kr: "kortstondig", rom: "kort-STON-dikh", en: "ephemeral" }, { kr: "verhewe", rom: "fer-HEH-vuh", en: "sublime" }]
+            },
+            {
+                tier: "fluent", title: "Proverbs Part 2", icon: "🪞", words: [
+                    { kr: "'n vroeë voël vang die wurm", rom: "un FROO-uh FOH-ul fung dee vurm", en: "the early bird catches the worm" }, { kr: "waar rook is, is vuur", rom: "vah-ur roh-uk is is fee-ur", en: "where there's smoke there's fire" },
+                    { kr: "alles wat blink is nie goud nie", rom: "AH-les vut blink is nee khoh-ut nee", en: "not all that glitters is gold" }, { kr: "oefening baar kuns", rom: "OO-feh-ning bah-ur kuns", en: "practice makes perfect" },
+                    { kr: "stille waters, diepe grond", rom: "STIL-uh VAH-ters DEE-puh khront", en: "still waters run deep" }, { kr: "wie A sê moet B sê", rom: "vee ah seh moot beh seh", en: "commit to what you started" }]
+            },
+            {
+                tier: "fluent", title: "Political & Social Terms", icon: "🏛️", words: [
+                    { kr: "demokrasie", rom: "deh-moh-KRAH-see", en: "democracy" }, { kr: "ongelykheid", rom: "on-kheh-LAYK-hayt", en: "inequality" },
+                    { kr: "globalisering", rom: "khloh-bah-lee-SEH-ring", en: "globalization" }, { kr: "volhoubaarheid", rom: "fol-HOH-bar-hayt", en: "sustainability" },
+                    { kr: "menseregte", rom: "MEN-suh-rekh-tuh", en: "human rights" }, { kr: "regering", rom: "reh-KHEH-ring", en: "government" }]
+            },
+            {
+                tier: "fluent", title: "Psychology & Nuance", icon: "🧠", words: [
+                    { kr: "selfbeeld", rom: "SELF-beelt", en: "self-esteem" }, { kr: "veerkragtigheid", rom: "FEER-krukh-tikh-hayt", en: "resilience" },
+                    { kr: "empatie", rom: "em-PAH-tee", en: "empathy" }, { kr: "angs", rom: "ungs", en: "anxiety" },
+                    { kr: "welsyn", rom: "VEL-sayn", en: "wellbeing" }, { kr: "motivering", rom: "moh-tee-VEH-ring", en: "motivation" }]
+            },
+            {
+                tier: "fluent", title: "Business Negotiation", icon: "🤝", words: [
+                    { kr: "ooreenkoms", rom: "OH-reen-koms", en: "agreement" }, { kr: "voorstel", rom: "FOOR-stel", en: "proposal" },
+                    { kr: "voordeel", rom: "FOOR-deel", en: "advantage" }, { kr: "belegging", rom: "beh-LEKH-ing", en: "investment" },
+                    { kr: "risiko", rom: "REE-see-koh", en: "risk" }, { kr: "winsgewend", rom: "VINS-kheh-vent", en: "profitable" }]
+            },
+            {
+                tier: "fluent", title: "Academic Afrikaans", icon: "🎓", words: [
+                    { kr: "tesis", rom: "TEH-sis", en: "thesis" }, { kr: "navorsing", rom: "nah-FOR-sing", en: "research" },
+                    { kr: "hipotese", rom: "hee-poh-TEH-suh", en: "hypothesis" }, { kr: "analise", rom: "ah-nah-LEE-suh", en: "analysis" },
+                    { kr: "gevolgtrekking", rom: "kheh-FOLKH-trek-ing", en: "conclusion" }, { kr: "bibliografie", rom: "bee-blee-oh-khrah-FEE", en: "bibliography" }]
+            },
+            {
+                tier: "fluent", title: "Poetic & Formal Writing", icon: "🕊️", words: [
+                    { kr: "sereen", rom: "seh-REEN", en: "serene" }, { kr: "onophoudelik", rom: "on-op-HOH-deh-lik", en: "unceasing" },
+                    { kr: "indrukwekkend", rom: "IN-druk-vek-ent", en: "imposing" }, { kr: "dierbaar", rom: "DEER-bar", en: "cherished" },
+                    { kr: "onuitspreeklik", rom: "on-OYT-spreek-lik", en: "ineffable" }, { kr: "diepgewortel", rom: "DEEP-kheh-vor-tel", en: "deeply rooted" }]
+            },
+            {
+                tier: "fluent", title: "Regional Flavor", icon: "🗺️", words: [
+                    { kr: "boet", rom: "boot", en: "bro (slang)" }, { kr: "tjommie", rom: "CHOM-ee", en: "friend / buddy (slang)" },
+                    { kr: "ag shame", rom: "ukh sheym", en: "oh dear / aw (expression)" }, { kr: "yebo", rom: "YEH-boh", en: "yes (borrowed from Zulu, common)" },
+                    { kr: "howzit", rom: "HOW-zit", en: "hi, how's it going (casual)" }, { kr: "lekkerste", rom: "LEH-ker-stuh", en: "the best / nicest" }]
+            },
+            {
+                tier: "fluent", title: "Complex Grammar (Modal Verbs)", icon: "🧩", words: [
+                    { kr: "sou", rom: "soh", en: "would (conditional)" }, { kr: "mag", rom: "mukh", en: "may / might" },
+                    { kr: "moet", rom: "moot", en: "must" }, { kr: "kan", rom: "kun", en: "can" },
+                    { kr: "wil", rom: "vil", en: "want to" }, { kr: "behoort", rom: "beh-HOH-urt", en: "ought to" }]
+            },
+            {
+                tier: "fluent", title: "More Proverbs", icon: "📖", words: [
+                    { kr: "elke wolk het 'n silwer randjie", rom: "EL-kuh volk het un SIL-ver RUNT-kee", en: "every cloud has a silver lining" }, { kr: "moenie 'n boek volgens sy omslag oordeel nie", rom: "MOO-nee un book FOL-khens say OM-slukh OOR-deel nee", en: "don't judge a book by its cover" },
+                    { kr: "baie hande maak ligte werk", rom: "BY-uh HUN-duh mahk LIKH-tuh verk", en: "many hands make light work" }, { kr: "wat jy saai, sal jy maai", rom: "vut yay sah-ee sul yay mah-ee", en: "you reap what you sow" },
+                    { kr: "geduld is 'n deug", rom: "kheh-DULT is un dö-ukh", en: "patience is a virtue" }, { kr: "alle paaie lei na Rome", rom: "AH-luh PAH-ee-uh lay nah ROH-muh", en: "all roads lead to Rome" }]
+            },
+            {
+                tier: "fluent", title: "Professional Terms", icon: "⚖️", words: [
+                    { kr: "diagnose", rom: "dee-ukh-NOH-suh", en: "diagnosis" }, { kr: "voorskrif", rom: "FOOR-skrif", en: "prescription" },
+                    { kr: "hofsaak", rom: "HOF-sahk", en: "lawsuit" }, { kr: "prokureur", rom: "proh-ku-RÖR", en: "lawyer" },
+                    { kr: "uitspraak", rom: "OYT-sprahk", en: "verdict" }, { kr: "hof", rom: "hof", en: "court" }]
+            },
+            {
+                tier: "fluent", title: "Mastery Review", icon: "🏆", words: [
+                    { kr: "skerpsinnig", rom: "SKERP-sin-ikh", en: "perceptive" }, { kr: "veelsydig", rom: "FEEL-say-dikh", en: "versatile" },
+                    { kr: "noukeurig", rom: "NOH-kö-rikh", en: "meticulous" }, { kr: "vasberade", rom: "FUS-beh-rah-duh", en: "tenacious" },
+                    { kr: "eerlik", rom: "EER-lik", en: "honest" }, { kr: "wysheid", rom: "VAYS-hayt", en: "wisdom" }]
+            },
+        ];
+        LEVELS_AF.forEach((l, i) => { l.id = 5000 + i + 1; });
+
+        /* =========================================================
+           ARABIC (MSA) CONTENT
+           ========================================================= */
+        const TIERS_AR = TIERS;
+        const LEVELS_AR = [
+            /* ---------------- BEGINNER ---------------- */
+            {
+                tier: "beginner", title: "Arabic Basics", icon: "🇸🇦", words: [
+                    { kr: "مرحبا", rom: "marhaban", en: "hello" }, { kr: "شكرا", rom: "shukran", en: "thank you" },
+                    { kr: "نعم", rom: "na'am", en: "yes" }, { kr: "لا", rom: "la", en: "no" },
+                    { kr: "اسم", rom: "ism", en: "name" }, { kr: "صديق", rom: "sadeeq", en: "friend" }]
+            },
+            {
+                tier: "beginner", title: "Greetings & Manners", icon: "🙏", words: [
+                    { kr: "مع السلامة", rom: "ma'a as-salama", en: "goodbye" }, { kr: "آسف", rom: "aasif", en: "sorry" },
+                    { kr: "عفوا", rom: "afwan", en: "excuse me" }, { kr: "تشرفنا", rom: "tasharrafna", en: "nice to meet you" },
+                    { kr: "لا بأس", rom: "la ba's", en: "it's okay" }, { kr: "من فضلك", rom: "min fadlik", en: "please" }]
+            },
+            {
+                tier: "beginner", title: "Numbers 1-6", icon: "🔢", words: [
+                    { kr: "واحد", rom: "wahid", en: "one" }, { kr: "اثنان", rom: "ithnan", en: "two" },
+                    { kr: "ثلاثة", rom: "thalatha", en: "three" }, { kr: "أربعة", rom: "arba'a", en: "four" },
+                    { kr: "خمسة", rom: "khamsa", en: "five" }, { kr: "ستة", rom: "sitta", en: "six" }]
+            },
+            {
+                tier: "beginner", title: "Days & Time", icon: "🕒", words: [
+                    { kr: "اليوم", rom: "al-yawm", en: "today" }, { kr: "غدا", rom: "ghadan", en: "tomorrow" },
+                    { kr: "أمس", rom: "ams", en: "yesterday" }, { kr: "الآن", rom: "al-aan", en: "now" },
+                    { kr: "وقت", rom: "waqt", en: "time" }, { kr: "صباح", rom: "sabah", en: "morning" }]
+            },
+            {
+                tier: "beginner", title: "Family", icon: "👪", words: [
+                    { kr: "عائلة", rom: "a'ila", en: "family" }, { kr: "أم", rom: "umm", en: "mom" },
+                    { kr: "أب", rom: "ab", en: "dad" }, { kr: "أخ", rom: "akh", en: "brother" },
+                    { kr: "أخت", rom: "ukht", en: "sister" }, { kr: "جد", rom: "jadd", en: "grandfather" }]
+            },
+            {
+                tier: "beginner", title: "Food & Drink", icon: "🍚", words: [
+                    { kr: "طعام", rom: "ta'am", en: "food" }, { kr: "ماء", rom: "maa'", en: "water" },
+                    { kr: "قهوة", rom: "qahwa", en: "coffee" }, { kr: "خبز", rom: "khubz", en: "bread" },
+                    { kr: "أرز", rom: "aruzz", en: "rice" }, { kr: "لذيذ", rom: "latheedh", en: "delicious" }]
+            },
+            {
+                tier: "beginner", title: "Colors", icon: "🎨", words: [
+                    { kr: "أحمر", rom: "ahmar", en: "red" }, { kr: "أزرق", rom: "azraq", en: "blue" },
+                    { kr: "أصفر", rom: "asfar", en: "yellow" }, { kr: "أخضر", rom: "akhdar", en: "green" },
+                    { kr: "أسود", rom: "aswad", en: "black" }, { kr: "أبيض", rom: "abyad", en: "white" }]
+            },
+            {
+                tier: "beginner", title: "Body Parts", icon: "🧍", words: [
+                    { kr: "رأس", rom: "ra's", en: "head" }, { kr: "يد", rom: "yad", en: "hand" },
+                    { kr: "عين", rom: "'ayn", en: "eye" }, { kr: "أنف", rom: "anf", en: "nose" },
+                    { kr: "فم", rom: "fam", en: "mouth" }, { kr: "رجل", rom: "rijl", en: "leg" }]
+            },
+            {
+                tier: "beginner", title: "Animals", icon: "🐾", words: [
+                    { kr: "كلب", rom: "kalb", en: "dog" }, { kr: "قطة", rom: "qitta", en: "cat" },
+                    { kr: "طائر", rom: "taa'ir", en: "bird" }, { kr: "سمك", rom: "samak", en: "fish" },
+                    { kr: "دب", rom: "dubb", en: "bear" }, { kr: "أرنب", rom: "arnab", en: "rabbit" }]
+            },
+            {
+                tier: "beginner", title: "Clothing", icon: "👕", words: [
+                    { kr: "ملابس", rom: "malabis", en: "clothes" }, { kr: "حذاء", rom: "hidhaa'", en: "shoes" },
+                    { kr: "قبعة", rom: "qubba'a", en: "hat" }, { kr: "بنطال", rom: "bantal", en: "pants" },
+                    { kr: "تنورة", rom: "tannoora", en: "skirt" }, { kr: "حقيبة", rom: "haqeeba", en: "bag" }]
+            },
+            {
+                tier: "beginner", title: "Weather", icon: "⛅", words: [
+                    { kr: "طقس", rom: "taqs", en: "weather" }, { kr: "مطر", rom: "matar", en: "rain" },
+                    { kr: "ثلج", rom: "thalj", en: "snow" }, { kr: "رياح", rom: "riyah", en: "wind" },
+                    { kr: "حار", rom: "haarr", en: "it's hot" }, { kr: "بارد", rom: "baarid", en: "it's cold" }]
+            },
+            {
+                tier: "beginner", title: "House & Rooms", icon: "🏠", words: [
+                    { kr: "بيت", rom: "bayt", en: "house" }, { kr: "غرفة", rom: "ghurfa", en: "room" },
+                    { kr: "سرير", rom: "sareer", en: "bed" }, { kr: "حمام", rom: "hammaam", en: "bathroom" },
+                    { kr: "مطبخ", rom: "matbakh", en: "kitchen" }, { kr: "باب", rom: "baab", en: "door" }]
+            },
+            {
+                tier: "beginner", title: "School & Objects", icon: "🎒", words: [
+                    { kr: "مدرسة", rom: "madrasa", en: "school" }, { kr: "كتاب", rom: "kitaab", en: "book" },
+                    { kr: "قلم رصاص", rom: "qalam rasaas", en: "pencil" }, { kr: "حقيبة ظهر", rom: "haqeebat dhahr", en: "backpack" },
+                    { kr: "معلم", rom: "mu'allim", en: "teacher" }, { kr: "طالب", rom: "taalib", en: "student" }]
+            },
+
+            /* ---------------- INTERMEDIATE ---------------- */
+            {
+                tier: "intermediate", title: "Feelings & Emotions", icon: "💗", words: [
+                    { kr: "سعيد", rom: "sa'eed", en: "happy" }, { kr: "حزين", rom: "hazeen", en: "sad" },
+                    { kr: "غاضب", rom: "ghaadib", en: "angry" }, { kr: "متعب", rom: "mut'ab", en: "tired" },
+                    { kr: "متحمس", rom: "mutahammis", en: "excited" }, { kr: "متوتر", rom: "mutawattir", en: "nervous" }]
+            },
+            {
+                tier: "intermediate", title: "Directions & Places", icon: "🧭", words: [
+                    { kr: "يسار", rom: "yasaar", en: "left" }, { kr: "يمين", rom: "yameen", en: "right" },
+                    { kr: "قريب", rom: "qareeb", en: "near" }, { kr: "بعيد", rom: "ba'eed", en: "far" },
+                    { kr: "هنا", rom: "huna", en: "here" }, { kr: "هناك", rom: "hunaak", en: "there" }]
+            },
+            {
+                tier: "intermediate", title: "Shopping", icon: "🛍️", words: [
+                    { kr: "كم السعر", rom: "kam as-si'r", en: "how much is it" }, { kr: "غالي", rom: "ghaali", en: "expensive" },
+                    { kr: "رخيص", rom: "rakhees", en: "cheap" }, { kr: "يدفع", rom: "yadfa'", en: "to pay" },
+                    { kr: "نقد", rom: "naqd", en: "cash" }, { kr: "بطاقة", rom: "bitaaqa", en: "card" }]
+            },
+            {
+                tier: "intermediate", title: "Transportation", icon: "🚌", words: [
+                    { kr: "حافلة", rom: "haafila", en: "bus" }, { kr: "قطار", rom: "qitaar", en: "train" },
+                    { kr: "طائرة", rom: "taa'ira", en: "plane" }, { kr: "سيارة", rom: "sayyaara", en: "car" },
+                    { kr: "تذكرة", rom: "tadhkira", en: "ticket" }, { kr: "محطة", rom: "mahatta", en: "station" }]
+            },
+            {
+                tier: "intermediate", title: "Hobbies", icon: "🎸", words: [
+                    { kr: "هواية", rom: "hiwaaya", en: "hobby" }, { kr: "يقرأ", rom: "yaqra'", en: "to read" },
+                    { kr: "يسبح", rom: "yasbah", en: "to swim" }, { kr: "يرقص", rom: "yarqus", en: "to dance" },
+                    { kr: "يرسم", rom: "yarsum", en: "to paint" }, { kr: "يغني", rom: "yughanni", en: "to sing" }]
+            },
+            {
+                tier: "intermediate", title: "Work & Jobs", icon: "💼", words: [
+                    { kr: "عمل", rom: "'amal", en: "job" }, { kr: "شركة", rom: "sharika", en: "company" },
+                    { kr: "رئيس", rom: "ra'ees", en: "boss" }, { kr: "اجتماع", rom: "ijtimaa'", en: "meeting" },
+                    { kr: "راتب", rom: "raatib", en: "salary" }, { kr: "جدول", rom: "jadwal", en: "schedule" }]
+            },
+            {
+                tier: "intermediate", title: "Health & Body", icon: "🩺", words: [
+                    { kr: "مريض", rom: "mareed", en: "sick" }, { kr: "ألم", rom: "alam", en: "pain" },
+                    { kr: "مستشفى", rom: "mustashfa", en: "hospital" }, { kr: "دواء", rom: "dawaa'", en: "medicine" },
+                    { kr: "حمى", rom: "humma", en: "fever" }, { kr: "طبيب", rom: "tabeeb", en: "doctor" }]
+            },
+            {
+                tier: "intermediate", title: "Technology", icon: "📱", words: [
+                    { kr: "هاتف", rom: "haatif", en: "phone" }, { kr: "حاسوب", rom: "haasoob", en: "computer" },
+                    { kr: "إنترنت", rom: "intarnet", en: "internet" }, { kr: "كلمة سر", rom: "kalimat sirr", en: "password" },
+                    { kr: "تطبيق", rom: "tatbeeq", en: "app" }, { kr: "بطارية", rom: "battaariya", en: "battery" }]
+            },
+            {
+                tier: "intermediate", title: "Sports", icon: "⚽", words: [
+                    { kr: "كرة القدم", rom: "kurat al-qadam", en: "soccer" }, { kr: "كرة السلة", rom: "kurat as-salla", en: "basketball" },
+                    { kr: "يجري", rom: "yajree", en: "to run" }, { kr: "يفوز", rom: "yafooz", en: "to win" },
+                    { kr: "يخسر", rom: "yakhsar", en: "to lose" }, { kr: "فريق", rom: "fareeq", en: "team" }]
+            },
+            {
+                tier: "intermediate", title: "Nature", icon: "🌳", words: [
+                    { kr: "جبل", rom: "jabal", en: "mountain" }, { kr: "نهر", rom: "nahr", en: "river" },
+                    { kr: "غابة", rom: "ghaaba", en: "forest" }, { kr: "سماء", rom: "samaa'", en: "sky" },
+                    { kr: "شجرة", rom: "shajara", en: "tree" }, { kr: "زهرة", rom: "zahra", en: "flower" }]
+            },
+            {
+                tier: "intermediate", title: "Numbers & Time", icon: "🔟", words: [
+                    { kr: "دقيقة", rom: "daqeeqa", en: "minute" }, { kr: "ساعة", rom: "saa'a", en: "hour" },
+                    { kr: "أسبوع", rom: "usboo'", en: "week" }, { kr: "شهر", rom: "shahr", en: "month" },
+                    { kr: "سنة", rom: "sana", en: "year" }, { kr: "ساعة حائط", rom: "saa'at haa'it", en: "clock" }]
+            },
+            {
+                tier: "intermediate", title: "Making Plans", icon: "📅", words: [
+                    { kr: "موعد", rom: "maw'id", en: "appointment" }, { kr: "يلتقي", rom: "yaltaqi", en: "to meet up" },
+                    { kr: "يدعو", rom: "yad'oo", en: "to invite" }, { kr: "يلغي", rom: "yulghi", en: "to cancel" },
+                    { kr: "مشغول", rom: "mashghool", en: "busy" }, { kr: "متفرغ", rom: "mutafarrigh", en: "free" }]
+            },
+            {
+                tier: "intermediate", title: "Restaurant & Ordering", icon: "🍽️", words: [
+                    { kr: "قائمة الطعام", rom: "qaa'imat at-ta'aam", en: "menu" }, { kr: "يطلب", rom: "yatlub", en: "to order" },
+                    { kr: "الفاتورة", rom: "al-faatoora", en: "the bill" }, { kr: "بقشيش", rom: "baqsheesh", en: "tip" },
+                    { kr: "حجز", rom: "hajz", en: "reservation" }, { kr: "نادل", rom: "naadil", en: "waiter" }]
+            },
+
+            /* ---------------- ADVANCED ---------------- */
+            {
+                tier: "advanced", title: "Connectors & Grammar", icon: "🔗", words: [
+                    { kr: "لذلك", rom: "lidhaalik", en: "therefore" }, { kr: "لكن", rom: "laakin", en: "however" },
+                    { kr: "رغم أن", rom: "raghma anna", en: "although" }, { kr: "لأن", rom: "li'anna", en: "because" },
+                    { kr: "ثم", rom: "thumma", en: "then" }, { kr: "بينما", rom: "baynamaa", en: "while" }]
+            },
+            {
+                tier: "advanced", title: "Business Arabic", icon: "🏢", words: [
+                    { kr: "عقد", rom: "'aqd", en: "contract" }, { kr: "تفاوض", rom: "tafaawud", en: "negotiation" },
+                    { kr: "عميل", rom: "'ameel", en: "client" }, { kr: "إيرادات", rom: "eeraadaat", en: "revenue" },
+                    { kr: "تقرير", rom: "taqreer", en: "report" }, { kr: "موعد نهائي", rom: "maw'id nihaa'i", en: "deadline" }]
+            },
+            {
+                tier: "advanced", title: "News & Media", icon: "📰", words: [
+                    { kr: "أخبار", rom: "akhbaar", en: "news" }, { kr: "مقال", rom: "maqaal", en: "article" },
+                    { kr: "مراسل", rom: "muraasil", en: "reporter" }, { kr: "سياسة", rom: "siyaasa", en: "policy" },
+                    { kr: "الرأي العام", rom: "ar-ra'y al-'aamm", en: "public opinion" }, { kr: "يعلن", rom: "yu'lin", en: "to announce" }]
+            },
+            {
+                tier: "advanced", title: "Nuanced Emotions", icon: "🌫️", words: [
+                    { kr: "خائب الأمل", rom: "khaa'ib al-amal", en: "disappointed" }, { kr: "مرهق", rom: "murhaq", en: "overwhelmed" },
+                    { kr: "فخور", rom: "fakhoor", en: "proud" }, { kr: "غيور", rom: "ghayoor", en: "jealous" },
+                    { kr: "يشتاق", rom: "yashtaaq", en: "to miss someone" }, { kr: "مرتاح", rom: "murtaah", en: "relieved" }]
+            },
+            {
+                tier: "advanced", title: "Idioms: Everyday Life", icon: "🫴", words: [
+                    { kr: "بين نارين", rom: "bayna naarayn", en: "between a rock and a hard place" }, { kr: "يضرب عصفورين بحجر واحد", rom: "yadrib 'usfoorayn bihajar waahid", en: "to kill two birds with one stone" },
+                    { kr: "قطرة في بحر", rom: "qatra fee bahr", en: "a drop in the ocean" }, { kr: "يده طويلة", rom: "yaduhu taweela", en: "he has a long reach, is influential" },
+                    { kr: "يحرث في البحر", rom: "yahruth fee al-bahr", en: "to labor in vain" }, { kr: "العين لا تعلو على الحاجب", rom: "al-'ayn laa ta'lu 'ala al-haajib", en: "know your place" }]
+            },
+            {
+                tier: "advanced", title: "Idioms: Wisdom & Life", icon: "🌧️", words: [
+                    { kr: "الصبر مفتاح الفرج", rom: "as-sabr miftaah al-faraj", en: "patience is the key to relief" }, { kr: "خير الكلام ما قل ودل", rom: "khayr al-kalaam maa qalla wa dall", en: "brevity is the soul of wisdom" },
+                    { kr: "الوقت كالسيف", rom: "al-waqt kaassayf", en: "time is precious, like a sword" }, { kr: "لا يصدق", rom: "laa yusaddaq", en: "unbelievable" },
+                    { kr: "كل ممنوع مرغوب", rom: "kull mamnoo' marghoob", en: "forbidden fruit is desired" }, { kr: "الأمل يحيي القلوب", rom: "al-amal yuhyi al-quloob", en: "hope revives the heart" }]
+            },
+            {
+                tier: "advanced", title: "Travel Advanced", icon: "🛂", words: [
+                    { kr: "جواز سفر", rom: "jawaaz safar", en: "passport" }, { kr: "جمارك", rom: "jamaarik", en: "customs" },
+                    { kr: "إقامة", rom: "iqaama", en: "lodging" }, { kr: "مطار", rom: "mataar", en: "airport" },
+                    { kr: "أمتعة", rom: "amti'a", en: "luggage" }, { kr: "خط سير", rom: "khatt sayr", en: "itinerary" }]
+            },
+            {
+                tier: "advanced", title: "Relationships", icon: "💌", words: [
+                    { kr: "شريك", rom: "shareek", en: "partner" }, { kr: "يقع في الحب", rom: "yaqa' fee al-hubb", en: "to fall in love" },
+                    { kr: "ينفصل", rom: "yanfasil", en: "to break up" }, { kr: "موعد أعمى", rom: "maw'id a'maa", en: "blind date" },
+                    { kr: "حب من أول نظرة", rom: "hubb min awwal nathra", en: "love at first sight" }, { kr: "خطوبة", rom: "khutooba", en: "engagement" }]
+            },
+            {
+                tier: "advanced", title: "Debate & Opinions", icon: "🗣️", words: [
+                    { kr: "يوافق", rom: "yuwaafiq", en: "to agree" }, { kr: "يختلف", rom: "yakhtalif", en: "to disagree" },
+                    { kr: "حجة", rom: "hujja", en: "argument" }, { kr: "وجهة نظر", rom: "wijhat nathar", en: "point of view" },
+                    { kr: "يقنع", rom: "yuqni'", en: "to convince" }, { kr: "يتنازل", rom: "yatanaazal", en: "to compromise" }]
+            },
+            {
+                tier: "advanced", title: "Formal Speech", icon: "🎩", words: [
+                    { kr: "حضرتك", rom: "hadratuk", en: "you (very formal)" }, { kr: "أنت", rom: "anta", en: "you (informal, masc.)" },
+                    { kr: "أدب", rom: "adab", en: "politeness" }, { kr: "لباقة", rom: "labaaqa", en: "courtesy" },
+                    { kr: "احترام", rom: "ihtiraam", en: "respect" }, { kr: "آداب السلوك", rom: "aadaab as-sulook", en: "manners" }]
+            },
+            {
+                tier: "advanced", title: "Everyday Expressions", icon: "📲", words: [
+                    { kr: "يا سلام", rom: "ya salaam", en: "wow (expression)" }, { kr: "تمام", rom: "tamaam", en: "okay / fine" },
+                    { kr: "خلص", rom: "khalas", en: "enough / done" }, { kr: "ولا يهمك", rom: "wala yihimmak", en: "don't worry (colloquial)" },
+                    { kr: "يعطيك العافية", rom: "ya'teek al-'aafiya", en: "well done / thank you (common expression)" }, { kr: "إن شاء الله", rom: "in shaa' Allah", en: "God willing (extremely common)" }]
+            },
+            {
+                tier: "advanced", title: "Culture & History", icon: "🏛️", words: [
+                    { kr: "عيد", rom: "'eid", en: "festival / holiday" }, { kr: "تقليد", rom: "taqleed", en: "tradition" },
+                    { kr: "استقلال", rom: "istiqlaal", en: "independence" }, { kr: "علم", rom: "'alam", en: "flag" },
+                    { kr: "حضارة", rom: "hadaara", en: "civilization" }, { kr: "تراث", rom: "turaath", en: "heritage" }]
+            },
+            {
+                tier: "advanced", title: "Advanced Verbs", icon: "💪", words: [
+                    { kr: "يتغلب", rom: "yataghallab", en: "to overcome" }, { kr: "يحقق", rom: "yuhaqqiq", en: "to achieve" },
+                    { kr: "يستسلم", rom: "yastaslim", en: "to give up" }, { kr: "يجرؤ", rom: "yajru'", en: "to dare" },
+                    { kr: "يطور", rom: "yutawwir", en: "to develop" }, { kr: "ينجز", rom: "yunjiz", en: "to fulfill" }]
+            },
+
+            /* ---------------- FLUENT ---------------- */
+            {
+                tier: "fluent", title: "Proverbs Part 1", icon: "📜", words: [
+                    { kr: "الصبر يعطي ثماره في النهاية", rom: "as-sabr yu'ti thimaarahu fee an-nihaaya", en: "patience bears fruit in the end" }, { kr: "من جد وجد", rom: "man jadda wajad", en: "whoever strives, finds success" },
+                    { kr: "رب ضارة نافعة", rom: "rubba daarra naafi'a", en: "a blessing in disguise" }, { kr: "الوقاية خير من العلاج", rom: "al-wiqaaya khayr min al-'ilaaj", en: "prevention is better than cure" },
+                    { kr: "الجار قبل الدار", rom: "al-jaar qabl ad-daar", en: "choose your neighbor before your house" }, { kr: "العقل السليم في الجسم السليم", rom: "al-'aql as-saleem fee al-jism as-saleem", en: "a sound mind in a sound body" }]
+            },
+            {
+                tier: "fluent", title: "Literary Expressions", icon: "🖋️", words: [
+                    { kr: "كئيب", rom: "ka'eeb", en: "melancholic" }, { kr: "زائل", rom: "zaa'il", en: "fleeting" },
+                    { kr: "حنين", rom: "haneen", en: "nostalgia, longing" }, { kr: "أثيري", rom: "atheeri", en: "ethereal" },
+                    { kr: "عابر", rom: "'aabir", en: "ephemeral" }, { kr: "رائع", rom: "raa'i'", en: "sublime" }]
+            },
+            {
+                tier: "fluent", title: "Proverbs Part 2", icon: "🪞", words: [
+                    { kr: "من طلب العلا سهر الليالي", rom: "man talaba al-'ulaa sahira al-layaali", en: "whoever seeks greatness stays up nights" }, { kr: "إذا كان الكلام من فضة فالسكوت من ذهب", rom: "idhaa kaana al-kalaam min fidda fa-as-sukoot min dhahab", en: "if speech is silver, silence is golden" },
+                    { kr: "الطيور على أشكالها تقع", rom: "at-tuyoor 'alaa ashkaalihaa taqa'", en: "birds of a feather flock together" }, { kr: "كل ممنوع مرغوب فيه", rom: "kull mamnoo' marghoob feeh", en: "forbidden fruit is always desired" },
+                    { kr: "الأمل يحيي القلوب", rom: "al-amal yuhyi al-quloob", en: "hope revives the heart" }, { kr: "من حسن الخلق أن تصبر", rom: "min husn al-khuluq an tasbir", en: "good character means having patience" }]
+            },
+            {
+                tier: "fluent", title: "Political & Social Terms", icon: "🏛️", words: [
+                    { kr: "ديمقراطية", rom: "deemuqraatiyya", en: "democracy" }, { kr: "عدم المساواة", rom: "'adam al-musaawaah", en: "inequality" },
+                    { kr: "عولمة", rom: "'awlama", en: "globalization" }, { kr: "استدامة", rom: "istidaama", en: "sustainability" },
+                    { kr: "حقوق الإنسان", rom: "huqooq al-insaan", en: "human rights" }, { kr: "حكومة", rom: "hukooma", en: "government" }]
+            },
+            {
+                tier: "fluent", title: "Psychology & Nuance", icon: "🧠", words: [
+                    { kr: "تقدير الذات", rom: "taqdeer adh-dhaat", en: "self-esteem" }, { kr: "مرونة", rom: "muroona", en: "resilience" },
+                    { kr: "تعاطف", rom: "ta'aatuf", en: "empathy" }, { kr: "قلق", rom: "qalaq", en: "anxiety" },
+                    { kr: "رفاهية", rom: "rafaahiya", en: "wellbeing" }, { kr: "دافع", rom: "daafi'", en: "motivation" }]
+            },
+            {
+                tier: "fluent", title: "Business Negotiation", icon: "🤝", words: [
+                    { kr: "اتفاق", rom: "ittifaaq", en: "agreement" }, { kr: "اقتراح", rom: "iqtiraah", en: "proposal" },
+                    { kr: "ميزة", rom: "meeza", en: "advantage" }, { kr: "استثمار", rom: "istithmaar", en: "investment" },
+                    { kr: "مخاطرة", rom: "mukhaatara", en: "risk" }, { kr: "مربح", rom: "murbih", en: "profitable" }]
+            },
+            {
+                tier: "fluent", title: "Academic Arabic", icon: "🎓", words: [
+                    { kr: "أطروحة", rom: "utrooha", en: "thesis" }, { kr: "بحث", rom: "bahth", en: "research" },
+                    { kr: "فرضية", rom: "fardiyya", en: "hypothesis" }, { kr: "تحليل", rom: "tahleel", en: "analysis" },
+                    { kr: "استنتاج", rom: "istintaaj", en: "conclusion" }, { kr: "مراجع", rom: "maraaji'", en: "bibliography" }]
+            },
+            {
+                tier: "fluent", title: "Poetic & Formal Writing", icon: "🕊️", words: [
+                    { kr: "هادئ", rom: "haadi'", en: "serene" }, { kr: "متواصل", rom: "mutawaasil", en: "unceasing" },
+                    { kr: "مهيب", rom: "mahheeb", en: "imposing" }, { kr: "عزيز", rom: "'azeez", en: "cherished" },
+                    { kr: "يصعب وصفه", rom: "ya'sub wasfuhu", en: "ineffable" }, { kr: "متجذر", rom: "mutajaddhir", en: "deeply rooted" }]
+            },
+            {
+                tier: "fluent", title: "Regional Flavor", icon: "🗺️", words: [
+                    { kr: "يا زول", rom: "yaa zool", en: "hey man (Sudanese)" }, { kr: "حبيبي", rom: "habeebi", en: "my dear / friend (widely used)" },
+                    { kr: "خلاص", rom: "khalaas", en: "that's it / enough (Levantine)" }, { kr: "يلا", rom: "yalla", en: "let's go / come on (very common)" },
+                    { kr: "شو", rom: "shoo", en: "what (Levantine dialect)" }, { kr: "وش", rom: "wish", en: "what (Gulf dialect)" }]
+            },
+            {
+                tier: "fluent", title: "Complex Grammar (Tense Particles)", icon: "🧩", words: [
+                    { kr: "قد", rom: "qad", en: "particle showing possibility or certainty" }, { kr: "لن", rom: "lan", en: "will not (future negation)" },
+                    { kr: "لم", rom: "lam", en: "did not (past negation)" }, { kr: "إن", rom: "in", en: "if (conditional)" },
+                    { kr: "لو", rom: "law", en: "if (hypothetical conditional)" }, { kr: "كان", rom: "kaana", en: "was / were" }]
+            },
+            {
+                tier: "fluent", title: "More Proverbs", icon: "📖", words: [
+                    { kr: "ادفع الشر بالتي هي أحسن", rom: "idfa' ash-sharr billati hiya ahsan", en: "repel evil with what is better" }, { kr: "من حفر حفرة لأخيه وقع فيها", rom: "man hafara hufra li-akheehi waqa'a feeha", en: "whoever digs a hole for his brother falls into it" },
+                    { kr: "العلم نور", rom: "al-'ilm noor", en: "knowledge is light" }, { kr: "الاتحاد قوة", rom: "al-ittihaad quwwa", en: "unity is strength" },
+                    { kr: "الصمت من ذهب", rom: "as-samt min dhahab", en: "silence is golden" }, { kr: "كل شيء بوقته حلو", rom: "kull shay' biwaqtihi hilw", en: "everything is sweet in its own time" }]
+            },
+            {
+                tier: "fluent", title: "Professional Terms", icon: "⚖️", words: [
+                    { kr: "تشخيص", rom: "tashkhees", en: "diagnosis" }, { kr: "وصفة طبية", rom: "wasfa tibbiyya", en: "prescription" },
+                    { kr: "دعوى قضائية", rom: "da'wa qadaa'iyya", en: "lawsuit" }, { kr: "محامي", rom: "muhaami", en: "lawyer" },
+                    { kr: "حكم", rom: "hukm", en: "verdict" }, { kr: "محكمة", rom: "mahkama", en: "court" }]
+            },
+            {
+                tier: "fluent", title: "Mastery Review", icon: "🏆", words: [
+                    { kr: "ثاقب", rom: "thaaqib", en: "perceptive" }, { kr: "متعدد المواهب", rom: "muta'addid al-mawaahib", en: "versatile" },
+                    { kr: "دقيق", rom: "daqeeq", en: "meticulous" }, { kr: "مثابر", rom: "muthaabir", en: "tenacious" },
+                    { kr: "صادق", rom: "saadiq", en: "honest" }, { kr: "حكمة", rom: "hikma", en: "wisdom" }]
+            },
+        ];
+        LEVELS_AR.forEach((l, i) => { l.id = 6000 + i + 1; });
+
+        /* =========================================================
+           AMHARIC CONTENT — Beginner tier only, intentionally.
+           Amharic uses the Ge'ez script, a syllabic writing system
+           where accuracy matters a lot and my depth here is genuinely
+           less reliable than the other languages built so far. Rather
+           than risk inaccurate content across 300+ entries, this ships
+           with a careful, well-documented Beginner tier only.
+           Intermediate/Advanced/Fluent are honestly left empty
+           ("coming soon") rather than faked.
+           ========================================================= */
+        const TIERS_AM = TIERS;
+        const LEVELS_AM = [
+            {
+                tier: "beginner", title: "Amharic Basics", icon: "🇪🇹", words: [
+                    { kr: "ሰላም", rom: "selam", en: "hello" }, { kr: "አመሰግናለሁ", rom: "ameseginalehu", en: "thank you" },
+                    { kr: "አዎ", rom: "awo", en: "yes" }, { kr: "አይ", rom: "ay", en: "no" },
+                    { kr: "ስም", rom: "sim", en: "name" }, { kr: "ጓደኛ", rom: "guadegna", en: "friend" }]
+            },
+            {
+                tier: "beginner", title: "Greetings & Manners", icon: "🙏", words: [
+                    { kr: "ደህና ሁን", rom: "dehna hun", en: "goodbye" }, { kr: "ይቅርታ", rom: "yikirta", en: "sorry / excuse me" },
+                    { kr: "ደስ ብሎኛል", rom: "des bilognal", en: "nice to meet you" }, { kr: "ምንም አይደለም", rom: "minim aydelem", en: "it's okay" },
+                    { kr: "እባክህ", rom: "ebakih", en: "please" }, { kr: "እንደምን አለህ", rom: "indemin aleh", en: "how are you" }]
+            },
+            {
+                tier: "beginner", title: "Numbers 1-6", icon: "🔢", words: [
+                    { kr: "አንድ", rom: "and", en: "one" }, { kr: "ሁለት", rom: "hulet", en: "two" },
+                    { kr: "ሦስት", rom: "sost", en: "three" }, { kr: "አራት", rom: "arat", en: "four" },
+                    { kr: "አምስት", rom: "amist", en: "five" }, { kr: "ስድስት", rom: "sidist", en: "six" }]
+            },
+            {
+                tier: "beginner", title: "Days & Time", icon: "🕒", words: [
+                    { kr: "ዛሬ", rom: "zare", en: "today" }, { kr: "ነገ", rom: "nege", en: "tomorrow" },
+                    { kr: "ትናንት", rom: "tinant", en: "yesterday" }, { kr: "አሁን", rom: "ahun", en: "now" },
+                    { kr: "ሰዓት", rom: "se'at", en: "time" }, { kr: "ጠዋት", rom: "tewat", en: "morning" }]
+            },
+            {
+                tier: "beginner", title: "Family", icon: "👪", words: [
+                    { kr: "ቤተሰብ", rom: "beteseb", en: "family" }, { kr: "እናት", rom: "enat", en: "mom" },
+                    { kr: "አባት", rom: "abat", en: "dad" }, { kr: "ወንድም", rom: "wendim", en: "brother" },
+                    { kr: "እህት", rom: "ehit", en: "sister" }, { kr: "አያት", rom: "ayat", en: "grandfather" }]
+            },
+            {
+                tier: "beginner", title: "Food & Drink", icon: "🍚", words: [
+                    { kr: "ምግብ", rom: "migib", en: "food" }, { kr: "ውሃ", rom: "wiha", en: "water" },
+                    { kr: "ቡና", rom: "buna", en: "coffee" }, { kr: "ዳቦ", rom: "dabo", en: "bread" },
+                    { kr: "ሩዝ", rom: "ruz", en: "rice" }, { kr: "ጣፋጭ", rom: "tafach", en: "delicious" }]
+            },
+            {
+                tier: "beginner", title: "Colors", icon: "🎨", words: [
+                    { kr: "ቀይ", rom: "qey", en: "red" }, { kr: "ሰማያዊ", rom: "semayawi", en: "blue" },
+                    { kr: "ቢጫ", rom: "bicha", en: "yellow" }, { kr: "አረንጓዴ", rom: "arenguade", en: "green" },
+                    { kr: "ጥቁር", rom: "t'iqur", en: "black" }, { kr: "ነጭ", rom: "nech", en: "white" }]
+            },
+            {
+                tier: "beginner", title: "Body Parts", icon: "🧍", words: [
+                    { kr: "ራስ", rom: "ras", en: "head" }, { kr: "እጅ", rom: "ej", en: "hand" },
+                    { kr: "ዓይን", rom: "ayn", en: "eye" }, { kr: "አፍንጫ", rom: "afincha", en: "nose" },
+                    { kr: "አፍ", rom: "af", en: "mouth" }, { kr: "እግር", rom: "egir", en: "leg" }]
+            },
+            {
+                tier: "beginner", title: "Animals", icon: "🐾", words: [
+                    { kr: "ውሻ", rom: "wisha", en: "dog" }, { kr: "ድመት", rom: "dimet", en: "cat" },
+                    { kr: "ወፍ", rom: "wef", en: "bird" }, { kr: "ዓሳ", rom: "asa", en: "fish" },
+                    { kr: "ድብ", rom: "dib", en: "bear" }, { kr: "ጥንቸል", rom: "t'inchel", en: "rabbit" }]
+            },
+            {
+                tier: "beginner", title: "Clothing", icon: "👕", words: [
+                    { kr: "ልብስ", rom: "libs", en: "clothes" }, { kr: "ጫማ", rom: "chama", en: "shoes" },
+                    { kr: "ኮፍያ", rom: "kofya", en: "hat" }, { kr: "ሱሪ", rom: "suri", en: "pants" },
+                    { kr: "ቀሚስ", rom: "qemis", en: "skirt" }, { kr: "ቦርሳ", rom: "borsa", en: "bag" }]
+            },
+            {
+                tier: "beginner", title: "Weather", icon: "⛅", words: [
+                    { kr: "የአየር ሁኔታ", rom: "ye'ayer huneta", en: "weather" }, { kr: "ዝናብ", rom: "zinab", en: "rain" },
+                    { kr: "በረዶ", rom: "beredo", en: "snow" }, { kr: "ንፋስ", rom: "nifas", en: "wind" },
+                    { kr: "ሙቀት", rom: "muqet", en: "hot" }, { kr: "ቅዝቃዜ", rom: "qizqaze", en: "cold" }]
+            },
+            {
+                tier: "beginner", title: "House & Rooms", icon: "🏠", words: [
+                    { kr: "ቤት", rom: "bet", en: "house" }, { kr: "ክፍል", rom: "kifil", en: "room" },
+                    { kr: "አልጋ", rom: "alga", en: "bed" }, { kr: "መጸዳጃ ቤት", rom: "mets'edaja bet", en: "bathroom" },
+                    { kr: "ወጥ ቤት", rom: "wet bet", en: "kitchen" }, { kr: "በር", rom: "ber", en: "door" }]
+            },
+            {
+                tier: "beginner", title: "School & Objects", icon: "🎒", words: [
+                    { kr: "ትምህርት ቤት", rom: "timhirt bet", en: "school" }, { kr: "መጽሐፍ", rom: "mets'haf", en: "book" },
+                    { kr: "እርሳስ", rom: "irsas", en: "pencil" }, { kr: "ቦርሳ", rom: "borsa", en: "backpack" },
+                    { kr: "መምህር", rom: "memhir", en: "teacher" }, { kr: "ተማሪ", rom: "temari", en: "student" }]
+            },
+        ];
+        LEVELS_AM.forEach((l, i) => { l.id = 7000 + i + 1; });
+
         const LEVELS = [
             /* ---------------- BEGINNER ---------------- */
             {
@@ -5022,12 +5769,18 @@
         const ALL_VOCAB_JA = LEVELS_JA.flatMap(l => l.words);
         const ALL_VOCAB_EN = LEVELS_EN.flatMap(l => l.words);
         const ALL_VOCAB_ZH = LEVELS_ZH.flatMap(l => l.words);
+        const ALL_VOCAB_AF = LEVELS_AF.flatMap(l => l.words);
+        const ALL_VOCAB_AR = LEVELS_AR.flatMap(l => l.words);
+        const ALL_VOCAB_AM = LEVELS_AM.flatMap(l => l.words);
         function activeVocabPool() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'es') return ALL_VOCAB_ES;
             if (lang === 'ja') return ALL_VOCAB_JA;
             if (lang === 'en') return ALL_VOCAB_EN;
             if (lang === 'zh') return ALL_VOCAB_ZH;
+            if (lang === 'af') return ALL_VOCAB_AF;
+            if (lang === 'ar') return ALL_VOCAB_AR;
+            if (lang === 'am') return ALL_VOCAB_AM;
             return ALL_VOCAB;
         }
         function activeChatTopics() {
@@ -5036,6 +5789,9 @@
             if (lang === 'ja') return JAPANESE_CHAT_TOPICS;
             if (lang === 'en') return ENGLISH_CHAT_TOPICS;
             if (lang === 'zh') return CHINESE_CHAT_TOPICS;
+            if (lang === 'af') return AFRIKAANS_CHAT_TOPICS;
+            if (lang === 'ar') return ARABIC_CHAT_TOPICS;
+            if (lang === 'am') return AMHARIC_CHAT_TOPICS;
             return CHAT_TOPICS;
         }
         function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
@@ -5169,6 +5925,9 @@
             if (lang === 'ja') return '日本語';
             if (lang === 'en') return 'English';
             if (lang === 'zh') return '中文';
+            if (lang === 'af') return 'Afrikaans';
+            if (lang === 'ar') return 'العربية';
+            if (lang === 'am') return 'አማርኛ';
             return '한국어';
         }
         function updateLanguageSpecificUI() {
@@ -5185,12 +5944,22 @@
             // has real stroke-order content, so it stays visible there.
             const isEnglish = lang === 'en';
             const isChinese = lang === 'zh';
+            const noChartsBuilt = ['af', 'ar', 'am'].includes(lang);
             const grammarCardEl = document.getElementById('grammarCard');
-            if (grammarCardEl) grammarCardEl.classList.toggle('lang-hidden', isEnglish || isChinese);
+            if (grammarCardEl) grammarCardEl.classList.toggle('lang-hidden', isEnglish || isChinese || noChartsBuilt);
             const drawTraceCardEl = document.getElementById('drawTraceCard');
-            if (drawTraceCardEl) drawTraceCardEl.classList.toggle('lang-hidden', isEnglish);
+            if (drawTraceCardEl) drawTraceCardEl.classList.toggle('lang-hidden', isEnglish || noChartsBuilt);
+            const topikCardEl = document.getElementById('topikCard');
+            if (topikCardEl) topikCardEl.classList.toggle('lang-hidden', noChartsBuilt);
+            const hangulChartCardEl = document.getElementById('hangulChartCard');
+            if (hangulChartCardEl) hangulChartCardEl.classList.toggle('lang-hidden', noChartsBuilt);
+            const numberChartCardEl = document.getElementById('numberChartCard');
+            if (numberChartCardEl) numberChartCardEl.classList.toggle('lang-hidden', noChartsBuilt);
             const moreEmptyNote = document.getElementById('moreEmptyNote');
-            if (moreEmptyNote) moreEmptyNote.style.display = 'none';
+            if (moreEmptyNote) {
+                moreEmptyNote.style.display = noChartsBuilt ? 'block' : 'none';
+                if (noChartsBuilt) moreEmptyNote.textContent = "Reference tools (proficiency quiz, alphabet/number charts, tracing) aren't built for this language yet — just the core lessons for now. Check the Tutor tab to ask Han anything!";
+            }
 
             document.querySelectorAll('.en-only').forEach(el => {
                 el.style.display = isEnglish ? 'flex' : 'none';
@@ -5267,6 +6036,9 @@
             if (lang === 'ja') return TIERS_JA;
             if (lang === 'en') return TIERS_EN;
             if (lang === 'zh') return TIERS_ZH;
+            if (lang === 'af') return TIERS_AF;
+            if (lang === 'ar') return TIERS_AR;
+            if (lang === 'am') return TIERS_AM;
             return TIERS;
         }
         function activeLevels() {
@@ -5275,6 +6047,9 @@
             if (lang === 'ja') return LEVELS_JA;
             if (lang === 'en') return LEVELS_EN;
             if (lang === 'zh') return LEVELS_ZH;
+            if (lang === 'af') return LEVELS_AF;
+            if (lang === 'ar') return LEVELS_AR;
+            if (lang === 'am') return LEVELS_AM;
             return LEVELS;
         }
 
@@ -5356,7 +6131,10 @@
                 es: (hour < 12 ? '¡Buenos días! 🌤️' : hour < 18 ? '¡Hola! 👋' : '¡Buenas noches! 🌙'),
                 ja: (hour < 12 ? 'おはようございます 🌤️' : hour < 18 ? 'こんにちは 👋' : 'こんばんは 🌙'),
                 en: (hour < 12 ? 'Good morning! 🌤️' : hour < 18 ? 'Hello! 👋' : 'Good evening! 🌙'),
-                zh: (hour < 12 ? '早上好 🌤️' : hour < 18 ? '你好 👋' : '晚上好 🌙')
+                zh: (hour < 12 ? '早上好 🌤️' : hour < 18 ? '你好 👋' : '晚上好 🌙'),
+                af: (hour < 12 ? 'Goeie môre! 🌤️' : hour < 18 ? 'Hallo! 👋' : 'Goeie naand! 🌙'),
+                ar: (hour < 12 ? 'صباح الخير 🌤️' : hour < 18 ? 'مرحبا 👋' : 'مساء الخير 🌙'),
+                am: (hour < 12 ? 'እንደምን አደርክ 🌤️' : hour < 18 ? 'ሰላም 👋' : 'እንደምን አመሸህ 🌙')
             };
             document.getElementById('homeGreeting').textContent = greetings[lang] || greetings.ko;
         }
@@ -5465,7 +6243,7 @@
             if (koreanVoice) utter.voice = koreanVoice;
             window.speechSynthesis.speak(utter);
         }
-        const LANG_TTS_CODE = { ko: 'ko-KR', es: 'es-ES', ja: 'ja-JP', en: 'en-US', zh: 'zh-CN' };
+        const LANG_TTS_CODE = { ko: 'ko-KR', es: 'es-ES', ja: 'ja-JP', en: 'en-US', zh: 'zh-CN', af: 'af-ZA', ar: 'ar-SA', am: 'am-ET' };
         function speakLearning(text) {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'ko') { speakKorean(text); return; }
@@ -7088,6 +7866,50 @@
             { k: ["difficult", "hard", "struggling", "stuck", "confus"], a: "没关系! (méi guānxi — it's okay!) Tones and characters both take real practice to get comfortable with. Try replaying lessons or retaking a quiz — repetition is what makes it click. 慢慢来! (mànmàn lái — take your time!)" },
         ];
 
+        const AFRIKAANS_CHAT_TOPICS = [
+            { k: ["hallo", "hello", "hi "], a: "Hallo (HAH-loo) means 'hello' — safe and neutral any time of day. Among friends, hoe gaan dit? (how's it going?) is a common casual follow-up." },
+            { k: ["totsiens", "bye", "goodbye"], a: "Totsiens (tot-SEENS) means 'goodbye.' Casually, Afrikaans speakers often just say bye or sien jou (see you) too — English loanwords are very common in everyday Afrikaans." },
+            { k: ["dankie", "thank"], a: "Dankie (DAHN-kee) means 'thank you.' For extra emphasis: baie dankie (BY-uh DAHN-kee) — 'thank you very much.'" },
+            { k: ["jammer", "sorry"], a: "Jammer (YAH-mer) means 'sorry.' For a lighter 'excuse me' (like squeezing past someone), verskoon my works well." },
+            { k: ["hoe gaan dit", "how are you"], a: "Hoe gaan dit? (hoo khahn dit?) means 'how are you? / how's it going?' A common reply: goed, dankie (khoot, DAHN-kee) — 'good, thanks.'" },
+            { k: ["u", "jy", "formal"], a: "U is the formal 'you' (elders, strangers, formal settings), while jy is the everyday informal 'you.' Afrikaans is generally quite informal, so jy is used far more often than u." },
+            { k: ["afrikaans", "dutch", "related"], a: "Afrikaans developed from Dutch spoken by settlers in South Africa, and the two remain mutually understandable to a good degree. Afrikaans also borrowed words from English, Malay, and various African languages, making it uniquely South African." },
+            { k: ["heart", "hearts", "lose"], a: "You lose a heart for each wrong answer in a lesson. Run out and the lesson ends — but hearts refill over time, or go Pro for unlimited hearts." },
+            { k: ["streak", "fire"], a: "Your streak counts consecutive days you complete at least one lesson. Miss a day and it resets — try a quick lesson daily! Jy kan dit doen! (You can do it!)" },
+            { k: ["xp", "level", "points"], a: "XP is earned by finishing lessons and quizzes. It builds your Level on your Profile page — the more you practice, the higher you climb!" },
+            { k: ["pro", "premium", "upgrade", "subscription", "price", "cost"], a: "Hangul Pro unlocks unlimited hearts, every unit instantly, advanced speaking drills, deeper stats, and unlimited tutor chats. Check the Pro tab for pricing and plans!" },
+            { k: ["speak", "pronounce", "mic", "pronunciation"], a: "For speaking exercises, tap the mic and say the word naturally — the app compares what it hears to the target word. If your browser blocks the mic, check your site permissions." },
+            { k: ["difficult", "hard", "struggling", "stuck", "confus"], a: "Dis reg! (It's okay!) Everyone finds new vocabulary tricky at first. Try replaying lessons or retaking a quiz — repetition is what makes it click. Bietjie-bietjie! (Little by little!)" },
+        ];
+
+        const ARABIC_CHAT_TOPICS = [
+            { k: ["مرحبا", "marhaban", "hello", "hi "], a: "مرحبا (marhaban) means 'hello' — works any time, with anyone. Casually, أهلا (ahlan) is also very common and a bit more informal." },
+            { k: ["مع السلامة", "ma'a as-salama", "bye", "goodbye"], a: "مع السلامة (ma'a as-salama) means 'goodbye,' literally 'with safety/peace.' Casually, باي (bay — borrowed from English 'bye') is heard often too." },
+            { k: ["شكرا", "shukran", "thank"], a: "شكرا (shukran) means 'thank you.' For extra emphasis: شكرا جزيلا (shukran jazeelan) — 'thank you very much.'" },
+            { k: ["آسف", "aasif", "sorry"], a: "آسف (aasif) means 'sorry' (said by a male speaker; a female speaker would say آسفة, aasifa). For 'excuse me,' عفوا (afwan) is more common." },
+            { k: ["كيف حالك", "how are you"], a: "كيف حالك؟ (kayfa haaluk? — to a man) or كيف حالك؟ (kayfa haaluki? — to a woman) means 'how are you?' A common reply: بخير، شكرا (bikhayr, shukran) — 'I'm well, thank you.'" },
+            { k: ["msa", "dialect", "fusha", "ammiya"], a: "This app teaches Modern Standard Arabic (فصحى, fus-ha) — the formal register used in writing, news, and across the Arab world. Spoken dialects (like Egyptian, Levantine, or Gulf Arabic) differ quite a bit from MSA and from each other, but MSA is understood everywhere and is the best starting point." },
+            { k: ["right to left", "rtl", "script", "alphabet"], a: "Arabic script is written and read from right to left, and letters connect to each other and change shape depending on their position in a word (beginning, middle, end, or alone) — different from the fixed letter shapes in English." },
+            { k: ["heart", "hearts", "lose"], a: "You lose a heart for each wrong answer in a lesson. Run out and the lesson ends — but hearts refill over time, or go Pro for unlimited hearts." },
+            { k: ["streak", "fire"], a: "Your streak counts consecutive days you complete at least one lesson. Miss a day and it resets — try a quick lesson daily! بالتوفيق! (bittawfeeq — good luck!)" },
+            { k: ["xp", "level", "points"], a: "XP is earned by finishing lessons and quizzes. It builds your Level on your Profile page — the more you practice, the higher you climb!" },
+            { k: ["pro", "premium", "upgrade", "subscription", "price", "cost"], a: "Hangul Pro unlocks unlimited hearts, every unit instantly, advanced speaking drills, deeper stats, and unlimited tutor chats. Check the Pro tab for pricing and plans!" },
+            { k: ["speak", "pronounce", "mic", "pronunciation"], a: "For speaking exercises, tap the mic and say the word naturally — the app compares what it hears to the target word. If your browser blocks the mic, check your site permissions." },
+            { k: ["difficult", "hard", "struggling", "stuck", "confus"], a: "لا بأس! (la ba's — it's okay!) New scripts and sounds both take real practice. Try replaying lessons or retaking a quiz — repetition is what makes it click. خطوة خطوة! (khutwa khutwa — step by step!)" },
+        ];
+
+        const AMHARIC_CHAT_TOPICS = [
+            { k: ["ሰላም", "selam", "hello", "hi "], a: "ሰላም (selam) means 'hello' — it also means 'peace,' and works as a warm, all-purpose greeting any time of day." },
+            { k: ["አመሰግናለሁ", "ameseginalehu", "thank"], a: "አመሰግናለሁ (ameseginalehu) means 'thank you.' It's a fairly formal, complete way to say it — Amharic has a rich system of respectful speech." },
+            { k: ["ge'ez", "script", "alphabet", "fidel"], a: "Amharic is written in the Ge'ez script (ፊደል, fidel) — a syllabic system where each character represents a consonant+vowel combination, not a single sound like English letters. It's used across Ethiopia and Eritrea for several languages." },
+            { k: ["heart", "hearts", "lose"], a: "You lose a heart for each wrong answer in a lesson. Run out and the lesson ends — but hearts refill over time, or go Pro for unlimited hearts." },
+            { k: ["streak", "fire"], a: "Your streak counts consecutive days you complete at least one lesson. Miss a day and it resets — try a quick lesson daily!" },
+            { k: ["xp", "level", "points"], a: "XP is earned by finishing lessons and quizzes. It builds your Level on your Profile page — the more you practice, the higher you climb!" },
+            { k: ["pro", "premium", "upgrade", "subscription", "price", "cost"], a: "Hangul Pro unlocks unlimited hearts, every unit instantly, advanced speaking drills, deeper stats, and unlimited tutor chats. Check the Pro tab for pricing and plans!" },
+            { k: ["speak", "pronounce", "mic", "pronunciation"], a: "For speaking exercises, tap the mic and say the word naturally — the app compares what it hears to the target word. If your browser blocks the mic, check your site permissions." },
+            { k: ["difficult", "hard", "struggling", "stuck", "confus"], a: "ምንም አይደለም! (minim aydelem — it's okay!) A new script and sounds both take real practice. Try replaying lessons or retaking a quiz — repetition is what makes it click." },
+        ];
+
         /* =========================================================
            STROKE ORDER GUIDE (24 basic letters)
            ========================================================= */
@@ -7431,6 +8253,9 @@
                     ja: "You are Han, a warm, encouraging Japanese-language tutor inside a learning app called Hello Hangul (currently teaching Japanese to this learner). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Japanese and English together — give the Japanese phrase (in hiragana/katakana, since this app focuses on kana rather than kanji), its romaji, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Japanese word, phrase, grammar point (including keigo/honorific levels, particles, verb conjugation), or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly.",
                     en: "You are Han, a warm, encouraging English-language tutor inside a learning app called Hello Hangul (currently teaching English as a second language to this learner). Explain vocabulary, idioms, phrasal verbs, and grammar clearly with simple definitions and example sentences. You can discuss ANY English word, phrase, idiom, or grammar point, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly, avoiding overly technical linguistic terminology unless asked.",
                     zh: "You are Han, a warm, encouraging Mandarin Chinese tutor inside a learning app called Hello Hangul (currently teaching Chinese to this learner). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Chinese and English together — give the Simplified Chinese characters, Pinyin with tone marks, and an English translation whenever relevant, so the learner sees all three. Pay special attention to tones when explaining pronunciation, since tone changes meaning entirely (e.g. mā vs mǎ). You can discuss ANY Chinese word, phrase, grammar point (including 把/被 constructions, measure words, chengyu idioms), or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly.",
+                    af: "You are Han, a warm, encouraging Afrikaans tutor inside a learning app called Hello Hangul (currently teaching Afrikaans to this learner). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Afrikaans and English together — give the Afrikaans phrase, a simple pronunciation guide, and an English translation whenever relevant. You can discuss ANY Afrikaans word, phrase, grammar point (including u vs jy formality, its close relationship to Dutch), or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly.",
+                    ar: "You are Han, a warm, encouraging Modern Standard Arabic tutor inside a learning app called Hello Hangul (currently teaching Arabic to this learner). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Arabic and English together — give the Arabic script, a transliteration, and an English translation whenever relevant, so the learner sees all three. Remind the learner as needed that Arabic is written right-to-left and letters change shape depending on position in a word. You can discuss ANY Arabic word, phrase, grammar point, or the difference between Modern Standard Arabic and spoken dialects, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly.",
+                    am: "You are Han, a warm, encouraging Amharic tutor inside a learning app called Hello Hangul (currently teaching Amharic to this learner, Beginner level only for now). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Amharic and English together — give the Ge'ez script, a transliteration, and an English translation whenever relevant. Be honest that your depth in Amharic (a language using the complex Ge'ez syllabic script) is more limited than other languages, so stick to well-established, commonly known vocabulary and avoid inventing idioms or advanced grammar you're not confident about. Keep answers short (2-5 sentences), warm, and beginner-friendly.",
                     ko: "You are Han, a warm, encouraging Korean-language tutor inside a learning app called Hello Hangul. You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Korean and English together — give the Korean phrase, its romanization, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Korean word, phrase, grammar point, or cultural topic, not just app mechanics. When asked about a number, remember Korean has two number systems (Sino-Korean, used for money/dates/phone numbers/math, and Native Korean, used for counting objects/age, which only goes up to 99) — explain both systems for that number when the learner doesn't specify one. Keep answers short (2-5 sentences), warm, and beginner-friendly."
                 };
                 const systemPrompt = systemPrompts[activeLang] || systemPrompts.ko;
@@ -7539,6 +8364,9 @@
                 if (lang === 'ja') return `${word.kr} (${word.rom}) means "${word.en}" in English. いい質問ですね! (ii shitsumon desu ne — great question!) Try using it in a quiz to lock it in.`;
                 if (lang === 'en') return `"${word.kr}" (pronounced ${word.rom}) means: ${word.en}. Good question! Try using it in a quiz to lock it in.`;
                 if (lang === 'zh') return `${word.kr} (${word.rom}) means "${word.en}" in English. 好问题! (hǎo wèntí — good question!) Try using it in a quiz to lock it in.`;
+                if (lang === 'af') return `${word.kr} (${word.rom}) means "${word.en}" in English. Goeie vraag! (Good question!) Try using it in a quiz to lock it in.`;
+                if (lang === 'ar') return `${word.kr} (${word.rom}) means "${word.en}" in English. سؤال جيد! (su'aal jayyid — good question!) Try using it in a quiz to lock it in.`;
+                if (lang === 'am') return `${word.kr} (${word.rom}) means "${word.en}" in English. ጥሩ ጥያቄ! (t'iru t'iyaqe — good question!) Try using it in a quiz to lock it in.`;
                 return `${word.kr} (${word.rom}) means "${word.en}" in English. 좋은 질문이에요! (jo-eun jilmunieyo — great question!) Try using it in the K-Drama tab or a quiz to lock it in.`;
             }
 
@@ -7546,6 +8374,9 @@
             if (lang === 'ja') return "それはまだ分かりません! (sore wa mada wakarimasen — I don't know that one yet!) Try asking about a specific word from your lessons — Japanese or English both work (e.g. \"what does arigatou mean\" or \"how do I say goodbye\"). I can also explain keigo levels, hiragana, or how streaks, hearts, and XP work.";
             if (lang === 'en') return "I don't know that one yet! Try asking about a specific word from your lessons (e.g. \"what does meticulous mean\" or \"what's an idiom\"). I can also explain phrasal verbs, formal vs. casual register, or how streaks, hearts, and XP work.";
             if (lang === 'zh') return "我还不知道那个! (wǒ hái bù zhīdào nàge — I don't know that one yet!) Try asking about a specific word from your lessons — Chinese or English both work (e.g. \"what does xiexie mean\" or \"how do I say goodbye\"). I can also explain tones, characters, or how streaks, hearts, and XP work.";
+            if (lang === 'af') return "Ek weet nog nie daai een nie! Try asking about a specific word from your lessons — Afrikaans or English both work (e.g. \"what does dankie mean\" or \"how do I say goodbye\"). I can also explain u vs jy formality, or how streaks, hearts, and XP work.";
+            if (lang === 'ar') return "لا أعرف ذلك بعد! (laa a'rif dhaalik ba'd — I don't know that one yet!) Try asking about a specific word from your lessons — Arabic or English both work (e.g. \"what does shukran mean\" or \"how do I say goodbye\"). I can also explain MSA vs dialects, or how streaks, hearts, and XP work.";
+            if (lang === 'am') return "ገና አላውቀውም! (gena alawqewim — I don't know that one yet!) Try asking about a specific word from your Beginner lessons (e.g. \"what does selam mean\" or \"how do I say goodbye\"). I can also explain the Ge'ez script, or how streaks, hearts, and XP work.";
             return "그건 아직 몰라요 (I don't know that one yet)! Try asking about a specific word from your lessons — Korean or English both work (e.g. \"what does 감사합니다 mean\" or \"how do I say goodbye\"). I can also explain grammar endings like -요, or how streaks, hearts, and XP work.";
         }
         function botSayTyping() {
@@ -7608,6 +8439,9 @@
                 ja: "こんにちは! I'm Han — let's warm up first, then I'll quiz you in Japanese.",
                 en: "Hi! I'm Han — let's warm up first, then I'll quiz you on vocabulary and idioms.",
                 zh: "你好! I'm Han — let's warm up first, then I'll quiz you in Chinese.",
+                af: "Hallo! I'm Han — let's warm up first, then I'll quiz you in Afrikaans.",
+                ar: "مرحبا! I'm Han — let's warm up first, then I'll quiz you in Arabic.",
+                am: "ሰላም! I'm Han — let's warm up first, then I'll quiz you in Amharic.",
                 ko: "Hi! I'm Han — let's warm up first, then I'll quiz you."
             };
             document.getElementById('videocallCaption').textContent = greetings[lang] || greetings.ko;
@@ -7665,7 +8499,10 @@
                         const linesJa = ["よくできました! Nice work! 😊", "That's it! You're on a roll!", "正解! Correct!", "すごい! Keep going!"];
                         const linesEn = ["Nice work! 😊", "That's it! You're on a roll!", "Exactly right!", "Great job — keep going!"];
                         const linesZh = ["很好! Nice work! 😊", "That's it! You're on a roll!", "对了! Correct!", "太棒了! Keep going!"];
-                        const linesMap = { es: linesEs, ja: linesJa, en: linesEn, zh: linesZh, ko: linesKo };
+                        const linesAf = ["Goed gedaan! Nice work! 😊", "That's it! You're on a roll!", "Reg! Correct!", "Uitstekend! Keep going!"];
+                        const linesAr = ["أحسنت! Nice work! 😊", "That's it! You're on a roll!", "صحيح! Correct!", "ممتاز! Keep going!"];
+                        const linesAm = ["ጎበዝ! Nice work! 😊", "That's it! You're on a roll!", "ትክክል! Correct!", "በጣም ጥሩ! Keep going!"];
+                        const linesMap = { es: linesEs, ja: linesJa, en: linesEn, zh: linesZh, af: linesAf, ar: linesAr, am: linesAm, ko: linesKo };
                         const lines = linesMap[lang] || linesKo;
                         document.getElementById('videocallCaption').textContent = lines[Math.floor(Math.random() * lines.length)];
                     } else {
@@ -7856,9 +8693,9 @@
            LANGUAGE TO LEARN (which language the lessons teach)
            ========================================================= */
         const LANGUAGES_TO_LEARN = [
-            { code: 'af', name: 'Afrikaans', flag: '🇿🇦', available: false },
-            { code: 'am', name: 'Amharic', flag: '🇪🇹', available: false },
-            { code: 'ar', name: 'Arabic', flag: '🇸🇦', available: false },
+            { code: 'af', name: 'Afrikaans', flag: '🇿🇦', available: true },
+            { code: 'am', name: 'Amharic', flag: '🇪🇹', available: true },
+            { code: 'ar', name: 'Arabic', flag: '🇸🇦', available: true },
             { code: 'eu', name: 'Basque', flag: '🏴', available: false },
             { code: 'bn', name: 'Bengali', flag: '🇧🇩', available: false },
             { code: 'bg', name: 'Bulgarian', flag: '🇧🇬', available: false },
