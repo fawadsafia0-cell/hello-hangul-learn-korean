@@ -2102,6 +2102,34 @@
                 onclick="startNumberQuiz()">📝 Take the Number Quiz</button>
         </div>
 
+        <!-- ABC CHART (English) -->
+        <div class="screen" id="screen-abc">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div style="flex:1;"></div>
+            </div>
+            <div class="section-title" style="margin-top:0;">🔤 ABC Chart</div>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Tap any letter to hear it. Learn all 26
+                letters and try the quiz below.</p>
+            <div id="abcChartWrap"></div>
+            <button class="primary-btn" style="background:linear-gradient(135deg,#FFC9DE,#B7A4E0);margin-top:8px;"
+                onclick="startAbcQuiz()">📝 Take the ABC Quiz</button>
+        </div>
+
+        <!-- NUMBERS SPELLED (English) -->
+        <div class="screen" id="screen-numbers-spelled">
+            <div class="lesson-header">
+                <button class="exit-btn" onclick="goHome()">✕</button>
+                <div style="flex:1;"></div>
+            </div>
+            <div class="section-title" style="margin-top:0;">🔢 Numbers Chart</div>
+            <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">See how numbers are spelled out. Tap any
+                number to hear it, then try the quiz.</p>
+            <div id="numbersSpelledWrap"></div>
+            <button class="primary-btn" style="background:linear-gradient(135deg,#A8E6CF,#B7A4E0);margin-top:8px;"
+                onclick="startNumbersSpelledQuiz()">📝 Take the Numbers Quiz</button>
+        </div>
+
         <!-- SENTENCE BUILDER -->
         <div class="screen" id="screen-sentence">
             <div class="lesson-header">
@@ -2320,6 +2348,18 @@
                 <div class="chart-link-ic">✍️</div>
                 <div class="chart-link-text"><b>Draw & Trace</b><span id="drawTraceCardSub">Practice writing Hangul by
                         hand</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
+            <div class="chart-link-card en-only" id="abcCard" onclick="openAbcChart()" style="display:none;">
+                <div class="chart-link-ic">🔤</div>
+                <div class="chart-link-text"><b>ABC Chart</b><span>All 26 letters, spelled + a quick quiz</span></div>
+                <div class="chart-link-arrow">›</div>
+            </div>
+            <div class="chart-link-card en-only" id="numbersSpelledCard" onclick="openNumbersSpelledChart()"
+                style="display:none;">
+                <div class="chart-link-ic">🔢</div>
+                <div class="chart-link-text"><b>Numbers Chart</b><span>0 to 1,000,000 spelled out + a quick quiz</span>
+                </div>
                 <div class="chart-link-arrow">›</div>
             </div>
         </div>
@@ -4372,6 +4412,60 @@
         ];
         const ALL_CONFUSED_WORDS = CONFUSED_WORDS.flatMap(s => s.chars.map(c => ({ kr: c.ch, en: c.en, rom: c.rom })));
 
+        const ENGLISH_ABC_CHART = [
+            {
+                title: "A – I", chars: [
+                    { ch: "A a", rom: "/eɪ/", sample: "A", hint: "as in Apple" }, { ch: "B b", rom: "/biː/", sample: "B", hint: "as in Ball" },
+                    { ch: "C c", rom: "/siː/", sample: "C", hint: "as in Cat" }, { ch: "D d", rom: "/diː/", sample: "D", hint: "as in Dog" },
+                    { ch: "E e", rom: "/iː/", sample: "E", hint: "as in Egg" }, { ch: "F f", rom: "/ɛf/", sample: "F", hint: "as in Fish" },
+                    { ch: "G g", rom: "/dʒiː/", sample: "G", hint: "as in Goat" }, { ch: "H h", rom: "/eɪtʃ/", sample: "H", hint: "as in Hat" },
+                    { ch: "I i", rom: "/aɪ/", sample: "I", hint: "as in Ice" }]
+            },
+            {
+                title: "J – R", chars: [
+                    { ch: "J j", rom: "/dʒeɪ/", sample: "J", hint: "as in Jump" }, { ch: "K k", rom: "/keɪ/", sample: "K", hint: "as in Kite" },
+                    { ch: "L l", rom: "/ɛl/", sample: "L", hint: "as in Lion" }, { ch: "M m", rom: "/ɛm/", sample: "M", hint: "as in Moon" },
+                    { ch: "N n", rom: "/ɛn/", sample: "N", hint: "as in Nose" }, { ch: "O o", rom: "/oʊ/", sample: "O", hint: "as in Orange" },
+                    { ch: "P p", rom: "/piː/", sample: "P", hint: "as in Pen" }, { ch: "Q q", rom: "/kjuː/", sample: "Q", hint: "as in Queen" },
+                    { ch: "R r", rom: "/ɑːr/", sample: "R", hint: "as in Rain" }]
+            },
+            {
+                title: "S – Z", chars: [
+                    { ch: "S s", rom: "/ɛs/", sample: "S", hint: "as in Sun" }, { ch: "T t", rom: "/tiː/", sample: "T", hint: "as in Tree" },
+                    { ch: "U u", rom: "/juː/", sample: "U", hint: "as in Umbrella" }, { ch: "V v", rom: "/viː/", sample: "V", hint: "as in Van" },
+                    { ch: "W w", rom: "/ˈdʌbəl.juː/", sample: "W", hint: "as in Water" }, { ch: "X x", rom: "/ɛks/", sample: "X", hint: "as in X-ray" },
+                    { ch: "Y y", rom: "/waɪ/", sample: "Y", hint: "as in Yellow" }, { ch: "Z z", rom: "/ziː/", sample: "Z", hint: "as in Zebra" }]
+            },
+        ];
+        const ALL_ENGLISH_ABC = ENGLISH_ABC_CHART.flatMap(s => s.chars);
+
+        const ENGLISH_NUMBERS_SPELLED = [
+            {
+                title: "Numbers 0–10", note: "The building blocks — every other number is formed from these.", chars: [
+                    { ch: "zero", rom: "0", en: "0" }, { ch: "one", rom: "1", en: "1" }, { ch: "two", rom: "2", en: "2" },
+                    { ch: "three", rom: "3", en: "3" }, { ch: "four", rom: "4", en: "4" }, { ch: "five", rom: "5", en: "5" },
+                    { ch: "six", rom: "6", en: "6" }, { ch: "seven", rom: "7", en: "7" }, { ch: "eight", rom: "8", en: "8" },
+                    { ch: "nine", rom: "9", en: "9" }, { ch: "ten", rom: "10", en: "10" }]
+            },
+            {
+                title: "Teens", note: "11-19 mostly end in '-teen'.", chars: [
+                    { ch: "eleven", rom: "11", en: "11" }, { ch: "twelve", rom: "12", en: "12" }, { ch: "thirteen", rom: "13", en: "13" },
+                    { ch: "fourteen", rom: "14", en: "14" }, { ch: "fifteen", rom: "15", en: "15" }, { ch: "sixteen", rom: "16", en: "16" },
+                    { ch: "seventeen", rom: "17", en: "17" }, { ch: "eighteen", rom: "18", en: "18" }, { ch: "nineteen", rom: "19", en: "19" }]
+            },
+            {
+                title: "Tens", note: "Formed with '-ty'. Example: twenty = 2 + ty = 20.", chars: [
+                    { ch: "twenty", rom: "20", en: "20" }, { ch: "thirty", rom: "30", en: "30" }, { ch: "forty", rom: "40", en: "40" },
+                    { ch: "fifty", rom: "50", en: "50" }, { ch: "sixty", rom: "60", en: "60" }, { ch: "seventy", rom: "70", en: "70" },
+                    { ch: "eighty", rom: "80", en: "80" }, { ch: "ninety", rom: "90", en: "90" }]
+            },
+            {
+                title: "Big Units", note: "Everything above 100 is built from these + 0-99.", chars: [
+                    { ch: "hundred", rom: "100", en: "100" }, { ch: "thousand", rom: "1,000", en: "1,000" }, { ch: "million", rom: "1,000,000", en: "1,000,000" }]
+            },
+        ];
+        const ALL_ENGLISH_NUMBERS_SPELLED = ENGLISH_NUMBERS_SPELLED.flatMap(s => s.chars.map(c => ({ kr: c.ch, en: c.en, rom: c.rom })));
+
         const JAPANESE_NUMBER_CHART = [
             {
                 title: "Numbers 0–10", note: "The building blocks — every other number is formed from these.", chars: [
@@ -4707,6 +4801,10 @@
             });
             const moreEmptyNote = document.getElementById('moreEmptyNote');
             if (moreEmptyNote) moreEmptyNote.style.display = 'none';
+
+            document.querySelectorAll('.en-only').forEach(el => {
+                el.style.display = isEnglish ? 'flex' : 'none';
+            });
 
             const topikText = {
                 ko: ['TOPIK Practice', 'Official-style proficiency test questions'],
@@ -5376,6 +5474,66 @@
             }
             startQuiz();
         }
+
+        /* =========================================================
+           ABC CHART & SPELLED NUMBERS (English only)
+           ========================================================= */
+        function openAbcChart() {
+            showScreen('abc');
+            renderAbcChart();
+        }
+        function renderAbcChart() {
+            const wrap = document.getElementById('abcChartWrap');
+            if (wrap.dataset.built) return;
+            wrap.dataset.built = '1';
+            ENGLISH_ABC_CHART.forEach(section => {
+                const sec = document.createElement('div');
+                sec.className = 'hangul-section';
+                sec.innerHTML = `<h3>${section.title}</h3><div class="hangul-grid"></div>`;
+                const grid = sec.querySelector('.hangul-grid');
+                section.chars.forEach(c => {
+                    const cell = document.createElement('button');
+                    cell.className = 'hangul-cell';
+                    cell.innerHTML = `<span class="h-ch">${c.ch}</span><span class="h-rom">${c.rom}</span><span class="h-hint">${c.hint}</span>`;
+                    cell.onclick = () => speakLearning(c.sample);
+                    grid.appendChild(cell);
+                });
+                wrap.appendChild(sec);
+            });
+        }
+        function startAbcQuiz() {
+            lastCompletedLesson = { title: "ABC Chart", words: ALL_ENGLISH_ABC.map(c => ({ kr: c.ch, en: c.hint, rom: '' })) };
+            startQuiz();
+        }
+
+        function openNumbersSpelledChart() {
+            showScreen('numbers-spelled');
+            renderNumbersSpelledChart();
+        }
+        function renderNumbersSpelledChart() {
+            const wrap = document.getElementById('numbersSpelledWrap');
+            if (wrap.dataset.built) return;
+            wrap.dataset.built = '1';
+            ENGLISH_NUMBERS_SPELLED.forEach(section => {
+                const sec = document.createElement('div');
+                sec.className = 'hangul-section';
+                sec.innerHTML = `<h3>${section.title}</h3><p class="number-note">${section.note}</p><div class="hangul-grid"></div>`;
+                const grid = sec.querySelector('.hangul-grid');
+                section.chars.forEach(c => {
+                    const cell = document.createElement('button');
+                    cell.className = 'hangul-cell';
+                    cell.innerHTML = `<span class="h-ch" style="font-size:16px;">${c.ch}</span><span class="h-rom">${c.rom}</span>`;
+                    cell.onclick = () => speakLearning(c.ch);
+                    grid.appendChild(cell);
+                });
+                wrap.appendChild(sec);
+            });
+        }
+        function startNumbersSpelledQuiz() {
+            lastCompletedLesson = { title: "Numbers Chart", words: ALL_ENGLISH_NUMBERS_SPELLED };
+            startQuiz();
+        }
+
 
         /* =========================================================
            SENTENCE BUILDER (rebuild real K-Drama sentences word by word)
