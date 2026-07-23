@@ -2306,8 +2306,8 @@
             </div>
             <div class="chart-link-card" id="numberChartCard" onclick="openNumberChart()">
                 <div class="chart-link-ic">🔢</div>
-                <div class="chart-link-text"><b>Number Chart</b><span id="numberCardSub">Both number systems + a quick
-                        quiz</span></div>
+                <div class="chart-link-text"><b id="numberCardTitle">Number Chart</b><span id="numberCardSub">Both
+                        number systems + a quick quiz</span></div>
                 <div class="chart-link-arrow">›</div>
             </div>
             <div class="chart-link-card" id="grammarCard" onclick="openGrammar()">
@@ -4289,6 +4289,89 @@
         ];
         const ALL_JAPANESE_KANA = JAPANESE_KANA.flatMap(s => s.chars);
 
+        const IRREGULAR_VERBS = [
+            {
+                title: "Very Common Verbs", chars: [
+                    { ch: "go", rom: "went → gone", sample: "went", hint: "I went to school yesterday." },
+                    { ch: "be", rom: "was/were → been", sample: "was", hint: "She was tired this morning." },
+                    { ch: "have", rom: "had → had", sample: "had", hint: "He had a big breakfast." },
+                    { ch: "do", rom: "did → done", sample: "did", hint: "They did their homework." },
+                    { ch: "say", rom: "said → said", sample: "said", hint: "She said hello to me." },
+                    { ch: "get", rom: "got → gotten", sample: "got", hint: "I got a new phone." },
+                    { ch: "make", rom: "made → made", sample: "made", hint: "We made dinner together." },
+                    { ch: "see", rom: "saw → seen", sample: "saw", hint: "I saw a movie last night." }]
+            },
+            {
+                title: "Everyday Verbs", chars: [
+                    { ch: "eat", rom: "ate → eaten", sample: "ate", hint: "We ate lunch at noon." },
+                    { ch: "drink", rom: "drank → drunk", sample: "drank", hint: "He drank a glass of water." },
+                    { ch: "take", rom: "took → taken", sample: "took", hint: "She took the bus to work." },
+                    { ch: "give", rom: "gave → given", sample: "gave", hint: "They gave me a gift." },
+                    { ch: "come", rom: "came → come", sample: "came", hint: "He came home late." },
+                    { ch: "write", rom: "wrote → written", sample: "wrote", hint: "I wrote a letter." },
+                    { ch: "read", rom: "read → read (same spelling, different sound)", sample: "read", hint: "She read the book last week." },
+                    { ch: "buy", rom: "bought → bought", sample: "bought", hint: "We bought new shoes." }]
+            },
+            {
+                title: "Trickier Verbs", chars: [
+                    { ch: "break", rom: "broke → broken", sample: "broke", hint: "He broke the glass." },
+                    { ch: "choose", rom: "chose → chosen", sample: "chose", hint: "She chose the blue dress." },
+                    { ch: "fly", rom: "flew → flown", sample: "flew", hint: "The bird flew away." },
+                    { ch: "swim", rom: "swam → swum", sample: "swam", hint: "They swam in the lake." },
+                    { ch: "begin", rom: "began → begun", sample: "began", hint: "The movie began at 8pm." },
+                    { ch: "drive", rom: "drove → driven", sample: "drove", hint: "He drove to the city." },
+                    { ch: "fall", rom: "fell → fallen", sample: "fell", hint: "She fell on the ice." },
+                    { ch: "forget", rom: "forgot → forgotten", sample: "forgot", hint: "I forgot my keys." }]
+            },
+        ];
+        const ALL_IRREGULAR_VERBS = IRREGULAR_VERBS.flatMap(s => s.chars);
+
+        const CONFUSED_WORDS = [
+            {
+                title: "Their / There / They're", note: "Three words that sound identical but mean very different things.", chars: [
+                    { ch: "their", rom: "belongs to them — 'their house'", en: "possessive" },
+                    { ch: "there", rom: "in that place — 'put it there'", en: "location" },
+                    { ch: "they're", rom: "short for 'they are' — 'they're happy'", en: "contraction" }]
+            },
+            {
+                title: "Your / You're", note: "One of the most common English mix-ups.", chars: [
+                    { ch: "your", rom: "belongs to you — 'your book'", en: "possessive" },
+                    { ch: "you're", rom: "short for 'you are' — 'you're right'", en: "contraction" }]
+            },
+            {
+                title: "Its / It's", note: "'It's' is ALWAYS a contraction — never possessive.", chars: [
+                    { ch: "its", rom: "belongs to it — 'the dog wagged its tail'", en: "possessive" },
+                    { ch: "it's", rom: "short for 'it is' or 'it has' — 'it's raining'", en: "contraction" }]
+            },
+            {
+                title: "Affect / Effect", note: "Affect is usually a verb, effect is usually a noun.", chars: [
+                    { ch: "affect", rom: "to influence — 'stress can affect sleep'", en: "verb" },
+                    { ch: "effect", rom: "a result — 'the effect of the storm'", en: "noun" }]
+            },
+            {
+                title: "Then / Than", note: "'Then' is about time, 'than' is about comparison.", chars: [
+                    { ch: "then", rom: "next, at that time — 'we ate, then left'", en: "time" },
+                    { ch: "than", rom: "used to compare — 'bigger than that'", en: "comparison" }]
+            },
+            {
+                title: "To / Too / Two", note: "A classic beginner mix-up — all pronounced the same.", chars: [
+                    { ch: "to", rom: "toward, or before a verb — 'go to school'", en: "direction / infinitive" },
+                    { ch: "too", rom: "also, or 'very' — 'me too', 'too much'", en: "also / excessive" },
+                    { ch: "two", rom: "the number 2", en: "number" }]
+            },
+            {
+                title: "Loose / Lose", note: "'Loose' rhymes with 'goose,' 'lose' rhymes with 'choose.'", chars: [
+                    { ch: "loose", rom: "not tight — 'a loose shirt'", en: "adjective" },
+                    { ch: "lose", rom: "to not win, or misplace — 'don't lose your keys'", en: "verb" }]
+            },
+            {
+                title: "Accept / Except", note: "'Accept' means to receive, 'except' means excluding.", chars: [
+                    { ch: "accept", rom: "to agree to receive — 'accept the offer'", en: "verb" },
+                    { ch: "except", rom: "excluding — 'everyone except him'", en: "preposition" }]
+            },
+        ];
+        const ALL_CONFUSED_WORDS = CONFUSED_WORDS.flatMap(s => s.chars.map(c => ({ kr: c.ch, en: c.en, rom: c.rom })));
+
         const JAPANESE_NUMBER_CHART = [
             {
                 title: "Numbers 0–10", note: "The building blocks — every other number is formed from these.", chars: [
@@ -4614,20 +4697,22 @@
             const kdramaNav = document.getElementById('navKdrama');
             if (kdramaNav) kdramaNav.classList.toggle('lang-hidden', !isKorean);
 
-            // These reference tools don't apply to English (same script/numbers as the UI itself) —
-            // hide rather than silently show mislabeled Korean content.
+            // Grammar & Particles and Draw & Trace don't have English content built —
+            // hide those two specifically. TOPIK/Alphabet/Number cards now have real
+            // English content (IELTS practice, irregular verbs, confused words).
             const isEnglish = lang === 'en';
-            ['topikCard', 'hangulChartCard', 'numberChartCard', 'grammarCard', 'drawTraceCard'].forEach(id => {
+            ['grammarCard', 'drawTraceCard'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.classList.toggle('lang-hidden', isEnglish);
             });
             const moreEmptyNote = document.getElementById('moreEmptyNote');
-            if (moreEmptyNote) moreEmptyNote.style.display = isEnglish ? 'block' : 'none';
+            if (moreEmptyNote) moreEmptyNote.style.display = 'none';
 
             const topikText = {
                 ko: ['TOPIK Practice', 'Official-style proficiency test questions'],
                 es: ['DELE Practice', 'Spanish proficiency-style test questions'],
-                ja: ['JLPT Practice', 'Japanese proficiency-style test questions']
+                ja: ['JLPT Practice', 'Japanese proficiency-style test questions'],
+                en: ['IELTS / TOEFL Practice', 'English proficiency-style test questions']
             };
             const topikTitle = document.getElementById('topikCardTitle');
             if (topikTitle) {
@@ -4639,7 +4724,8 @@
             const alphabetText = {
                 ko: ['Hangul Chart', 'All 40 letters + a quick quiz'],
                 es: ['Spanish Alphabet', 'All 27 letters + a quick quiz'],
-                ja: ['Hiragana Chart', 'All 46 characters + a quick quiz']
+                ja: ['Hiragana Chart', 'All 46 characters + a quick quiz'],
+                en: ['Irregular Verbs', '24 common verbs + a quick quiz']
             };
             const alphabetTitle = document.getElementById('alphabetCardTitle');
             if (alphabetTitle) {
@@ -4648,13 +4734,21 @@
                 document.getElementById('alphabetCardSub').textContent = s;
             }
 
-            const numberSubText = {
-                ko: 'Both number systems + a quick quiz',
-                es: 'Numbers 0–1,000,000 + a quick quiz',
-                ja: 'Numbers 0–10,000 + a quick quiz'
+            const numberCardText = {
+                ko: ['Number Chart', 'Both number systems + a quick quiz'],
+                es: ['Number Chart', 'Numbers 0–1,000,000 + a quick quiz'],
+                ja: ['Number Chart', 'Numbers 0–10,000 + a quick quiz'],
+                en: ['Confused Words', 'their/there/they\'re and more + a quick quiz']
             };
+            const numberCardTitle = document.getElementById('numberCardTitle');
             const numberSub = document.getElementById('numberCardSub');
-            if (numberSub) numberSub.textContent = numberSubText[lang] || numberSubText.ko;
+            if (numberCardTitle) {
+                const [t, s] = numberCardText[lang] || numberCardText.ko;
+                numberCardTitle.textContent = t;
+                if (numberSub) numberSub.textContent = s;
+            } else if (numberSub) {
+                numberSub.textContent = (numberCardText[lang] || numberCardText.ko)[1];
+            }
 
             const grammarText = {
                 ko: ['Grammar & Particles', 'Particles, verb conjugation, honorifics'],
@@ -5186,10 +5280,11 @@
         function openHangulChart() {
             showScreen('hangul');
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            const titles = { es: '🔤 Spanish Alphabet', ja: '🔤 Hiragana Chart', ko: '🔤 Hangul Chart' };
+            const titles = { es: '🔤 Spanish Alphabet', ja: '🔤 Hiragana Chart', en: '🔤 Irregular Verbs', ko: '🔤 Hangul Chart' };
             const subs = {
                 es: 'Tap any letter to hear it. Learn all 27 letters and try the quiz below.',
                 ja: 'Tap any character to hear it. Learn all 46 basic hiragana and try the quiz below.',
+                en: 'Tap any verb to hear its past tense. Learn 24 common irregular verbs and try the quiz below.',
                 ko: 'Tap any letter to hear it. Learn all 40 and try the quiz below.'
             };
             document.getElementById('alphabetChartTitle').textContent = titles[lang] || titles.ko;
@@ -5202,7 +5297,7 @@
             if (wrap.dataset.built === lang) return;
             wrap.dataset.built = lang;
             wrap.innerHTML = '';
-            const chart = lang === 'es' ? SPANISH_ALPHABET : lang === 'ja' ? JAPANESE_KANA : HANGUL_CHART;
+            const chart = lang === 'es' ? SPANISH_ALPHABET : lang === 'ja' ? JAPANESE_KANA : lang === 'en' ? IRREGULAR_VERBS : HANGUL_CHART;
             chart.forEach(section => {
                 const sec = document.createElement('div');
                 sec.className = 'hangul-section';
@@ -5224,6 +5319,8 @@
                 lastCompletedLesson = { title: "Spanish Alphabet", words: ALL_SPANISH_ALPHABET.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             } else if (lang === 'ja') {
                 lastCompletedLesson = { title: "Hiragana Chart", words: ALL_JAPANESE_KANA.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
+            } else if (lang === 'en') {
+                lastCompletedLesson = { title: "Irregular Verbs", words: ALL_IRREGULAR_VERBS.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             } else {
                 lastCompletedLesson = { title: "Hangul Chart", words: ALL_HANGUL_CHARS.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             }
@@ -5233,12 +5330,14 @@
         function openNumberChart() {
             showScreen('numbers');
             const lang = (state.settings && state.settings.learningLang) || 'ko';
+            const titles = { en: '🔀 Easily Confused Words' };
             const subs = {
                 es: 'Spanish uses one number system — tap any number to hear it, then try the quiz.',
                 ja: 'Tap any number to hear it, then try the quiz.',
+                en: 'Words that sound alike but mean different things. Tap to hear each one, then try the quiz.',
                 ko: 'Korean has two number systems. Tap any number to hear it, then try the quiz.'
             };
-            document.getElementById('numberChartTitle').textContent = '🔢 Number Chart';
+            document.getElementById('numberChartTitle').textContent = titles[lang] || '🔢 Number Chart';
             document.getElementById('numberChartSub').textContent = subs[lang] || subs.ko;
             renderNumberChart();
         }
@@ -5248,7 +5347,7 @@
             if (wrap.dataset.built === lang) return;
             wrap.dataset.built = lang;
             wrap.innerHTML = '';
-            const chart = lang === 'es' ? SPANISH_NUMBER_CHART : lang === 'ja' ? JAPANESE_NUMBER_CHART : NUMBER_CHART;
+            const chart = lang === 'es' ? SPANISH_NUMBER_CHART : lang === 'ja' ? JAPANESE_NUMBER_CHART : lang === 'en' ? CONFUSED_WORDS : NUMBER_CHART;
             chart.forEach(section => {
                 const sec = document.createElement('div');
                 sec.className = 'hangul-section';
@@ -5270,6 +5369,8 @@
                 lastCompletedLesson = { title: "Spanish Numbers", words: ALL_SPANISH_NUMBERS };
             } else if (lang === 'ja') {
                 lastCompletedLesson = { title: "Japanese Numbers", words: ALL_JAPANESE_NUMBERS };
+            } else if (lang === 'en') {
+                lastCompletedLesson = { title: "Confused Words", words: ALL_CONFUSED_WORDS };
             } else {
                 lastCompletedLesson = { title: "Number Chart", words: ALL_NUMBER_ITEMS };
             }
@@ -5863,7 +5964,8 @@
         let topikState = null;
         function openTopik() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            const bank = lang === 'es' ? DELE_QUESTIONS : TOPIK_QUESTIONS;
+            const banks = { es: DELE_QUESTIONS, ja: JLPT_QUESTIONS, en: ENGLISH_PROFICIENCY_QUESTIONS, ko: TOPIK_QUESTIONS };
+            const bank = banks[lang] || TOPIK_QUESTIONS;
             topikState = { questions: shuffle(bank), index: 0, correct: 0 };
             showScreen('topik');
             renderTopikQuestion();
@@ -6359,6 +6461,36 @@
             { type: "grammar", q: "Elige la forma correcta: Ella ( ) veinte años.", qEn: "Choose the correct form — 'She is 20 years old.'", options: ["tiene", "tengo", "tienes", "tenemos"], answer: "tiene" },
             { type: "reading", q: "'El sábado voy a ver una película con mi amigo.' ¿Cuándo verá la película?", qEn: "When will this person watch the movie?", options: ["Today", "Tomorrow", "On Saturday", "Next month"], answer: "On Saturday" },
             { type: "vocab", q: "Elige el antónimo de: mucho", qEn: "Choose the opposite of 'mucho' (a lot)", options: ["poco", "grande", "bueno", "rápido"], answer: "poco" },
+        ];
+
+        const JLPT_QUESTIONS = [
+            { type: "vocab", q: "（ ）に入る一番いい言葉を選んでください：毎朝コーヒーを（ ）。", qEn: "Choose the best word: I drink coffee every morning.", options: ["飲みます", "食べます", "見ます", "行きます"], answer: "飲みます" },
+            { type: "vocab", q: "「大きい」の反対語を選んでください。", qEn: "Choose the opposite of '大きい' (big)", options: ["小さい", "多い", "長い", "高い"], answer: "小さい" },
+            { type: "grammar", q: "（ ）に入る助詞を選んでください：私（ ）学生です。", qEn: "Choose the correct particle.", options: ["は", "を", "も", "だけ"], answer: "は" },
+            { type: "grammar", q: "（ ）に入る助詞を選んでください：学校（ ）行きます。", qEn: "Choose the correct particle.", options: ["に", "の", "と", "は"], answer: "に" },
+            { type: "grammar", q: "「行く」の正しい過去形を選んでください。", qEn: "Choose the correct past tense of '行く' (to go).", options: ["行きました", "行きます", "行くでしょう", "行ってください"], answer: "行きました" },
+            { type: "vocab", q: "（ ）に入る一番いい言葉を選んでください：今日はとても（ ）です。", qEn: "Choose the best word for the weather.", options: ["暑い", "食べる", "寝る", "読む"], answer: "暑い" },
+            { type: "grammar", q: "「食べる」の正しい未来形（意向）を選んでください。", qEn: "Choose the correct future/intention form of '食べる' (to eat).", options: ["食べるつもりです", "食べました", "食べます", "食べないでください"], answer: "食べるつもりです" },
+            { type: "reading", q: "「私は毎日図書館で本を読みます」この人は何をしますか。", qEn: "According to the sentence, what does the person do every day?", options: ["Reads books", "Writes books", "Sells books", "Buys books"], answer: "Reads books" },
+            { type: "vocab", q: "（ ）に入る一番いい言葉を選んでください：すみません、（ ）遅れました。", qEn: "Choose the best word — 'Sorry, I'm ___.'", options: ["時間に", "気持ちで", "天気で", "お金で"], answer: "時間に" },
+            { type: "grammar", q: "（ ）に入る助詞を選んでください：私（ ）それを知りません。", qEn: "Choose the correct particle — 'I don't know that either.'", options: ["も", "を", "で", "まで"], answer: "も" },
+            { type: "reading", q: "「週末に友達と映画を見ます」この人はいつ映画を見ますか。", qEn: "When will this person watch a movie?", options: ["Today", "Tomorrow", "This weekend", "Next month"], answer: "This weekend" },
+            { type: "vocab", q: "「多い」の反対語を選んでください。", qEn: "Choose the opposite of '多い' (a lot)", options: ["少ない", "大きい", "いい", "速い"], answer: "少ない" },
+        ];
+
+        const ENGLISH_PROFICIENCY_QUESTIONS = [
+            { type: "vocab", q: "Choose the best synonym for 'meticulous':", qEn: "Vocabulary — synonym matching", options: ["Careless", "Careful and precise", "Fast", "Confused"], answer: "Careful and precise" },
+            { type: "vocab", q: "Choose the opposite of 'abundant':", qEn: "Vocabulary — antonym matching", options: ["Scarce", "Plentiful", "Large", "Common"], answer: "Scarce" },
+            { type: "grammar", q: "Choose the correct sentence:", qEn: "Grammar — subject-verb agreement", options: ["She don't like coffee.", "She doesn't like coffee.", "She not like coffee.", "She isn't likes coffee."], answer: "She doesn't like coffee." },
+            { type: "grammar", q: "Choose the correct past tense of 'go':", qEn: "Grammar — irregular verbs", options: ["Goed", "Went", "Gone", "Going"], answer: "Went" },
+            { type: "grammar", q: "Choose the correct sentence using the present perfect:", qEn: "Grammar — present perfect tense", options: ["I have saw that movie.", "I have seen that movie.", "I has seen that movie.", "I seen that movie."], answer: "I have seen that movie." },
+            { type: "vocab", q: "Choose the best word: The meeting was ___ due to bad weather.", qEn: "Vocabulary — collocation", options: ["cancelled", "cooked", "opened", "painted"], answer: "cancelled" },
+            { type: "grammar", q: "Choose the correct conditional: If it rains, I ___ stay home.", qEn: "Grammar — first conditional", options: ["will", "would", "was", "am"], answer: "will" },
+            { type: "reading", q: "\"She works at a hospital and helps sick patients every day.\" What is her likely job?", qEn: "Reading comprehension", options: ["Teacher", "Doctor or nurse", "Chef", "Pilot"], answer: "Doctor or nurse" },
+            { type: "vocab", q: "Choose the best word — 'I'm sorry, I'm running ___.'", qEn: "Vocabulary — idiomatic phrase", options: ["late", "early", "fast", "slow"], answer: "late" },
+            { type: "grammar", q: "Choose the correct article: I saw ___ elephant at the zoo.", qEn: "Grammar — articles", options: ["a", "an", "the only", "no article"], answer: "an" },
+            { type: "reading", q: "\"He'll watch a movie with his friend this weekend.\" When will he watch the movie?", qEn: "Reading comprehension", options: ["Today", "Tomorrow", "This weekend", "Next month"], answer: "This weekend" },
+            { type: "vocab", q: "Choose the opposite of 'reluctant':", qEn: "Vocabulary — antonym matching", options: ["Eager", "Hesitant", "Unwilling", "Slow"], answer: "Eager" },
         ];
 
         /* =========================================================
