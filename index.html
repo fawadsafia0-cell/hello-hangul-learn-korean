@@ -2280,6 +2280,11 @@
             <div class="section-title" style="margin-top:6px;">🧭 More</div>
             <p style="color:var(--text-soft);font-size:13px;margin-top:-6px;">Quick access to charts, review, and
                 practice tools.</p>
+            <p id="moreEmptyNote"
+                style="display:none;color:var(--text-soft);font-size:13.5px;text-align:center;background:var(--card);border-radius:14px;padding:24px 16px;box-shadow:var(--shadow);">
+                These reference tools (alphabet chart, number chart, review, etc.) are built around each language's
+                writing system — since English uses the same script and numbers as the app's interface, there's nothing
+                extra needed here yet. Check the Tutor tab to ask Han anything!</p>
             <div class="chart-link-card" id="topikCard" onclick="openTopik()">
                 <div class="chart-link-ic">🏆</div>
                 <div class="chart-link-text"><b id="topikCardTitle">TOPIK Practice</b><span
@@ -3134,6 +3139,335 @@
             },
         ];
         LEVELS_JA.forEach((l, i) => { l.id = 2000 + i + 1; });
+
+        /* =========================================================
+           ENGLISH CONTENT (ESL-style — each word gets a real
+           definition/synonym as its "meaning," not itself, so the
+           exercises still work as genuine practice.)
+           ========================================================= */
+        const TIERS_EN = TIERS;
+        const LEVELS_EN = [
+            /* ---------------- BEGINNER ---------------- */
+            {
+                tier: "beginner", title: "English Basics", icon: "🇬🇧", words: [
+                    { kr: "hello", rom: "heh-LOH", en: "a common greeting" }, { kr: "thank you", rom: "thank yoo", en: "expression of gratitude" },
+                    { kr: "yes", rom: "yes", en: "word of agreement" }, { kr: "no", rom: "noh", en: "word of refusal" },
+                    { kr: "name", rom: "naym", en: "what a person or thing is called" }, { kr: "friend", rom: "frend", en: "a person you like and trust" }]
+            },
+            {
+                tier: "beginner", title: "Greetings & Manners", icon: "🙏", words: [
+                    { kr: "goodbye", rom: "good-BY", en: "a word said when leaving" }, { kr: "sorry", rom: "SOR-ee", en: "expression of apology" },
+                    { kr: "excuse me", rom: "ex-SKYOOZ mee", en: "polite way to get attention" }, { kr: "nice to meet you", rom: "nys too meet yoo", en: "greeting used when meeting someone new" },
+                    { kr: "it's okay", rom: "its oh-KAY", en: "expression of reassurance" }, { kr: "please", rom: "pleez", en: "polite word used with a request" }]
+            },
+            {
+                tier: "beginner", title: "Numbers 1-6", icon: "🔢", words: [
+                    { kr: "one", rom: "wun", en: "the number 1" }, { kr: "two", rom: "too", en: "the number 2" },
+                    { kr: "three", rom: "three", en: "the number 3" }, { kr: "four", rom: "for", en: "the number 4" },
+                    { kr: "five", rom: "fyv", en: "the number 5" }, { kr: "six", rom: "siks", en: "the number 6" }]
+            },
+            {
+                tier: "beginner", title: "Days & Time", icon: "🕒", words: [
+                    { kr: "today", rom: "tuh-DAY", en: "the current day" }, { kr: "tomorrow", rom: "tuh-MOR-oh", en: "the day after today" },
+                    { kr: "yesterday", rom: "YES-ter-day", en: "the day before today" }, { kr: "now", rom: "now", en: "the present moment" },
+                    { kr: "time", rom: "tym", en: "a measured period, hours and minutes" }, { kr: "morning", rom: "MOR-ning", en: "the early part of the day" }]
+            },
+            {
+                tier: "beginner", title: "Family", icon: "👪", words: [
+                    { kr: "family", rom: "FAM-uh-lee", en: "a group of related people" }, { kr: "mom", rom: "mom", en: "informal word for mother" },
+                    { kr: "dad", rom: "dad", en: "informal word for father" }, { kr: "brother", rom: "BRUH-ther", en: "a male sibling" },
+                    { kr: "sister", rom: "SIS-ter", en: "a female sibling" }, { kr: "grandfather", rom: "GRAND-fah-ther", en: "the father of one's parent" }]
+            },
+            {
+                tier: "beginner", title: "Food & Drink", icon: "🍚", words: [
+                    { kr: "food", rom: "food", en: "something eaten for nourishment" }, { kr: "water", rom: "WAH-ter", en: "a clear, drinkable liquid" },
+                    { kr: "coffee", rom: "KAW-fee", en: "a caffeinated hot drink" }, { kr: "bread", rom: "bred", en: "a baked food made from flour" },
+                    { kr: "rice", rom: "rys", en: "a staple grain food" }, { kr: "delicious", rom: "dih-LISH-us", en: "very tasty" }]
+            },
+            {
+                tier: "beginner", title: "Colors", icon: "🎨", words: [
+                    { kr: "red", rom: "red", en: "the color of blood or a ripe tomato" }, { kr: "blue", rom: "bloo", en: "the color of a clear sky" },
+                    { kr: "yellow", rom: "YEL-oh", en: "the color of a lemon or the sun" }, { kr: "green", rom: "green", en: "the color of grass" },
+                    { kr: "black", rom: "blak", en: "the darkest color, like coal" }, { kr: "white", rom: "wyt", en: "the color of fresh snow" }]
+            },
+            {
+                tier: "beginner", title: "Body Parts", icon: "🧍", words: [
+                    { kr: "head", rom: "hed", en: "the top part of the body" }, { kr: "hand", rom: "hand", en: "the part at the end of your arm" },
+                    { kr: "eye", rom: "eye", en: "the organ used for seeing" }, { kr: "nose", rom: "nohz", en: "the organ used for smelling" },
+                    { kr: "mouth", rom: "mowth", en: "the opening used for eating and speaking" }, { kr: "leg", rom: "leg", en: "the limb used for walking" }]
+            },
+            {
+                tier: "beginner", title: "Animals", icon: "🐾", words: [
+                    { kr: "dog", rom: "dawg", en: "a common loyal pet animal" }, { kr: "cat", rom: "kat", en: "a small independent pet animal" },
+                    { kr: "bird", rom: "berd", en: "a feathered flying animal" }, { kr: "fish", rom: "fish", en: "an animal that lives and breathes in water" },
+                    { kr: "bear", rom: "bair", en: "a large, furry wild animal" }, { kr: "rabbit", rom: "RAB-it", en: "a small hopping animal with long ears" }]
+            },
+            {
+                tier: "beginner", title: "Clothing", icon: "👕", words: [
+                    { kr: "clothes", rom: "klohz", en: "items worn to cover the body" }, { kr: "shoes", rom: "shooz", en: "footwear worn on the feet" },
+                    { kr: "hat", rom: "hat", en: "clothing worn on the head" }, { kr: "pants", rom: "pants", en: "clothing that covers the legs" },
+                    { kr: "skirt", rom: "skert", en: "clothing that hangs from the waist" }, { kr: "bag", rom: "bag", en: "a container for carrying things" }]
+            },
+            {
+                tier: "beginner", title: "Weather", icon: "⛅", words: [
+                    { kr: "weather", rom: "WETH-er", en: "the state of the atmosphere outside" }, { kr: "rain", rom: "rayn", en: "water falling from clouds" },
+                    { kr: "snow", rom: "snoh", en: "frozen precipitation, white and soft" }, { kr: "wind", rom: "wind", en: "moving air" },
+                    { kr: "hot", rom: "hot", en: "having a high temperature" }, { kr: "cold", rom: "kohld", en: "having a low temperature" }]
+            },
+            {
+                tier: "beginner", title: "House & Rooms", icon: "🏠", words: [
+                    { kr: "house", rom: "hows", en: "a building where people live" }, { kr: "room", rom: "room", en: "a separate section inside a building" },
+                    { kr: "bed", rom: "bed", en: "furniture used for sleeping" }, { kr: "bathroom", rom: "BATH-room", en: "a room with a toilet and shower" },
+                    { kr: "kitchen", rom: "KITCH-en", en: "a room used for cooking" }, { kr: "door", rom: "dor", en: "a movable barrier for an entrance" }]
+            },
+            {
+                tier: "beginner", title: "School & Objects", icon: "🎒", words: [
+                    { kr: "school", rom: "skool", en: "a place where students learn" }, { kr: "book", rom: "book", en: "pages bound together with writing" },
+                    { kr: "pencil", rom: "PEN-sil", en: "a tool used for writing or drawing" }, { kr: "backpack", rom: "BAK-pak", en: "a bag carried on the back" },
+                    { kr: "teacher", rom: "TEE-cher", en: "a person who instructs students" }, { kr: "student", rom: "STOO-dent", en: "a person who is learning" }]
+            },
+
+            /* ---------------- INTERMEDIATE ---------------- */
+            {
+                tier: "intermediate", title: "Feelings & Emotions", icon: "💗", words: [
+                    { kr: "happy", rom: "HAP-ee", en: "feeling joy or pleasure" }, { kr: "sad", rom: "sad", en: "feeling sorrow or unhappiness" },
+                    { kr: "angry", rom: "ANG-gree", en: "feeling strong displeasure" }, { kr: "tired", rom: "TY-erd", en: "in need of rest or sleep" },
+                    { kr: "excited", rom: "ik-SY-ted", en: "feeling enthusiastic anticipation" }, { kr: "nervous", rom: "NER-vus", en: "feeling anxious or worried" }]
+            },
+            {
+                tier: "intermediate", title: "Directions & Places", icon: "🧭", words: [
+                    { kr: "left", rom: "left", en: "the opposite side from right" }, { kr: "right", rom: "ryt", en: "the opposite side from left" },
+                    { kr: "near", rom: "neer", en: "a short distance away" }, { kr: "far", rom: "far", en: "a long distance away" },
+                    { kr: "here", rom: "heer", en: "in this place" }, { kr: "there", rom: "thair", en: "in that place" }]
+            },
+            {
+                tier: "intermediate", title: "Shopping", icon: "🛍️", words: [
+                    { kr: "how much", rom: "how much", en: "question asking about a price" }, { kr: "expensive", rom: "ik-SPEN-siv", en: "costing a lot of money" },
+                    { kr: "cheap", rom: "cheep", en: "costing little money" }, { kr: "pay", rom: "pay", en: "to give money for something" },
+                    { kr: "cash", rom: "kash", en: "physical money, bills and coins" }, { kr: "card", rom: "kard", en: "a plastic payment method" }]
+            },
+            {
+                tier: "intermediate", title: "Transportation", icon: "🚌", words: [
+                    { kr: "bus", rom: "bus", en: "a large public road vehicle" }, { kr: "train", rom: "trayn", en: "a vehicle that runs on rails" },
+                    { kr: "plane", rom: "playn", en: "a vehicle that flies through the air" }, { kr: "car", rom: "kar", en: "a private road vehicle" },
+                    { kr: "ticket", rom: "TIK-et", en: "a proof of payment for travel" }, { kr: "station", rom: "STAY-shun", en: "a stop for trains or buses" }]
+            },
+            {
+                tier: "intermediate", title: "Hobbies", icon: "🎸", words: [
+                    { kr: "hobby", rom: "HOB-ee", en: "an activity done for pleasure" }, { kr: "read", rom: "reed", en: "to look at and understand written words" },
+                    { kr: "swim", rom: "swim", en: "to move through water using the body" }, { kr: "dance", rom: "dans", en: "to move rhythmically to music" },
+                    { kr: "paint", rom: "paynt", en: "to create a picture with color" }, { kr: "sing", rom: "sing", en: "to make music with the voice" }]
+            },
+            {
+                tier: "intermediate", title: "Work & Jobs", icon: "💼", words: [
+                    { kr: "job", rom: "job", en: "regular paid work" }, { kr: "company", rom: "KUM-puh-nee", en: "a business organization" },
+                    { kr: "boss", rom: "bos", en: "a person in charge at work" }, { kr: "meeting", rom: "MEE-ting", en: "a gathering to discuss something" },
+                    { kr: "salary", rom: "SAL-uh-ree", en: "regular payment for work" }, { kr: "schedule", rom: "SKED-jool", en: "a plan of times and tasks" }]
+            },
+            {
+                tier: "intermediate", title: "Health & Body", icon: "🩺", words: [
+                    { kr: "sick", rom: "sik", en: "unwell, suffering illness" }, { kr: "pain", rom: "payn", en: "physical suffering or discomfort" },
+                    { kr: "hospital", rom: "HOS-pih-tal", en: "a place for treating the ill" }, { kr: "medicine", rom: "MED-ih-sin", en: "a substance used to treat illness" },
+                    { kr: "fever", rom: "FEE-ver", en: "an abnormally high body temperature" }, { kr: "doctor", rom: "DOK-ter", en: "a licensed medical professional" }]
+            },
+            {
+                tier: "intermediate", title: "Technology", icon: "📱", words: [
+                    { kr: "phone", rom: "fohn", en: "a device used for calling and texting" }, { kr: "computer", rom: "kom-PYOO-ter", en: "an electronic device for processing data" },
+                    { kr: "internet", rom: "IN-ter-net", en: "a global network connecting computers" }, { kr: "password", rom: "PAS-werd", en: "a secret code for access" },
+                    { kr: "app", rom: "ap", en: "a software program on a device" }, { kr: "battery", rom: "BAT-uh-ree", en: "a device storing electrical power" }]
+            },
+            {
+                tier: "intermediate", title: "Sports", icon: "⚽", words: [
+                    { kr: "soccer", rom: "SOK-er", en: "a sport played by kicking a ball" }, { kr: "basketball", rom: "BAS-kit-bawl", en: "a sport played by shooting a ball through a hoop" },
+                    { kr: "run", rom: "run", en: "to move quickly on foot" }, { kr: "win", rom: "win", en: "to succeed in a contest" },
+                    { kr: "lose", rom: "looz", en: "to fail to win" }, { kr: "team", rom: "teem", en: "a group playing together" }]
+            },
+            {
+                tier: "intermediate", title: "Nature", icon: "🌳", words: [
+                    { kr: "mountain", rom: "MOWN-tin", en: "a very tall natural landform" }, { kr: "river", rom: "RIV-er", en: "a large flowing body of water" },
+                    { kr: "forest", rom: "FOR-ist", en: "a large area covered with trees" }, { kr: "sky", rom: "sky", en: "the space above the earth" },
+                    { kr: "tree", rom: "tree", en: "a tall woody plant" }, { kr: "flower", rom: "FLOW-er", en: "the colorful part of a plant" }]
+            },
+            {
+                tier: "intermediate", title: "Numbers & Time", icon: "🔟", words: [
+                    { kr: "minute", rom: "MIN-it", en: "sixty seconds" }, { kr: "hour", rom: "OW-er", en: "sixty minutes" },
+                    { kr: "week", rom: "week", en: "seven days" }, { kr: "month", rom: "munth", en: "about thirty days" },
+                    { kr: "year", rom: "yeer", en: "twelve months" }, { kr: "clock", rom: "klok", en: "a device that shows the time" }]
+            },
+            {
+                tier: "intermediate", title: "Making Plans", icon: "📅", words: [
+                    { kr: "appointment", rom: "uh-POYNT-ment", en: "an arranged meeting" }, { kr: "meet up", rom: "meet up", en: "to get together with someone" },
+                    { kr: "invite", rom: "in-VYT", en: "to ask someone to attend" }, { kr: "cancel", rom: "KAN-sel", en: "to call off a plan" },
+                    { kr: "busy", rom: "BIZ-ee", en: "having a lot to do" }, { kr: "free", rom: "free", en: "available, with nothing planned" }]
+            },
+            {
+                tier: "intermediate", title: "Restaurant & Ordering", icon: "🍽️", words: [
+                    { kr: "menu", rom: "MEN-yoo", en: "a list of food options" }, { kr: "order", rom: "OR-der", en: "to request food or items" },
+                    { kr: "bill", rom: "bil", en: "the total cost to be paid" }, { kr: "tip", rom: "tip", en: "extra money given for service" },
+                    { kr: "reservation", rom: "rez-er-VAY-shun", en: "a booking made in advance" }, { kr: "waiter", rom: "WAY-ter", en: "a person who serves food at a restaurant" }]
+            },
+
+            /* ---------------- ADVANCED ---------------- */
+            {
+                tier: "advanced", title: "Connectors & Grammar", icon: "🔗", words: [
+                    { kr: "therefore", rom: "THAIR-for", en: "as a result, consequently" }, { kr: "however", rom: "how-EV-er", en: "but, on the other hand" },
+                    { kr: "although", rom: "awl-THOH", en: "despite the fact that" }, { kr: "because", rom: "bih-KAWZ", en: "for the reason that" },
+                    { kr: "therefore", rom: "THAIR-for", en: "so, as a consequence" }, { kr: "while", rom: "wyl", en: "during the time that" }]
+            },
+            {
+                tier: "advanced", title: "Business English", icon: "🏢", words: [
+                    { kr: "contract", rom: "KON-trakt", en: "a legally binding agreement" }, { kr: "negotiation", rom: "nih-goh-shee-AY-shun", en: "discussion aimed at reaching an agreement" },
+                    { kr: "client", rom: "KLY-ent", en: "a person who uses a professional service" }, { kr: "revenue", rom: "REV-en-yoo", en: "income generated from business" },
+                    { kr: "report", rom: "rih-PORT", en: "a formal written account" }, { kr: "deadline", rom: "DED-lyn", en: "the latest time something is due" }]
+            },
+            {
+                tier: "advanced", title: "News & Media", icon: "📰", words: [
+                    { kr: "news", rom: "nooz", en: "information about recent events" }, { kr: "article", rom: "AR-tih-kul", en: "a piece of writing in a publication" },
+                    { kr: "reporter", rom: "rih-POR-ter", en: "a person who writes or presents news" }, { kr: "policy", rom: "POL-ih-see", en: "a course of action adopted by a government or org" },
+                    { kr: "public opinion", rom: "PUB-lik oh-PIN-yun", en: "the collective views of people" }, { kr: "announce", rom: "uh-NOWNS", en: "to make something publicly known" }]
+            },
+            {
+                tier: "advanced", title: "Nuanced Emotions", icon: "🌫️", words: [
+                    { kr: "disappointed", rom: "dis-uh-POYN-ted", en: "sad because expectations weren't met" }, { kr: "overwhelmed", rom: "oh-ver-WELMD", en: "overcome by too much of something" },
+                    { kr: "proud", rom: "prowd", en: "feeling satisfaction in an achievement" }, { kr: "jealous", rom: "JEL-us", en: "envious of someone else" },
+                    { kr: "miss (someone)", rom: "mis", en: "to feel the absence of someone" }, { kr: "relieved", rom: "rih-LEEVD", en: "no longer feeling anxious" }]
+            },
+            {
+                tier: "advanced", title: "Idioms: Everyday Life I", icon: "🫴", words: [
+                    { kr: "cost an arm and a leg", rom: "kost an arm and a leg", en: "to be very expensive" }, { kr: "head in the clouds", rom: "hed in the klowdz", en: "to be daydreaming, not focused on reality" },
+                    { kr: "mess up", rom: "mes up", en: "to make a mistake" }, { kr: "pull someone's leg", rom: "pool sum-wunz leg", en: "to joke with or tease someone" },
+                    { kr: "speak your mind", rom: "speek yor mynd", en: "to say what you really think, bluntly" }, { kr: "piece of cake", rom: "pees uv kayk", en: "something very easy to do" }]
+            },
+            {
+                tier: "advanced", title: "Idioms: Everyday Life II", icon: "🥣", words: [
+                    { kr: "hit the nail on the head", rom: "hit the nayl on the hed", en: "to describe something exactly right" }, { kr: "get your act together", rom: "get yor akt tuh-GETH-er", en: "to become organized and focused" },
+                    { kr: "raining cats and dogs", rom: "RAY-ning kats and dawgz", en: "raining very heavily" }, { kr: "once in a blue moon", rom: "wuns in uh bloo moon", en: "very rarely" },
+                    { kr: "kill two birds with one stone", rom: "kil too berdz with wun stohn", en: "to accomplish two things with one action" }, { kr: "break the ice", rom: "brayk thee ys", en: "to ease tension in a social situation" }]
+            },
+            {
+                tier: "advanced", title: "Travel Advanced", icon: "🛂", words: [
+                    { kr: "passport", rom: "PAS-port", en: "an official travel identity document" }, { kr: "customs", rom: "KUS-tumz", en: "border inspection for goods entering a country" },
+                    { kr: "accommodation", rom: "uh-kom-uh-DAY-shun", en: "a place to stay while traveling" }, { kr: "airport", rom: "AIR-port", en: "a facility for airplane travel" },
+                    { kr: "luggage", rom: "LUG-ij", en: "bags used for traveling" }, { kr: "itinerary", rom: "y-TIN-er-air-ee", en: "a planned schedule of a trip" }]
+            },
+            {
+                tier: "advanced", title: "Relationships", icon: "💌", words: [
+                    { kr: "partner", rom: "PART-ner", en: "a person in a romantic relationship" }, { kr: "fall in love", rom: "fawl in luv", en: "to begin loving someone romantically" },
+                    { kr: "break up", rom: "brayk up", en: "to end a romantic relationship" }, { kr: "blind date", rom: "blynd dayt", en: "a date with someone you've never met" },
+                    { kr: "love at first sight", rom: "luv at ferst syt", en: "falling in love immediately upon meeting" }, { kr: "commit", rom: "kuh-MIT", en: "to dedicate oneself to a relationship" }]
+            },
+            {
+                tier: "advanced", title: "Debate & Opinions", icon: "🗣️", words: [
+                    { kr: "agree", rom: "uh-GREE", en: "to have the same opinion" }, { kr: "disagree", rom: "dis-uh-GREE", en: "to have a different opinion" },
+                    { kr: "argument", rom: "AR-gyoo-ment", en: "a reason given to support a claim" }, { kr: "point of view", rom: "poynt uv vyoo", en: "a particular perspective" },
+                    { kr: "convince", rom: "kon-VINS", en: "to persuade someone to believe something" }, { kr: "compromise", rom: "KOM-pruh-myz", en: "an agreement reached by mutual concession" }]
+            },
+            {
+                tier: "advanced", title: "Formal vs Casual Register", icon: "🎩", words: [
+                    { kr: "formal", rom: "FOR-mal", en: "following established conventions, official in tone" }, { kr: "casual", rom: "KAZH-oo-al", en: "relaxed and informal" },
+                    { kr: "etiquette", rom: "ET-ih-ket", en: "the customary code of polite behavior" }, { kr: "courtesy", rom: "KER-tuh-see", en: "polite behavior showing respect" },
+                    { kr: "respect", rom: "rih-SPEKT", en: "admiration felt for someone or something" }, { kr: "manners", rom: "MAN-erz", en: "socially acceptable behavior" }]
+            },
+            {
+                tier: "advanced", title: "Slang & Internet Terms", icon: "📲", words: [
+                    { kr: "lit", rom: "lit", en: "slang for exciting or excellent" }, { kr: "legit", rom: "lih-JIT", en: "slang for genuine or real" },
+                    { kr: "salty", rom: "SAWL-tee", en: "slang for bitter or annoyed" }, { kr: "ghost (someone)", rom: "gohst", en: "to suddenly stop responding to someone" },
+                    { kr: "flex", rom: "fleks", en: "slang for showing off" }, { kr: "lowkey", rom: "LOH-kee", en: "slang for somewhat, secretly" }]
+            },
+            {
+                tier: "advanced", title: "Culture & History", icon: "🏛️", words: [
+                    { kr: "holiday", rom: "HOL-ih-day", en: "a day of celebration or rest" }, { kr: "tradition", rom: "truh-DISH-un", en: "a custom passed down through generations" },
+                    { kr: "independence", rom: "in-dih-PEN-dens", en: "freedom from outside control" }, { kr: "flag", rom: "flag", en: "a symbolic banner representing a nation" },
+                    { kr: "civilization", rom: "siv-uh-lih-ZAY-shun", en: "an advanced, organized society" }, { kr: "heritage", rom: "HAIR-ih-tij", en: "inherited cultural traditions" }]
+            },
+            {
+                tier: "advanced", title: "Advanced Verbs", icon: "💪", words: [
+                    { kr: "overcome", rom: "oh-ver-KUM", en: "to successfully deal with a difficulty" }, { kr: "achieve", rom: "uh-CHEEV", en: "to successfully reach a goal" },
+                    { kr: "give up", rom: "giv up", en: "to stop trying" }, { kr: "dare", rom: "dair", en: "to have the courage to do something" },
+                    { kr: "develop", rom: "dih-VEL-up", en: "to grow or cause to grow gradually" }, { kr: "fulfill", rom: "ful-FIL", en: "to achieve or realize something" }]
+            },
+
+            /* ---------------- FLUENT ---------------- */
+            {
+                tier: "fluent", title: "Proverbs Part 1", icon: "📜", words: [
+                    { kr: "better late than never", rom: "BET-er layt than NEV-er", en: "it's better to do something late than not at all" }, { kr: "every cloud has a silver lining", rom: "EV-ree klowd haz uh SIL-ver LY-ning", en: "something good can come from a bad situation" },
+                    { kr: "don't bite off more than you can chew", rom: "dohnt byt awf mor than yoo kan choo", en: "don't take on more than you can handle" }, { kr: "don't judge a book by its cover", rom: "dohnt juj uh book by its KUV-er", en: "don't judge something by appearance alone" },
+                    { kr: "the early bird catches the worm", rom: "thee ER-lee berd KACH-ez the werm", en: "success comes to those who act early" }, { kr: "all that glitters is not gold", rom: "awl that GLIT-erz iz not gohld", en: "not everything that looks valuable actually is" }]
+            },
+            {
+                tier: "fluent", title: "Literary Expressions", icon: "🖋️", words: [
+                    { kr: "melancholic", rom: "mel-an-KOL-ik", en: "filled with pensive sadness" }, { kr: "fleeting", rom: "FLEE-ting", en: "lasting for a very short time" },
+                    { kr: "nostalgic", rom: "nos-TAL-jik", en: "longing for the past" }, { kr: "ethereal", rom: "eh-THEER-ee-al", en: "extremely delicate and light" },
+                    { kr: "ephemeral", rom: "eh-FEM-er-al", en: "lasting a very short time" }, { kr: "sublime", rom: "suh-BLYM", en: "of impressive beauty or greatness" }]
+            },
+            {
+                tier: "fluent", title: "Proverbs Part 2", icon: "🪞", words: [
+                    { kr: "actions speak louder than words", rom: "AK-shunz speek LOW-der than werdz", en: "what you do matters more than what you say" }, { kr: "a picture is worth a thousand words", rom: "uh PIK-cher iz werth uh THOW-zand werdz", en: "images can convey complex ideas efficiently" },
+                    { kr: "where there's smoke there's fire", rom: "wair thairz smohk thairz fyr", en: "a rumor usually has some basis in truth" }, { kr: "when it rains, it pours", rom: "wen it raynz it porz", en: "problems tend to happen all at once" },
+                    { kr: "the grass is always greener on the other side", rom: "the gras iz AWL-ways GREE-ner on thee UTH-er syd", en: "other situations often seem better than they are" }, { kr: "you can't have your cake and eat it too", rom: "yoo kant hav yor kayk and eet it too", en: "you can't have two incompatible things at once" }]
+            },
+            {
+                tier: "fluent", title: "Political & Social Terms", icon: "🏛️", words: [
+                    { kr: "democracy", rom: "dih-MOK-ruh-see", en: "government elected by the people" }, { kr: "inequality", rom: "in-ih-KWOL-ih-tee", en: "unfair difference between groups" },
+                    { kr: "globalization", rom: "gloh-buh-lih-ZAY-shun", en: "the process of increasing worldwide connection" }, { kr: "sustainability", rom: "suh-stayn-uh-BIL-ih-tee", en: "the ability to maintain without depleting resources" },
+                    { kr: "human rights", rom: "HYOO-man ryts", en: "basic rights belonging to every person" }, { kr: "government", rom: "GUV-ern-ment", en: "the governing body of a state" }]
+            },
+            {
+                tier: "fluent", title: "Psychology & Nuance", icon: "🧠", words: [
+                    { kr: "self-esteem", rom: "self-eh-STEEM", en: "confidence in one's own worth" }, { kr: "resilience", rom: "rih-ZIL-yens", en: "the ability to recover from difficulty" },
+                    { kr: "empathy", rom: "EM-puh-thee", en: "the ability to understand others' feelings" }, { kr: "anxiety", rom: "ang-ZY-eh-tee", en: "a feeling of worry or unease" },
+                    { kr: "wellbeing", rom: "wel-BEE-ing", en: "the state of being comfortable and healthy" }, { kr: "motivation", rom: "moh-tih-VAY-shun", en: "the drive to do something" }]
+            },
+            {
+                tier: "fluent", title: "Business Negotiation", icon: "🤝", words: [
+                    { kr: "agreement", rom: "uh-GREE-ment", en: "a shared decision or arrangement" }, { kr: "proposal", rom: "pruh-POH-zal", en: "a suggested plan" },
+                    { kr: "advantage", rom: "ad-VAN-tij", en: "a favorable condition" }, { kr: "investment", rom: "in-VEST-ment", en: "money committed to gain a return" },
+                    { kr: "risk", rom: "risk", en: "the possibility of loss" }, { kr: "profitable", rom: "PROF-ih-tuh-bul", en: "yielding financial gain" }]
+            },
+            {
+                tier: "fluent", title: "Academic English", icon: "🎓", words: [
+                    { kr: "thesis", rom: "THEE-sis", en: "a long research paper or claim to be proven" }, { kr: "research", rom: "REE-serch", en: "systematic investigation into a subject" },
+                    { kr: "hypothesis", rom: "hy-POTH-eh-sis", en: "a proposed explanation to be tested" }, { kr: "analysis", rom: "uh-NAL-ih-sis", en: "detailed examination of something" },
+                    { kr: "conclusion", rom: "kon-KLOO-zhun", en: "the final judgment reached" }, { kr: "bibliography", rom: "bib-lee-OG-ruh-fee", en: "a list of sources referenced" }]
+            },
+            {
+                tier: "fluent", title: "Poetic & Formal Writing", icon: "🕊️", words: [
+                    { kr: "serene", rom: "suh-REEN", en: "calm and peaceful" }, { kr: "unceasing", rom: "un-SEE-sing", en: "never stopping" },
+                    { kr: "imposing", rom: "im-POH-zing", en: "grand and impressive" }, { kr: "cherished", rom: "CHER-ishd", en: "held dear, deeply valued" },
+                    { kr: "ineffable", rom: "in-EF-uh-bul", en: "too great to be expressed in words" }, { kr: "deep-rooted", rom: "deep-ROO-ted", en: "firmly established" }]
+            },
+            {
+                tier: "fluent", title: "Regional English", icon: "🗺️", words: [
+                    { kr: "y'all", rom: "yawl", en: "you all (Southern US)" }, { kr: "reckon", rom: "REK-un", en: "to think or suppose (British/Southern US)" },
+                    { kr: "mate", rom: "mayt", en: "friend (British/Australian)" }, { kr: "cheers", rom: "cheerz", en: "thanks (British, informal)" },
+                    { kr: "brekkie", rom: "BREK-ee", en: "breakfast (Australian slang)" }, { kr: "grand", rom: "grand", en: "great, wonderful (Irish)" }]
+            },
+            {
+                tier: "fluent", title: "Phrasal Verbs", icon: "🧩", words: [
+                    { kr: "look forward to", rom: "look FOR-ward too", en: "to be excited about something upcoming" }, { kr: "come up with", rom: "kum up with", en: "to think of an idea" },
+                    { kr: "put off", rom: "poot awf", en: "to postpone" }, { kr: "get along with", rom: "get uh-LONG with", en: "to have a good relationship with" },
+                    { kr: "figure out", rom: "FIG-yer owt", en: "to understand or solve" }, { kr: "run into", rom: "run IN-too", en: "to meet unexpectedly" }]
+            },
+            {
+                tier: "fluent", title: "More Proverbs", icon: "📖", words: [
+                    { kr: "don't count your chickens before they hatch", rom: "dohnt kownt yor CHIK-enz bih-FOR thay hach", en: "don't assume success before it happens" }, { kr: "a stitch in time saves nine", rom: "uh stich in tym sayvz nyn", en: "fixing a problem early prevents bigger issues" },
+                    { kr: "practice makes perfect", rom: "PRAK-tis mayks PER-fekt", en: "repeated practice leads to skill" }, { kr: "honesty is the best policy", rom: "ON-es-tee iz thuh best POL-ih-see", en: "being truthful is always the wisest approach" },
+                    { kr: "absence makes the heart grow fonder", rom: "AB-sens mayks thuh hart groh FON-der", en: "missing someone increases affection for them" }, { kr: "curiosity killed the cat", rom: "kyoor-ee-OS-ih-tee kild thuh kat", en: "being too curious can lead to trouble" }]
+            },
+            {
+                tier: "fluent", title: "Professional Terms", icon: "⚖️", words: [
+                    { kr: "diagnosis", rom: "dy-ag-NOH-sis", en: "identification of an illness" }, { kr: "prescription", rom: "prih-SKRIP-shun", en: "a doctor's authorization for medicine" },
+                    { kr: "lawsuit", rom: "LAW-soot", en: "a legal action brought to court" }, { kr: "lawyer", rom: "LAW-yer", en: "a legal professional" },
+                    { kr: "verdict", rom: "VER-dikt", en: "a formal decision by a court" }, { kr: "courtroom", rom: "KORT-room", en: "the room where trials are held" }]
+            },
+            {
+                tier: "fluent", title: "Mastery Review", icon: "🏆", words: [
+                    { kr: "perceptive", rom: "per-SEP-tiv", en: "quick to notice or understand things" }, { kr: "versatile", rom: "VER-suh-tyl", en: "able to adapt to many functions" },
+                    { kr: "meticulous", rom: "muh-TIK-yoo-lus", en: "showing great attention to detail" }, { kr: "tenacious", rom: "tuh-NAY-shus", en: "persistent, not easily giving up" },
+                    { kr: "honest", rom: "ON-est", en: "truthful and sincere" }, { kr: "wisdom", rom: "WIZ-dum", en: "the quality of good judgment" }]
+            },
+        ];
+        LEVELS_EN.forEach((l, i) => { l.id = 3000 + i + 1; });
 
         const LEVELS = [
             /* ---------------- BEGINNER ---------------- */
@@ -3995,6 +4329,22 @@
             { k: ["kanji", "漢字"], a: "Kanji are the adopted Chinese characters used in Japanese writing, each carrying meaning (unlike hiragana/katakana, which are purely phonetic). This app currently focuses on hiragana-based vocabulary to keep things approachable — kanji is a great next step once you're comfortable with the kana!" },
         ];
 
+        const ENGLISH_CHAT_TOPICS = [
+            { k: ["hello", "hi "], a: "Hello is the standard, neutral greeting in English — appropriate in almost any situation. 'Hi' is a bit more casual, and 'Hey' is casual still, best used with people you already know." },
+            { k: ["goodbye", "bye"], a: "'Goodbye' is the standard farewell. Casually, English speakers often say 'bye,' 'see you later,' 'take care,' or 'catch you later' instead." },
+            { k: ["thank"], a: "'Thank you' is polite and standard. 'Thanks' is a shorter, casual version. For extra emphasis: 'thank you so much' or 'thanks a lot.'" },
+            { k: ["sorry"], a: "'Sorry' is used for apologies. For a lighter version (like bumping into someone), 'excuse me' or 'oops, sorry' works well." },
+            { k: ["idiom", "idioms"], a: "English idioms are phrases whose meaning isn't literal — like 'piece of cake' (something easy) or 'break the ice' (ease social tension). They're a great way to sound more natural!" },
+            { k: ["phrasal verb"], a: "Phrasal verbs combine a verb with a preposition to make a new meaning — like 'look forward to' (anticipate) or 'give up' (quit). English has hundreds of these, and they're essential for sounding fluent." },
+            { k: ["tú", "usted", "formal", "register"], a: "Unlike Spanish or Korean, English doesn't have separate grammatical forms for formal vs. casual speech (like tú/usted) — instead, formality comes from word choice and tone. For example, 'Would you mind...' is more formal than 'Can you...'" },
+            { k: ["heart", "hearts", "lose"], a: "You lose a heart for each wrong answer in a lesson. Run out and the lesson ends — but hearts refill over time, or go Pro for unlimited hearts." },
+            { k: ["streak", "fire"], a: "Your streak counts consecutive days you complete at least one lesson. Miss a day and it resets — try a quick lesson daily! You've got this!" },
+            { k: ["xp", "level", "points"], a: "XP is earned by finishing lessons and quizzes. It builds your Level on your Profile page — the more you practice, the higher you climb!" },
+            { k: ["pro", "premium", "upgrade", "subscription", "price", "cost"], a: "Hangul Pro unlocks unlimited hearts, every unit instantly, advanced speaking drills, deeper stats, and unlimited tutor chats. Check the Pro tab for pricing and plans!" },
+            { k: ["speak", "pronounce", "mic", "pronunciation"], a: "For speaking exercises, tap the mic and say the word naturally — the app compares what it hears to the target word. If your browser blocks the mic, check your site permissions." },
+            { k: ["difficult", "hard", "struggling", "stuck", "confus"], a: "It's okay! Everyone finds new vocabulary and idioms tricky at first. Try replaying lessons or retaking a quiz — repetition is what makes it click. Little by little, it adds up!" },
+        ];
+
         const STROKE_ORDER_JA = [
             { ch: "あ", strokes: ["Stroke 1: a short horizontal-ish line top-left.", "Stroke 2: a curved vertical stroke through the middle.", "Stroke 3: a curved stroke that loops at the bottom."] },
             { ch: "い", strokes: ["Stroke 1: a short curved vertical line.", "Stroke 2: a second, slightly longer curved line to its right."] },
@@ -4108,16 +4458,19 @@
         const ALL_VOCAB = LEVELS.flatMap(l => l.words);
         const ALL_VOCAB_ES = LEVELS_ES.flatMap(l => l.words);
         const ALL_VOCAB_JA = LEVELS_JA.flatMap(l => l.words);
+        const ALL_VOCAB_EN = LEVELS_EN.flatMap(l => l.words);
         function activeVocabPool() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'es') return ALL_VOCAB_ES;
             if (lang === 'ja') return ALL_VOCAB_JA;
+            if (lang === 'en') return ALL_VOCAB_EN;
             return ALL_VOCAB;
         }
         function activeChatTopics() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'es') return SPANISH_CHAT_TOPICS;
             if (lang === 'ja') return JAPANESE_CHAT_TOPICS;
+            if (lang === 'en') return ENGLISH_CHAT_TOPICS;
             return CHAT_TOPICS;
         }
         function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
@@ -4249,6 +4602,7 @@
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'es') return 'Español';
             if (lang === 'ja') return '日本語';
+            if (lang === 'en') return 'English';
             return '한국어';
         }
         function updateLanguageSpecificUI() {
@@ -4259,6 +4613,16 @@
             });
             const kdramaNav = document.getElementById('navKdrama');
             if (kdramaNav) kdramaNav.classList.toggle('lang-hidden', !isKorean);
+
+            // These reference tools don't apply to English (same script/numbers as the UI itself) —
+            // hide rather than silently show mislabeled Korean content.
+            const isEnglish = lang === 'en';
+            ['topikCard', 'hangulChartCard', 'numberChartCard', 'grammarCard', 'drawTraceCard'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.toggle('lang-hidden', isEnglish);
+            });
+            const moreEmptyNote = document.getElementById('moreEmptyNote');
+            if (moreEmptyNote) moreEmptyNote.style.display = isEnglish ? 'block' : 'none';
 
             const topikText = {
                 ko: ['TOPIK Practice', 'Official-style proficiency test questions'],
@@ -4316,12 +4680,14 @@
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'es') return TIERS_ES;
             if (lang === 'ja') return TIERS_JA;
+            if (lang === 'en') return TIERS_EN;
             return TIERS;
         }
         function activeLevels() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'es') return LEVELS_ES;
             if (lang === 'ja') return LEVELS_JA;
+            if (lang === 'en') return LEVELS_EN;
             return LEVELS;
         }
 
@@ -4401,7 +4767,8 @@
             const greetings = {
                 ko: (hour < 12 ? '좋은 아침이에요 🌤️' : hour < 18 ? '안녕하세요 👋' : '좋은 저녁이에요 🌙'),
                 es: (hour < 12 ? '¡Buenos días! 🌤️' : hour < 18 ? '¡Hola! 👋' : '¡Buenas noches! 🌙'),
-                ja: (hour < 12 ? 'おはようございます 🌤️' : hour < 18 ? 'こんにちは 👋' : 'こんばんは 🌙')
+                ja: (hour < 12 ? 'おはようございます 🌤️' : hour < 18 ? 'こんにちは 👋' : 'こんばんは 🌙'),
+                en: (hour < 12 ? 'Good morning! 🌤️' : hour < 18 ? 'Hello! 👋' : 'Good evening! 🌙')
             };
             document.getElementById('homeGreeting').textContent = greetings[lang] || greetings.ko;
         }
@@ -4510,7 +4877,7 @@
             if (koreanVoice) utter.voice = koreanVoice;
             window.speechSynthesis.speak(utter);
         }
-        const LANG_TTS_CODE = { ko: 'ko-KR', es: 'es-ES', ja: 'ja-JP' };
+        const LANG_TTS_CODE = { ko: 'ko-KR', es: 'es-ES', ja: 'ja-JP', en: 'en-US' };
         function speakLearning(text) {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'ko') { speakKorean(text); return; }
@@ -6335,6 +6702,7 @@
                 const systemPrompts = {
                     es: "You are Han, a warm, encouraging Spanish-language tutor inside a learning app called Hello Hangul (currently teaching Spanish to this learner). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Spanish and English together — give the Spanish phrase, a simple pronunciation guide, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Spanish word, phrase, grammar point (including tú vs usted, subjunctive, ser vs estar), or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly.",
                     ja: "You are Han, a warm, encouraging Japanese-language tutor inside a learning app called Hello Hangul (currently teaching Japanese to this learner). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Japanese and English together — give the Japanese phrase (in hiragana/katakana, since this app focuses on kana rather than kanji), its romaji, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Japanese word, phrase, grammar point (including keigo/honorific levels, particles, verb conjugation), or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly.",
+                    en: "You are Han, a warm, encouraging English-language tutor inside a learning app called Hello Hangul (currently teaching English as a second language to this learner). Explain vocabulary, idioms, phrasal verbs, and grammar clearly with simple definitions and example sentences. You can discuss ANY English word, phrase, idiom, or grammar point, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly, avoiding overly technical linguistic terminology unless asked.",
                     ko: "You are Han, a warm, encouraging Korean-language tutor inside a learning app called Hello Hangul. You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Korean and English together — give the Korean phrase, its romanization, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Korean word, phrase, grammar point, or cultural topic, not just app mechanics. When asked about a number, remember Korean has two number systems (Sino-Korean, used for money/dates/phone numbers/math, and Native Korean, used for counting objects/age, which only goes up to 99) — explain both systems for that number when the learner doesn't specify one. Keep answers short (2-5 sentences), warm, and beginner-friendly."
                 };
                 const systemPrompt = systemPrompts[activeLang] || systemPrompts.ko;
@@ -6426,11 +6794,13 @@
             if (word) {
                 if (lang === 'es') return `${word.kr} (${word.rom}) means "${word.en}" in English. ¡Buena pregunta! (Good question!) Try using it in a quiz to lock it in.`;
                 if (lang === 'ja') return `${word.kr} (${word.rom}) means "${word.en}" in English. いい質問ですね! (ii shitsumon desu ne — great question!) Try using it in a quiz to lock it in.`;
+                if (lang === 'en') return `"${word.kr}" (pronounced ${word.rom}) means: ${word.en}. Good question! Try using it in a quiz to lock it in.`;
                 return `${word.kr} (${word.rom}) means "${word.en}" in English. 좋은 질문이에요! (jo-eun jilmunieyo — great question!) Try using it in the K-Drama tab or a quiz to lock it in.`;
             }
 
             if (lang === 'es') return "¡Todavía no sé eso! (I don't know that one yet!) Try asking about a specific word from your lessons — Spanish or English both work (e.g. \"what does gracias mean\" or \"how do I say goodbye\"). I can also explain grammar like tú vs usted, or how streaks, hearts, and XP work.";
             if (lang === 'ja') return "それはまだ分かりません! (sore wa mada wakarimasen — I don't know that one yet!) Try asking about a specific word from your lessons — Japanese or English both work (e.g. \"what does arigatou mean\" or \"how do I say goodbye\"). I can also explain keigo levels, hiragana, or how streaks, hearts, and XP work.";
+            if (lang === 'en') return "I don't know that one yet! Try asking about a specific word from your lessons (e.g. \"what does meticulous mean\" or \"what's an idiom\"). I can also explain phrasal verbs, formal vs. casual register, or how streaks, hearts, and XP work.";
             return "그건 아직 몰라요 (I don't know that one yet)! Try asking about a specific word from your lessons — Korean or English both work (e.g. \"what does 감사합니다 mean\" or \"how do I say goodbye\"). I can also explain grammar endings like -요, or how streaks, hearts, and XP work.";
         }
         function botSayTyping() {
@@ -6491,6 +6861,7 @@
             const greetings = {
                 es: "¡Hola! I'm Han — let's warm up first, then I'll quiz you in Spanish.",
                 ja: "こんにちは! I'm Han — let's warm up first, then I'll quiz you in Japanese.",
+                en: "Hi! I'm Han — let's warm up first, then I'll quiz you on vocabulary and idioms.",
                 ko: "Hi! I'm Han — let's warm up first, then I'll quiz you."
             };
             document.getElementById('videocallCaption').textContent = greetings[lang] || greetings.ko;
@@ -6546,7 +6917,8 @@
                         const linesKo = ["잘했어요! Nice work! 😊", "That's it! You're on a roll!", "맞아요! Correct!", "Great job — keep going!"];
                         const linesEs = ["¡Muy bien! Nice work! 😊", "That's it! You're on a roll!", "¡Correcto! Correct!", "¡Excelente! Keep going!"];
                         const linesJa = ["よくできました! Nice work! 😊", "That's it! You're on a roll!", "正解! Correct!", "すごい! Keep going!"];
-                        const linesMap = { es: linesEs, ja: linesJa, ko: linesKo };
+                        const linesEn = ["Nice work! 😊", "That's it! You're on a roll!", "Exactly right!", "Great job — keep going!"];
+                        const linesMap = { es: linesEs, ja: linesJa, en: linesEn, ko: linesKo };
                         const lines = linesMap[lang] || linesKo;
                         document.getElementById('videocallCaption').textContent = lines[Math.floor(Math.random() * lines.length)];
                     } else {
@@ -6796,7 +7168,7 @@
             { code: 'eu', name: 'Basque', flag: '🏴', available: false },
             { code: 'eo', name: 'Esperanto', flag: '🌐', available: false },
             { code: 'la', name: 'Latin', flag: '🏛️', available: false },
-            { code: 'en', name: 'English', flag: '🇬🇧', available: false },
+            { code: 'en', name: 'English', flag: '🇬🇧', available: true },
             { code: 'hu', name: 'Hungarian', flag: '🇭🇺', available: false },
             { code: 'haw', name: 'Hawaiian', flag: '🌺', available: false },
             { code: 'nv', name: 'Navajo', flag: '🪶', available: false },
