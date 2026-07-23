@@ -3509,6 +3509,333 @@
         ];
         LEVELS_EN.forEach((l, i) => { l.id = 3000 + i + 1; });
 
+        /* =========================================================
+           CHINESE (MANDARIN) CONTENT
+           ========================================================= */
+        const TIERS_ZH = TIERS;
+        const LEVELS_ZH = [
+            /* ---------------- BEGINNER ---------------- */
+            {
+                tier: "beginner", title: "Chinese Basics", icon: "🇨🇳", words: [
+                    { kr: "你好", rom: "nǐ hǎo", en: "hello" }, { kr: "谢谢", rom: "xièxie", en: "thank you" },
+                    { kr: "是", rom: "shì", en: "yes" }, { kr: "不", rom: "bù", en: "no" },
+                    { kr: "名字", rom: "míngzi", en: "name" }, { kr: "朋友", rom: "péngyou", en: "friend" }]
+            },
+            {
+                tier: "beginner", title: "Greetings & Manners", icon: "🙏", words: [
+                    { kr: "再见", rom: "zàijiàn", en: "goodbye" }, { kr: "对不起", rom: "duìbuqǐ", en: "sorry" },
+                    { kr: "不好意思", rom: "bù hǎoyìsi", en: "excuse me" }, { kr: "很高兴认识你", rom: "hěn gāoxìng rènshi nǐ", en: "nice to meet you" },
+                    { kr: "没关系", rom: "méi guānxi", en: "it's okay" }, { kr: "请", rom: "qǐng", en: "please" }]
+            },
+            {
+                tier: "beginner", title: "Numbers 1-6", icon: "🔢", words: [
+                    { kr: "一", rom: "yī", en: "one" }, { kr: "二", rom: "èr", en: "two" },
+                    { kr: "三", rom: "sān", en: "three" }, { kr: "四", rom: "sì", en: "four" },
+                    { kr: "五", rom: "wǔ", en: "five" }, { kr: "六", rom: "liù", en: "six" }]
+            },
+            {
+                tier: "beginner", title: "Days & Time", icon: "🕒", words: [
+                    { kr: "今天", rom: "jīntiān", en: "today" }, { kr: "明天", rom: "míngtiān", en: "tomorrow" },
+                    { kr: "昨天", rom: "zuótiān", en: "yesterday" }, { kr: "现在", rom: "xiànzài", en: "now" },
+                    { kr: "时间", rom: "shíjiān", en: "time" }, { kr: "早上", rom: "zǎoshang", en: "morning" }]
+            },
+            {
+                tier: "beginner", title: "Family", icon: "👪", words: [
+                    { kr: "家人", rom: "jiārén", en: "family" }, { kr: "妈妈", rom: "māma", en: "mom" },
+                    { kr: "爸爸", rom: "bàba", en: "dad" }, { kr: "哥哥", rom: "gēge", en: "older brother" },
+                    { kr: "姐姐", rom: "jiějie", en: "older sister" }, { kr: "爷爷", rom: "yéye", en: "grandfather" }]
+            },
+            {
+                tier: "beginner", title: "Food & Drink", icon: "🍚", words: [
+                    { kr: "食物", rom: "shíwù", en: "food" }, { kr: "水", rom: "shuǐ", en: "water" },
+                    { kr: "咖啡", rom: "kāfēi", en: "coffee" }, { kr: "面包", rom: "miànbāo", en: "bread" },
+                    { kr: "米饭", rom: "mǐfàn", en: "rice" }, { kr: "好吃", rom: "hǎochī", en: "delicious" }]
+            },
+            {
+                tier: "beginner", title: "Colors", icon: "🎨", words: [
+                    { kr: "红色", rom: "hóngsè", en: "red" }, { kr: "蓝色", rom: "lánsè", en: "blue" },
+                    { kr: "黄色", rom: "huángsè", en: "yellow" }, { kr: "绿色", rom: "lǜsè", en: "green" },
+                    { kr: "黑色", rom: "hēisè", en: "black" }, { kr: "白色", rom: "báisè", en: "white" }]
+            },
+            {
+                tier: "beginner", title: "Body Parts", icon: "🧍", words: [
+                    { kr: "头", rom: "tóu", en: "head" }, { kr: "手", rom: "shǒu", en: "hand" },
+                    { kr: "眼睛", rom: "yǎnjīng", en: "eye" }, { kr: "鼻子", rom: "bízi", en: "nose" },
+                    { kr: "嘴", rom: "zuǐ", en: "mouth" }, { kr: "腿", rom: "tuǐ", en: "leg" }]
+            },
+            {
+                tier: "beginner", title: "Animals", icon: "🐾", words: [
+                    { kr: "狗", rom: "gǒu", en: "dog" }, { kr: "猫", rom: "māo", en: "cat" },
+                    { kr: "鸟", rom: "niǎo", en: "bird" }, { kr: "鱼", rom: "yú", en: "fish" },
+                    { kr: "熊", rom: "xióng", en: "bear" }, { kr: "兔子", rom: "tùzi", en: "rabbit" }]
+            },
+            {
+                tier: "beginner", title: "Clothing", icon: "👕", words: [
+                    { kr: "衣服", rom: "yīfu", en: "clothes" }, { kr: "鞋", rom: "xié", en: "shoes" },
+                    { kr: "帽子", rom: "màozi", en: "hat" }, { kr: "裤子", rom: "kùzi", en: "pants" },
+                    { kr: "裙子", rom: "qúnzi", en: "skirt" }, { kr: "包", rom: "bāo", en: "bag" }]
+            },
+            {
+                tier: "beginner", title: "Weather", icon: "⛅", words: [
+                    { kr: "天气", rom: "tiānqì", en: "weather" }, { kr: "雨", rom: "yǔ", en: "rain" },
+                    { kr: "雪", rom: "xuě", en: "snow" }, { kr: "风", rom: "fēng", en: "wind" },
+                    { kr: "热", rom: "rè", en: "it's hot" }, { kr: "冷", rom: "lěng", en: "it's cold" }]
+            },
+            {
+                tier: "beginner", title: "House & Rooms", icon: "🏠", words: [
+                    { kr: "房子", rom: "fángzi", en: "house" }, { kr: "房间", rom: "fángjiān", en: "room" },
+                    { kr: "床", rom: "chuáng", en: "bed" }, { kr: "洗手间", rom: "xǐshǒujiān", en: "bathroom" },
+                    { kr: "厨房", rom: "chúfáng", en: "kitchen" }, { kr: "门", rom: "mén", en: "door" }]
+            },
+            {
+                tier: "beginner", title: "School & Objects", icon: "🎒", words: [
+                    { kr: "学校", rom: "xuéxiào", en: "school" }, { kr: "书", rom: "shū", en: "book" },
+                    { kr: "铅笔", rom: "qiānbǐ", en: "pencil" }, { kr: "书包", rom: "shūbāo", en: "backpack" },
+                    { kr: "老师", rom: "lǎoshī", en: "teacher" }, { kr: "学生", rom: "xuésheng", en: "student" }]
+            },
+
+            /* ---------------- INTERMEDIATE ---------------- */
+            {
+                tier: "intermediate", title: "Feelings & Emotions", icon: "💗", words: [
+                    { kr: "开心", rom: "kāixīn", en: "happy" }, { kr: "伤心", rom: "shāngxīn", en: "sad" },
+                    { kr: "生气", rom: "shēngqì", en: "angry" }, { kr: "累", rom: "lèi", en: "tired" },
+                    { kr: "兴奋", rom: "xīngfèn", en: "excited" }, { kr: "紧张", rom: "jǐnzhāng", en: "nervous" }]
+            },
+            {
+                tier: "intermediate", title: "Directions & Places", icon: "🧭", words: [
+                    { kr: "左边", rom: "zuǒbian", en: "left" }, { kr: "右边", rom: "yòubian", en: "right" },
+                    { kr: "近", rom: "jìn", en: "near" }, { kr: "远", rom: "yuǎn", en: "far" },
+                    { kr: "这里", rom: "zhèlǐ", en: "here" }, { kr: "那里", rom: "nàlǐ", en: "there" }]
+            },
+            {
+                tier: "intermediate", title: "Shopping", icon: "🛍️", words: [
+                    { kr: "多少钱", rom: "duōshǎo qián", en: "how much is it" }, { kr: "贵", rom: "guì", en: "expensive" },
+                    { kr: "便宜", rom: "piányi", en: "cheap" }, { kr: "付钱", rom: "fùqián", en: "to pay" },
+                    { kr: "现金", rom: "xiànjīn", en: "cash" }, { kr: "卡", rom: "kǎ", en: "card" }]
+            },
+            {
+                tier: "intermediate", title: "Transportation", icon: "🚌", words: [
+                    { kr: "公共汽车", rom: "gōnggòng qìchē", en: "bus" }, { kr: "火车", rom: "huǒchē", en: "train" },
+                    { kr: "飞机", rom: "fēijī", en: "plane" }, { kr: "车", rom: "chē", en: "car" },
+                    { kr: "票", rom: "piào", en: "ticket" }, { kr: "车站", rom: "chēzhàn", en: "station" }]
+            },
+            {
+                tier: "intermediate", title: "Hobbies", icon: "🎸", words: [
+                    { kr: "爱好", rom: "àihào", en: "hobby" }, { kr: "读书", rom: "dúshū", en: "to read" },
+                    { kr: "游泳", rom: "yóuyǒng", en: "to swim" }, { kr: "跳舞", rom: "tiàowǔ", en: "to dance" },
+                    { kr: "画画", rom: "huàhuà", en: "to paint" }, { kr: "唱歌", rom: "chànggē", en: "to sing" }]
+            },
+            {
+                tier: "intermediate", title: "Work & Jobs", icon: "💼", words: [
+                    { kr: "工作", rom: "gōngzuò", en: "job" }, { kr: "公司", rom: "gōngsī", en: "company" },
+                    { kr: "老板", rom: "lǎobǎn", en: "boss" }, { kr: "会议", rom: "huìyì", en: "meeting" },
+                    { kr: "工资", rom: "gōngzī", en: "salary" }, { kr: "时间表", rom: "shíjiānbiǎo", en: "schedule" }]
+            },
+            {
+                tier: "intermediate", title: "Health & Body", icon: "🩺", words: [
+                    { kr: "生病", rom: "shēngbìng", en: "sick" }, { kr: "疼", rom: "téng", en: "pain" },
+                    { kr: "医院", rom: "yīyuàn", en: "hospital" }, { kr: "药", rom: "yào", en: "medicine" },
+                    { kr: "发烧", rom: "fāshāo", en: "fever" }, { kr: "医生", rom: "yīshēng", en: "doctor" }]
+            },
+            {
+                tier: "intermediate", title: "Technology", icon: "📱", words: [
+                    { kr: "手机", rom: "shǒujī", en: "phone" }, { kr: "电脑", rom: "diànnǎo", en: "computer" },
+                    { kr: "网络", rom: "wǎngluò", en: "internet" }, { kr: "密码", rom: "mìmǎ", en: "password" },
+                    { kr: "应用", rom: "yìngyòng", en: "app" }, { kr: "电池", rom: "diànchí", en: "battery" }]
+            },
+            {
+                tier: "intermediate", title: "Sports", icon: "⚽", words: [
+                    { kr: "足球", rom: "zúqiú", en: "soccer" }, { kr: "篮球", rom: "lánqiú", en: "basketball" },
+                    { kr: "跑步", rom: "pǎobù", en: "to run" }, { kr: "赢", rom: "yíng", en: "to win" },
+                    { kr: "输", rom: "shū", en: "to lose" }, { kr: "队", rom: "duì", en: "team" }]
+            },
+            {
+                tier: "intermediate", title: "Nature", icon: "🌳", words: [
+                    { kr: "山", rom: "shān", en: "mountain" }, { kr: "河", rom: "hé", en: "river" },
+                    { kr: "森林", rom: "sēnlín", en: "forest" }, { kr: "天空", rom: "tiānkōng", en: "sky" },
+                    { kr: "树", rom: "shù", en: "tree" }, { kr: "花", rom: "huā", en: "flower" }]
+            },
+            {
+                tier: "intermediate", title: "Numbers & Time", icon: "🔟", words: [
+                    { kr: "分钟", rom: "fēnzhōng", en: "minute" }, { kr: "小时", rom: "xiǎoshí", en: "hour" },
+                    { kr: "星期", rom: "xīngqī", en: "week" }, { kr: "月", rom: "yuè", en: "month" },
+                    { kr: "年", rom: "nián", en: "year" }, { kr: "钟表", rom: "zhōngbiǎo", en: "clock" }]
+            },
+            {
+                tier: "intermediate", title: "Making Plans", icon: "📅", words: [
+                    { kr: "约会", rom: "yuēhuì", en: "appointment" }, { kr: "见面", rom: "jiànmiàn", en: "to meet up" },
+                    { kr: "邀请", rom: "yāoqǐng", en: "to invite" }, { kr: "取消", rom: "qǔxiāo", en: "to cancel" },
+                    { kr: "忙", rom: "máng", en: "busy" }, { kr: "有空", rom: "yǒukòng", en: "free" }]
+            },
+            {
+                tier: "intermediate", title: "Restaurant & Ordering", icon: "🍽️", words: [
+                    { kr: "菜单", rom: "càidān", en: "menu" }, { kr: "点菜", rom: "diǎncài", en: "to order" },
+                    { kr: "账单", rom: "zhàngdān", en: "the bill" }, { kr: "小费", rom: "xiǎofèi", en: "tip" },
+                    { kr: "预订", rom: "yùdìng", en: "reservation" }, { kr: "服务员", rom: "fúwùyuán", en: "waiter" }]
+            },
+
+            /* ---------------- ADVANCED ---------------- */
+            {
+                tier: "advanced", title: "Connectors & Grammar", icon: "🔗", words: [
+                    { kr: "所以", rom: "suǒyǐ", en: "therefore" }, { kr: "但是", rom: "dànshì", en: "however" },
+                    { kr: "虽然", rom: "suīrán", en: "although" }, { kr: "因为", rom: "yīnwèi", en: "because" },
+                    { kr: "然后", rom: "ránhòu", en: "then / so" }, { kr: "一边", rom: "yībiān", en: "while" }]
+            },
+            {
+                tier: "advanced", title: "Business Chinese", icon: "🏢", words: [
+                    { kr: "合同", rom: "hétong", en: "contract" }, { kr: "谈判", rom: "tánpàn", en: "negotiation" },
+                    { kr: "客户", rom: "kèhù", en: "client" }, { kr: "收入", rom: "shōurù", en: "revenue" },
+                    { kr: "报告", rom: "bàogào", en: "report" }, { kr: "截止日期", rom: "jiézhǐ rìqī", en: "deadline" }]
+            },
+            {
+                tier: "advanced", title: "News & Media", icon: "📰", words: [
+                    { kr: "新闻", rom: "xīnwén", en: "news" }, { kr: "文章", rom: "wénzhāng", en: "article" },
+                    { kr: "记者", rom: "jìzhě", en: "reporter" }, { kr: "政策", rom: "zhèngcè", en: "policy" },
+                    { kr: "舆论", rom: "yúlùn", en: "public opinion" }, { kr: "宣布", rom: "xuānbù", en: "to announce" }]
+            },
+            {
+                tier: "advanced", title: "Nuanced Emotions", icon: "🌫️", words: [
+                    { kr: "失望", rom: "shīwàng", en: "disappointed" }, { kr: "不知所措", rom: "bùzhī suǒcuò", en: "overwhelmed" },
+                    { kr: "骄傲", rom: "jiāo'ào", en: "proud" }, { kr: "嫉妒", rom: "jídù", en: "jealous" },
+                    { kr: "想念", rom: "xiǎngniàn", en: "to miss someone" }, { kr: "松了口气", rom: "sōngle kǒuqì", en: "relieved" }]
+            },
+            {
+                tier: "advanced", title: "Chengyu: Fables I", icon: "🐍", words: [
+                    { kr: "画蛇添足", rom: "huàshé tiānzú", en: "to ruin something by adding unnecessary details" }, { kr: "守株待兔", rom: "shǒuzhū dàitù", en: "to wait for windfalls, rely on luck" },
+                    { kr: "对牛弹琴", rom: "duìniú tánqín", en: "to waste effort on someone who won't understand" }, { kr: "井底之蛙", rom: "jǐngdǐ zhīwā", en: "a person with a narrow view of the world" },
+                    { kr: "画龙点睛", rom: "huàlóng diǎnjīng", en: "the finishing touch that brings something to life" }, { kr: "亡羊补牢", rom: "wángyáng bǔláo", en: "to fix a problem before it worsens" }]
+            },
+            {
+                tier: "advanced", title: "Chengyu: Fables II", icon: "🐦", words: [
+                    { kr: "一石二鸟", rom: "yīshí èrniǎo", en: "to kill two birds with one stone" }, { kr: "半途而废", rom: "bàntú érfèi", en: "to give up halfway" },
+                    { kr: "入乡随俗", rom: "rùxiāng suísú", en: "when in Rome, do as the Romans do" }, { kr: "熟能生巧", rom: "shúnéng shēngqiǎo", en: "practice makes perfect" },
+                    { kr: "三心二意", rom: "sānxīn èryì", en: "indecisive, half-hearted" }, { kr: "恍然大悟", rom: "huǎngrán dàwù", en: "to suddenly realize or understand" }]
+            },
+            {
+                tier: "advanced", title: "Travel Advanced", icon: "🛂", words: [
+                    { kr: "护照", rom: "hùzhào", en: "passport" }, { kr: "海关", rom: "hǎiguān", en: "customs" },
+                    { kr: "住宿", rom: "zhùsù", en: "lodging" }, { kr: "机场", rom: "jīchǎng", en: "airport" },
+                    { kr: "行李", rom: "xíngli", en: "luggage" }, { kr: "行程", rom: "xíngchéng", en: "itinerary" }]
+            },
+            {
+                tier: "advanced", title: "Relationships", icon: "💌", words: [
+                    { kr: "伴侣", rom: "bànlǚ", en: "partner" }, { kr: "恋爱", rom: "liàn'ài", en: "to fall in love" },
+                    { kr: "分手", rom: "fēnshǒu", en: "to break up" }, { kr: "相亲", rom: "xiāngqīn", en: "blind date" },
+                    { kr: "一见钟情", rom: "yíjiàn zhōngqíng", en: "love at first sight" }, { kr: "订婚", rom: "dìnghūn", en: "engagement" }]
+            },
+            {
+                tier: "advanced", title: "Debate & Opinions", icon: "🗣️", words: [
+                    { kr: "同意", rom: "tóngyì", en: "to agree" }, { kr: "不同意", rom: "bù tóngyì", en: "to disagree" },
+                    { kr: "论点", rom: "lùndiǎn", en: "argument" }, { kr: "观点", rom: "guāndiǎn", en: "point of view" },
+                    { kr: "说服", rom: "shuōfú", en: "to convince" }, { kr: "妥协", rom: "tuǒxié", en: "to compromise" }]
+            },
+            {
+                tier: "advanced", title: "Formal Speech (您 vs 你)", icon: "🎩", words: [
+                    { kr: "您", rom: "nín", en: "you (formal)" }, { kr: "你", rom: "nǐ", en: "you (informal)" },
+                    { kr: "礼貌", rom: "lǐmào", en: "politeness" }, { kr: "客气", rom: "kèqi", en: "courtesy" },
+                    { kr: "尊重", rom: "zūnzhòng", en: "respect" }, { kr: "礼仪", rom: "lǐyí", en: "manners / etiquette" }]
+            },
+            {
+                tier: "advanced", title: "Slang & Internet Terms", icon: "📲", words: [
+                    { kr: "牛", rom: "niú", en: "awesome (slang)" }, { kr: "给力", rom: "gěilì", en: "cool / effective (slang)" },
+                    { kr: "吐槽", rom: "tǔcáo", en: "to complain jokingly" }, { kr: "无语", rom: "wúyǔ", en: "speechless" },
+                    { kr: "666", rom: "liù liù liù", en: "expression of admiration (slang)" }, { kr: "躺平", rom: "tǎngpíng", en: "to give up striving, 'lie flat'" }]
+            },
+            {
+                tier: "advanced", title: "Culture & History", icon: "🏮", words: [
+                    { kr: "节日", rom: "jiérì", en: "festival / holiday" }, { kr: "传统", rom: "chuántǒng", en: "tradition" },
+                    { kr: "独立", rom: "dúlì", en: "independence" }, { kr: "国旗", rom: "guóqí", en: "flag" },
+                    { kr: "文明", rom: "wénmíng", en: "civilization" }, { kr: "遗产", rom: "yíchǎn", en: "heritage" }]
+            },
+            {
+                tier: "advanced", title: "Advanced Verbs", icon: "💪", words: [
+                    { kr: "克服", rom: "kèfú", en: "to overcome" }, { kr: "实现", rom: "shíxiàn", en: "to achieve / realize" },
+                    { kr: "放弃", rom: "fàngqì", en: "to give up" }, { kr: "敢于", rom: "gǎnyú", en: "to dare" },
+                    { kr: "发展", rom: "fāzhǎn", en: "to develop" }, { kr: "完成", rom: "wánchéng", en: "to complete / fulfill" }]
+            },
+
+            /* ---------------- FLUENT ---------------- */
+            {
+                tier: "fluent", title: "Chengyu: Wisdom I", icon: "📜", words: [
+                    { kr: "塞翁失马", rom: "sàiwēng shīmǎ", en: "a blessing in disguise" }, { kr: "精卫填海", rom: "jīngwèi tiánhǎi", en: "unwavering perseverance" },
+                    { kr: "愚公移山", rom: "yúgōng yíshān", en: "persistence can move mountains" }, { kr: "画饼充饥", rom: "huàbǐng chōngjī", en: "false comfort, empty promises" },
+                    { kr: "未雨绸缪", rom: "wèiyǔ chóumóu", en: "to prepare for a rainy day" }, { kr: "水滴石穿", rom: "shuǐdī shíchuān", en: "constant effort brings success" }]
+            },
+            {
+                tier: "fluent", title: "Literary Expressions", icon: "🖋️", words: [
+                    { kr: "忧郁", rom: "yōuyù", en: "melancholic" }, { kr: "稍纵即逝", rom: "shāozòng jíshì", en: "fleeting" },
+                    { kr: "怀旧", rom: "huáijiù", en: "nostalgic" }, { kr: "空灵", rom: "kōnglíng", en: "ethereal" },
+                    { kr: "短暂", rom: "duǎnzàn", en: "ephemeral" }, { kr: "崇高", rom: "chónggāo", en: "sublime" }]
+            },
+            {
+                tier: "fluent", title: "Chengyu: Wisdom II", icon: "🪞", words: [
+                    { kr: "破釜沉舟", rom: "pòfǔ chénzhōu", en: "to commit fully, burning bridges" }, { kr: "自食其果", rom: "zìshí qíguǒ", en: "to reap what you sow" },
+                    { kr: "全神贯注", rom: "quánshén guànzhù", en: "fully focused" }, { kr: "名不副实", rom: "míngbùfùshí", en: "not living up to one's reputation" },
+                    { kr: "泰然自若", rom: "tàirán zìruò", en: "calm and composed" }, { kr: "尝试错误", rom: "chángshì cuòwù", en: "trial and error" }]
+            },
+            {
+                tier: "fluent", title: "Political & Social Terms", icon: "🏛️", words: [
+                    { kr: "民主", rom: "mínzhǔ", en: "democracy" }, { kr: "不平等", rom: "bùpíngděng", en: "inequality" },
+                    { kr: "全球化", rom: "quánqiúhuà", en: "globalization" }, { kr: "可持续性", rom: "kěchíxùxìng", en: "sustainability" },
+                    { kr: "人权", rom: "rénquán", en: "human rights" }, { kr: "政府", rom: "zhèngfǔ", en: "government" }]
+            },
+            {
+                tier: "fluent", title: "Psychology & Nuance", icon: "🧠", words: [
+                    { kr: "自尊", rom: "zìzūn", en: "self-esteem" }, { kr: "韧性", rom: "rènxìng", en: "resilience" },
+                    { kr: "同理心", rom: "tónglǐxīn", en: "empathy" }, { kr: "焦虑", rom: "jiāolǜ", en: "anxiety" },
+                    { kr: "幸福感", rom: "xìngfúgǎn", en: "wellbeing" }, { kr: "动力", rom: "dònglì", en: "motivation" }]
+            },
+            {
+                tier: "fluent", title: "Business Negotiation", icon: "🤝", words: [
+                    { kr: "协议", rom: "xiéyì", en: "agreement" }, { kr: "提案", rom: "tí'àn", en: "proposal" },
+                    { kr: "优势", rom: "yōushì", en: "advantage" }, { kr: "投资", rom: "tóuzī", en: "investment" },
+                    { kr: "风险", rom: "fēngxiǎn", en: "risk" }, { kr: "盈利", rom: "yínglì", en: "profitable" }]
+            },
+            {
+                tier: "fluent", title: "Academic Chinese", icon: "🎓", words: [
+                    { kr: "论文", rom: "lùnwén", en: "thesis" }, { kr: "研究", rom: "yánjiū", en: "research" },
+                    { kr: "假设", rom: "jiǎshè", en: "hypothesis" }, { kr: "分析", rom: "fēnxī", en: "analysis" },
+                    { kr: "结论", rom: "jiélùn", en: "conclusion" }, { kr: "参考文献", rom: "cānkǎo wénxiàn", en: "bibliography" }]
+            },
+            {
+                tier: "fluent", title: "Poetic & Formal Writing", icon: "🕊️", words: [
+                    { kr: "宁静", rom: "níngjìng", en: "serene" }, { kr: "不断", rom: "bùduàn", en: "unceasing" },
+                    { kr: "壮观", rom: "zhuàngguān", en: "imposing" }, { kr: "珍贵", rom: "zhēnguì", en: "cherished" },
+                    { kr: "难以言喻", rom: "nányǐ yányù", en: "ineffable" }, { kr: "根深蒂固", rom: "gēnshēn dìgù", en: "deeply rooted" }]
+            },
+            {
+                tier: "fluent", title: "Regional Flavor", icon: "🗺️", words: [
+                    { kr: "老铁", rom: "lǎotiě", en: "buddy (Northeastern slang)" }, { kr: "靠谱", rom: "kàopǔ", en: "reliable (colloquial)" },
+                    { kr: "巴适", rom: "bāshì", en: "great, comfortable (Sichuan dialect)" }, { kr: "港真", rom: "gǎngzhēn", en: "honestly (internet slang)" },
+                    { kr: "老公", rom: "lǎogōng", en: "husband (colloquial)" }, { kr: "摆龙门阵", rom: "bǎi lóngménzhèn", en: "to chat (Sichuan dialect)" }]
+            },
+            {
+                tier: "fluent", title: "Complex Grammar (把 & 被)", icon: "🧩", words: [
+                    { kr: "把", rom: "bǎ", en: "marks an object moved before the verb" }, { kr: "被", rom: "bèi", en: "passive voice marker" },
+                    { kr: "让", rom: "ràng", en: "to let / make (someone do something)" }, { kr: "使", rom: "shǐ", en: "to cause / make" },
+                    { kr: "得", rom: "de", en: "structural particle showing degree or result" }, { kr: "地", rom: "de", en: "adverbial particle before a verb" }]
+            },
+            {
+                tier: "fluent", title: "More Chengyu", icon: "📖", words: [
+                    { kr: "骑虎难下", rom: "qíhǔ nánxià", en: "unable to stop halfway, riding a tiger" }, { kr: "化险为夷", rom: "huàxiǎn wéiyí", en: "to turn danger into safety" },
+                    { kr: "心有余而力不足", rom: "xīnyǒuyú érlìbùzú", en: "willing but unable" }, { kr: "顺水推舟", rom: "shùnshuǐ tuīzhōu", en: "to go with the flow" },
+                    { kr: "杯弓蛇影", rom: "bēigōng shéyǐng", en: "being overly suspicious or paranoid" }, { kr: "掩耳盗铃", rom: "yǎn'ěr dàolíng", en: "self-deception" }]
+            },
+            {
+                tier: "fluent", title: "Professional Terms", icon: "⚖️", words: [
+                    { kr: "诊断", rom: "zhěnduàn", en: "diagnosis" }, { kr: "处方", rom: "chǔfāng", en: "prescription" },
+                    { kr: "诉讼", rom: "sùsòng", en: "lawsuit" }, { kr: "律师", rom: "lǜshī", en: "lawyer" },
+                    { kr: "判决", rom: "pànjué", en: "verdict" }, { kr: "法庭", rom: "fǎtíng", en: "court" }]
+            },
+            {
+                tier: "fluent", title: "Mastery Review", icon: "🏆", words: [
+                    { kr: "敏锐", rom: "mǐnruì", en: "perceptive" }, { kr: "多才多艺", rom: "duōcái duōyì", en: "versatile" },
+                    { kr: "细致", rom: "xìzhì", en: "meticulous" }, { kr: "坚韧", rom: "jiānrèn", en: "tenacious" },
+                    { kr: "诚实", rom: "chéngshí", en: "honest" }, { kr: "智慧", rom: "zhìhuì", en: "wisdom" }]
+            },
+        ];
+        LEVELS_ZH.forEach((l, i) => { l.id = 4000 + i + 1; });
+
         const LEVELS = [
             /* ---------------- BEGINNER ---------------- */
             {
@@ -4466,6 +4793,64 @@
         ];
         const ALL_ENGLISH_NUMBERS_SPELLED = ENGLISH_NUMBERS_SPELLED.flatMap(s => s.chars.map(c => ({ kr: c.ch, en: c.en, rom: c.rom })));
 
+        const CHINESE_TONES = [
+            {
+                title: "The Four Tones (声调)", chars: [
+                    { ch: "mā", rom: "1st tone — flat, high", sample: "妈", hint: "妈 (mom) — pitch stays flat and high" },
+                    { ch: "má", rom: "2nd tone — rising", sample: "麻", hint: "麻 (hemp/numb) — pitch rises like a question" },
+                    { ch: "mǎ", rom: "3rd tone — dips then rises", sample: "马", hint: "马 (horse) — pitch dips low then rises" },
+                    { ch: "mà", rom: "4th tone — sharp fall", sample: "骂", hint: "骂 (to scold) — pitch drops sharply" },
+                    { ch: "ma", rom: "neutral tone — light, short", sample: "吗", hint: "吗 (question particle) — no strong pitch" }]
+            },
+            {
+                title: "Common Finals (韵母)", chars: [
+                    { ch: "a", rom: "ah", sample: "啊", hint: "like 'a' in father" }, { ch: "o", rom: "oh", sample: "哦", hint: "like 'o' in more" },
+                    { ch: "e", rom: "uh", sample: "饿", hint: "like 'u' in uh-huh" }, { ch: "i", rom: "ee", sample: "一", hint: "like 'ee' in see" },
+                    { ch: "u", rom: "oo", sample: "五", hint: "like 'oo' in food" }, { ch: "ü", rom: "yu", sample: "绿", hint: "round lips, say 'ee' — no English equivalent" }]
+            },
+        ];
+        const ALL_CHINESE_TONES = CHINESE_TONES.flatMap(s => s.chars);
+
+        const CHINESE_NUMBER_CHART = [
+            {
+                title: "Numbers 0–10", note: "The building blocks — every other number is formed from these.", chars: [
+                    { ch: "零", rom: "0 · líng", en: "0" }, { ch: "一", rom: "1 · yī", en: "1" }, { ch: "二", rom: "2 · èr", en: "2" },
+                    { ch: "三", rom: "3 · sān", en: "3" }, { ch: "四", rom: "4 · sì", en: "4" }, { ch: "五", rom: "5 · wǔ", en: "5" },
+                    { ch: "六", rom: "6 · liù", en: "6" }, { ch: "七", rom: "7 · qī", en: "7" }, { ch: "八", rom: "8 · bā", en: "8" },
+                    { ch: "九", rom: "9 · jiǔ", en: "9" }, { ch: "十", rom: "10 · shí", en: "10" }]
+            },
+            {
+                title: "Tens", note: "Formed with [digit] + 十. Example: 二十 = 2 + 10 = 20.", chars: [
+                    { ch: "二十", rom: "20 · èrshí", en: "20" }, { ch: "三十", rom: "30 · sānshí", en: "30" }, { ch: "四十", rom: "40 · sìshí", en: "40" },
+                    { ch: "五十", rom: "50 · wǔshí", en: "50" }, { ch: "六十", rom: "60 · liùshí", en: "60" }, { ch: "七十", rom: "70 · qīshí", en: "70" },
+                    { ch: "八十", rom: "80 · bāshí", en: "80" }, { ch: "九十", rom: "90 · jiǔshí", en: "90" }]
+            },
+            {
+                title: "Big Units", note: "Chinese groups by 10,000 (万), not 1,000 like English.", chars: [
+                    { ch: "百", rom: "100 · bǎi", en: "100" }, { ch: "千", rom: "1,000 · qiān", en: "1,000" }, { ch: "万", rom: "10,000 · wàn", en: "10,000" }]
+            },
+        ];
+        const ALL_CHINESE_NUMBERS = CHINESE_NUMBER_CHART.flatMap(s => s.chars.map(c => ({ kr: c.ch, en: c.en, rom: c.rom })));
+
+        const STROKE_ORDER_ZH = [
+            { ch: "一", strokes: ["One single horizontal stroke, left to right."] },
+            { ch: "二", strokes: ["Stroke 1: a short horizontal line.", "Stroke 2: a longer horizontal line below it."] },
+            { ch: "三", strokes: ["Stroke 1: a short horizontal line.", "Stroke 2: a slightly longer one below it.", "Stroke 3: the longest, at the bottom."] },
+            { ch: "人", strokes: ["Stroke 1: a diagonal stroke down-left.", "Stroke 2: a diagonal stroke down-right, crossing near the top."] },
+            { ch: "大", strokes: ["Stroke 1: a horizontal line.", "Stroke 2: a diagonal stroke down-left through it.", "Stroke 3: a diagonal stroke down-right through it."] },
+            { ch: "小", strokes: ["Stroke 1: a short vertical hook in the middle.", "Stroke 2: a dot to the left.", "Stroke 3: a dot to the right."] },
+            { ch: "中", strokes: ["Stroke 1: a box shape (left, top, right, bottom).", "Stroke 2: a vertical line through the center of the box."] },
+            { ch: "国", strokes: ["Stroke 1: the outer box (left side, top+right, bottom).", "Stroke 2-4: the inner component 玉 (jade) drawn inside.", "Stroke 5: close the bottom of the outer box."] },
+            { ch: "日", strokes: ["Stroke 1: the left vertical side.", "Stroke 2: the top, right side, and a turn down.", "Stroke 3: a horizontal line through the middle.", "Stroke 4: the bottom horizontal line."] },
+            { ch: "月", strokes: ["Stroke 1: the left vertical side, curving at the bottom.", "Stroke 2: the top and right side in one stroke, curving down.", "Stroke 3-4: two short horizontal lines inside."] },
+        ];
+        const CHINESE_TRACE_INFO = [
+            { ch: "一", rom: "yī", hint: "one" }, { ch: "二", rom: "èr", hint: "two" }, { ch: "三", rom: "sān", hint: "three" },
+            { ch: "人", rom: "rén", hint: "person" }, { ch: "大", rom: "dà", hint: "big" }, { ch: "小", rom: "xiǎo", hint: "small" },
+            { ch: "中", rom: "zhōng", hint: "middle" }, { ch: "国", rom: "guó", hint: "country" }, { ch: "日", rom: "rì", hint: "sun / day" },
+            { ch: "月", rom: "yuè", hint: "moon / month" },
+        ];
+
         const JAPANESE_NUMBER_CHART = [
             {
                 title: "Numbers 0–10", note: "The building blocks — every other number is formed from these.", chars: [
@@ -4636,11 +5021,13 @@
         const ALL_VOCAB_ES = LEVELS_ES.flatMap(l => l.words);
         const ALL_VOCAB_JA = LEVELS_JA.flatMap(l => l.words);
         const ALL_VOCAB_EN = LEVELS_EN.flatMap(l => l.words);
+        const ALL_VOCAB_ZH = LEVELS_ZH.flatMap(l => l.words);
         function activeVocabPool() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'es') return ALL_VOCAB_ES;
             if (lang === 'ja') return ALL_VOCAB_JA;
             if (lang === 'en') return ALL_VOCAB_EN;
+            if (lang === 'zh') return ALL_VOCAB_ZH;
             return ALL_VOCAB;
         }
         function activeChatTopics() {
@@ -4648,6 +5035,7 @@
             if (lang === 'es') return SPANISH_CHAT_TOPICS;
             if (lang === 'ja') return JAPANESE_CHAT_TOPICS;
             if (lang === 'en') return ENGLISH_CHAT_TOPICS;
+            if (lang === 'zh') return CHINESE_CHAT_TOPICS;
             return CHAT_TOPICS;
         }
         function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
@@ -4780,6 +5168,7 @@
             if (lang === 'es') return 'Español';
             if (lang === 'ja') return '日本語';
             if (lang === 'en') return 'English';
+            if (lang === 'zh') return '中文';
             return '한국어';
         }
         function updateLanguageSpecificUI() {
@@ -4791,14 +5180,15 @@
             const kdramaNav = document.getElementById('navKdrama');
             if (kdramaNav) kdramaNav.classList.toggle('lang-hidden', !isKorean);
 
-            // Grammar & Particles and Draw & Trace don't have English content built —
-            // hide those two specifically. TOPIK/Alphabet/Number cards now have real
-            // English content (IELTS practice, irregular verbs, confused words).
+            // Grammar & Particles isn't built for English or Chinese — hide it for both.
+            // Draw & Trace isn't built for English (not needed, same script) but Chinese
+            // has real stroke-order content, so it stays visible there.
             const isEnglish = lang === 'en';
-            ['grammarCard', 'drawTraceCard'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.classList.toggle('lang-hidden', isEnglish);
-            });
+            const isChinese = lang === 'zh';
+            const grammarCardEl = document.getElementById('grammarCard');
+            if (grammarCardEl) grammarCardEl.classList.toggle('lang-hidden', isEnglish || isChinese);
+            const drawTraceCardEl = document.getElementById('drawTraceCard');
+            if (drawTraceCardEl) drawTraceCardEl.classList.toggle('lang-hidden', isEnglish);
             const moreEmptyNote = document.getElementById('moreEmptyNote');
             if (moreEmptyNote) moreEmptyNote.style.display = 'none';
 
@@ -4810,7 +5200,8 @@
                 ko: ['TOPIK Practice', 'Official-style proficiency test questions'],
                 es: ['DELE Practice', 'Spanish proficiency-style test questions'],
                 ja: ['JLPT Practice', 'Japanese proficiency-style test questions'],
-                en: ['IELTS / TOEFL Practice', 'English proficiency-style test questions']
+                en: ['IELTS / TOEFL Practice', 'English proficiency-style test questions'],
+                zh: ['HSK Practice', 'Chinese proficiency-style test questions']
             };
             const topikTitle = document.getElementById('topikCardTitle');
             if (topikTitle) {
@@ -4823,7 +5214,8 @@
                 ko: ['Hangul Chart', 'All 40 letters + a quick quiz'],
                 es: ['Spanish Alphabet', 'All 27 letters + a quick quiz'],
                 ja: ['Hiragana Chart', 'All 46 characters + a quick quiz'],
-                en: ['Irregular Verbs', '24 common verbs + a quick quiz']
+                en: ['Irregular Verbs', '24 common verbs + a quick quiz'],
+                zh: ['Tones & Pinyin Chart', 'The 4 tones + common finals']
             };
             const alphabetTitle = document.getElementById('alphabetCardTitle');
             if (alphabetTitle) {
@@ -4836,7 +5228,8 @@
                 ko: ['Number Chart', 'Both number systems + a quick quiz'],
                 es: ['Number Chart', 'Numbers 0–1,000,000 + a quick quiz'],
                 ja: ['Number Chart', 'Numbers 0–10,000 + a quick quiz'],
-                en: ['Confused Words', 'their/there/they\'re and more + a quick quiz']
+                en: ['Confused Words', 'their/there/they\'re and more + a quick quiz'],
+                zh: ['Number Chart', 'Numbers 0–10,000 + a quick quiz']
             };
             const numberCardTitle = document.getElementById('numberCardTitle');
             const numberSub = document.getElementById('numberCardSub');
@@ -4873,6 +5266,7 @@
             if (lang === 'es') return TIERS_ES;
             if (lang === 'ja') return TIERS_JA;
             if (lang === 'en') return TIERS_EN;
+            if (lang === 'zh') return TIERS_ZH;
             return TIERS;
         }
         function activeLevels() {
@@ -4880,6 +5274,7 @@
             if (lang === 'es') return LEVELS_ES;
             if (lang === 'ja') return LEVELS_JA;
             if (lang === 'en') return LEVELS_EN;
+            if (lang === 'zh') return LEVELS_ZH;
             return LEVELS;
         }
 
@@ -4960,7 +5355,8 @@
                 ko: (hour < 12 ? '좋은 아침이에요 🌤️' : hour < 18 ? '안녕하세요 👋' : '좋은 저녁이에요 🌙'),
                 es: (hour < 12 ? '¡Buenos días! 🌤️' : hour < 18 ? '¡Hola! 👋' : '¡Buenas noches! 🌙'),
                 ja: (hour < 12 ? 'おはようございます 🌤️' : hour < 18 ? 'こんにちは 👋' : 'こんばんは 🌙'),
-                en: (hour < 12 ? 'Good morning! 🌤️' : hour < 18 ? 'Hello! 👋' : 'Good evening! 🌙')
+                en: (hour < 12 ? 'Good morning! 🌤️' : hour < 18 ? 'Hello! 👋' : 'Good evening! 🌙'),
+                zh: (hour < 12 ? '早上好 🌤️' : hour < 18 ? '你好 👋' : '晚上好 🌙')
             };
             document.getElementById('homeGreeting').textContent = greetings[lang] || greetings.ko;
         }
@@ -5069,7 +5465,7 @@
             if (koreanVoice) utter.voice = koreanVoice;
             window.speechSynthesis.speak(utter);
         }
-        const LANG_TTS_CODE = { ko: 'ko-KR', es: 'es-ES', ja: 'ja-JP', en: 'en-US' };
+        const LANG_TTS_CODE = { ko: 'ko-KR', es: 'es-ES', ja: 'ja-JP', en: 'en-US', zh: 'zh-CN' };
         function speakLearning(text) {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'ko') { speakKorean(text); return; }
@@ -5378,11 +5774,12 @@
         function openHangulChart() {
             showScreen('hangul');
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            const titles = { es: '🔤 Spanish Alphabet', ja: '🔤 Hiragana Chart', en: '🔤 Irregular Verbs', ko: '🔤 Hangul Chart' };
+            const titles = { es: '🔤 Spanish Alphabet', ja: '🔤 Hiragana Chart', en: '🔤 Irregular Verbs', zh: '🔤 Tones & Pinyin Chart', ko: '🔤 Hangul Chart' };
             const subs = {
                 es: 'Tap any letter to hear it. Learn all 27 letters and try the quiz below.',
                 ja: 'Tap any character to hear it. Learn all 46 basic hiragana and try the quiz below.',
                 en: 'Tap any verb to hear its past tense. Learn 24 common irregular verbs and try the quiz below.',
+                zh: 'Mandarin uses 4 tones — the same syllable can mean different things! Tap to hear each one, then try the quiz.',
                 ko: 'Tap any letter to hear it. Learn all 40 and try the quiz below.'
             };
             document.getElementById('alphabetChartTitle').textContent = titles[lang] || titles.ko;
@@ -5395,7 +5792,7 @@
             if (wrap.dataset.built === lang) return;
             wrap.dataset.built = lang;
             wrap.innerHTML = '';
-            const chart = lang === 'es' ? SPANISH_ALPHABET : lang === 'ja' ? JAPANESE_KANA : lang === 'en' ? IRREGULAR_VERBS : HANGUL_CHART;
+            const chart = lang === 'es' ? SPANISH_ALPHABET : lang === 'ja' ? JAPANESE_KANA : lang === 'en' ? IRREGULAR_VERBS : lang === 'zh' ? CHINESE_TONES : HANGUL_CHART;
             chart.forEach(section => {
                 const sec = document.createElement('div');
                 sec.className = 'hangul-section';
@@ -5419,6 +5816,8 @@
                 lastCompletedLesson = { title: "Hiragana Chart", words: ALL_JAPANESE_KANA.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             } else if (lang === 'en') {
                 lastCompletedLesson = { title: "Irregular Verbs", words: ALL_IRREGULAR_VERBS.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
+            } else if (lang === 'zh') {
+                lastCompletedLesson = { title: "Tones & Pinyin", words: ALL_CHINESE_TONES.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             } else {
                 lastCompletedLesson = { title: "Hangul Chart", words: ALL_HANGUL_CHARS.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             }
@@ -5433,6 +5832,7 @@
                 es: 'Spanish uses one number system — tap any number to hear it, then try the quiz.',
                 ja: 'Tap any number to hear it, then try the quiz.',
                 en: 'Words that sound alike but mean different things. Tap to hear each one, then try the quiz.',
+                zh: 'Chinese groups by 10,000 (万), not 1,000. Tap any number to hear it, then try the quiz.',
                 ko: 'Korean has two number systems. Tap any number to hear it, then try the quiz.'
             };
             document.getElementById('numberChartTitle').textContent = titles[lang] || '🔢 Number Chart';
@@ -5445,7 +5845,7 @@
             if (wrap.dataset.built === lang) return;
             wrap.dataset.built = lang;
             wrap.innerHTML = '';
-            const chart = lang === 'es' ? SPANISH_NUMBER_CHART : lang === 'ja' ? JAPANESE_NUMBER_CHART : lang === 'en' ? CONFUSED_WORDS : NUMBER_CHART;
+            const chart = lang === 'es' ? SPANISH_NUMBER_CHART : lang === 'ja' ? JAPANESE_NUMBER_CHART : lang === 'en' ? CONFUSED_WORDS : lang === 'zh' ? CHINESE_NUMBER_CHART : NUMBER_CHART;
             chart.forEach(section => {
                 const sec = document.createElement('div');
                 sec.className = 'hangul-section';
@@ -5469,6 +5869,8 @@
                 lastCompletedLesson = { title: "Japanese Numbers", words: ALL_JAPANESE_NUMBERS };
             } else if (lang === 'en') {
                 lastCompletedLesson = { title: "Confused Words", words: ALL_CONFUSED_WORDS };
+            } else if (lang === 'zh') {
+                lastCompletedLesson = { title: "Chinese Numbers", words: ALL_CHINESE_NUMBERS };
             } else {
                 lastCompletedLesson = { title: "Number Chart", words: ALL_NUMBER_ITEMS };
             }
@@ -5903,12 +6305,14 @@
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'es') return STROKE_ORDER_ES;
             if (lang === 'ja') return STROKE_ORDER_JA;
+            if (lang === 'zh') return STROKE_ORDER_ZH;
             return STROKE_ORDER;
         }
         function activeAlphabetChars() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'es') return ALL_SPANISH_ALPHABET;
             if (lang === 'ja') return ALL_JAPANESE_KANA;
+            if (lang === 'zh') return CHINESE_TRACE_INFO;
             return ALL_HANGUL_CHARS;
         }
         function openDrawTrace() {
@@ -6122,7 +6526,7 @@
         let topikState = null;
         function openTopik() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            const banks = { es: DELE_QUESTIONS, ja: JLPT_QUESTIONS, en: ENGLISH_PROFICIENCY_QUESTIONS, ko: TOPIK_QUESTIONS };
+            const banks = { es: DELE_QUESTIONS, ja: JLPT_QUESTIONS, en: ENGLISH_PROFICIENCY_QUESTIONS, zh: HSK_QUESTIONS, ko: TOPIK_QUESTIONS };
             const bank = banks[lang] || TOPIK_QUESTIONS;
             topikState = { questions: shuffle(bank), index: 0, correct: 0 };
             showScreen('topik');
@@ -6651,6 +7055,39 @@
             { type: "vocab", q: "Choose the opposite of 'reluctant':", qEn: "Vocabulary — antonym matching", options: ["Eager", "Hesitant", "Unwilling", "Slow"], answer: "Eager" },
         ];
 
+        const HSK_QUESTIONS = [
+            { type: "vocab", q: "选择最合适的词：我每天早上喝（ ）。", qEn: "Choose the best word: I drink coffee every morning.", options: ["咖啡", "米饭", "书", "车"], answer: "咖啡" },
+            { type: "vocab", q: "选择「大」的反义词。", qEn: "Choose the opposite of '大' (big)", options: ["小", "多", "长", "高"], answer: "小" },
+            { type: "grammar", q: "选择正确的量词：一（ ）书", qEn: "Choose the correct measure word for 'book'.", options: ["本", "个", "张", "只"], answer: "本" },
+            { type: "grammar", q: "选择正确的词：我（ ）学生。", qEn: "Choose the correct word — 'I am a student.'", options: ["是", "在", "有", "要"], answer: "是" },
+            { type: "grammar", q: "「去」的正确过去时是？", qEn: "Choose the correct way to express past tense of '去' (to go).", options: ["去了", "去", "会去", "正在去"], answer: "去了" },
+            { type: "vocab", q: "选择最合适的词：今天天气很（ ）。", qEn: "Choose the best word for the weather.", options: ["热", "吃", "睡", "读"], answer: "热" },
+            { type: "grammar", q: "选择正确的将来时：明天我（ ）吃中国菜。", qEn: "Choose the correct future tense of 'eat'.", options: ["要", "了", "过", "着"], answer: "要" },
+            { type: "reading", q: "「我每天在图书馆看书。」这个人每天做什么？", qEn: "According to the sentence, what does the person do every day?", options: ["Reads books", "Writes books", "Sells books", "Buys books"], answer: "Reads books" },
+            { type: "vocab", q: "选择最合适的词：对不起，我（ ）了。", qEn: "Choose the best word — 'Sorry, I'm ___.'", options: ["迟到", "高兴", "忙", "累"], answer: "迟到" },
+            { type: "grammar", q: "选择正确的助词：我（ ）不知道。", qEn: "Choose the correct particle — 'I don't know either.'", options: ["也", "的", "了", "吗"], answer: "也" },
+            { type: "reading", q: "「周末我要跟朋友看电影。」这个人什么时候看电影？", qEn: "When will this person watch a movie?", options: ["Today", "Tomorrow", "This weekend", "Next month"], answer: "This weekend" },
+            { type: "vocab", q: "选择「多」的反义词。", qEn: "Choose the opposite of '多' (a lot)", options: ["少", "大", "好", "快"], answer: "少" },
+        ];
+
+        const CHINESE_CHAT_TOPICS = [
+            { k: ["你好", "ni hao", "hello", "hi "], a: "你好 (nǐ hǎo) means 'hello' — a safe, neutral greeting for anyone, any time of day. Among friends, 嗨 (hāi) or just their name works too." },
+            { k: ["再见", "zaijian", "bye", "goodbye"], a: "再见 (zàijiàn) means 'goodbye,' literally 'see you again.' Casually, 拜拜 (báibái — borrowed from English 'bye-bye') is extremely common too." },
+            { k: ["谢谢", "xiexie", "thank"], a: "谢谢 (xièxie) means 'thank you.' For extra emphasis: 非常感谢 (fēicháng gǎnxiè) — 'thank you so much.'" },
+            { k: ["对不起", "duibuqi", "sorry"], a: "对不起 (duìbuqǐ) means 'sorry' for something more serious. For a lighter 'excuse me' (like squeezing past someone), 不好意思 (bù hǎoyìsi) is more common." },
+            { k: ["ni hao ma", "你好吗", "how are you"], a: "你好吗？(nǐ hǎo ma?) means 'how are you?' A common reply: 我很好，谢谢 (wǒ hěn hǎo, xièxie) — 'I'm well, thank you.'" },
+            { k: ["mingzi", "名字", "your name"], a: "你叫什么名字？(nǐ jiào shénme míngzi?) means 'what is your name?' To answer: 我叫___ (wǒ jiào ___) — 'my name is ___.'" },
+            { k: ["tone", "tones", "声调", "pinyin"], a: "Mandarin has 4 tones plus a neutral tone — the SAME syllable can mean completely different things depending on pitch (妈 mā = mom, 马 mǎ = horse!). Tones are essential, not optional — check the Tones Chart under More to practice." },
+            { k: ["character", "characters", "汉字", "hanzi"], a: "Chinese characters (汉字, hànzì) are logographic — each one represents a meaning, not just a sound. This app uses Simplified Chinese characters (used in mainland China), paired with Pinyin romanization to help with pronunciation." },
+            { k: ["simplified", "traditional", "繁体"], a: "Simplified Chinese (简体字) is used in mainland China and Singapore; Traditional Chinese (繁體字) is used in Taiwan, Hong Kong, and Macau. This app teaches Simplified characters." },
+            { k: ["heart", "hearts", "lose"], a: "You lose a heart for each wrong answer in a lesson. Run out and the lesson ends — but hearts refill over time, or go Pro for unlimited hearts." },
+            { k: ["streak", "fire"], a: "Your streak counts consecutive days you complete at least one lesson. Miss a day and it resets — try a quick lesson daily! 加油! (jiāyóu — you can do it!)" },
+            { k: ["xp", "level", "points"], a: "XP is earned by finishing lessons and quizzes. It builds your Level on your Profile page — the more you practice, the higher you climb!" },
+            { k: ["pro", "premium", "upgrade", "subscription", "price", "cost"], a: "Hangul Pro unlocks unlimited hearts, every unit instantly, advanced speaking drills, deeper stats, and unlimited tutor chats. Check the Pro tab for pricing and plans!" },
+            { k: ["speak", "pronounce", "mic", "pronunciation"], a: "For speaking exercises, tap the mic and say the word naturally — the app compares what it hears to the target word. If your browser blocks the mic, check your site permissions." },
+            { k: ["difficult", "hard", "struggling", "stuck", "confus"], a: "没关系! (méi guānxi — it's okay!) Tones and characters both take real practice to get comfortable with. Try replaying lessons or retaking a quiz — repetition is what makes it click. 慢慢来! (mànmàn lái — take your time!)" },
+        ];
+
         /* =========================================================
            STROKE ORDER GUIDE (24 basic letters)
            ========================================================= */
@@ -6993,6 +7430,7 @@
                     es: "You are Han, a warm, encouraging Spanish-language tutor inside a learning app called Hello Hangul (currently teaching Spanish to this learner). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Spanish and English together — give the Spanish phrase, a simple pronunciation guide, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Spanish word, phrase, grammar point (including tú vs usted, subjunctive, ser vs estar), or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly.",
                     ja: "You are Han, a warm, encouraging Japanese-language tutor inside a learning app called Hello Hangul (currently teaching Japanese to this learner). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Japanese and English together — give the Japanese phrase (in hiragana/katakana, since this app focuses on kana rather than kanji), its romaji, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Japanese word, phrase, grammar point (including keigo/honorific levels, particles, verb conjugation), or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly.",
                     en: "You are Han, a warm, encouraging English-language tutor inside a learning app called Hello Hangul (currently teaching English as a second language to this learner). Explain vocabulary, idioms, phrasal verbs, and grammar clearly with simple definitions and example sentences. You can discuss ANY English word, phrase, idiom, or grammar point, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly, avoiding overly technical linguistic terminology unless asked.",
+                    zh: "You are Han, a warm, encouraging Mandarin Chinese tutor inside a learning app called Hello Hangul (currently teaching Chinese to this learner). You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Chinese and English together — give the Simplified Chinese characters, Pinyin with tone marks, and an English translation whenever relevant, so the learner sees all three. Pay special attention to tones when explaining pronunciation, since tone changes meaning entirely (e.g. mā vs mǎ). You can discuss ANY Chinese word, phrase, grammar point (including 把/被 constructions, measure words, chengyu idioms), or cultural topic, not just app mechanics. Keep answers short (2-5 sentences), warm, and beginner-friendly.",
                     ko: "You are Han, a warm, encouraging Korean-language tutor inside a learning app called Hello Hangul. You are multilingual and can understand and respond in any language the learner uses, but you mainly converse in Korean and English together — give the Korean phrase, its romanization, and an English translation whenever relevant, so the learner sees all three. You can discuss ANY Korean word, phrase, grammar point, or cultural topic, not just app mechanics. When asked about a number, remember Korean has two number systems (Sino-Korean, used for money/dates/phone numbers/math, and Native Korean, used for counting objects/age, which only goes up to 99) — explain both systems for that number when the learner doesn't specify one. Keep answers short (2-5 sentences), warm, and beginner-friendly."
                 };
                 const systemPrompt = systemPrompts[activeLang] || systemPrompts.ko;
@@ -7075,6 +7513,21 @@
                     const found = ALL_JAPANESE_NUMBERS.find(n => n.en === numStr);
                     if (found) return `${found.kr} (${found.rom}) is how you say that number in Japanese. Tap it in the Number Chart (under More) to hear it!`;
                 }
+            } else if (lang === 'zh') {
+                const trimmedZh = text.trim();
+                const spelledMatch = ALL_CHINESE_NUMBERS.find(n => n.kr === trimmedZh)
+                    || [...ALL_CHINESE_NUMBERS].sort((a, b) => b.kr.length - a.kr.length).find(n => text.includes(n.kr));
+                if (spelledMatch) {
+                    return `${spelledMatch.kr} (${spelledMatch.rom}) is how you say that number in Chinese. Tap it in the Number Chart (under More) to hear it!`;
+                }
+                const digitMatch = lower.match(/\b(\d{1,7})\b/);
+                if (digitMatch) {
+                    let numStr = String(parseInt(digitMatch[1], 10));
+                    if (numStr === '1000') numStr = '1,000';
+                    if (numStr === '10000') numStr = '10,000';
+                    const found = ALL_CHINESE_NUMBERS.find(n => n.en === numStr);
+                    if (found) return `${found.kr} (${found.rom}) is how you say that number in Chinese. Tap it in the Number Chart (under More) to hear it!`;
+                }
             }
 
             const hit = activeChatTopics().find(t => t.k.some(k => lower.includes(k)));
@@ -7085,12 +7538,14 @@
                 if (lang === 'es') return `${word.kr} (${word.rom}) means "${word.en}" in English. ¡Buena pregunta! (Good question!) Try using it in a quiz to lock it in.`;
                 if (lang === 'ja') return `${word.kr} (${word.rom}) means "${word.en}" in English. いい質問ですね! (ii shitsumon desu ne — great question!) Try using it in a quiz to lock it in.`;
                 if (lang === 'en') return `"${word.kr}" (pronounced ${word.rom}) means: ${word.en}. Good question! Try using it in a quiz to lock it in.`;
+                if (lang === 'zh') return `${word.kr} (${word.rom}) means "${word.en}" in English. 好问题! (hǎo wèntí — good question!) Try using it in a quiz to lock it in.`;
                 return `${word.kr} (${word.rom}) means "${word.en}" in English. 좋은 질문이에요! (jo-eun jilmunieyo — great question!) Try using it in the K-Drama tab or a quiz to lock it in.`;
             }
 
             if (lang === 'es') return "¡Todavía no sé eso! (I don't know that one yet!) Try asking about a specific word from your lessons — Spanish or English both work (e.g. \"what does gracias mean\" or \"how do I say goodbye\"). I can also explain grammar like tú vs usted, or how streaks, hearts, and XP work.";
             if (lang === 'ja') return "それはまだ分かりません! (sore wa mada wakarimasen — I don't know that one yet!) Try asking about a specific word from your lessons — Japanese or English both work (e.g. \"what does arigatou mean\" or \"how do I say goodbye\"). I can also explain keigo levels, hiragana, or how streaks, hearts, and XP work.";
             if (lang === 'en') return "I don't know that one yet! Try asking about a specific word from your lessons (e.g. \"what does meticulous mean\" or \"what's an idiom\"). I can also explain phrasal verbs, formal vs. casual register, or how streaks, hearts, and XP work.";
+            if (lang === 'zh') return "我还不知道那个! (wǒ hái bù zhīdào nàge — I don't know that one yet!) Try asking about a specific word from your lessons — Chinese or English both work (e.g. \"what does xiexie mean\" or \"how do I say goodbye\"). I can also explain tones, characters, or how streaks, hearts, and XP work.";
             return "그건 아직 몰라요 (I don't know that one yet)! Try asking about a specific word from your lessons — Korean or English both work (e.g. \"what does 감사합니다 mean\" or \"how do I say goodbye\"). I can also explain grammar endings like -요, or how streaks, hearts, and XP work.";
         }
         function botSayTyping() {
@@ -7152,6 +7607,7 @@
                 es: "¡Hola! I'm Han — let's warm up first, then I'll quiz you in Spanish.",
                 ja: "こんにちは! I'm Han — let's warm up first, then I'll quiz you in Japanese.",
                 en: "Hi! I'm Han — let's warm up first, then I'll quiz you on vocabulary and idioms.",
+                zh: "你好! I'm Han — let's warm up first, then I'll quiz you in Chinese.",
                 ko: "Hi! I'm Han — let's warm up first, then I'll quiz you."
             };
             document.getElementById('videocallCaption').textContent = greetings[lang] || greetings.ko;
@@ -7208,7 +7664,8 @@
                         const linesEs = ["¡Muy bien! Nice work! 😊", "That's it! You're on a roll!", "¡Correcto! Correct!", "¡Excelente! Keep going!"];
                         const linesJa = ["よくできました! Nice work! 😊", "That's it! You're on a roll!", "正解! Correct!", "すごい! Keep going!"];
                         const linesEn = ["Nice work! 😊", "That's it! You're on a roll!", "Exactly right!", "Great job — keep going!"];
-                        const linesMap = { es: linesEs, ja: linesJa, en: linesEn, ko: linesKo };
+                        const linesZh = ["很好! Nice work! 😊", "That's it! You're on a roll!", "对了! Correct!", "太棒了! Keep going!"];
+                        const linesMap = { es: linesEs, ja: linesJa, en: linesEn, zh: linesZh, ko: linesKo };
                         const lines = linesMap[lang] || linesKo;
                         document.getElementById('videocallCaption').textContent = lines[Math.floor(Math.random() * lines.length)];
                     } else {
@@ -7399,72 +7856,71 @@
            LANGUAGE TO LEARN (which language the lessons teach)
            ========================================================= */
         const LANGUAGES_TO_LEARN = [
-            { code: 'ko', name: 'Korean', flag: '🇰🇷', available: true },
-            { code: 'ja', name: 'Japanese', flag: '🇯🇵', available: true },
-            { code: 'zh', name: 'Chinese (Mandarin)', flag: '🇨🇳', available: false },
+            { code: 'af', name: 'Afrikaans', flag: '🇿🇦', available: false },
+            { code: 'am', name: 'Amharic', flag: '🇪🇹', available: false },
+            { code: 'ar', name: 'Arabic', flag: '🇸🇦', available: false },
+            { code: 'eu', name: 'Basque', flag: '🏴', available: false },
+            { code: 'bn', name: 'Bengali', flag: '🇧🇩', available: false },
+            { code: 'bg', name: 'Bulgarian', flag: '🇧🇬', available: false },
+            { code: 'my', name: 'Burmese', flag: '🇲🇲', available: false },
             { code: 'yue', name: 'Cantonese', flag: '🇭🇰', available: false },
-            { code: 'es', name: 'Spanish', flag: '🇪🇸', available: true },
+            { code: 'ca', name: 'Catalan', flag: '🏴', available: false },
+            { code: 'zh', name: 'Chinese (Mandarin)', flag: '🇨🇳', available: true },
+            { code: 'hr', name: 'Croatian', flag: '🇭🇷', available: false },
+            { code: 'cs', name: 'Czech', flag: '🇨🇿', available: false },
+            { code: 'da', name: 'Danish', flag: '🇩🇰', available: false },
+            { code: 'nl', name: 'Dutch', flag: '🇳🇱', available: false },
+            { code: 'en', name: 'English', flag: '🇬🇧', available: true },
+            { code: 'eo', name: 'Esperanto', flag: '🌐', available: false },
+            { code: 'tl', name: 'Filipino (Tagalog)', flag: '🇵🇭', available: false },
+            { code: 'fi', name: 'Finnish', flag: '🇫🇮', available: false },
             { code: 'fr', name: 'French', flag: '🇫🇷', available: false },
             { code: 'de', name: 'German', flag: '🇩🇪', available: false },
-            { code: 'it', name: 'Italian', flag: '🇮🇹', available: false },
-            { code: 'pt', name: 'Portuguese', flag: '🇵🇹', available: false },
-            { code: 'ru', name: 'Russian', flag: '🇷🇺', available: false },
-            { code: 'ar', name: 'Arabic', flag: '🇸🇦', available: false },
+            { code: 'el', name: 'Greek', flag: '🇬🇷', available: false },
+            { code: 'gu', name: 'Gujarati', flag: '🇮🇳', available: false },
+            { code: 'haw', name: 'Hawaiian', flag: '🌺', available: false },
+            { code: 'he', name: 'Hebrew', flag: '🇮🇱', available: false },
+            { code: 'val', name: 'High Valyrian', flag: '🐉', available: false },
             { code: 'hi', name: 'Hindi', flag: '🇮🇳', available: false },
-            { code: 'ur', name: 'Urdu', flag: '🇵🇰', available: false },
-            { code: 'bn', name: 'Bengali', flag: '🇧🇩', available: false },
+            { code: 'hu', name: 'Hungarian', flag: '🇭🇺', available: false },
+            { code: 'is', name: 'Icelandic', flag: '🇮🇸', available: false },
+            { code: 'id', name: 'Indonesian', flag: '🇮🇩', available: false },
+            { code: 'ga', name: 'Irish (Gaelic)', flag: '🇮🇪', available: false },
+            { code: 'it', name: 'Italian', flag: '🇮🇹', available: false },
+            { code: 'ja', name: 'Japanese', flag: '🇯🇵', available: true },
+            { code: 'km', name: 'Khmer', flag: '🇰🇭', available: false },
+            { code: 'tlh', name: 'Klingon', flag: '🖖', available: false },
+            { code: 'ko', name: 'Korean', flag: '🇰🇷', available: true },
+            { code: 'lo', name: 'Lao', flag: '🇱🇦', available: false },
+            { code: 'la', name: 'Latin', flag: '🏛️', available: false },
+            { code: 'ms', name: 'Malay', flag: '🇲🇾', available: false },
+            { code: 'mr', name: 'Marathi', flag: '🇮🇳', available: false },
+            { code: 'mn', name: 'Mongolian', flag: '🇲🇳', available: false },
+            { code: 'nv', name: 'Navajo', flag: '🪶', available: false },
+            { code: 'ne', name: 'Nepali', flag: '🇳🇵', available: false },
+            { code: 'no', name: 'Norwegian', flag: '🇳🇴', available: false },
+            { code: 'fa', name: 'Persian (Farsi)', flag: '🇮🇷', available: false },
+            { code: 'pl', name: 'Polish', flag: '🇵🇱', available: false },
+            { code: 'pt', name: 'Portuguese', flag: '🇵🇹', available: false },
             { code: 'pa', name: 'Punjabi', flag: '🇮🇳', available: false },
+            { code: 'ro', name: 'Romanian', flag: '🇷🇴', available: false },
+            { code: 'ru', name: 'Russian', flag: '🇷🇺', available: false },
+            { code: 'gd', name: 'Scottish Gaelic', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', available: false },
+            { code: 'sr', name: 'Serbian', flag: '🇷🇸', available: false },
+            { code: 'si', name: 'Sinhala', flag: '🇱🇰', available: false },
+            { code: 'sk', name: 'Slovak', flag: '🇸🇰', available: false },
+            { code: 'es', name: 'Spanish', flag: '🇪🇸', available: true },
+            { code: 'sw', name: 'Swahili', flag: '🇰🇪', available: false },
+            { code: 'sv', name: 'Swedish', flag: '🇸🇪', available: false },
             { code: 'ta', name: 'Tamil', flag: '🇮🇳', available: false },
             { code: 'te', name: 'Telugu', flag: '🇮🇳', available: false },
-            { code: 'mr', name: 'Marathi', flag: '🇮🇳', available: false },
-            { code: 'gu', name: 'Gujarati', flag: '🇮🇳', available: false },
-            { code: 'ne', name: 'Nepali', flag: '🇳🇵', available: false },
-            { code: 'si', name: 'Sinhala', flag: '🇱🇰', available: false },
-            { code: 'vi', name: 'Vietnamese', flag: '🇻🇳', available: false },
             { code: 'th', name: 'Thai', flag: '🇹🇭', available: false },
-            { code: 'my', name: 'Burmese', flag: '🇲🇲', available: false },
-            { code: 'km', name: 'Khmer', flag: '🇰🇭', available: false },
-            { code: 'lo', name: 'Lao', flag: '🇱🇦', available: false },
-            { code: 'id', name: 'Indonesian', flag: '🇮🇩', available: false },
-            { code: 'ms', name: 'Malay', flag: '🇲🇾', available: false },
-            { code: 'tl', name: 'Filipino (Tagalog)', flag: '🇵🇭', available: false },
-            { code: 'mn', name: 'Mongolian', flag: '🇲🇳', available: false },
             { code: 'tr', name: 'Turkish', flag: '🇹🇷', available: false },
-            { code: 'fa', name: 'Persian (Farsi)', flag: '🇮🇷', available: false },
-            { code: 'he', name: 'Hebrew', flag: '🇮🇱', available: false },
-            { code: 'sw', name: 'Swahili', flag: '🇰🇪', available: false },
-            { code: 'am', name: 'Amharic', flag: '🇪🇹', available: false },
-            { code: 'zu', name: 'Zulu', flag: '🇿🇦', available: false },
-            { code: 'af', name: 'Afrikaans', flag: '🇿🇦', available: false },
-            { code: 'nl', name: 'Dutch', flag: '🇳🇱', available: false },
-            { code: 'sv', name: 'Swedish', flag: '🇸🇪', available: false },
-            { code: 'no', name: 'Norwegian', flag: '🇳🇴', available: false },
-            { code: 'da', name: 'Danish', flag: '🇩🇰', available: false },
-            { code: 'fi', name: 'Finnish', flag: '🇫🇮', available: false },
-            { code: 'is', name: 'Icelandic', flag: '🇮🇸', available: false },
-            { code: 'pl', name: 'Polish', flag: '🇵🇱', available: false },
-            { code: 'cs', name: 'Czech', flag: '🇨🇿', available: false },
-            { code: 'sk', name: 'Slovak', flag: '🇸🇰', available: false },
-            { code: 'hu', name: 'Hungarian', flag: '🇭🇺', available: false },
-            { code: 'ro', name: 'Romanian', flag: '🇷🇴', available: false },
-            { code: 'bg', name: 'Bulgarian', flag: '🇧🇬', available: false },
-            { code: 'sr', name: 'Serbian', flag: '🇷🇸', available: false },
-            { code: 'hr', name: 'Croatian', flag: '🇭🇷', available: false },
             { code: 'uk', name: 'Ukrainian', flag: '🇺🇦', available: false },
-            { code: 'el', name: 'Greek', flag: '🇬🇷', available: false },
-            { code: 'ga', name: 'Irish (Gaelic)', flag: '🇮🇪', available: false },
+            { code: 'ur', name: 'Urdu', flag: '🇵🇰', available: false },
+            { code: 'vi', name: 'Vietnamese', flag: '🇻🇳', available: false },
             { code: 'cy', name: 'Welsh', flag: '🏴', available: false },
-            { code: 'ca', name: 'Catalan', flag: '🏴', available: false },
-            { code: 'eu', name: 'Basque', flag: '🏴', available: false },
-            { code: 'eo', name: 'Esperanto', flag: '🌐', available: false },
-            { code: 'la', name: 'Latin', flag: '🏛️', available: false },
-            { code: 'en', name: 'English', flag: '🇬🇧', available: true },
-            { code: 'hu', name: 'Hungarian', flag: '🇭🇺', available: false },
-            { code: 'haw', name: 'Hawaiian', flag: '🌺', available: false },
-            { code: 'nv', name: 'Navajo', flag: '🪶', available: false },
-            { code: 'tlh', name: 'Klingon', flag: '🖖', available: false },
-            { code: 'val', name: 'High Valyrian', flag: '🐉', available: false },
-            { code: 'gd', name: 'Scottish Gaelic', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', available: false },
+            { code: 'zu', name: 'Zulu', flag: '🇿🇦', available: false },
         ];
 
         function openLanguagePicker() {
