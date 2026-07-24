@@ -6307,23 +6307,21 @@
 
             // Grammar & Particles isn't built for English or Chinese — hide it for both.
             // Draw & Trace isn't built for English (not needed, same script) but Chinese,
-            // Afrikaans, and Arabic all have real stroke-order/letter-form content.
-            // Amharic stays limited to lessons + a Number Chart — see note below.
+            // Afrikaans, Arabic, and Amharic all have real stroke-order/letter-form content.
+            // Amharic still lacks verb conjugation and a proficiency quiz — see note below.
             const isEnglish = lang === 'en';
             const isChinese = lang === 'zh';
             const amharicOnly = lang === 'am';
             const grammarCardEl = document.getElementById('grammarCard');
             if (grammarCardEl) grammarCardEl.classList.toggle('lang-hidden', isEnglish || isChinese || amharicOnly);
             const drawTraceCardEl = document.getElementById('drawTraceCard');
-            if (drawTraceCardEl) drawTraceCardEl.classList.toggle('lang-hidden', isEnglish || amharicOnly);
+            if (drawTraceCardEl) drawTraceCardEl.classList.toggle('lang-hidden', isEnglish);
             const topikCardEl = document.getElementById('topikCard');
             if (topikCardEl) topikCardEl.classList.toggle('lang-hidden', amharicOnly);
-            const hangulChartCardEl = document.getElementById('hangulChartCard');
-            if (hangulChartCardEl) hangulChartCardEl.classList.toggle('lang-hidden', amharicOnly);
             const moreEmptyNote = document.getElementById('moreEmptyNote');
             if (moreEmptyNote) {
                 moreEmptyNote.style.display = amharicOnly ? 'block' : 'none';
-                if (amharicOnly) moreEmptyNote.textContent = "All 52 lessons are built for Amharic. The Number Chart is available below, but Alphabet chart, tracing, verb conjugation, and a proficiency quiz aren't built yet — the Ge'ez script deserves more care than a rushed attempt. Check the Tutor tab to ask Han anything!";
+                if (amharicOnly) moreEmptyNote.textContent = "All 52 lessons, the Number Chart, the core Alphabet Chart, and Draw & Trace are built for Amharic. Verb Conjugation and a proficiency quiz aren't — those require asserting specific 'correct' grammar forms, and I'd rather leave them out than risk teaching something wrong. Check the Tutor tab to ask Han anything!";
             }
 
             document.querySelectorAll('.en-only').forEach(el => {
@@ -6349,7 +6347,10 @@
                 es: ['Spanish Alphabet', 'All 27 letters + a quick quiz'],
                 ja: ['Hiragana Chart', 'All 46 characters + a quick quiz'],
                 en: ['Irregular Verbs', '24 common verbs + a quick quiz'],
-                zh: ['Tones & Pinyin Chart', 'The 4 tones + common finals']
+                zh: ['Tones & Pinyin Chart', 'The 4 tones + common finals'],
+                af: ['Afrikaans Alphabet', '26 letters + 6 diacritics + a quick quiz'],
+                ar: ['Arabic Alphabet', 'All 28 letters + a quick quiz'],
+                am: ['Amharic Core Characters', '20 core Ge\'ez characters + a quick quiz']
             };
             const alphabetTitle = document.getElementById('alphabetCardTitle');
             if (alphabetTitle) {
@@ -6609,13 +6610,22 @@
             window.speechSynthesis.speak(utter);
         }
         const LANG_TTS_CODE = { ko: 'ko-KR', es: 'es-ES', ja: 'ja-JP', en: 'en-US', zh: 'zh-CN', af: 'af-ZA', ar: 'ar-SA', am: 'am-ET' };
+        let ttsUnavailableNoticeShown = {};
         function speakLearning(text) {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
             if (lang === 'ko') { speakKorean(text); return; }
             if (!('speechSynthesis' in window)) return;
+            const targetLangCode = LANG_TTS_CODE[lang] || 'en-US';
+            const prefix = targetLangCode.split('-')[0];
+            const voices = window.speechSynthesis.getVoices();
+            const hasVoice = voices.length === 0 || voices.some(v => v.lang && v.lang.toLowerCase().startsWith(prefix));
+            if (!hasVoice && !ttsUnavailableNoticeShown[lang]) {
+                ttsUnavailableNoticeShown[lang] = true;
+                alert("Your device/browser doesn't have a " + activeLangLabel() + " voice for text-to-speech — this is common for less widely-supported languages. The written pronunciation guide is still accurate, just no audio for now.");
+            }
             window.speechSynthesis.cancel();
             const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = LANG_TTS_CODE[lang] || 'en-US';
+            utter.lang = targetLangCode;
             utter.rate = 0.9;
             window.speechSynthesis.speak(utter);
         }
@@ -6917,7 +6927,7 @@
         function openHangulChart() {
             showScreen('hangul');
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            const titles = { es: '🔤 Spanish Alphabet', ja: '🔤 Hiragana Chart', en: '🔤 Irregular Verbs', zh: '🔤 Tones & Pinyin Chart', af: '🔤 Afrikaans Alphabet', ar: '🔤 Arabic Alphabet', ko: '🔤 Hangul Chart' };
+            const titles = { es: '🔤 Spanish Alphabet', ja: '🔤 Hiragana Chart', en: '🔤 Irregular Verbs', zh: '🔤 Tones & Pinyin Chart', af: '🔤 Afrikaans Alphabet', ar: '🔤 Arabic Alphabet', am: '🔤 Amharic Core Characters', ko: '🔤 Hangul Chart' };
             const subs = {
                 es: 'Tap any letter to hear it. Learn all 27 letters and try the quiz below.',
                 ja: 'Tap any character to hear it. Learn all 46 basic hiragana and try the quiz below.',
@@ -6925,6 +6935,7 @@
                 zh: 'Mandarin uses 4 tones — the same syllable can mean different things! Tap to hear each one, then try the quiz.',
                 af: 'Tap any letter to hear it, including the special diacritic letters (é, ê, ë, î, ô, û).',
                 ar: 'Arabic is written right to left. Tap any letter to hear it, then try the quiz below.',
+                am: '20 of the most common Ge\'ez characters (base forms) — not the full syllabary, which has 200+ combinations. Tap any to hear it.',
                 ko: 'Tap any letter to hear it. Learn all 40 and try the quiz below.'
             };
             document.getElementById('alphabetChartTitle').textContent = titles[lang] || titles.ko;
@@ -6937,7 +6948,7 @@
             if (wrap.dataset.built === lang) return;
             wrap.dataset.built = lang;
             wrap.innerHTML = '';
-            const chart = lang === 'es' ? SPANISH_ALPHABET : lang === 'ja' ? JAPANESE_KANA : lang === 'en' ? IRREGULAR_VERBS : lang === 'zh' ? CHINESE_TONES : lang === 'af' ? AFRIKAANS_ALPHABET : lang === 'ar' ? ARABIC_ALPHABET : HANGUL_CHART;
+            const chart = lang === 'es' ? SPANISH_ALPHABET : lang === 'ja' ? JAPANESE_KANA : lang === 'en' ? IRREGULAR_VERBS : lang === 'zh' ? CHINESE_TONES : lang === 'af' ? AFRIKAANS_ALPHABET : lang === 'ar' ? ARABIC_ALPHABET : lang === 'am' ? AMHARIC_ALPHABET : HANGUL_CHART;
             chart.forEach(section => {
                 const sec = document.createElement('div');
                 sec.className = 'hangul-section';
@@ -6967,6 +6978,8 @@
                 lastCompletedLesson = { title: "Afrikaans Alphabet", words: ALL_AFRIKAANS_ALPHABET.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             } else if (lang === 'ar') {
                 lastCompletedLesson = { title: "Arabic Alphabet", words: ALL_ARABIC_ALPHABET.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
+            } else if (lang === 'am') {
+                lastCompletedLesson = { title: "Amharic Core Characters", words: ALL_AMHARIC_ALPHABET.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             } else {
                 lastCompletedLesson = { title: "Hangul Chart", words: ALL_HANGUL_CHARS.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             }
@@ -7467,6 +7480,7 @@
             if (lang === 'zh') return STROKE_ORDER_ZH;
             if (lang === 'af') return STROKE_ORDER_AF;
             if (lang === 'ar') return STROKE_ORDER_AR;
+            if (lang === 'am') return STROKE_ORDER_AM;
             return STROKE_ORDER;
         }
         function activeAlphabetChars() {
@@ -7476,6 +7490,7 @@
             if (lang === 'zh') return CHINESE_TRACE_INFO;
             if (lang === 'af') return ALL_AFRIKAANS_ALPHABET;
             if (lang === 'ar') return ALL_ARABIC_ALPHABET;
+            if (lang === 'am') return ALL_AMHARIC_ALPHABET;
             return ALL_HANGUL_CHARS;
         }
         function openDrawTrace() {
@@ -8261,6 +8276,42 @@
 
         /* Amharic — Number Chart only, same conservative scope as the lessons.
            Sticking to well-documented core numbers rather than extending further. */
+        const AMHARIC_ALPHABET = [
+            {
+                title: "Core Characters (ሀ–ተ)", chars: [
+                    { ch: "ሀ", rom: "ha", sample: "ሀ", hint: "base form of the h-sound" }, { ch: "ለ", rom: "le", sample: "ለ", hint: "base form of the l-sound" },
+                    { ch: "መ", rom: "me", sample: "መ", hint: "base form of the m-sound" }, { ch: "ረ", rom: "re", sample: "ረ", hint: "base form of the r-sound" },
+                    { ch: "ሰ", rom: "se", sample: "ሰ", hint: "base form of the s-sound" }, { ch: "ሸ", rom: "she", sample: "ሸ", hint: "base form of the sh-sound" },
+                    { ch: "ቀ", rom: "qe", sample: "ቀ", hint: "deep k-sound, from the throat" }, { ch: "በ", rom: "be", sample: "በ", hint: "base form of the b-sound" },
+                    { ch: "ተ", rom: "te", sample: "ተ", hint: "base form of the t-sound" }]
+            },
+            {
+                title: "Core Characters (ቸ–ገ)", chars: [
+                    { ch: "ቸ", rom: "che", sample: "ቸ", hint: "base form of the ch-sound" }, { ch: "ነ", rom: "ne", sample: "ነ", hint: "base form of the n-sound" },
+                    { ch: "ኘ", rom: "gne", sample: "ኘ", hint: "like 'ny' in canyon" }, { ch: "አ", rom: "a", sample: "አ", hint: "a glottal 'a' sound" },
+                    { ch: "ከ", rom: "ke", sample: "ከ", hint: "base form of the k-sound" }, { ch: "ወ", rom: "we", sample: "ወ", hint: "base form of the w-sound" },
+                    { ch: "ዘ", rom: "ze", sample: "ዘ", hint: "base form of the z-sound" }, { ch: "የ", rom: "ye", sample: "የ", hint: "base form of the y-sound" },
+                    { ch: "ገ", rom: "ge", sample: "ገ", hint: "base form of the g-sound" }]
+            },
+            {
+                title: "Core Characters (ደ–ፈ)", chars: [
+                    { ch: "ደ", rom: "de", sample: "ደ", hint: "base form of the d-sound" }, { ch: "ፈ", rom: "fe", sample: "ፈ", hint: "base form of the f-sound" }]
+            },
+        ];
+        const ALL_AMHARIC_ALPHABET = AMHARIC_ALPHABET.flatMap(s => s.chars);
+
+        const STROKE_ORDER_AM = [
+            { ch: "ሀ", strokes: ["Start with a tall vertical stem on the left.", "Add a horizontal connecting stroke.", "Finish with a shorter vertical stem on the right — most Ge'ez characters follow this stem-plus-connector pattern."] },
+            { ch: "ለ", strokes: ["Draw a rounded vertical form with a small loop at the base.", "This looped-base shape is common across many Ge'ez consonants."] },
+            { ch: "መ", strokes: ["Draw two connected loop shapes side by side along a shared baseline."] },
+            { ch: "ሰ", strokes: ["Draw a vertical stem with a small hook or loop near the top.", "Small variations in the hook shape distinguish related letters."] },
+            { ch: "በ", strokes: ["Draw a rounded bowl shape, open at the top.", "Add a small stem or tail extending from the base."] },
+            { ch: "ተ", strokes: ["Draw a vertical stem.", "Add a horizontal stroke crossing near the top, similar in feel to a 't'."] },
+            { ch: "ነ", strokes: ["Draw a curved stem with a small loop or hook at the base."] },
+            { ch: "ገ", strokes: ["Draw a rounded main body.", "Add a short tail or stem extending down and to the side."] },
+        ];
+
+
         const AMHARIC_NUMBER_CHART = [
             {
                 title: "Numbers 0–10", note: "The building blocks — every other number is formed from these.", chars: [
