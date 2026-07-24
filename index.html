@@ -5579,6 +5579,132 @@
         ];
         const ALL_CHINESE_NUMBERS = CHINESE_NUMBER_CHART.flatMap(s => s.chars.map(c => ({ kr: c.ch, en: c.en, rom: c.rom })));
 
+        const AFRIKAANS_ALPHABET = [
+            {
+                title: "Alphabet (A–M)", chars: [
+                    { ch: "a", rom: "ah", sample: "aap", hint: "as in aap (monkey)" }, { ch: "b", rom: "beh", sample: "boom", hint: "as in boom (tree)" },
+                    { ch: "c", rom: "seh", sample: "c", hint: "rare, mostly in loanwords" }, { ch: "d", rom: "deh", sample: "dag", hint: "as in dag (day)" },
+                    { ch: "e", rom: "eh", sample: "ek", hint: "as in ek (I)" }, { ch: "f", rom: "ef", sample: "fiets", hint: "as in fiets (bicycle)" },
+                    { ch: "g", rom: "kheh", sample: "gaan", hint: "guttural, as in gaan (go)" }, { ch: "h", rom: "hah", sample: "huis", hint: "as in huis (house)" },
+                    { ch: "i", rom: "ee", sample: "in", hint: "as in in (in)" }, { ch: "j", rom: "yay", sample: "jonk", hint: "as in jonk (young)" },
+                    { ch: "k", rom: "kah", sample: "kat", hint: "as in kat (cat)" }, { ch: "l", rom: "el", sample: "lig", hint: "as in lig (light)" },
+                    { ch: "m", rom: "em", sample: "man", hint: "as in man (man)" }]
+            },
+            {
+                title: "Alphabet (N–Z)", chars: [
+                    { ch: "n", rom: "en", sample: "nou", hint: "as in nou (now)" }, { ch: "o", rom: "oh", sample: "op", hint: "as in op (on)" },
+                    { ch: "p", rom: "peh", sample: "pen", hint: "as in pen (pen)" }, { ch: "q", rom: "kew", sample: "q", hint: "rare, mostly loanwords" },
+                    { ch: "r", rom: "er", sample: "rooi", hint: "rolled r, as in rooi (red)" }, { ch: "s", rom: "es", sample: "son", hint: "as in son (sun)" },
+                    { ch: "t", rom: "teh", sample: "tafel", hint: "as in tafel (table)" }, { ch: "u", rom: "ew", sample: "uur", hint: "as in uur (hour)" },
+                    { ch: "v", rom: "fee", sample: "vis", hint: "pronounced like 'f' — as in vis (fish)" }, { ch: "w", rom: "vee", sample: "water", hint: "pronounced like 'v' — as in water" },
+                    { ch: "x", rom: "eks", sample: "x", hint: "rare, mostly loanwords" }, { ch: "y", rom: "eye", sample: "jy", hint: "as in jy (you)" },
+                    { ch: "z", rom: "zed", sample: "z", hint: "rare, mostly loanwords" }]
+            },
+            {
+                title: "Diacritic Letters", chars: [
+                    { ch: "é", rom: "eh (stressed)", sample: "wéét", hint: "marks stress — as in wéét (definitely know)" }, { ch: "ê", rom: "eh (open)", sample: "wêreld", hint: "as in wêreld (world)" },
+                    { ch: "ë", rom: "eh (separate syllable)", sample: "reën", hint: "shows a vowel is pronounced separately — as in reën (rain)" }, { ch: "î", rom: "ee (long)", sample: "wîe", hint: "as in wîe (wedges)" },
+                    { ch: "ô", rom: "oh (long)", sample: "môre", hint: "as in môre (tomorrow)" }, { ch: "û", rom: "eu (long)", sample: "brûe", hint: "as in brûe (bridges)" }]
+            },
+        ];
+        const ALL_AFRIKAANS_ALPHABET = AFRIKAANS_ALPHABET.flatMap(s => s.chars);
+
+        const AFRIKAANS_NUMBER_CHART = [
+            {
+                title: "Numbers 0–10", note: "The building blocks — every other number is formed from these.", chars: [
+                    { ch: "nul", rom: "0 · nul", en: "0" }, { ch: "een", rom: "1 · een", en: "1" }, { ch: "twee", rom: "2 · twee", en: "2" },
+                    { ch: "drie", rom: "3 · dree", en: "3" }, { ch: "vier", rom: "4 · feer", en: "4" }, { ch: "vyf", rom: "5 · fayf", en: "5" },
+                    { ch: "ses", rom: "6 · ses", en: "6" }, { ch: "sewe", rom: "7 · SEH-vuh", en: "7" }, { ch: "agt", rom: "8 · akht", en: "8" },
+                    { ch: "nege", rom: "9 · NEH-khuh", en: "9" }, { ch: "tien", rom: "10 · teen", en: "10" }]
+            },
+            {
+                title: "Tens", note: "Formed with -tig. Example: twintig = 20.", chars: [
+                    { ch: "twintig", rom: "20 · TVIN-tikh", en: "20" }, { ch: "dertig", rom: "30 · DER-tikh", en: "30" }, { ch: "veertig", rom: "40 · FEER-tikh", en: "40" },
+                    { ch: "vyftig", rom: "50 · FAYF-tikh", en: "50" }, { ch: "sestig", rom: "60 · SES-tikh", en: "60" }, { ch: "sewentig", rom: "70 · SEH-ven-tikh", en: "70" },
+                    { ch: "tagtig", rom: "80 · TUKH-tikh", en: "80" }, { ch: "negentig", rom: "90 · NEH-khen-tikh", en: "90" }]
+            },
+            {
+                title: "Big Units", note: "Everything above 100 is built from these + 0-99.", chars: [
+                    { ch: "honderd", rom: "100 · HON-dert", en: "100" }, { ch: "duisend", rom: "1,000 · DOY-sent", en: "1,000" }, { ch: "miljoen", rom: "1,000,000 · mil-YOON", en: "1,000,000" }]
+            },
+        ];
+        const ALL_AFRIKAANS_NUMBERS = AFRIKAANS_NUMBER_CHART.flatMap(s => s.chars.map(c => ({ kr: c.ch, en: c.en, rom: c.rom })));
+
+        const STROKE_ORDER_AF = [
+            { ch: "é", strokes: ["Write a lowercase e.", "Add an acute accent (´) above it — marks stress, not a new sound."] },
+            { ch: "ê", strokes: ["Write a lowercase e.", "Add a circumflex (ˆ) above it — an open 'eh' sound, as in wêreld."] },
+            { ch: "ë", strokes: ["Write a lowercase e.", "Add a diaeresis (¨) above it — signals this vowel starts a new syllable rather than blending with the one before it."] },
+            { ch: "î", strokes: ["Write a lowercase i.", "Add a circumflex (ˆ) above the dot — a long 'ee' sound."] },
+            { ch: "ô", strokes: ["Write a lowercase o.", "Add a circumflex (ˆ) above it — a long, rounded 'oh' sound."] },
+            { ch: "û", strokes: ["Write a lowercase u.", "Add a circumflex (ˆ) above it — a long 'eu' sound, no direct English equivalent."] },
+        ];
+
+        const ARABIC_ALPHABET = [
+            {
+                title: "Letters (ا–ح)", chars: [
+                    { ch: "ا", rom: "alif", sample: "ا", hint: "silent carrier / long 'aa' sound" }, { ch: "ب", rom: "baa", sample: "باب", hint: "like 'b' — as in باب (door)" },
+                    { ch: "ت", rom: "taa", sample: "تفاح", hint: "like 't' — as in تفاح (apple)" }, { ch: "ث", rom: "thaa", sample: "ث", hint: "like 'th' in 'think'" },
+                    { ch: "ج", rom: "jeem", sample: "جميل", hint: "like 'j' — as in جميل (beautiful)" }, { ch: "ح", rom: "haa", sample: "ح", hint: "breathy h, from deep in the throat" },
+                    { ch: "خ", rom: "khaa", sample: "خ", hint: "like Scottish 'loch'" }]
+            },
+            {
+                title: "Letters (د–ص)", chars: [
+                    { ch: "د", rom: "daal", sample: "دار", hint: "like 'd' — as in دار (house)" }, { ch: "ذ", rom: "dhaal", sample: "ذ", hint: "like 'th' in 'this'" },
+                    { ch: "ر", rom: "raa", sample: "ر", hint: "rolled 'r'" }, { ch: "ز", rom: "zaay", sample: "زهرة", hint: "like 'z' — as in زهرة (flower)" },
+                    { ch: "س", rom: "seen", sample: "سلام", hint: "like 's' — as in سلام (peace)" }, { ch: "ش", rom: "sheen", sample: "شمس", hint: "like 'sh' — as in شمس (sun)" },
+                    { ch: "ص", rom: "saad", sample: "ص", hint: "a heavier, throatier 's'" }]
+            },
+            {
+                title: "Letters (ض–ق)", chars: [
+                    { ch: "ض", rom: "daad", sample: "ض", hint: "a heavier, throatier 'd'" }, { ch: "ط", rom: "taa'", sample: "ط", hint: "a heavier, throatier 't'" },
+                    { ch: "ظ", rom: "zaa'", sample: "ظ", hint: "a heavier, throatier 'z'" }, { ch: "ع", rom: "'ayn", sample: "ع", hint: "a distinctive throat sound with no English equivalent" },
+                    { ch: "غ", rom: "ghayn", sample: "غ", hint: "like a French 'r'" }, { ch: "ف", rom: "faa", sample: "فيل", hint: "like 'f' — as in فيل (elephant)" },
+                    { ch: "ق", rom: "qaaf", sample: "ق", hint: "a deep 'k' from the back of the throat" }]
+            },
+            {
+                title: "Letters (ك–ي)", chars: [
+                    { ch: "ك", rom: "kaaf", sample: "كتاب", hint: "like 'k' — as in كتاب (book)" }, { ch: "ل", rom: "laam", sample: "ليل", hint: "like 'l' — as in ليل (night)" },
+                    { ch: "م", rom: "meem", sample: "ماء", hint: "like 'm' — as in ماء (water)" }, { ch: "ن", rom: "noon", sample: "نور", hint: "like 'n' — as in نور (light)" },
+                    { ch: "ه", rom: "haa", sample: "هنا", hint: "like 'h' — as in هنا (here)" }, { ch: "و", rom: "waaw", sample: "و", hint: "consonant 'w' or a long 'oo' vowel" },
+                    { ch: "ي", rom: "yaa", sample: "ي", hint: "consonant 'y' or a long 'ee' vowel" }]
+            },
+        ];
+        const ALL_ARABIC_ALPHABET = ARABIC_ALPHABET.flatMap(s => s.chars);
+
+        const ARABIC_NUMBER_CHART = [
+            {
+                title: "Numbers 0–10", note: "The building blocks — every other number is formed from these.", chars: [
+                    { ch: "صفر", rom: "0 · sifr", en: "0" }, { ch: "واحد", rom: "1 · wahid", en: "1" }, { ch: "اثنان", rom: "2 · ithnan", en: "2" },
+                    { ch: "ثلاثة", rom: "3 · thalatha", en: "3" }, { ch: "أربعة", rom: "4 · arba'a", en: "4" }, { ch: "خمسة", rom: "5 · khamsa", en: "5" },
+                    { ch: "ستة", rom: "6 · sitta", en: "6" }, { ch: "سبعة", rom: "7 · sab'a", en: "7" }, { ch: "ثمانية", rom: "8 · thamaniya", en: "8" },
+                    { ch: "تسعة", rom: "9 · tis'a", en: "9" }, { ch: "عشرة", rom: "10 · ashara", en: "10" }]
+            },
+            {
+                title: "Tens", note: "Formed from the base digit + a plural-like ending.", chars: [
+                    { ch: "عشرون", rom: "20 · 'ishroon", en: "20" }, { ch: "ثلاثون", rom: "30 · thalathoon", en: "30" }, { ch: "أربعون", rom: "40 · arba'oon", en: "40" },
+                    { ch: "خمسون", rom: "50 · khamsoon", en: "50" }, { ch: "ستون", rom: "60 · sittoon", en: "60" }, { ch: "سبعون", rom: "70 · sab'oon", en: "70" },
+                    { ch: "ثمانون", rom: "80 · thamanoon", en: "80" }, { ch: "تسعون", rom: "90 · tis'oon", en: "90" }]
+            },
+            {
+                title: "Big Units", note: "Everything above 100 is built from these + 0-99.", chars: [
+                    { ch: "مئة", rom: "100 · mi'a", en: "100" }, { ch: "ألف", rom: "1,000 · alf", en: "1,000" }, { ch: "مليون", rom: "1,000,000 · milyon", en: "1,000,000" }]
+            },
+        ];
+        const ALL_ARABIC_NUMBERS = ARABIC_NUMBER_CHART.flatMap(s => s.chars.map(c => ({ kr: c.ch, en: c.en, rom: c.rom })));
+
+        const STROKE_ORDER_AR = [
+            { ch: "ا", strokes: ["A single vertical stroke, top to bottom.", "Alif never connects to a following letter — it only joins to the letter before it."] },
+            { ch: "ب", strokes: ["A shallow curved 'boat' shape, left to right.", "Add one dot below the curve.", "Note: its shape changes at the start/middle/end of a word."] },
+            { ch: "ت", strokes: ["Same shallow curved shape as ب.", "Add two dots above the curve instead of one below."] },
+            { ch: "ج", strokes: ["A curved hook shape, with a deep loop underneath.", "Add one dot inside the loop below the curve."] },
+            { ch: "د", strokes: ["A single curved stroke, like a small hook facing left.", "Dal does not connect to the letter after it."] },
+            { ch: "ر", strokes: ["A single curved stroke dropping below the baseline.", "Raa does not connect to the letter after it, similar to daal."] },
+            { ch: "س", strokes: ["Three small connected humps along the baseline.", "No dots — this is what distinguishes it from ش (sheen)."] },
+            { ch: "ل", strokes: ["A tall vertical stroke with a curved hook at the bottom.", "Connects on both sides in the middle of a word."] },
+            { ch: "م", strokes: ["A small circle or loop, with a short tail beneath the baseline."] },
+            { ch: "ي", strokes: ["A curved stroke similar to ب and ت, but dipping below the baseline at the end.", "Add two dots below the curve."] },
+        ];
+
         const STROKE_ORDER_ZH = [
             { ch: "一", strokes: ["One single horizontal stroke, left to right."] },
             { ch: "二", strokes: ["Stroke 1: a short horizontal line.", "Stroke 2: a longer horizontal line below it."] },
@@ -5940,25 +6066,24 @@
             if (kdramaNav) kdramaNav.classList.toggle('lang-hidden', !isKorean);
 
             // Grammar & Particles isn't built for English or Chinese — hide it for both.
-            // Draw & Trace isn't built for English (not needed, same script) but Chinese
-            // has real stroke-order content, so it stays visible there.
+            // Draw & Trace isn't built for English (not needed, same script) but Chinese,
+            // Afrikaans, and Arabic all have real stroke-order/letter-form content.
+            // Amharic stays limited to lessons + a Number Chart — see note below.
             const isEnglish = lang === 'en';
             const isChinese = lang === 'zh';
-            const noChartsBuilt = ['af', 'ar', 'am'].includes(lang);
+            const amharicOnly = lang === 'am';
             const grammarCardEl = document.getElementById('grammarCard');
-            if (grammarCardEl) grammarCardEl.classList.toggle('lang-hidden', isEnglish || isChinese || noChartsBuilt);
+            if (grammarCardEl) grammarCardEl.classList.toggle('lang-hidden', isEnglish || isChinese || amharicOnly);
             const drawTraceCardEl = document.getElementById('drawTraceCard');
-            if (drawTraceCardEl) drawTraceCardEl.classList.toggle('lang-hidden', isEnglish || noChartsBuilt);
+            if (drawTraceCardEl) drawTraceCardEl.classList.toggle('lang-hidden', isEnglish || amharicOnly);
             const topikCardEl = document.getElementById('topikCard');
-            if (topikCardEl) topikCardEl.classList.toggle('lang-hidden', noChartsBuilt);
+            if (topikCardEl) topikCardEl.classList.toggle('lang-hidden', amharicOnly);
             const hangulChartCardEl = document.getElementById('hangulChartCard');
-            if (hangulChartCardEl) hangulChartCardEl.classList.toggle('lang-hidden', noChartsBuilt);
-            const numberChartCardEl = document.getElementById('numberChartCard');
-            if (numberChartCardEl) numberChartCardEl.classList.toggle('lang-hidden', noChartsBuilt);
+            if (hangulChartCardEl) hangulChartCardEl.classList.toggle('lang-hidden', amharicOnly);
             const moreEmptyNote = document.getElementById('moreEmptyNote');
             if (moreEmptyNote) {
-                moreEmptyNote.style.display = noChartsBuilt ? 'block' : 'none';
-                if (noChartsBuilt) moreEmptyNote.textContent = "Reference tools (proficiency quiz, alphabet/number charts, tracing) aren't built for this language yet — just the core lessons for now. Check the Tutor tab to ask Han anything!";
+                moreEmptyNote.style.display = amharicOnly ? 'block' : 'none';
+                if (amharicOnly) moreEmptyNote.textContent = "The Number Chart is available below. Alphabet chart, tracing, verb conjugation, and a proficiency quiz aren't built for Amharic yet — the Ge'ez script deserves more care than a rushed attempt. Check the Tutor tab to ask Han anything!";
             }
 
             document.querySelectorAll('.en-only').forEach(el => {
@@ -6552,12 +6677,14 @@
         function openHangulChart() {
             showScreen('hangul');
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            const titles = { es: '🔤 Spanish Alphabet', ja: '🔤 Hiragana Chart', en: '🔤 Irregular Verbs', zh: '🔤 Tones & Pinyin Chart', ko: '🔤 Hangul Chart' };
+            const titles = { es: '🔤 Spanish Alphabet', ja: '🔤 Hiragana Chart', en: '🔤 Irregular Verbs', zh: '🔤 Tones & Pinyin Chart', af: '🔤 Afrikaans Alphabet', ar: '🔤 Arabic Alphabet', ko: '🔤 Hangul Chart' };
             const subs = {
                 es: 'Tap any letter to hear it. Learn all 27 letters and try the quiz below.',
                 ja: 'Tap any character to hear it. Learn all 46 basic hiragana and try the quiz below.',
                 en: 'Tap any verb to hear its past tense. Learn 24 common irregular verbs and try the quiz below.',
                 zh: 'Mandarin uses 4 tones — the same syllable can mean different things! Tap to hear each one, then try the quiz.',
+                af: 'Tap any letter to hear it, including the special diacritic letters (é, ê, ë, î, ô, û).',
+                ar: 'Arabic is written right to left. Tap any letter to hear it, then try the quiz below.',
                 ko: 'Tap any letter to hear it. Learn all 40 and try the quiz below.'
             };
             document.getElementById('alphabetChartTitle').textContent = titles[lang] || titles.ko;
@@ -6570,7 +6697,7 @@
             if (wrap.dataset.built === lang) return;
             wrap.dataset.built = lang;
             wrap.innerHTML = '';
-            const chart = lang === 'es' ? SPANISH_ALPHABET : lang === 'ja' ? JAPANESE_KANA : lang === 'en' ? IRREGULAR_VERBS : lang === 'zh' ? CHINESE_TONES : HANGUL_CHART;
+            const chart = lang === 'es' ? SPANISH_ALPHABET : lang === 'ja' ? JAPANESE_KANA : lang === 'en' ? IRREGULAR_VERBS : lang === 'zh' ? CHINESE_TONES : lang === 'af' ? AFRIKAANS_ALPHABET : lang === 'ar' ? ARABIC_ALPHABET : HANGUL_CHART;
             chart.forEach(section => {
                 const sec = document.createElement('div');
                 sec.className = 'hangul-section';
@@ -6596,6 +6723,10 @@
                 lastCompletedLesson = { title: "Irregular Verbs", words: ALL_IRREGULAR_VERBS.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             } else if (lang === 'zh') {
                 lastCompletedLesson = { title: "Tones & Pinyin", words: ALL_CHINESE_TONES.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
+            } else if (lang === 'af') {
+                lastCompletedLesson = { title: "Afrikaans Alphabet", words: ALL_AFRIKAANS_ALPHABET.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
+            } else if (lang === 'ar') {
+                lastCompletedLesson = { title: "Arabic Alphabet", words: ALL_ARABIC_ALPHABET.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             } else {
                 lastCompletedLesson = { title: "Hangul Chart", words: ALL_HANGUL_CHARS.map(c => ({ kr: c.ch, en: c.rom, rom: '' })) };
             }
@@ -6611,6 +6742,9 @@
                 ja: 'Tap any number to hear it, then try the quiz.',
                 en: 'Words that sound alike but mean different things. Tap to hear each one, then try the quiz.',
                 zh: 'Chinese groups by 10,000 (万), not 1,000. Tap any number to hear it, then try the quiz.',
+                af: 'Tap any number to hear it, then try the quiz.',
+                ar: 'Tap any number to hear it, then try the quiz.',
+                am: 'A small set of core numbers — tap any to hear it.',
                 ko: 'Korean has two number systems. Tap any number to hear it, then try the quiz.'
             };
             document.getElementById('numberChartTitle').textContent = titles[lang] || '🔢 Number Chart';
@@ -6623,7 +6757,7 @@
             if (wrap.dataset.built === lang) return;
             wrap.dataset.built = lang;
             wrap.innerHTML = '';
-            const chart = lang === 'es' ? SPANISH_NUMBER_CHART : lang === 'ja' ? JAPANESE_NUMBER_CHART : lang === 'en' ? CONFUSED_WORDS : lang === 'zh' ? CHINESE_NUMBER_CHART : NUMBER_CHART;
+            const chart = lang === 'es' ? SPANISH_NUMBER_CHART : lang === 'ja' ? JAPANESE_NUMBER_CHART : lang === 'en' ? CONFUSED_WORDS : lang === 'zh' ? CHINESE_NUMBER_CHART : lang === 'af' ? AFRIKAANS_NUMBER_CHART : lang === 'ar' ? ARABIC_NUMBER_CHART : lang === 'am' ? AMHARIC_NUMBER_CHART : NUMBER_CHART;
             chart.forEach(section => {
                 const sec = document.createElement('div');
                 sec.className = 'hangul-section';
@@ -6649,6 +6783,12 @@
                 lastCompletedLesson = { title: "Confused Words", words: ALL_CONFUSED_WORDS };
             } else if (lang === 'zh') {
                 lastCompletedLesson = { title: "Chinese Numbers", words: ALL_CHINESE_NUMBERS };
+            } else if (lang === 'af') {
+                lastCompletedLesson = { title: "Afrikaans Numbers", words: ALL_AFRIKAANS_NUMBERS };
+            } else if (lang === 'ar') {
+                lastCompletedLesson = { title: "Arabic Numbers", words: ALL_ARABIC_NUMBERS };
+            } else if (lang === 'am') {
+                lastCompletedLesson = { title: "Amharic Numbers", words: ALL_AMHARIC_NUMBERS };
             } else {
                 lastCompletedLesson = { title: "Number Chart", words: ALL_NUMBER_ITEMS };
             }
@@ -6977,9 +7117,10 @@
         let grammarTab = 'particles';
         function openGrammar() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            if (lang === 'es') grammarTab = 'conjugation';
+            if (lang === 'es' || lang === 'af' || lang === 'ar') grammarTab = 'conjugation';
             else if (grammarTab === 'conjugation' && !VERB_CONJUGATIONS.length) grammarTab = 'particles';
-            document.getElementById('grammarScreenTitle').textContent = lang === 'es' ? '📖 Verb Conjugation' : '📖 Grammar & Particles';
+            const titles = { es: '📖 Verb Conjugation', af: '📖 Verb Conjugation', ar: '📖 Verb Conjugation' };
+            document.getElementById('grammarScreenTitle').textContent = titles[lang] || '📖 Grammar & Particles';
             showScreen('grammar');
             renderGrammarTabs();
             renderGrammarContent();
@@ -6987,7 +7128,7 @@
         function renderGrammarTabs() {
             const row = document.getElementById('grammarTabRow');
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            const tabs = lang === 'es'
+            const tabs = (lang === 'es' || lang === 'af' || lang === 'ar')
                 ? [{ key: 'conjugation', label: 'Verbs', emoji: '🔀' }]
                 : [
                     { key: 'particles', label: 'Particles', emoji: '🔤' },
@@ -7022,7 +7163,7 @@
                     wrap.appendChild(card);
                 });
             } else if (grammarTab === 'conjugation') {
-                const verbs = lang === 'es' ? VERB_CONJUGATIONS_ES : VERB_CONJUGATIONS;
+                const verbs = lang === 'es' ? VERB_CONJUGATIONS_ES : lang === 'af' ? VERB_CONJUGATIONS_AF : lang === 'ar' ? VERB_CONJUGATIONS_AR : VERB_CONJUGATIONS;
                 verbs.forEach(v => {
                     const card = document.createElement('div');
                     card.className = 'scene-card';
@@ -7084,6 +7225,8 @@
             if (lang === 'es') return STROKE_ORDER_ES;
             if (lang === 'ja') return STROKE_ORDER_JA;
             if (lang === 'zh') return STROKE_ORDER_ZH;
+            if (lang === 'af') return STROKE_ORDER_AF;
+            if (lang === 'ar') return STROKE_ORDER_AR;
             return STROKE_ORDER;
         }
         function activeAlphabetChars() {
@@ -7091,6 +7234,8 @@
             if (lang === 'es') return ALL_SPANISH_ALPHABET;
             if (lang === 'ja') return ALL_JAPANESE_KANA;
             if (lang === 'zh') return CHINESE_TRACE_INFO;
+            if (lang === 'af') return ALL_AFRIKAANS_ALPHABET;
+            if (lang === 'ar') return ALL_ARABIC_ALPHABET;
             return ALL_HANGUL_CHARS;
         }
         function openDrawTrace() {
@@ -7304,7 +7449,7 @@
         let topikState = null;
         function openTopik() {
             const lang = (state.settings && state.settings.learningLang) || 'ko';
-            const banks = { es: DELE_QUESTIONS, ja: JLPT_QUESTIONS, en: ENGLISH_PROFICIENCY_QUESTIONS, zh: HSK_QUESTIONS, ko: TOPIK_QUESTIONS };
+            const banks = { es: DELE_QUESTIONS, ja: JLPT_QUESTIONS, en: ENGLISH_PROFICIENCY_QUESTIONS, zh: HSK_QUESTIONS, af: AFRIKAANS_QUESTIONS, ar: ARABIC_QUESTIONS, ko: TOPIK_QUESTIONS };
             const bank = banks[lang] || TOPIK_QUESTIONS;
             topikState = { questions: shuffle(bank), index: 0, correct: 0 };
             showScreen('topik');
@@ -7696,6 +7841,32 @@
             { dict: "escribir", rom: "es-kree-BEER", en: "to write", present: "escribo", presentRom: "es-KREE-boh", past: "escribí", pastRom: "es-kree-BEE", future: "voy a escribir", futureRom: "boy ah es-kree-BEER" },
         ];
 
+        const VERB_CONJUGATIONS_AF = [
+            { dict: "gaan", rom: "khahn", en: "to go", present: "gaan", presentRom: "khahn", past: "het gegaan", pastRom: "het kheh-KHAHN", future: "sal gaan", futureRom: "sul khahn" },
+            { dict: "wees", rom: "vees", en: "to be", present: "is", presentRom: "is", past: "was", pastRom: "vus", future: "sal wees", futureRom: "sul vees" },
+            { dict: "hê", rom: "heh", en: "to have", present: "het", presentRom: "het", past: "het gehad", pastRom: "het kheh-HUT", future: "sal hê", futureRom: "sul heh" },
+            { dict: "doen", rom: "doon", en: "to do", present: "doen", presentRom: "doon", past: "het gedoen", pastRom: "het kheh-DOON", future: "sal doen", futureRom: "sul doon" },
+            { dict: "sien", rom: "seen", en: "to see", present: "sien", presentRom: "seen", past: "het gesien", pastRom: "het kheh-SEEN", future: "sal sien", futureRom: "sul seen" },
+            { dict: "eet", rom: "eet", en: "to eat", present: "eet", presentRom: "eet", past: "het geëet", pastRom: "het kheh-EH-et", future: "sal eet", futureRom: "sul eet" },
+            { dict: "skryf", rom: "skrayf", en: "to write", present: "skryf", presentRom: "skrayf", past: "het geskryf", pastRom: "het kheh-SKRAYF", future: "sal skryf", futureRom: "sul skrayf" },
+            { dict: "werk", rom: "verk", en: "to work", present: "werk", presentRom: "verk", past: "het gewerk", pastRom: "het kheh-VERK", future: "sal werk", futureRom: "sul verk" },
+            { dict: "praat", rom: "praht", en: "to talk", present: "praat", presentRom: "praht", past: "het gepraat", pastRom: "het kheh-PRAHT", future: "sal praat", futureRom: "sul praht" },
+            { dict: "loop", rom: "loh-up", en: "to walk", present: "loop", presentRom: "loh-up", past: "het geloop", pastRom: "het kheh-LOH-up", future: "sal loop", futureRom: "sul loh-up" },
+        ];
+
+        const VERB_CONJUGATIONS_AR = [
+            { dict: "كتب", rom: "kataba", en: "to write", present: "يكتب", presentRom: "yaktubu", past: "كتب", pastRom: "kataba", future: "سيكتب", futureRom: "sayaktubu" },
+            { dict: "ذهب", rom: "dhahaba", en: "to go", present: "يذهب", presentRom: "yadh'habu", past: "ذهب", pastRom: "dhahaba", future: "سيذهب", futureRom: "sayadh'habu" },
+            { dict: "أكل", rom: "akala", en: "to eat", present: "يأكل", presentRom: "ya'kulu", past: "أكل", pastRom: "akala", future: "سيأكل", futureRom: "saya'kulu" },
+            { dict: "شرب", rom: "shariba", en: "to drink", present: "يشرب", presentRom: "yashrabu", past: "شرب", pastRom: "shariba", future: "سيشرب", futureRom: "sayashrabu" },
+            { dict: "رأى", rom: "ra'aa", en: "to see", present: "يرى", presentRom: "yaraa", past: "رأى", pastRom: "ra'aa", future: "سيرى", futureRom: "sayaraa" },
+            { dict: "عمل", rom: "'amila", en: "to work", present: "يعمل", presentRom: "ya'malu", past: "عمل", pastRom: "'amila", future: "سيعمل", futureRom: "saya'malu" },
+            { dict: "قال", rom: "qaala", en: "to say", present: "يقول", presentRom: "yaqoolu", past: "قال", pastRom: "qaala", future: "سيقول", futureRom: "sayaqoolu" },
+            { dict: "درس", rom: "darasa", en: "to study", present: "يدرس", presentRom: "yadrusu", past: "درس", pastRom: "darasa", future: "سيدرس", futureRom: "sayadrusu" },
+            { dict: "سافر", rom: "saafara", en: "to travel", present: "يسافر", presentRom: "yusaafiru", past: "سافر", pastRom: "saafara", future: "سيسافر", futureRom: "sayusaafiru" },
+            { dict: "لعب", rom: "la'iba", en: "to play", present: "يلعب", presentRom: "yal'abu", past: "لعب", pastRom: "la'iba", future: "سيلعب", futureRom: "sayal'abu" },
+        ];
+
         /* =========================================================
            GRAMMAR: Honorific vs Casual speech
            ========================================================= */
@@ -7846,6 +8017,53 @@
             { type: "grammar", q: "选择正确的助词：我（ ）不知道。", qEn: "Choose the correct particle — 'I don't know either.'", options: ["也", "的", "了", "吗"], answer: "也" },
             { type: "reading", q: "「周末我要跟朋友看电影。」这个人什么时候看电影？", qEn: "When will this person watch a movie?", options: ["Today", "Tomorrow", "This weekend", "Next month"], answer: "This weekend" },
             { type: "vocab", q: "选择「多」的反义词。", qEn: "Choose the opposite of '多' (a lot)", options: ["少", "大", "好", "快"], answer: "少" },
+        ];
+
+        /* Amharic — Number Chart only, same conservative scope as the lessons.
+           Sticking to well-documented core numbers rather than extending further. */
+        const AMHARIC_NUMBER_CHART = [
+            {
+                title: "Numbers 0–10", note: "The building blocks — every other number is formed from these.", chars: [
+                    { ch: "ዜሮ", rom: "0 · zero", en: "0" }, { ch: "አንድ", rom: "1 · and", en: "1" }, { ch: "ሁለት", rom: "2 · hulet", en: "2" },
+                    { ch: "ሦስት", rom: "3 · sost", en: "3" }, { ch: "አራት", rom: "4 · arat", en: "4" }, { ch: "አምስት", rom: "5 · amist", en: "5" },
+                    { ch: "ስድስት", rom: "6 · sidist", en: "6" }, { ch: "ሰባት", rom: "7 · sebat", en: "7" }, { ch: "ስምንት", rom: "8 · simint", en: "8" },
+                    { ch: "ዘጠኝ", rom: "9 · zetegn", en: "9" }, { ch: "አስር", rom: "10 · asir", en: "10" }]
+            },
+            {
+                title: "Bigger Numbers", note: "Common round numbers.", chars: [
+                    { ch: "ሃያ", rom: "20 · haya", en: "20" }, { ch: "መቶ", rom: "100 · meto", en: "100" }]
+            },
+        ];
+        const ALL_AMHARIC_NUMBERS = AMHARIC_NUMBER_CHART.flatMap(s => s.chars.map(c => ({ kr: c.ch, en: c.en, rom: c.rom })));
+
+        const AFRIKAANS_QUESTIONS = [
+            { type: "vocab", q: "Kies die beste woord: Ek drink elke oggend ___.", qEn: "Choose the best word: I drink coffee every morning.", options: ["koffie", "brood", "boek", "motor"], answer: "koffie" },
+            { type: "vocab", q: "Kies die teenoorgestelde van 'groot'.", qEn: "Choose the opposite of 'groot' (big)", options: ["klein", "baie", "lank", "hoog"], answer: "klein" },
+            { type: "grammar", q: "Kies die korrekte sin:", qEn: "Choose the correct sentence.", options: ["Sy is 'n student.", "Sy het 'n student.", "Sy gaan 'n student.", "Sy sal 'n student."], answer: "Sy is 'n student." },
+            { type: "grammar", q: "Wat is die korrekte verlede tyd van 'gaan'?", qEn: "Choose the correct past tense of 'gaan' (to go).", options: ["het gegaan", "gaan", "sal gaan", "gegaan het"], answer: "het gegaan" },
+            { type: "vocab", q: "Kies die beste woord: Vandag is dit baie ___.", qEn: "Choose the best word for the weather.", options: ["warm", "eet", "slaap", "lees"], answer: "warm" },
+            { type: "grammar", q: "Kies die korrekte toekomende tyd: Môre ___ ek werk.", qEn: "Choose the correct future tense word.", options: ["sal", "het", "was", "is"], answer: "sal" },
+            { type: "reading", q: "'Ek lees elke dag 'n boek in die biblioteek.' Wat doen hierdie persoon elke dag?", qEn: "What does this person do every day, according to the sentence?", options: ["Reads a book", "Writes a book", "Sells a book", "Buys a book"], answer: "Reads a book" },
+            { type: "vocab", q: "Kies die beste woord — 'Jammer, ek is ___.'", qEn: "Choose the best word — 'Sorry, I'm ___.'", options: ["laat", "gelukkig", "besig", "moeg"], answer: "laat" },
+            { type: "grammar", q: "Kies u vs jy: Aan 'n vreemdeling sê jy formeel ___.", qEn: "Choose the formal 'you' for a stranger.", options: ["u", "jy", "hy", "sy"], answer: "u" },
+            { type: "reading", q: "'Naweek gaan ek saam met my vriend 'n fliek kyk.' Wanneer gaan hulle die fliek kyk?", qEn: "When will they watch the movie?", options: ["Today", "Tomorrow", "This weekend", "Next month"], answer: "This weekend" },
+            { type: "vocab", q: "Kies die teenoorgestelde van 'duur'.", qEn: "Choose the opposite of 'duur' (expensive)", options: ["goedkoop", "groot", "goed", "vinnig"], answer: "goedkoop" },
+            { type: "grammar", q: "Kies die korrekte woord: Ek ___ na die winkel.", qEn: "Choose the correct verb — 'I go to the shop.'", options: ["gaan", "het gegaan", "sal gaan", "gegaan"], answer: "gaan" },
+        ];
+
+        const ARABIC_QUESTIONS = [
+            { type: "vocab", q: "اختر أفضل كلمة: أشرب كل صباح ___.", qEn: "Choose the best word: I drink coffee every morning.", options: ["قهوة", "خبز", "كتاب", "سيارة"], answer: "قهوة" },
+            { type: "vocab", q: "اختر عكس كلمة 'كبير'.", qEn: "Choose the opposite of 'kabeer' (big)", options: ["صغير", "كثير", "طويل", "عالي"], answer: "صغير" },
+            { type: "grammar", q: "اختر الجملة الصحيحة:", qEn: "Choose the correct sentence.", options: ["هي طالبة.", "هي عندها طالبة.", "هي تذهب طالبة.", "هي ستكون طالبة غدا."], answer: "هي طالبة." },
+            { type: "grammar", q: "ما هو الماضي الصحيح لـ 'يذهب'؟", qEn: "Choose the correct past tense of 'yadh'habu' (to go).", options: ["ذهب", "يذهب", "سيذهب", "اذهب"], answer: "ذهب" },
+            { type: "vocab", q: "اختر أفضل كلمة: الجو اليوم ___ جدا.", qEn: "Choose the best word for the weather.", options: ["حار", "يأكل", "ينام", "يقرأ"], answer: "حار" },
+            { type: "grammar", q: "اختر المستقبل الصحيح: غدا ___ إلى المدرسة.", qEn: "Choose the correct future tense word.", options: ["سأذهب", "ذهبت", "كنت", "كان"], answer: "سأذهب" },
+            { type: "reading", q: "«أقرأ كتابا كل يوم في المكتبة.» ماذا يفعل هذا الشخص كل يوم؟", qEn: "What does this person do every day, according to the sentence?", options: ["Reads a book", "Writes a book", "Sells a book", "Buys a book"], answer: "Reads a book" },
+            { type: "vocab", q: "اختر أفضل كلمة — 'آسف، أنا ___.'", qEn: "Choose the best word — 'Sorry, I'm ___.'", options: ["متأخر", "سعيد", "مشغول", "متعب"], answer: "متأخر" },
+            { type: "grammar", q: "مع الغريب تقول بشكل رسمي:", qEn: "Choose the more formal 'you' for a stranger.", options: ["حضرتك", "أنت", "هو", "هي"], answer: "حضرتك" },
+            { type: "reading", q: "«في نهاية الأسبوع سأشاهد فيلما مع صديقي.» متى سيشاهد الفيلم؟", qEn: "When will they watch the movie?", options: ["Today", "Tomorrow", "This weekend", "Next month"], answer: "This weekend" },
+            { type: "vocab", q: "اختر عكس كلمة 'غالي'.", qEn: "Choose the opposite of 'ghaali' (expensive)", options: ["رخيص", "كبير", "جيد", "سريع"], answer: "رخيص" },
+            { type: "grammar", q: "اختر الكلمة الصحيحة: أنا ___ إلى المتجر.", qEn: "Choose the correct verb — 'I go to the shop.'", options: ["أذهب", "ذهبت", "سأذهب", "ذاهب"], answer: "أذهب" },
         ];
 
         const CHINESE_CHAT_TOPICS = [
